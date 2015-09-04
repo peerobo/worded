@@ -32,8 +32,8 @@ void IntroItem::runIn(int delay)
     Vector<FiniteTimeAction*> v;
     if(delay > 0)
         v.pushBack(DelayTime::create(delay*0.2f));
-    v.pushBack(FadeIn::create(0.4f));
+    v.pushBack(FadeIn::create(0.6f));
     node->runAction(Sequence::create(v));
     node->setPositionY(-100);
-    node->runAction(MoveBy::create(0.4f+delay*0.2f, Vec2(0,100)));
+    node->runAction(MoveBy::create(0.6f+delay*0.2f, Vec2(0,100)));
 }

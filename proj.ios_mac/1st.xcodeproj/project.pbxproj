@@ -32,14 +32,13 @@
 		BF1712471292920000B8313A /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BF170DB412928DE900B8313A /* libz.dylib */; };
 		BF1C47F01293687400B63C5D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF1C47EA1293683800B63C5D /* QuartzCore.framework */; };
 		C22799EB1B98A519004E3475 /* IntroItem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C22799E91B98A519004E3475 /* IntroItem.cpp */; settings = {ASSET_TAGS = (); }; };
-		C24582521B9627A400958B25 /* libcocos2d iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C24582511B9627A400958B25 /* libcocos2d iOS.a */; };
 		C28768BD1B96B1E60052D80C /* BaseGUI.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C28768B31B96B1E60052D80C /* BaseGUI.cpp */; settings = {ASSET_TAGS = (); }; };
 		C28768BE1B96B1E60052D80C /* Dlg.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C28768B51B96B1E60052D80C /* Dlg.cpp */; settings = {ASSET_TAGS = (); }; };
 		C28768BF1B96B1E60052D80C /* DlgMgr.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C28768B71B96B1E60052D80C /* DlgMgr.cpp */; settings = {ASSET_TAGS = (); }; };
 		C28768C01B96B1E60052D80C /* ParticleMgr.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C28768B91B96B1E60052D80C /* ParticleMgr.cpp */; settings = {ASSET_TAGS = (); }; };
 		C28768C11B96B1E60052D80C /* Util.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C28768BB1B96B1E60052D80C /* Util.cpp */; settings = {ASSET_TAGS = (); }; };
 		C2CBF83E1B985D9C00C63CD2 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C2CBF83D1B985D9C00C63CD2 /* Images.xcassets */; settings = {ASSET_TAGS = (); }; };
-		C2DC74541B929DE50086BC7B /* base in Resources */ = {isa = PBXBuildFile; fileRef = C2DC74531B929DE50086BC7B /* base */; settings = {ASSET_TAGS = (); }; };
+		C2DA2DA91B99B681003B8F3C /* libcocos2d iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C24582511B9627A400958B25 /* libcocos2d iOS.a */; };
 		C2DC74581B960D8B0086BC7B /* IntroScreen.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C2DC74571B960D8B0086BC7B /* IntroScreen.cpp */; settings = {ASSET_TAGS = (); }; };
 		C2DC745D1B9610740086BC7B /* Constants.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C2DC74591B9610740086BC7B /* Constants.cpp */; settings = {ASSET_TAGS = (); }; };
 		C2DC745E1B9610740086BC7B /* GlobalVar.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C2DC745B1B9610740086BC7B /* GlobalVar.cpp */; settings = {ASSET_TAGS = (); }; };
@@ -84,6 +83,7 @@
 		BF170DB012928DE900B8313A /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		BF170DB412928DE900B8313A /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		BF1C47EA1293683800B63C5D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		C222BD0B1B99582000AC4A1F /* libcocos2d iOS sim.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libcocos2d iOS sim.a"; path = "lib/libcocos2d iOS sim.a"; sourceTree = "<group>"; };
 		C22799E91B98A519004E3475 /* IntroItem.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = IntroItem.cpp; path = intro/IntroItem.cpp; sourceTree = "<group>"; };
 		C22799EC1B98A695004E3475 /* IntroItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = IntroItem.h; path = intro/IntroItem.h; sourceTree = "<group>"; };
 		C24582511B9627A400958B25 /* libcocos2d iOS.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libcocos2d iOS.a"; path = "lib/libcocos2d iOS.a"; sourceTree = "<group>"; };
@@ -98,7 +98,6 @@
 		C28768BB1B96B1E60052D80C /* Util.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Util.cpp; path = base/Util.cpp; sourceTree = "<group>"; };
 		C28768BC1B96B1E60052D80C /* Util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Util.h; path = base/Util.h; sourceTree = "<group>"; };
 		C2CBF83D1B985D9C00C63CD2 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = "1st-mobile/Images.xcassets"; sourceTree = SOURCE_ROOT; };
-		C2DC74531B929DE50086BC7B /* base */ = {isa = PBXFileReference; lastKnownFileType = folder; name = base; path = /Users/ducphuongnguyen/Documents/1st/Classes/base; sourceTree = "<absolute>"; };
 		C2DC74561B960D720086BC7B /* IntroScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IntroScreen.h; sourceTree = "<group>"; };
 		C2DC74571B960D8B0086BC7B /* IntroScreen.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = IntroScreen.cpp; sourceTree = "<group>"; };
 		C2DC74591B9610740086BC7B /* Constants.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Constants.cpp; sourceTree = "<group>"; };
@@ -123,7 +122,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C24582521B9627A400958B25 /* libcocos2d iOS.a in Frameworks */,
+				C2DA2DA91B99B681003B8F3C /* libcocos2d iOS.a in Frameworks */,
 				ED545A7C1B68A1F400C3958E /* libiconv.dylib in Frameworks */,
 				52B47A471A53D09C004E4C60 /* Security.framework in Frameworks */,
 				D6B0611B1803AB670077942B /* CoreMotion.framework in Frameworks */,
@@ -201,6 +200,7 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C222BD0B1B99582000AC4A1F /* libcocos2d iOS sim.a */,
 				C24582511B9627A400958B25 /* libcocos2d iOS.a */,
 				ED545A7D1B68A1FA00C3958E /* libiconv.dylib */,
 				ED545A7B1B68A1F400C3958E /* libiconv.dylib */,
@@ -391,7 +391,6 @@
 				C2CBF83E1B985D9C00C63CD2 /* Images.xcassets in Resources */,
 				C2DC74681B9613A60086BC7B /* shared in Resources */,
 				C2DC74651B9613A60086BC7B /* @1x in Resources */,
-				C2DC74541B929DE50086BC7B /* base in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -54,55 +54,31 @@ bool AppDelegate::applicationDidFinishLaunching() {
     int w, h;
     int sw = glview->getFrameSize().width;
     int sh = glview->getFrameSize().height;
-    int minSize = sw < sh ? sw : sh;
+    int maxSize = sw < sh ? sh : sw;
     float scale;
     std::string	assetPath;
     ResolutionPolicy resPolicy = ResolutionPolicy::EXACT_FIT;
-    if (minSize <= 240)
-    {
-        w = sw / 0.25;
-        h = sh / 0.17;
-        scale = 0.25;
-        assetPath = "@1x";
-        resPolicy = ResolutionPolicy::FIXED_HEIGHT;
-    }
-    else if (minSize <= 320)
+    if (maxSize <= 480)
     {
         w = sw / 0.25;
         h = sh / 0.25;
         scale = 0.25;
         assetPath = "@1x";
     }
-    else if (minSize <= 480)
-    {
-        /*w = sw / 0.375;
-         h = sh / 0.375;
-         scale = 0.375;
-         assetPath = "@1.5x";*/
-        w = sw / 0.5;
-        h = sh / 0.375;
-        scale = 0.5;
-        assetPath = "@2x";
-        resPolicy = ResolutionPolicy::FIXED_HEIGHT;
-    }
-    else if (minSize <= 800)
+    else if (maxSize <= 1024)
     {
         w = sw / 0.5;
         h = sh / 0.5;
         scale = 0.5;
         assetPath = "@2x";
     }
-    else if (minSize <= 1080)
+    else if (maxSize <= 1334)
     {
-        /*w = sw / 0.75;
-         h = sh / 0.75;
-         scale = 0.75;
-         assetPath = "@x";*/
-        w = sw / 0.75;
-        h = sh / 1;
+        w = sw / 1;
+        h = sh / 0.67;
         scale = 1;
         assetPath = "@4x";
-        resPolicy = ResolutionPolicy::FIXED_WIDTH;
+        resPolicy = ResolutionPolicy::FIXED_HEIGHT;
     }
     else
     {
