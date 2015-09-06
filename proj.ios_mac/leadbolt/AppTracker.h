@@ -1,8 +1,9 @@
 //
-//  AppTracker.h - v5.2
+//  AppTracker.h
+//  AppFireworks
 //
-//  Created by Leadbolt.
-//  Copyright (c) 2015 Leadbolt. All rights reserved.
+//  Created by AppFireworks.
+//  Copyright (c) 2015 AppFireworks. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
@@ -47,10 +48,10 @@
 +(void) transaction:(NSString*) name value:(float)floatValue currencyCode:(NSString*)currencyCode ref:(NSString*)ref instant:(BOOL)instant;
 
 // Module functions
-+(void) loadModule:(NSString*) placement viewController:(UIViewController*)viewController;
-+(void) loadModule:(NSString*) placement viewController:(UIViewController*)viewController withUserData:(NSString*)userData;
-+(void) loadModuleToCache:(NSString*) placement;
-+(void) loadModuleToCache:(NSString*) placement withUserData:(NSString*)userData;
++(BOOL) loadModule:(NSString*) placement viewController:(UIViewController*)viewController;
++(BOOL) loadModule:(NSString*) placement viewController:(UIViewController*)viewController withUserData:(NSString*)userData;
++(BOOL) loadModuleToCache:(NSString*) placement;
++(BOOL) loadModuleToCache:(NSString*) placement withUserData:(NSString*)userData;
 +(void) destroyModule;
 
 // Crash Reporting

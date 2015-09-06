@@ -1,11 +1,22 @@
-{
-	metadata = {
-		format = 1;
-	};
-	data = {
-		more = More;
-		leaderboard = Leaderboard;
-		onemode = "One Mode";
-		tablemode = "Table Mode";
-	};
-}
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>metadata</key>
+	<dict>
+		<key>format</key>
+		<string>1</string>
+	</dict>
+	<key>data</key>
+	<dict>
+		<key>more</key>
+		<string>More</string>
+		<key>leaderboard</key>
+		<string>Leaderboard</string>
+		<key>onemode</key>
+		<string>One Mode</string>
+		<key>tablemode</key>
+		<string>Table Mode</string>
+	</dict>
+</dict>
+</plist>
