@@ -8,6 +8,19 @@ const char* Constants::ASS_BG_TABLE = "tablebg";
 const char* Constants::ASS_FNT_NORMAL = "worded.fnt";
 const char* Constants::ASS_FNT_BIG = "score.fnt";
 
+// ico
+const char* Constants::ASS_ICO_BG_WORD = "bg_word";
+const char* Constants::ASS_ICO_BAR_ONE = "ico_bar_one";
+const char* Constants::ASS_ICO_CORRECT_FALSE = "ico_correct_false";
+const char* Constants::ASS_ICO_WRONG_FALSE = "ico_wrong_false";
+const char* Constants::ASS_ICO_HIGHSCORE = "ico_highscore";
+const char* Constants::ASS_ICO_STAR = "ico_star";
+const char* Constants::ASS_BT_BACK = "bt_back";
+const char* Constants::ASS_BT_CORRECT = "bt_correct";
+const char* Constants::ASS_BT_RETRY = "bt_retry";
+const char* Constants::ASS_BT_SHARE = "bt_share";
+const char* Constants::ASS_BT_WRONG = "bt_wrong";
+
 // suffix
 const char* Constants::ASS_SUFFIX_DATA = ".plist";
 const char* Constants::ASS_SUFFIX_IMAGE = ".png";
