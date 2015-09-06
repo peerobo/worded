@@ -38,7 +38,7 @@ bool AppDelegate::applicationDidFinishLaunching() {
     auto glview = director->getOpenGLView();
     if(!glview) {
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32) || (CC_TARGET_PLATFORM == CC_PLATFORM_MAC) || (CC_TARGET_PLATFORM == CC_PLATFORM_LINUX)
-        glview = GLViewImpl::createWithRect("1st", Rect(0, 0, designResolutionSize.width, designResolutionSize.height));
+        glview = GLViewImpl::createWithRect("1st", Rect(0, 0, 320, 480));
 #else
         glview = GLViewImpl::create("1st");
 #endif
@@ -90,8 +90,17 @@ bool AppDelegate::applicationDidFinishLaunching() {
     glview->setDesignResolutionSize(w, h, resPolicy);
     director->setContentScaleFactor(scale);
     std::vector<std::string> paths;
-    paths.push_back(assetPath);
-    paths.push_back("shared");
+	if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
+	{
+		paths.push_back("../../Resources/" + assetPath);
+		paths.push_back("../../Resources/shared");
+	}
+	else
+	{
+		paths.push_back(assetPath);
+		paths.push_back("shared");
+	}
+    
     FileUtils::getInstance()->setSearchPaths(paths);
     ZipUtils::setPvrEncryptionKeyPart(2, 0x51ce7d9e);
     register_all_packages();
