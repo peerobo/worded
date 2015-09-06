@@ -1,6 +1,9 @@
 #include "AppDelegate.h"
 #include "base/Util.h"
 #include "IntroScreen.h"
+#include "AppTrackerWrapper.h"
+#include "Constants.h"
+
 USING_NS_CC;
 
 AppDelegate::AppDelegate() {
@@ -32,8 +35,19 @@ static int register_all_packages()
 }
 
 bool AppDelegate::applicationDidFinishLaunching() {
-    // initialize director
     ZipUtils::setPvrEncryptionKeyPart(3, 0x3e26102b);
+    
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
+    
+    // Initialize Leadbolt SDK with your API Key
+    AppTrackerWrapper::startSession("PKOi4AX2StGGZquCKi4j461SHNG5GOHI");
+    
+    // cache Leadbolt Ad without showing it
+    AppTrackerWrapper::loadModuleToCache("430118190");
+    
+#endif
+    
+    // initialize director
     auto director = Director::getInstance();
     auto glview = director->getOpenGLView();
     if(!glview) {
@@ -104,8 +118,9 @@ bool AppDelegate::applicationDidFinishLaunching() {
     FileUtils::getInstance()->setSearchPaths(paths);
     ZipUtils::setPvrEncryptionKeyPart(2, 0x51ce7d9e);
     register_all_packages();
-
+    
     Configuration::getInstance()->loadConfigFile("localization.plist");
+    util_loadTexAtl(Constants::ASS_TEX_GUI, false);
     // create a scene. it's an autorelease object
     auto scene = util_createSceneWithLayer(IntroScreen::create());
 

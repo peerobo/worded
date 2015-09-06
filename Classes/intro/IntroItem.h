@@ -17,12 +17,18 @@ USING_NS_CC;
 class IntroItem : public Node{
 private:
     std::function<void()> _cback;
-
+    
+    bool onTouchBegan(Touch* t, Event* e);
+    void onTouchEnded(Touch* t, Event* e);
 public:
     CREATE_FUNC(IntroItem);
     
     void setValue(std::string label, std::function<void()> callback);
     void runIn(int delay);
+    void runOut(int delay);
+    void blink();
+    void fadeOut();
+    
 };
 
 #endif /* IntroItem_hpp */

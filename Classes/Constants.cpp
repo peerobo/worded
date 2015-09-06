@@ -2,6 +2,8 @@
 #include "cocos2d.h"
 
 const char* Constants::ASS_BG_INTRO = "intro";
+const char* Constants::ASS_BG_ONE = "onebg";
+const char* Constants::ASS_BG_TABLE = "tablebg";
 
 const char* Constants::ASS_FNT_NORMAL = "worded.fnt";
 const char* Constants::ASS_FNT_BIG = "score.fnt";
@@ -12,35 +14,8 @@ const char* Constants::ASS_SUFFIX_IMAGE = ".png";
 const char* Constants::ASS_SUFFIX_IMAGE_JPG = ".jpg";
 const char* Constants::ASS_SUFFIX_TEXATL = ".pvr.ccz";
 
-const char* Constants::CONST_CHAT_EMO = "~!#";
-const char* Constants::CONST_URL_FBAVA = "https://graph.facebook.com/v2.1/@id/picture?width=@w&height=@h&redirect=true"; 
-#ifdef _TEST_LOCAL
-//const char* Constants::CONST_URL_SERVER_WEB = "http://123.30.211.88/mobile/";
-const char* Constants::CONST_URL_SERVER_WEB = "http://127.0.0.1:8001/mobile/";
-const char* Constants::CONST_URL_SERVER_WEB_FOREIGN = "http://192.168.0.55:8001/mobile/";
-#else
-//const char* Constants::CONST_URL_SERVER_WEB = "http://192.168.1.10:8001/mobile/";
-const char* Constants::CONST_URL_SERVER_WEB = "http://123.30.211.88/mobile/";
-const char* Constants::CONST_URL_SERVER_WEB_FOREIGN = "http://www.gamebaivip.net/";
-#endif
-const char* Constants::CONST_URL_SYSTEM_MESSAGES = "fplayRes/system_messages.json";
-const char* Constants::CONST_URL_CONTENT = "fplayRes/@#scalex/#file.zip";
-const char* Constants::CONST_URL_VERCONTENT = "fplayRes/ver.json";
-//const char* Constants::CONST_URL_CONTENT = "fplayResTest/@#scalex/#file.zip";
-//const char* Constants::CONST_URL_VERCONTENT = "fplayResTest/ver.json";
-#if CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
-const char* Constants::CONST_URL_IP = "http://123.30.211.88/mobile/checkip.php";
-#else
-#ifdef _TEST_LOCAL
-const char* Constants::CONST_URL_IP = "http://www.gamebaivip.net/checkip.php";
-#else
-const char* Constants::CONST_URL_IP = "http://www.gamebaivip.net/checkip.php";
-#endif
-#endif
-const char* Constants::STR_BASE_CONTENT = "base";
-const char* Constants::STR_SLOT_CONTENT = "slot";
-const char* Constants::STR_AVA = "ava";
-const char* Constants::STR_CONTENT_PROGRESS = "content.cfg";
+const char* Constants::ASS_TEX_GUI = "gui";
+
 const char* Constants::CONST_CIDR[33] = {
 		"0.0.0.0",
 		"128.0.0.0",

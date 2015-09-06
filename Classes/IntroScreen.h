@@ -12,6 +12,7 @@ USING_NS_CC;
 
 #ifndef IntroScreen_h
 #define IntroScreen_h
+#include "intro/IntroItem.h"
 
 class IntroScreen : public Layer {
     
@@ -19,6 +20,15 @@ private:
     IntroScreen();
     
     void startIntro();
+    void onTouchItem(int type);
+    
+    void processType(int type);
+    
+    void onOneMode();
+    void onTableMode();
+    void onLeaderboard();
+    void onMoreGame();
+    
 public:
     CREATE_FUNC(IntroScreen);
 };
