@@ -10,7 +10,9 @@
 #include "IntroScreen.h"
 #include "base/Util.h"
 #include "Constants.h"
+#if CC_TARGET_PLATFORM == CC_PLATFORM_IOS
 #include "AppTrackerWrapper.h"
+#endif
 
 void IntroScreen::onOneMode()
 {
@@ -29,7 +31,9 @@ void IntroScreen::onLeaderboard()
 
 void IntroScreen::onMoreGame()
 {
+#if CC_TARGET_PLATFORM == CC_PLATFORM_IOS
     AppTrackerWrapper::loadModule("inapp");
+#endif
 }
 
 void IntroScreen::onTouchItem(int type)
@@ -100,6 +104,8 @@ IntroScreen::IntroScreen()
     addChild(bg,1);
     bg->setTag(1);
     
+	util_playMusic(Constants::ASS_SND_THEME);
+
 //    Vector<FiniteTimeAction*> v;
 //    v.pushBack(DelayTime::create(0.7f));
 //    v.pushBack(CallFunc::create(CC_CALLBACK_0(IntroScreen::startIntro, this)));

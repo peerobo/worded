@@ -39,9 +39,9 @@ remember to delete result char
 */
 uint32_t util_playSound(const char* snd, bool loop);
 void util_playSoundNoResponse(const char* snd, bool loop);
-uint32_t util_playMusic(const char* music, bool loop); 
+void util_playMusic(const char* music); 
 void util_stopMusic(uint32_t id);
-void util_mute();
+void util_stopAllSounds();
 void util_showDisp(Node* node, bool withModalBG, int layer = 100);
 void util_setBtEnable(ui::Button* bt, bool val, float opacity = 0.2f);
 void util_addClosedWhenClickOutside(Node* node, bool autoclean = true);

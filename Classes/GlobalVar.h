@@ -14,13 +14,9 @@
 #include <unordered_map>
 USING_NS_CC;
 
-struct sMyData{
-	bool checkNewUserJoinedRoom;
-	int prevGame;
-    int isFirstPlay;
+struct sMyData{	
     bool isFb;
-	bool isEnableAudio;
-	bool isEnableInvite;
+	bool isEnableAudio;	
 	bool isEnableVibration;
 };
 

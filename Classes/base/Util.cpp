@@ -351,20 +351,25 @@ void util_playSoundNoResponse(const char* snd, bool loop)
 	ins->playEffect(snd, loop);
 }
 
-uint32_t util_playMusic(const char* music, bool loop)
+void util_playMusic(const char* music)
 {
-
-	return 0;
+	if (!GlobalVar::myData.isEnableAudio)
+		return;
+	SimpleAudioEngine* ins = SimpleAudioEngine::getInstance();
+	ins->playBackgroundMusic(music	, true);
 }
 
 void util_stopMusic(uint32_t id)
 {
 	SimpleAudioEngine* ins = SimpleAudioEngine::getInstance();
 	ins->stopEffect(id);
+	ins->stopBackgroundMusic();
 }
 
-void util_mute()
+void util_stopAllSounds()
 {
+	SimpleAudioEngine* ins = SimpleAudioEngine::getInstance();
+	ins->stopAllEffects();
 }
 
 

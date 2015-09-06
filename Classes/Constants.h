@@ -18,6 +18,8 @@ public:
     
     static const char* ASS_TEX_GUI;
 
+	static const char* ASS_SND_THEME;
+
 	static const char* CONST_CIDR[33];	
 	static const char* CONST_IP_RANGE[327];
 

@@ -14,6 +14,8 @@ const char* Constants::ASS_SUFFIX_IMAGE = ".png";
 const char* Constants::ASS_SUFFIX_IMAGE_JPG = ".jpg";
 const char* Constants::ASS_SUFFIX_TEXATL = ".pvr.ccz";
 
+const char* Constants::ASS_SND_THEME = "Rest_Outro_(music_by_Dan_Knoflicek).mp3";
+
 const char* Constants::ASS_TEX_GUI = "gui";
 
 const char* Constants::CONST_CIDR[33] = {

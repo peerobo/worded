@@ -1,8 +1,11 @@
 #include "AppDelegate.h"
 #include "base/Util.h"
 #include "IntroScreen.h"
+#if CC_TARGET_PLATFORM == CC_PLATFORM_IOS
 #include "AppTrackerWrapper.h"
+#endif
 #include "Constants.h"
+#include "SimpleAudioEngine.h"
 
 USING_NS_CC;
 
@@ -36,7 +39,9 @@ static int register_all_packages()
 
 bool AppDelegate::applicationDidFinishLaunching() {
     ZipUtils::setPvrEncryptionKeyPart(3, 0x3e26102b);
-    
+	
+	CocosDenshion::SimpleAudioEngine::getInstance()->preloadBackgroundMusic(Constants::ASS_SND_THEME);
+
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
     
     // Initialize Leadbolt SDK with your API Key

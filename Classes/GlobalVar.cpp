@@ -31,7 +31,11 @@ int GlobalVar::goldPerDay = 0;
 bool GlobalVar::needReloadImages = false;
 bool GlobalVar::inServer = false;
 std::unordered_map<std::string, Texture2D*> GlobalVar::avaDB;
-sMyData GlobalVar::myData = {};
+sMyData GlobalVar::myData = {
+	false,
+	true,
+	true,
+};
 
 #if CC_TARGET_PLATFORM == CC_PLATFORM_IOS || CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
 int GlobalVar::fbReady = 0;
