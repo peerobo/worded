@@ -48,6 +48,7 @@
 		C28768BE1B96B1E60052D80C /* Dlg.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C28768B51B96B1E60052D80C /* Dlg.cpp */; settings = {ASSET_TAGS = (); }; };
 		C28768BF1B96B1E60052D80C /* DlgMgr.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C28768B71B96B1E60052D80C /* DlgMgr.cpp */; settings = {ASSET_TAGS = (); }; };
 		C28768C01B96B1E60052D80C /* ParticleMgr.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C28768B91B96B1E60052D80C /* ParticleMgr.cpp */; settings = {ASSET_TAGS = (); }; };
+		C290E0941BA1FA32002567C7 /* sdkbox_config.json in Resources */ = {isa = PBXBuildFile; fileRef = C290E0931BA1FA32002567C7 /* sdkbox_config.json */; };
 		C29BBF4A1B99DE4000B323FC /* libAppTracker.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C29BBF491B99DE4000B323FC /* libAppTracker.a */; };
 		C29BBF4C1B99E04E00B323FC /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C29BBF4B1B99E04E00B323FC /* AdSupport.framework */; };
 		C29BBF4E1B99E05B00B323FC /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C29BBF4D1B99E05B00B323FC /* CoreMedia.framework */; };
@@ -132,6 +133,7 @@
 		C28768B91B96B1E60052D80C /* ParticleMgr.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ParticleMgr.cpp; path = base/ParticleMgr.cpp; sourceTree = "<group>"; };
 		C28768BA1B96B1E60052D80C /* ParticleMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ParticleMgr.h; path = base/ParticleMgr.h; sourceTree = "<group>"; };
 		C28768BC1B96B1E60052D80C /* Util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Util.h; path = base/Util.h; sourceTree = "<group>"; };
+		C290E0931BA1FA32002567C7 /* sdkbox_config.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = sdkbox_config.json; sourceTree = "<group>"; };
 		C29BBF491B99DE4000B323FC /* libAppTracker.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libAppTracker.a; path = leadbolt/libAppTracker.a; sourceTree = "<group>"; };
 		C29BBF4B1B99E04E00B323FC /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
 		C29BBF4D1B99E05B00B323FC /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
@@ -242,6 +244,7 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
+				C290E0931BA1FA32002567C7 /* sdkbox_config.json */,
 				46880B8319C43A87006E1F66 /* Classes */,
 				46880B7519C43A67006E1F66 /* Resources */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
@@ -501,6 +504,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C290E0941BA1FA32002567C7 /* sdkbox_config.json in Resources */,
 				C2DC74661B9613A60086BC7B /* @2x in Resources */,
 				C2DC74671B9613A60086BC7B /* @4x in Resources */,
 				C2CBF83E1B985D9C00C63CD2 /* Images.xcassets in Resources */,
