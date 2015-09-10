@@ -12,7 +12,7 @@
 
 bool IntroItem::onTouchBegan(cocos2d::Touch *t, cocos2d::Event *e)
 {
-    if(util_checkHit(t, e->getCurrentTarget()))
+    if(util::graphic::checkHit(t, e->getCurrentTarget()))
     {
         return true;
     }
@@ -28,12 +28,7 @@ void IntroItem::fadeOut()
 void IntroItem::blink()
 {
     auto node = getChildByTag(10);
-    Vector<FiniteTimeAction*> v;
-    v.pushBack(FadeOut::create(0.3f));
-    v.pushBack(FadeIn::create(0.3f));
-    v.pushBack(FadeOut::create(0.3f));
-    v.pushBack(FadeIn::create(0.3f));
-    node->runAction(Sequence::create(v));
+	util::effects::blink(node);
 }
 
 void IntroItem::onTouchEnded(cocos2d::Touch *t, cocos2d::Event *e)
@@ -44,7 +39,7 @@ void IntroItem::onTouchEnded(cocos2d::Touch *t, cocos2d::Event *e)
 
 void IntroItem::runOut(int delay)
 {
-    Size s = util_getScreenSize();
+    Size s = util::graphic::getScreenSize();
     Vector<FiniteTimeAction*> v;
     if(delay > 0)
         v.pushBack(DelayTime::create(delay*0.2f));
@@ -78,13 +73,5 @@ void IntroItem::setValue(std::string label, std::function<void()> callback)
 void IntroItem::runIn(int delay)
 {
     auto node = getChildByTag(10);
-    
-    node->setOpacity(0);
-    Vector<FiniteTimeAction*> v;
-    if(delay > 0)
-        v.pushBack(DelayTime::create(delay*0.2f));
-    v.pushBack(FadeIn::create(0.6f));
-    node->runAction(Sequence::create(v));
-    node->setPositionY(-100);
-    node->runAction(MoveBy::create(0.6f+delay*0.2f, Vec2(0,100)));
+	util::effects::reveal(node, delay);
 }

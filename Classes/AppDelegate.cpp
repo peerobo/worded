@@ -1,11 +1,8 @@
 #include "AppDelegate.h"
 #include "base/Util.h"
 #include "IntroScreen.h"
-#if CC_TARGET_PLATFORM == CC_PLATFORM_IOS
-#include "AppTrackerWrapper.h"
-#endif
 #include "Constants.h"
-#include "SimpleAudioEngine.h"
+#include "audio/include/SimpleAudioEngine.h"
 
 USING_NS_CC;
 
@@ -16,6 +13,7 @@ AppDelegate::AppDelegate() {
 
 AppDelegate::~AppDelegate() 
 {
+
 }
 
 //if you want a different context,just modify the value of glContextAttrs
@@ -38,19 +36,13 @@ static int register_all_packages()
 }
 
 bool AppDelegate::applicationDidFinishLaunching() {
-    ZipUtils::setPvrEncryptionKeyPart(3, 0x3e26102b);
-	
+
+	util::ad::initLeadbolt("PKOi4AX2StGGZquCKi4j461SHNG5GOHI");
+
+    ZipUtils::setPvrEncryptionKeyPart(3, 0x3e26102b);	
 	CocosDenshion::SimpleAudioEngine::getInstance()->preloadBackgroundMusic(Constants::ASS_SND_THEME);
 
-#if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
-    
-    // Initialize Leadbolt SDK with your API Key
-    AppTrackerWrapper::startSession("PKOi4AX2StGGZquCKi4j461SHNG5GOHI");
-    
-    // cache Leadbolt Ad without showing it
-    AppTrackerWrapper::loadModuleToCache("430118190");
-    
-#endif
+	srand(time(NULL));
     
     // initialize director
     auto director = Director::getInstance();
@@ -125,9 +117,9 @@ bool AppDelegate::applicationDidFinishLaunching() {
     register_all_packages();
     
     Configuration::getInstance()->loadConfigFile("localization.plist");
-    util_loadTexAtl(Constants::ASS_TEX_GUI, false);
+    util::graphic::loadTexAtl(Constants::ASS_TEX_GUI, false);
     // create a scene. it's an autorelease object
-    auto scene = util_createSceneWithLayer(IntroScreen::create());
+    auto scene = util::graphic::createSceneWithLayer(IntroScreen::create());
 
     // run
     director->runWithScene(scene);

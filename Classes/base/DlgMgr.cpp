@@ -59,7 +59,7 @@ void DlgMgr::closeDlg(Dlg* dlg, bool withAnimation)
 	else
 	{
 		auto targetPos = dlg->getPosition();
-		targetPos.x += util_getScreenSize().width;
+		targetPos.x += util::graphic::getScreenSize().width;
 		auto action = Sequence::create(EaseOut::create(MoveTo::create(0.3f, targetPos), 0.5f),
 			CallFunc::create(CC_CALLBACK_0(Dlg::removeFromParent,dlg)),
 			NULL);
@@ -71,13 +71,13 @@ void DlgMgr::showDlg(Dlg* dlg, int layer, bool withAnimation, bool withModalBG)
 {	
 	removeFromList(dlg);
 	dlgs.push_back(dlg);
-	util_showDisp(dlg,withModalBG,layer);
+	util::graphic::showDisp(dlg,withModalBG,layer);
 
 	// animation
 	if (withAnimation)
 	{
 		auto targetPos = dlg->getPosition();
-		dlg->setPositionX(targetPos.x + util_getScreenSize().width);
+		dlg->setPositionX(targetPos.x + util::graphic::getScreenSize().width);
 		dlg->runAction(EaseIn::create(MoveTo::create(0.3f, targetPos), 0.5f));
 	}
 	

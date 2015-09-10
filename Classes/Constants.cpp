@@ -1,70 +1,42 @@
  #include "Constants.h"
 #include "cocos2d.h"
 
-const char* Constants::ASS_BG_INTRO = "intro";
-const char* Constants::ASS_BG_ONE = "onebg";
-const char* Constants::ASS_BG_TABLE = "tablebg";
-
-const char* Constants::ASS_FNT_NORMAL = "worded.fnt";
-const char* Constants::ASS_FNT_BIG = "score.fnt";
-
-// ico
-const char* Constants::ASS_ICO_BG_WORD = "bg_word";
-const char* Constants::ASS_ICO_BAR_ONE = "ico_bar_one";
-const char* Constants::ASS_ICO_CORRECT_FALSE = "ico_correct_false";
-const char* Constants::ASS_ICO_WRONG_FALSE = "ico_wrong_false";
-const char* Constants::ASS_ICO_HIGHSCORE = "ico_highscore";
-const char* Constants::ASS_ICO_STAR = "ico_star";
-const char* Constants::ASS_BT_BACK = "bt_back";
-const char* Constants::ASS_BT_CORRECT = "bt_correct";
-const char* Constants::ASS_BT_RETRY = "bt_retry";
-const char* Constants::ASS_BT_SHARE = "bt_share";
-const char* Constants::ASS_BT_WRONG = "bt_wrong";
-
+//////////////////////////////////////////////////////////////////////////////////////////////////////
 // suffix
-const char* Constants::ASS_SUFFIX_DATA = ".plist";
-const char* Constants::ASS_SUFFIX_IMAGE = ".png";
-const char* Constants::ASS_SUFFIX_IMAGE_JPG = ".jpg";
-const char* Constants::ASS_SUFFIX_TEXATL = ".pvr.ccz";
-
-const char* Constants::ASS_SND_THEME = "Rest_Outro_(music_by_Dan_Knoflicek).mp3";
-
-const char* Constants::ASS_TEX_GUI = "gui";
-
 const char* Constants::CONST_CIDR[33] = {
-		"0.0.0.0",
-		"128.0.0.0",
-		"192.0.0.0",
-		"224.0.0.0",
-		"240.0.0.0",
-		"248.0.0.0",
-		"252.0.0.0",
-		"254.0.0.0",
-		"255.0.0.0",
-		"255.128.0.0",
-		"255.192.0.0",
-		"255.224.0.0",
-		"255.240.0.0",
-		"255.248.0.0",
-		"255.252.0.0",
-		"255.254.0.0",
-		"255.255.0.0",
-		"255.255.128.0",
-		"255.255.192.0",
-		"255.255.224.0",
-		"255.255.240.0",
-		"255.255.248.0",
-		"255.255.252.0",
-		"255.255.254.0",
-		"255.255.255.0",
-		"255.255.255.128",
-		"255.255.255.192",
-		"255.255.255.224",
-		"255.255.255.240",
-		"255.255.255.248",
-		"255.255.255.252",
-		"255.255.255.254",
-		"255.255.255.255"
+	"0.0.0.0",
+	"128.0.0.0",
+	"192.0.0.0",
+	"224.0.0.0",
+	"240.0.0.0",
+	"248.0.0.0",
+	"252.0.0.0",
+	"254.0.0.0",
+	"255.0.0.0",
+	"255.128.0.0",
+	"255.192.0.0",
+	"255.224.0.0",
+	"255.240.0.0",
+	"255.248.0.0",
+	"255.252.0.0",
+	"255.254.0.0",
+	"255.255.0.0",
+	"255.255.128.0",
+	"255.255.192.0",
+	"255.255.224.0",
+	"255.255.240.0",
+	"255.255.248.0",
+	"255.255.252.0",
+	"255.255.254.0",
+	"255.255.255.0",
+	"255.255.255.128",
+	"255.255.255.192",
+	"255.255.255.224",
+	"255.255.255.240",
+	"255.255.255.248",
+	"255.255.255.252",
+	"255.255.255.254",
+	"255.255.255.255"
 };
 
 const char* Constants::CONST_IP_RANGE[327] = {
@@ -396,3 +368,34 @@ const char* Constants::CONST_IP_RANGE[327] = {
 	"222.252.0.0/14",
 	"223.27.104.0/21"
 };
+const char* Constants::ASS_SUFFIX_DATA = ".plist";
+const char* Constants::ASS_SUFFIX_IMAGE = ".png";
+const char* Constants::ASS_SUFFIX_IMAGE_JPG = ".jpg";
+const char* Constants::ASS_SUFFIX_TEXATL = ".pvr.ccz";
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////
+
+const char* Constants::ASS_BG_INTRO = "intro";
+const char* Constants::ASS_BG_ONE = "onebg";
+const char* Constants::ASS_BG_TABLE = "tablebg";
+
+const char* Constants::ASS_FNT_NORMAL = "worded.fnt";
+const char* Constants::ASS_FNT_BIG = "score.fnt";
+
+// ico
+const char* Constants::ASS_ICO_BG_WORD = "bg_word";
+const char* Constants::ASS_ICO_BAR_ONE = "ico_bar_one";
+const char* Constants::ASS_ICO_CORRECT_FALSE = "ico_correct_false";
+const char* Constants::ASS_ICO_WRONG_FALSE = "ico_wrong_false";
+const char* Constants::ASS_ICO_HIGHSCORE = "ico_highscore";
+const char* Constants::ASS_ICO_STAR = "ico_star";
+const char* Constants::ASS_BT_BACK = "bt_back";
+const char* Constants::ASS_BT_CORRECT = "bt_correct";
+const char* Constants::ASS_BT_RETRY = "bt_retry";
+const char* Constants::ASS_BT_SHARE = "bt_share";
+const char* Constants::ASS_BT_WRONG = "bt_wrong";
+
+const char* Constants::ASS_SND_THEME = "Rest_Outro_(music_by_Dan_Knoflicek).mp3";
+
+const char* Constants::ASS_TEX_GUI = "gui";
+

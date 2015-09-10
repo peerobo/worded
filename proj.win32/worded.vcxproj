@@ -77,7 +77,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>$(EngineRoot)cocos\audio\include;$(EngineRoot)external;..\Classes;$(EngineRoot)external\websockets\win32\include;d:\dev\mobileapp\fplay\client\cocos2d\;$(EngineRoot)cocos\editor-support;$(EngineRoot)cocos\network;$(EngineRoot)external\curl\include\win32;$(EngineRoot)extensions;..\..\;$(EngineRoot);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(EngineRoot)external;..\Classes;$(EngineRoot)extensions;$(EngineRoot);$(EngineRoot)cocos;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USE_MATH_DEFINES;GL_GLEXT_PROTOTYPES;COCOS2D_DEBUG=1;_CRT_SECURE_NO_WARNINGS;_SCL_SECURE_NO_WARNINGS;ADMIN=1;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>false</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -145,15 +145,21 @@ xcopy /Y /Q "$(EngineRoot)external\websockets\prebuilt\win32\*.*" "$(OutDir)"</C
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="..\Classes\AppDelegate.h" />
-    <ClInclude Include="..\Classes\base\BaseGUI.h" />
     <ClInclude Include="..\Classes\base\Dlg.h" />
     <ClInclude Include="..\Classes\base\DlgMgr.h" />
     <ClInclude Include="..\Classes\base\ParticleMgr.h" />
     <ClInclude Include="..\Classes\base\Util.h" />
+    <ClInclude Include="..\Classes\base\util\ad.h" />
+    <ClInclude Include="..\Classes\base\util\common.h" />
+    <ClInclude Include="..\Classes\base\util\effects.h" />
+    <ClInclude Include="..\Classes\base\util\graphic.h" />
+    <ClInclude Include="..\classes\base\util\platform.h" />
     <ClInclude Include="..\Classes\Constants.h" />
     <ClInclude Include="..\Classes\GlobalVar.h" />
     <ClInclude Include="..\Classes\IntroScreen.h" />
     <ClInclude Include="..\Classes\intro\IntroItem.h" />
+    <ClInclude Include="..\Classes\onemode\OneScreen.h" />
+    <ClInclude Include="..\Classes\WordedApp.h" />
     <ClInclude Include="main.h" />
   </ItemGroup>
   <ItemGroup>
@@ -166,15 +172,20 @@ xcopy /Y /Q "$(EngineRoot)external\websockets\prebuilt\win32\*.*" "$(OutDir)"</C
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Classes\AppDelegate.cpp" />
-    <ClCompile Include="..\Classes\base\BaseGUI.cpp" />
     <ClCompile Include="..\Classes\base\Dlg.cpp" />
     <ClCompile Include="..\Classes\base\DlgMgr.cpp" />
     <ClCompile Include="..\Classes\base\ParticleMgr.cpp" />
-    <ClCompile Include="..\Classes\base\Util.cpp" />
+    <ClCompile Include="..\Classes\base\util\ad.cpp" />
+    <ClCompile Include="..\Classes\base\util\common.cpp" />
+    <ClCompile Include="..\Classes\base\util\effects.cpp" />
+    <ClCompile Include="..\Classes\base\util\graphic.cpp" />
+    <ClCompile Include="..\classes\base\util\platform.cpp" />
     <ClCompile Include="..\Classes\Constants.cpp" />
     <ClCompile Include="..\Classes\GlobalVar.cpp" />
     <ClCompile Include="..\Classes\IntroScreen.cpp" />
     <ClCompile Include="..\Classes\intro\IntroItem.cpp" />
+    <ClCompile Include="..\Classes\onemode\OneScreen.cpp" />
+    <ClCompile Include="..\Classes\WordedApp.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

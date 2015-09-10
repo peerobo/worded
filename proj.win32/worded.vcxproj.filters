@@ -17,9 +17,6 @@
     <ClCompile Include="..\Classes\intro\IntroItem.cpp">
       <Filter>Classess\intro</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\base\BaseGUI.cpp">
-      <Filter>Classess\base</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\base\Dlg.cpp">
       <Filter>Classess\base</Filter>
     </ClCompile>
@@ -29,8 +26,26 @@
     <ClCompile Include="..\Classes\base\ParticleMgr.cpp">
       <Filter>Classess\base</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\base\Util.cpp">
-      <Filter>Classess\base</Filter>
+    <ClCompile Include="..\Classes\base\util\graphic.cpp">
+      <Filter>Classess\base\util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\base\util\common.cpp">
+      <Filter>Classess\base\util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\base\util\ad.cpp">
+      <Filter>Classess\base\util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\onemode\OneScreen.cpp">
+      <Filter>Classess\onemode</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\base\util\effects.cpp">
+      <Filter>Classess\base\util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\WordedApp.cpp">
+      <Filter>Classess</Filter>
+    </ClCompile>
+    <ClCompile Include="..\classes\base\util\platform.cpp">
+      <Filter>Classess\base\util</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -53,9 +68,6 @@
     <ClInclude Include="..\Classes\base\Util.h">
       <Filter>Classess\base</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\base\BaseGUI.h">
-      <Filter>Classess\base</Filter>
-    </ClInclude>
     <ClInclude Include="..\Classes\base\Dlg.h">
       <Filter>Classess\base</Filter>
     </ClInclude>
@@ -64,6 +76,27 @@
     </ClInclude>
     <ClInclude Include="..\Classes\base\ParticleMgr.h">
       <Filter>Classess\base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\base\util\graphic.h">
+      <Filter>Classess\base\util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\base\util\common.h">
+      <Filter>Classess\base\util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\base\util\ad.h">
+      <Filter>Classess\base\util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\onemode\OneScreen.h">
+      <Filter>Classess\onemode</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\base\util\effects.h">
+      <Filter>Classess\base\util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\WordedApp.h">
+      <Filter>Classess</Filter>
+    </ClInclude>
+    <ClInclude Include="..\classes\base\util\platform.h">
+      <Filter>Classess\base\util</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -81,6 +114,15 @@
     </Filter>
     <Filter Include="Classess\base">
       <UniqueIdentifier>{cfcf8834-bd28-4a9e-94b1-f9957796f036}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Classess\base\util">
+      <UniqueIdentifier>{7b8085fd-a412-4e16-a5bb-d784b1ab8232}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Classess\onemode">
+      <UniqueIdentifier>{00b398ab-f12f-4545-b7c0-787e74bfcd4f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Classess\tablemode">
+      <UniqueIdentifier>{c28a3d88-d967-4bd7-abe1-6293bbee993e}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

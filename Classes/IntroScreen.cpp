@@ -10,13 +10,15 @@
 #include "IntroScreen.h"
 #include "base/Util.h"
 #include "Constants.h"
+#include "onemode/OneScreen.h"
 #if CC_TARGET_PLATFORM == CC_PLATFORM_IOS
 #include "AppTrackerWrapper.h"
 #endif
 
 void IntroScreen::onOneMode()
 {
-    
+	util::graphic::changeSceneWithLayer(OneScreen::create());
+	
 }
 
 void IntroScreen::onTableMode()
@@ -31,9 +33,7 @@ void IntroScreen::onLeaderboard()
 
 void IntroScreen::onMoreGame()
 {
-#if CC_TARGET_PLATFORM == CC_PLATFORM_IOS
-    AppTrackerWrapper::loadModule("inapp");
-#endif
+	util::ad::showLeadboltAd();
 }
 
 void IntroScreen::onTouchItem(int type)
@@ -55,8 +55,8 @@ void IntroScreen::onTouchItem(int type)
             }
         }
         // cache next bg
-        auto bg = util_getSpriteFromImageJPG(type == 0 ? Constants::ASS_BG_ONE:Constants::ASS_BG_TABLE);
-        Size s = util_getScreenSize();
+        auto bg = util::graphic::getSpriteFromImageJPG(type == 0 ? Constants::ASS_BG_ONE:Constants::ASS_BG_TABLE);
+        Size s = util::graphic::getScreenSize();
         bg->setPosition(s.width/2,s.height/2);
         addChild(bg,0);
         
@@ -98,13 +98,13 @@ void IntroScreen::processType(int type)
 
 IntroScreen::IntroScreen()
 {
-    auto bg = util_getSpriteFromImageJPG(Constants::ASS_BG_INTRO);
-    Size s = util_getScreenSize();
+    auto bg = util::graphic::getSpriteFromImageJPG(Constants::ASS_BG_INTRO);
+    Size s = util::graphic::getScreenSize();
     bg->setPosition(s.width/2,s.height/2);
     addChild(bg,1);
     bg->setTag(1);
     
-	util_playMusic(Constants::ASS_SND_THEME);
+	util::common::playMusic(Constants::ASS_SND_THEME);
 
 //    Vector<FiniteTimeAction*> v;
 //    v.pushBack(DelayTime::create(0.7f));
@@ -116,7 +116,7 @@ IntroScreen::IntroScreen()
 void IntroScreen::startIntro()
 {
     Configuration* cfg = Configuration::getInstance();
-    Size s = util_getScreenSize();
+    Size s = util::graphic::getScreenSize();
     float posY = s.height/2;
     
     IntroItem* item = IntroItem::create();

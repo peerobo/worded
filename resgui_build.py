@@ -5,7 +5,7 @@ import shutil
 import subprocess
 #set texture packer path
 #PATH_TEXTURE_PACKER = "c:/progra~2/codeandweb/texturepacker/bin/"
-PATH_TEXTURE_PACKER = ""
+PATH_TEXTURE_PACKER = "E:/dev/soft/TexturePacker/bin/"
 PATH_RES = "./res/"
 PATH_JSON_COCOS_STUDIO = "./uis/Export/uis/"
 JSON_COCOS_STUDIO_EXT = "ExportJson"
