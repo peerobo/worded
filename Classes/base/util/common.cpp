@@ -1,5 +1,5 @@
 #include "common.h"
-#include <CCFileUtils.h>
+#include <cocos/platform/CCFileUtils.h>
 #include <regex>
 #include <audio/include/SimpleAudioEngine.h>
 #include "../../GlobalVar.h"

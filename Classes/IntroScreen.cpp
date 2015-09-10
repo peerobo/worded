@@ -33,7 +33,7 @@ void IntroScreen::onLeaderboard()
 
 void IntroScreen::onMoreGame()
 {
-	util::ad::showLeadboltAd();
+    util::ad::showVungle();
 }
 
 void IntroScreen::onTouchItem(int type)

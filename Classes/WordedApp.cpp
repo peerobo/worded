@@ -26,7 +26,7 @@ std::string& WordedApp::getRndItemInCat(const std::string& cat)
 	return v.at(rand() % len);
 }
 
-std::vector<std::string>& WordedApp::getRndFormation(const std::string& cat, int total)
+std::vector<std::string> WordedApp::getRndFormation(const std::string& cat, int total)
 {
 	Configuration* cfg = Configuration::getInstance();
 	std::vector<std::string> v = util::common::splitStr(cfg->getValue(cat).asString().c_str(), ';');
@@ -55,7 +55,7 @@ std::vector<std::string>& WordedApp::getRndFormation(const std::string& cat, int
 	return rndV;
 }
 
-std::vector<std::string>& WordedApp::getRndFormationExcept(const std::string& cat, const std::string& exp, int total = 10)
+std::vector<std::string> WordedApp::getRndFormationExcept(const std::string& cat, const std::string& exp, int total)
 {
 	auto v = getRndFormation(cat, total);
 	int len = v.size();

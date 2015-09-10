@@ -261,5 +261,3 @@ namespace util {
 		return Director::getInstance()->getVisibleSize();
 	}
 }
-
-\

@@ -17,3 +17,8 @@ OneScreen::OneScreen() : LAYER_GUI(2), LAYER_LBL(3), LAYER_CAT(4)
 
 	animateIn();
 }
+
+void OneScreen::animateIn()
+{
+    
+}

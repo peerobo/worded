@@ -8,6 +8,8 @@ namespace util
 	public:
 		static void initLeadbolt(std::string apikey);
 		static void showLeadboltAd();
+        static void initVungle();
+        static void showVungle();
 	};
 
 }
