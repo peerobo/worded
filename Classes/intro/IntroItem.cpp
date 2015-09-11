@@ -22,7 +22,7 @@ bool IntroItem::onTouchBegan(cocos2d::Touch *t, cocos2d::Event *e)
 void IntroItem::fadeOut()
 {
     auto node = getChildByTag(10);
-    node->runAction(FadeOut::create(1.f));
+    node->runAction(FadeOut::create(0.7f));
 }
 
 void IntroItem::blink()

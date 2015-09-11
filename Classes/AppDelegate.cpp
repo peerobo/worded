@@ -3,6 +3,7 @@
 #include "IntroScreen.h"
 #include "Constants.h"
 #include "audio/include/SimpleAudioEngine.h"
+#include "GlobalVar.h"
 
 USING_NS_CC;
 
@@ -66,9 +67,12 @@ bool AppDelegate::applicationDidFinishLaunching() {
     int sw = glview->getFrameSize().width;
     int sh = glview->getFrameSize().height;
     int maxSize = sw < sh ? sh : sw;
+	int minSize = sw < sh ? sw : sh;
     float scale;
     std::string	assetPath;
     ResolutionPolicy resPolicy = ResolutionPolicy::EXACT_FIT;
+#if(CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
+
     if (maxSize <= 480)
     {
         w = sw / 0.25;
@@ -98,6 +102,61 @@ bool AppDelegate::applicationDidFinishLaunching() {
         scale = 1;
         assetPath = "@4x";
     }
+#else
+	if (minSize <= 240)
+	{
+		w = sw / 0.25;
+		h = sh / 0.17;
+		scale = 0.25;
+		assetPath = "@1x";
+		resPolicy = ResolutionPolicy::FIXED_HEIGHT;
+	}
+	else if (minSize <= 320)
+	{
+		w = sw / 0.25;
+		h = sh / 0.25;
+		scale = 0.25;
+		assetPath = "@1x";
+	}
+	else if (minSize <= 480)
+	{
+		/*w = sw / 0.375;
+		h = sh / 0.375;
+		scale = 0.375;
+		assetPath = "@1.5x";*/
+		w = sw / 0.5;
+		h = sh / 0.375;
+		scale = 0.5;
+		assetPath = "@2x";
+		resPolicy = ResolutionPolicy::FIXED_HEIGHT;
+	}
+	else if (minSize <= 800)
+	{
+		w = sw / 0.5;
+		h = sh / 0.5;
+		scale = 0.5;
+		assetPath = "@2x";
+	}
+	else if (minSize <= 1080)
+	{
+		/*w = sw / 0.75;
+		h = sh / 0.75;
+		scale = 0.75;
+		assetPath = "@x";*/
+		w = sw / 1;
+		h = sh / 0.75;
+		scale = 1;
+		assetPath = "@4x";
+		resPolicy = ResolutionPolicy::FIXED_HEIGHT;
+	}
+	else
+	{
+		w = sw;
+		h = sh;
+		scale = 1;
+		assetPath = "@4x";
+	}
+#endif
     glview->setDesignResolutionSize(w, h, resPolicy);
     director->setContentScaleFactor(scale);
     std::vector<std::string> paths;
@@ -118,11 +177,13 @@ bool AppDelegate::applicationDidFinishLaunching() {
     
     Configuration::getInstance()->loadConfigFile("localization.plist");
     util::graphic::loadTexAtl(Constants::ASS_TEX_GUI, false);
+	util::graphic::getSpriteFromImageJPG(Constants::ASS_BG_ONE);
+	util::graphic::getSpriteFromImageJPG(Constants::ASS_BG_TABLE);
     // create a scene. it's an autorelease object
-    auto scene = util::graphic::createSceneWithLayer(IntroScreen::create());
-
+	GlobalVar::curScene = IntroScreen::create();
+    auto scene = util::graphic::createSceneWithLayer(GlobalVar::curScene);
     // run
-    director->runWithScene(scene);
+    director->runWithScene(scene);	
 
     return true;
 }
@@ -132,7 +193,7 @@ void AppDelegate::applicationDidEnterBackground() {
     Director::getInstance()->stopAnimation();
 
     // if you use SimpleAudioEngine, it must be pause
-    // SimpleAudioEngine::getInstance()->pauseBackgroundMusic();
+    CocosDenshion::SimpleAudioEngine::getInstance()->pauseBackgroundMusic();
 }
 
 // this function will be called when the app is active again
@@ -140,5 +201,5 @@ void AppDelegate::applicationWillEnterForeground() {
     Director::getInstance()->startAnimation();
 
     // if you use SimpleAudioEngine, it must resume here
-    // SimpleAudioEngine::getInstance()->resumeBackgroundMusic();
+    CocosDenshion::SimpleAudioEngine::getInstance()->resumeBackgroundMusic();
 }

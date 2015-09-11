@@ -10,15 +10,16 @@ OneScreen::OneScreen() : LAYER_GUI(2), LAYER_LBL(3), LAYER_CAT(4)
 	addChild(bg, 1);
 	bg->setTag(1);
 
-	util::common::stopAllSounds();
-
 	std::vector<int> v({ LAYER_GUI,LAYER_LBL,LAYER_CAT });
 	util::graphic::generateLayerWithTag(this, v, 2);
 
-	animateIn();
+	Vector<FiniteTimeAction*> vec;
+	vec.pushBack(DelayTime::create(0.3f));
+	vec.pushBack(CallFunc::create(CC_CALLBACK_0(OneScreen::animateIn, this)));
+	runAction(Sequence::create(vec));
 }
 
 void OneScreen::animateIn()
 {
-    
+	util::common::stopAllSounds(true);
 }

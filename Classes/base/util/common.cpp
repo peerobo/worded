@@ -126,10 +126,36 @@ namespace util {
 		ins->playBackgroundMusic(music, true);
 	}
 
-	void common::stopAllSounds()
+	void common::stopAllSounds(bool fadeOut)
 	{
-		CocosDenshion::SimpleAudioEngine* ins = CocosDenshion::SimpleAudioEngine::getInstance();
-		ins->stopAllEffects();
-		ins->stopBackgroundMusic();
+		if (fadeOut)
+		{
+			Vector<FiniteTimeAction*> v;
+			auto instance = CocosDenshion::SimpleAudioEngine::getInstance();
+			float sound = 1.0f;
+			float delayTime = 0.3f;
+			for (int i = 0; i < 9; i++)
+			{
+				sound -= 0.1f;
+				v.pushBack(CallFunc::create(CC_CALLBACK_0(CocosDenshion::SimpleAudioEngine::setEffectsVolume, instance, sound)));
+				v.pushBack(CallFunc::create(CC_CALLBACK_0(CocosDenshion::SimpleAudioEngine::setBackgroundMusicVolume,instance,sound)));				
+				v.pushBack(DelayTime::create(delayTime));
+				if (i == 8)
+				{
+					v.pushBack(CallFunc::create(CC_CALLBACK_0(CocosDenshion::SimpleAudioEngine::stopAllEffects, instance)));
+					v.pushBack(CallFunc::create(CC_CALLBACK_0(CocosDenshion::SimpleAudioEngine::stopBackgroundMusic, instance,false)));
+					v.pushBack(CallFunc::create(CC_CALLBACK_0(CocosDenshion::SimpleAudioEngine::setEffectsVolume, instance, 1)));
+					v.pushBack(CallFunc::create(CC_CALLBACK_0(CocosDenshion::SimpleAudioEngine::setBackgroundMusicVolume, instance, 1)));
+				}
+			}
+			GlobalVar::curScene->runAction(Sequence::create(v));
+		}
+		else
+		{
+			CocosDenshion::SimpleAudioEngine* ins = CocosDenshion::SimpleAudioEngine::getInstance();
+			ins->stopAllEffects();
+			ins->stopBackgroundMusic();
+		}
+		
 	}
 }
