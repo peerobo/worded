@@ -23,6 +23,7 @@ public:
     static cocos2d::Layer* curScene;	
 	static sMyData myData;
 /////////////////////////////////////
+    static void* gameLogic;
 };
 
 #endif /* defined(__fPlay__GlobalVar__) */

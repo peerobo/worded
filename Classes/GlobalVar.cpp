@@ -14,3 +14,4 @@ sMyData GlobalVar::myData = {
 	true,	// audio
 	true,	// vibration
 };
+void* GlobalVar::gameLogic = NULL;

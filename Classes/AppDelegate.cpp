@@ -67,7 +67,6 @@ bool AppDelegate::applicationDidFinishLaunching() {
     int sw = glview->getFrameSize().width;
     int sh = glview->getFrameSize().height;
     int maxSize = sw < sh ? sh : sw;
-	int minSize = sw < sh ? sw : sh;
     float scale;
     std::string	assetPath;
     ResolutionPolicy resPolicy = ResolutionPolicy::EXACT_FIT;
@@ -103,6 +102,7 @@ bool AppDelegate::applicationDidFinishLaunching() {
         assetPath = "@4x";
     }
 #else
+    int minSize = sw < sh ? sw : sh;
 	if (minSize <= 240)
 	{
 		w = sw / 0.25;

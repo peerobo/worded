@@ -13,8 +13,13 @@ public:
 	static const int DIFFICULT_HARD;
 	static const int ONE_MODE_TIME[2];
 	static const int ONE_MODE_LEVELS[2];
+    static const int ONE_MODE_PENALTY[2];
+    static const float ONE_MODE_SCORE_RATIO[2];
 	static const int TABLE_MODE_TIME[2];
 	static const int TABLE_MODE_LEVELS[2];
+    static const int TABLE_MODE_PENALTY[2];
+    static const float TABLE_MODE_SCORE_RATIO[2];
+    static const float TABLE_MODE_TIME_PAUSE_B4_COUNT;
 	/////////////////////////////////////
 	static int difficult;
 	/////////////////////////////////////
