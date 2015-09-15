@@ -27,6 +27,7 @@ public:
     int level;
     float pauseTime;
     std::string answerWord;
+    bool isShowScore;
     //////////////////////////////////////
     void loop(float dt);
     void init(const std::string& cat);
@@ -36,6 +37,6 @@ public:
     void nextWord();
     void penalty();
     void endGame();
-    void checkFinishCat();
+    bool checkFinishCat();
 };
 #endif /* TableLogic_hpp */

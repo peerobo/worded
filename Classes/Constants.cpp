@@ -389,6 +389,7 @@ const char* Constants::ASS_ICO_CORRECT_FALSE = "ico_correct_false";
 const char* Constants::ASS_ICO_WRONG_FALSE = "ico_wrong_false";
 const char* Constants::ASS_ICO_HIGHSCORE = "ico_highscore";
 const char* Constants::ASS_ICO_STAR = "ico_star";
+const char* Constants::ASS_ICO_CAT_BG = "ico_bg_cat";
 const char* Constants::ASS_BT_BACK = "bt_back";
 const char* Constants::ASS_BT_CORRECT = "bt_correct";
 const char* Constants::ASS_BT_RETRY = "bt_retry";

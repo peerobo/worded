@@ -21,12 +21,13 @@ public:
 	static const char* ASS_ICO_WRONG_FALSE;
 	static const char* ASS_ICO_HIGHSCORE;
 	static const char* ASS_ICO_STAR;	
+	static const char* ASS_ICO_CAT_BG;
 	static const char* ASS_BT_BACK;
 	static const char* ASS_BT_CORRECT;
 	static const char* ASS_BT_RETRY;
 	static const char* ASS_BT_SHARE;
 	static const char* ASS_BT_WRONG;
-    
+
     static const char* ASS_FNT_NORMAL;
     static const char* ASS_FNT_BIG;
     

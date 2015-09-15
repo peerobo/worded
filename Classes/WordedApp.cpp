@@ -22,7 +22,7 @@ int WordedApp::_unlockedCat = 4;
 bool WordedApp::_adCat = false;
 int WordedApp::_adCatIdx = -1;
 
-std::string& WordedApp::getRndItemInCat(const std::string& cat)
+std::string WordedApp::getRndItemInCat(const std::string& cat)
 {
 	Configuration* cfg = Configuration::getInstance();
 	std::vector<std::string> v = util::common::splitStr(cfg->getValue(cat).asString().c_str(), ';');
@@ -59,19 +59,30 @@ std::vector<std::string> WordedApp::getRndFormation(const std::string& cat, int 
 	return rndV;
 }
 
-std::vector<std::string> WordedApp::getRndFormationExcept(const std::string& cat, const std::string& exp, int total)
+std::vector<std::string> WordedApp::getRndFormationExcept(const std::string& cat, const std::string& exc, int total)
 {
 	auto v = getRndFormation(cat, total);
 	int len = v.size();
 	for (size_t i = 0; i < len; i++)
 	{
-		if (v[i] == exp)
+		if (v[i] == exc)
 		{
 			v.erase(v.begin() + i);
 			len--;
 			i--;
 		}
 	}
+	return v;
+}
+
+std::vector<std::string> WordedApp::getRndFormationWith(const std::string& cat, const std::string& with, int total)
+{
+	std::vector<std::string> v = getRndFormation(cat, total - 1);
+	int idx = rand()%total;
+	if(idx == total-1)
+		v.push_back(with);
+	else
+		v.insert(v.begin()+idx, with);
 	return v;
 }
 
@@ -103,9 +114,4 @@ int WordedApp::getAdCat()
 bool WordedApp::validateAnswer(const std::string& item1, const std::string& item2)
 {
 	return item1 == item2;
-}
-
-void WordedApp::startOneGame()
-{
-
 }

@@ -1,5 +1,7 @@
 #pragma once
 #include <cocos2d.h>
+#include <vector>
+#include <string>
 
 class WordedApp
 {
@@ -27,11 +29,12 @@ public:
 	static void rndOneModeCat();
 	static int getUnlockedCat();
 	static int getAdCat();
+
 	static std::vector<std::string> getRndFormation(const std::string& cat, int total = 10);
-	static std::vector<std::string> getRndFormationExcept(const std::string& cat, const std::string& exp, int total = 10);
-	static std::string& getRndItemInCat(const std::string& cat);
+	static std::vector<std::string> getRndFormationExcept(const std::string& cat, const std::string& exc, int total = 10);
+	static std::vector<std::string> getRndFormationWith(const std::string& cat, const std::string& with, int total = 10);
+	static std::string getRndItemInCat(const std::string& cat);
 	static bool validateAnswer(const std::string& item1, const std::string& item2);
-	static void startOneGame();
 	/////////////////////////////////////
 	
 };
