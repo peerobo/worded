@@ -27,10 +27,20 @@ namespace util
 		if (cb)
 			v.pushBack(CallFunc::create(cb));
 		node->runAction(Sequence::create(v));
-		node->setPositionY(-100);
+		node->setPositionY(node->getPositionY() -100);
 		node->runAction(MoveBy::create(0.6f + delay*0.2f, Vec2(0, 100)));
 	}
-
+    
+    void effects::fadeAndRemove(cocos2d::Node* node, float time, std::function<void()> cb)
+    {
+        Vector<FiniteTimeAction*> v;
+        v.pushBack(FadeOut::create(time));
+        v.pushBack(RemoveSelf::create());
+        if (cb)
+            v.pushBack(CallFunc::create(cb));
+        node->runAction(Sequence::create(v));
+    }
+    
 	void effects::disappear(Node* node, float delay, std::function<void()> cb)
 	{
 		Size s = graphic::getScreenSize();

@@ -22,6 +22,7 @@ public:
 	static const char* ASS_ICO_HIGHSCORE;
 	static const char* ASS_ICO_STAR;	
 	static const char* ASS_ICO_CAT_BG;
+    static const char* ASS_ICO_PREFIX;
 	static const char* ASS_BT_BACK;
 	static const char* ASS_BT_CORRECT;
 	static const char* ASS_BT_RETRY;

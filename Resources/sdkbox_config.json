@@ -19,10 +19,6 @@
         {
             "id":"5536c24a8e05738318000010",
             "ads":{
-                "video":{
-                    "sound" : true,
-                    "backbutton" : true
-                },
                 "reward":{
                     "sound" : false,
                     "backbutton" : false,

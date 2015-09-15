@@ -11,6 +11,7 @@
 #include "base/Util.h"
 #include "Constants.h"
 #include "onemode/OneScreen.h"
+#include "tablemode/CatChooser.h"
 #if CC_TARGET_PLATFORM == CC_PLATFORM_IOS
 #include "AppTrackerWrapper.h"
 #endif
@@ -23,7 +24,7 @@ void IntroScreen::onOneMode()
 
 void IntroScreen::onTableMode()
 {
-    
+    util::graphic::changeSceneWithLayer(CatChooser::create());
 }
 
 void IntroScreen::onLeaderboard()
@@ -62,7 +63,7 @@ void IntroScreen::onTouchItem(int type)
         
         // bg fade out
         Vector<FiniteTimeAction*> v;
-        v.pushBack(FadeOut::create(1.5f));
+        v.pushBack(FadeOut::create(0.7f));
         v.pushBack(CallFunc::create(CC_CALLBACK_0(IntroScreen::processType, this,type)));
         getChildByTag(1)->runAction(Sequence::create(v));
         

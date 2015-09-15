@@ -29,7 +29,7 @@ public:
 	static void rndOneModeCat();
 	static int getUnlockedCat();
 	static int getAdCat();
-
+    static std::vector<std::string> getAllCats();
 	static std::vector<std::string> getRndFormation(const std::string& cat, int total = 10);
 	static std::vector<std::string> getRndFormationExcept(const std::string& cat, const std::string& exc, int total = 10);
 	static std::vector<std::string> getRndFormationWith(const std::string& cat, const std::string& with, int total = 10);

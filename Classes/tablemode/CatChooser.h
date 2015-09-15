@@ -14,9 +14,11 @@ class CatChooser: public cocos2d::Layer {
 private:
 	const int LAYER_GUI;
 	const int LAYER_LBL;
-	const int LAYER_CAT;
 	CatChooser();
 	void animateIn();
+    Node* createCatItem(const std::string& cat, int type);
+    bool catTouchBegan(cocos2d::Touch* t, cocos2d::Event* e);
+    void catTouchEnd(cocos2d::Touch* t, cocos2d::Event* e, std::string cat);
 public:
 	CREATE_FUNC(CatChooser);
 

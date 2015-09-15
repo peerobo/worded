@@ -61,7 +61,7 @@ bool AppDelegate::applicationDidFinishLaunching() {
     director->setDisplayStats(true);
 
     // set FPS. the default value is 1.0/60 if you don't call this
-    director->setAnimationInterval(1.0 / 60);
+    director->setAnimationInterval(1.0 / 40);
     
     int w, h;
     int sw = glview->getFrameSize().width;
@@ -179,6 +179,8 @@ bool AppDelegate::applicationDidFinishLaunching() {
     util::graphic::loadTexAtl(Constants::ASS_TEX_GUI, false);
 	util::graphic::getSpriteFromImageJPG(Constants::ASS_BG_ONE);
 	util::graphic::getSpriteFromImageJPG(Constants::ASS_BG_TABLE);
+    CocosDenshion::SimpleAudioEngine::getInstance()->setEffectsVolume(1);
+    CocosDenshion::SimpleAudioEngine::getInstance()->setBackgroundMusicVolume(1);    
     // create a scene. it's an autorelease object
 	GlobalVar::curScene = IntroScreen::create();
     auto scene = util::graphic::createSceneWithLayer(GlobalVar::curScene);

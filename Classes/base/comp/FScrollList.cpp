@@ -1,5 +1,5 @@
 #include "FScrollList.h"
-#include "../../base/Util.h"
+#include "../Util.h"
 
 FScrollList::FScrollList() : BOUNDING_BACK(850)
 {
@@ -11,11 +11,19 @@ FScrollList::FScrollList() : BOUNDING_BACK(850)
 
 bool FScrollList::onTouchBegan(Touch* t, Event* e)
 {
-	auto target = e->getCurrentTarget();
-	if (util_checkHit(t, this))
+
+    if (util::graphic::checkHit(t, this))
 	{
-		goalOffset = offset;
-		beganOffset = goalOffset;		
+        if(snapToPage)
+        {
+            beganOffset = goalOffset;
+        }
+        else
+        {
+            goalOffset = offset;
+            beganOffset = goalOffset;
+        }
+			
 		rate = 0;
 		return true;
 	}
@@ -51,7 +59,7 @@ void FScrollList::onTouchMoved(Touch* t, Event* e)
 
 void FScrollList::onTouchEnded(Touch* t, Event* e)
 {
-	if (util_checkTouchStill(t))
+    if (util::graphic::checkTouchStill(t))
 	{
 		e->stopPropagation();
 	}
@@ -73,28 +81,50 @@ void FScrollList::onTouchEnded(Touch* t, Event* e)
 		goalOffset.x = beganOffset.x + disX / (speedFlat / speed);
 		goalOffset.y = beganOffset.y + disY / (speedFlat / speed);
 		goalOffset.x = realSize.width < s.width ? 0 : ( (realSize.width + goalOffset.x < s.width) ?
-			(s.width - realSize.width) : (goalOffset.x > 0 ? 0 : (abs(goalOffset.x - beganOffset.x) < abs(disX) ? (beganOffset.x + disX) : goalOffset.x)));
+			(s.width - realSize.width) : (goalOffset.x > 0 ? 0 : (std::abs(goalOffset.x - beganOffset.x) < std::abs(disX) ? (beganOffset.x + disX) : goalOffset.x)));
 		goalOffset.y = realSize.height < s.height ? (s.height - realSize.height) : ((realSize.height + goalOffset.y < s.height) ?
-			(s.height - realSize.height) : (goalOffset.y > 0 ? 0 : (abs(goalOffset.y - beganOffset.y) < abs(disY) ? (beganOffset.y + disY) : goalOffset.y)));
+			(s.height - realSize.height) : (goalOffset.y > 0 ? 0 : (std::abs(goalOffset.y - beganOffset.y) < std::abs(disY) ? (beganOffset.y + disY) : goalOffset.y)));
 	}
 	else if (direction == SCROLL_TYPE::HORIZONTAL)
 	{
 		float disX = t->getLocation().x - t->getStartLocation().x;
-		goalOffset.x = beganOffset.x + disX / (speedFlat / speed);
-		/*log("check scroll: %s, %s, %s", 
-			(realSize.width + goalOffset.x < s.width) ? " true" : "false",			
-			goalOffset.x > 0 ? " true" : "false",
-			abs(goalOffset.x - beganOffset.x) < abs(disX) ? " true" : "false"			
-			);*/
-		goalOffset.x = realSize.width < s.width ? 0 : ((realSize.width + goalOffset.x < s.width) ?
-			(s.width - realSize.width) : (goalOffset.x > 0 ? 0 : (abs(goalOffset.x - beganOffset.x) < abs(disX) ? (beganOffset.x + disX) : goalOffset.x)));		
+        if(snapToPage)
+        {
+            if(std::abs(disX) > s.width/3)
+            {
+                goalOffset.x = goalOffset.x > 0 ? 0 :
+                    (beganOffset.x +
+                        ( goalOffset.x < beganOffset.x ? (realSize.width > (std::abs(beganOffset.x) + s.width) ? -s.width : 0) : s.width));
+//                log("to hon");
+            }
+            else
+            {
+                goalOffset.x = beganOffset.x;
+//                log("be hon");
+            }
+        }
+        else
+        {
+            goalOffset.x = beganOffset.x + disX / (speedFlat / speed);
+            goalOffset.x = realSize.width < s.width ? 0 : ((realSize.width + goalOffset.x < s.width) ?
+                                                           (s.width - realSize.width) : (goalOffset.x > 0 ? 0 : (std::abs(goalOffset.x - beganOffset.x) < std::abs(disX) ? (beganOffset.x + disX) : goalOffset.x)));
+        }
 	}
 	else
 	{
+       
 		float disY = t->getLocation().y - t->getStartLocation().y;
-		goalOffset.y = beganOffset.y + disY / (speedFlat/speed);
-		goalOffset.y = realSize.height < s.height ? (s.height - realSize.height) : ((realSize.height + goalOffset.y < s.height) ?
-			(s.height - realSize.height) : (goalOffset.y > 0 ? 0 : (abs(goalOffset.y - beganOffset.y) < abs(disY) ? (beganOffset.y + disY) : goalOffset.y)));
+        if(snapToPage)  // not impliment
+        {
+           
+        }
+        else
+        {
+            goalOffset.y = beganOffset.y + disY / (speedFlat/speed);
+            goalOffset.y = realSize.height < s.height ? (s.height - realSize.height) : ((realSize.height + goalOffset.y < s.height) ?
+                                                                                        (s.height - realSize.height) : (goalOffset.y > 0 ? 0 : (std::abs(goalOffset.y - beganOffset.y) < std::abs(disY) ? (beganOffset.y + disY) : goalOffset.y)));
+        }
+		
 	}		
 	rate = -1;	
 	//}
@@ -120,7 +150,7 @@ void FScrollList::calculateRealSize()
 	realSize.height = maxY;
 }
 
-void FScrollList::initView(Size viewSize, float spacing, float updateInterval, SCROLL_TYPE direction, int row, int col)
+void FScrollList::initView(Size viewSize, float spacing, float updateInterval, SCROLL_TYPE direction, int row, int col, bool snapToPage)
 {
 	if (!initAlready)
 	{
@@ -140,7 +170,7 @@ void FScrollList::initView(Size viewSize, float spacing, float updateInterval, S
 		touchEvtLis->onTouchMoved = CC_CALLBACK_2(FScrollList::onTouchMoved, this);
 		touchEvtLis->onTouchEnded = CC_CALLBACK_2(FScrollList::onTouchEnded, this);
 		this->getEventDispatcher()->addEventListenerWithSceneGraphPriority(touchEvtLis, this);
-
+        this->snapToPage = snapToPage;
 		this->spacing = spacing;
 		this->direction = direction;
 		maxCol = col;
@@ -155,43 +185,52 @@ void FScrollList::initView(Size viewSize, float spacing, float updateInterval, S
 void FScrollList::addAutoPosItem(Node* node)
 {
 	Vector<Node*> v = container->getChildren();
-	int countChildren = v.size();
+	long countChildren = v.size();
 	Size childSize = node->getContentSize();	
 	childSize.width *= node->getScaleX();
 	childSize.height *= node->getScaleY();
 	Vec2 anchorPt = node->getAnchorPoint();
 	Vec2 pos;	
-	if (countChildren == 0)
-	{
-		pos.x = childSize.width*anchorPt.x;
-		pos.y = childSize.height*anchorPt.y;
-	}
-	else
-	{
-		if (direction == SCROLL_TYPE::BOTH)
-		{			
-			countChildren++;
-			int currRow = countChildren / maxCol;
-			int currCol = countChildren % maxCol;			
-			pos.x = childSize.width* anchorPt.x+spacing;
-			pos.y = childSize.height* anchorPt.y + spacing;
-			pos.x += (childSize.width + spacing)*(currCol - 1);
-			pos.y += (childSize.height + spacing)*(currRow - 1);
-		}
-		else if (direction == SCROLL_TYPE::HORIZONTAL)
-		{
-			pos.x = realSize.width + spacing + childSize.width* anchorPt.x;
-		}
-		else
-		{
-			float shiftY = spacing + childSize.height;
-			for (auto child : container->getChildren())
-			{
-				child->setPositionY(child->getPositionY() + shiftY);
-			}			
-			pos.y = childSize.height*anchorPt.y;
-		}
-	}
+	
+	   if(maxRow != -1 || maxCol != -1)
+        {
+            long currRow = -1;
+            long currCol = -1;
+            if(maxCol != -1) // not implement top-bottom + left-right
+            {
+                currRow = countChildren / maxCol;
+                currCol = countChildren % maxCol;
+            }
+            else if(maxRow != -1) // implement top-bottom + left-right
+            {
+                currCol = countChildren / maxRow;
+                currRow = (maxRow-1) - countChildren % maxRow;
+            }
+            pos.x = childSize.width* anchorPt.x + (spacing + childSize.width)*currCol;
+            pos.y = childSize.height* anchorPt.y + (spacing+ childSize.height)*currRow;
+        }
+        else if (countChildren == 0)
+        {
+            pos.x = childSize.width*anchorPt.x;
+            pos.y = childSize.height*anchorPt.y;
+        }
+        else
+        {
+            if (direction == SCROLL_TYPE::HORIZONTAL)
+            {
+                pos.x = realSize.width + spacing + childSize.width* anchorPt.x;
+            }
+            else
+            {
+                float shiftY = spacing + childSize.height;
+                for (auto child : container->getChildren())
+                {
+                    child->setPositionY(child->getPositionY() + shiftY);
+                }			
+                pos.y = childSize.height*anchorPt.y;
+            }
+        }
+	
 	addItem(node, pos);	
 }
 
@@ -237,8 +276,8 @@ void FScrollList::updateView()
 	tmpVec.subtract(offset);
 	if (tmpVec.length() > 2)
 	{
-		offset.x += (goalOffset.x - offset.x) / 5;
-		offset.y += (goalOffset.y - offset.y) / 5;
+		offset.x += (goalOffset.x - offset.x) / 3;
+		offset.y += (goalOffset.y - offset.y) / 3;
 	}
 	else
 	{

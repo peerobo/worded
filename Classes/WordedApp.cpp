@@ -30,6 +30,17 @@ std::string WordedApp::getRndItemInCat(const std::string& cat)
 	return v.at(rand() % len);
 }
 
+std::vector<std::string> WordedApp::getAllCats()
+{
+    Configuration* cfg = Configuration::getInstance();
+    ValueVector v = cfg->getValue("cats").asValueVector();
+    std::vector<std::string> vs;
+    for (ValueVector::iterator it = v.begin(); it != v.end(); it++) {
+        vs.push_back(it->asString());
+    }
+    return  vs;
+}
+
 std::vector<std::string> WordedApp::getRndFormation(const std::string& cat, int total)
 {
 	Configuration* cfg = Configuration::getInstance();

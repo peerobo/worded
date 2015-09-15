@@ -14,7 +14,7 @@ public:
 	};
 	~FScrollList();
 	CREATE_FUNC(FScrollList);	
-	void initView(Size viewSize, float spacing, float updateInterval, SCROLL_TYPE direction, int row = -1, int col = -1);
+	void initView(Size viewSize, float spacing, float updateInterval, SCROLL_TYPE direction, int row = -1, int col = -1, bool snapToPage =false);
 	void addAutoPosItem(Node* node);
 	void addItem(Node* node, Vec2 pos);
 	void updateView();
@@ -25,6 +25,7 @@ private:
 	const int BOUNDING_BACK;
 	int maxCol;
 	int maxRow;
+    bool snapToPage;
 	float rate;
 	float updateInterval;
 	bool initAlready;

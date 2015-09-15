@@ -56,7 +56,6 @@ void TableLogic::loop(float dt)
 void TableLogic::kill()
 {
     Looper::instance->removeLoop(LOOPER_IDX);
-    GlobalVar::gameLogic = NULL;
 }
 
 void TableLogic::start()
