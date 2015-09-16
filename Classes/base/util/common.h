@@ -16,6 +16,7 @@ namespace util
 		static void playSoundNoResponse(const char* snd, bool loop);
 		static void playMusic(const char* music);
 		static void stopAllSounds(bool fadeOut = false);
-		static std::vector<std::string> splitStr(const char* source, char delim);		
+		static std::vector<std::string> splitStr(const char* source, char delim);
+		static void capitalize(std::string& str);
 	};
 }

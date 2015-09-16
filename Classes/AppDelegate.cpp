@@ -4,6 +4,7 @@
 #include "Constants.h"
 #include "audio/include/SimpleAudioEngine.h"
 #include "GlobalVar.h"
+#include "tablemode/CatChooser.h"
 
 USING_NS_CC;
 
@@ -203,5 +204,9 @@ void AppDelegate::applicationWillEnterForeground() {
     Director::getInstance()->startAnimation();
 
     // if you use SimpleAudioEngine, it must resume here
-    CocosDenshion::SimpleAudioEngine::getInstance()->resumeBackgroundMusic();
+    bool checkBGMusic = false;
+    checkBGMusic = checkBGMusic || dynamic_cast<CatChooser*>(GlobalVar::curScene)
+    		|| dynamic_cast<IntroScreen*>(GlobalVar::curScene);
+    if(checkBGMusic)
+    	CocosDenshion::SimpleAudioEngine::getInstance()->resumeBackgroundMusic();
 }

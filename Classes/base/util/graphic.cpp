@@ -1,6 +1,7 @@
 #include "graphic.h"
 #include "../../Constants.h"
 #include  "../../GlobalVar.h"
+#include "../Looper.h"
 
 namespace util {
 	void graphic::addSwallowTouch(Node* node)
@@ -121,6 +122,11 @@ namespace util {
 	Scene* graphic::createSceneWithLayer(Layer* layer)
 	{
 		auto scene = Scene::create();
+		if(!Looper::instance )
+		{
+			Looper::create();
+		}
+		scene->addChild(Looper::instance);
 		scene->addChild(layer);
 		layer->setTag(0);
 		//layer->setKeyboardEnabled(true);

@@ -3,6 +3,7 @@
 #include <regex>
 #include <audio/include/SimpleAudioEngine.h>
 #include "../../GlobalVar.h"
+#include <cctype>
 
 USING_NS_CC;
 
@@ -18,6 +19,13 @@ namespace util {
 			vecSpltStrings.push_back(string);
 		}
 		return vecSpltStrings;
+	}
+
+	void common::capitalize(std::string& str)
+	{
+		if(str.length() == 0)
+			return;
+		str[0] = std::toupper(str[0]);
 	}
 
 	std::string common::getCacheDirectory() 

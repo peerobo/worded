@@ -122,6 +122,12 @@ int WordedApp::getAdCat()
 	return _adCatIdx;
 }
 
+static Node* WordedApp::getScoreBoard(std::string cat, int score, int bestScore, std::function<void()> backCB, std::function<void()> retryCB)
+{
+	Node* container;
+	return container;
+}
+
 bool WordedApp::validateAnswer(const std::string& item1, const std::string& item2)
 {
 	return item1 == item2;

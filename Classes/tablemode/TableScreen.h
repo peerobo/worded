@@ -10,14 +10,30 @@
 #define TableScreen_hpp
 
 #include <cocos2d.h>
+#include <vector>
 
 USING_NS_CC;
 
 class TableScreen : public Layer
 {
 private:
+	const int GUI_LAYER;
+	const int LABEL_LAYER;
+	const int ICON_LAYER;
+	const int TAG_BG_ICON;
+	const int TAG_ICON;
+
+	Rect tilesRect;
+	Label* score;
+	Node* timeBar;
+	Label* word;
+
+	~TableScreen();
     TableScreen();
     void animateIn();
+    void makeTiles(std::vector<std::string> tiles = {});
+    void vanishTiles();
+    void vanishTile(int idx);
 public:
     CREATE_FUNC(TableScreen);
 };

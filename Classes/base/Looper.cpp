@@ -15,6 +15,7 @@ Looper::Looper()
     retain();
     scheduleUpdate();
     instance = this;
+    loops = std::unordered_map<int,Loopable>();
 }
 
 int Looper::addLoop(Loopable l)

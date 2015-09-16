@@ -3,6 +3,8 @@
 #include <vector>
 #include <string>
 
+USING_NS_CC;
+
 class WordedApp
 {
 	static int _unlockedCat;
@@ -35,6 +37,7 @@ public:
 	static std::vector<std::string> getRndFormationWith(const std::string& cat, const std::string& with, int total = 10);
 	static std::string getRndItemInCat(const std::string& cat);
 	static bool validateAnswer(const std::string& item1, const std::string& item2);
+	static Node* getScoreBoard(std::string cat, int score, int bestScore, std::function<void()> backCB, std::function<void()> retryCB);
 	/////////////////////////////////////
 	
 };
