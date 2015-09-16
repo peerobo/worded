@@ -36,6 +36,9 @@ private:
     void vanishTile(int idx);
     bool onTouchWordTileBegan(Touch* t, Event* e);
     void onTouchWordTileEnded(Touch* t, Event* e);
+    void update(float dt) override;
+    void onRetry();
+    void onBack2Cats();
 public:
     CREATE_FUNC(TableScreen);
 };

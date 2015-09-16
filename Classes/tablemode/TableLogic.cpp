@@ -71,15 +71,20 @@ void TableLogic::start()
 
 void TableLogic::validateState()
 {
-	if(WordedApp::validateAnswer(word,answerWord))
-	{
-		score += currTime* WordedApp::TABLE_MODE_SCORE_RATIO[WordedApp::difficult];
-		nextWord();
-	}
-	else
-	{
-		penalty();
-	}
+    if(answerWord!="")
+    {
+        if(WordedApp::validateAnswer(word,answerWord))
+        {
+            score += currTime* WordedApp::TABLE_MODE_SCORE_RATIO[WordedApp::difficult];
+            nextWord();
+            answerWord = "";
+        }
+        else
+        {
+            penalty();
+            answerWord = "";
+        }
+    }
 }
 
 void TableLogic::nextWord()
