@@ -72,12 +72,15 @@ void TableScreen::animateIn()
     getChildByTag(LABEL_LAYER)->addChild(word);
     word->setOpacity(0);
 
+    tilesRect = Rect(70, 150, s.width-140, s.height - 150 -word->getPositionY());
+
     makeTiles();
 }
 
 void TableScreen::makeTiles(std::vector<std::string> v)
 {
 	Node* layer = getChildByTag(GUI_LAYER);
+	Node* icons = getChildByTag(ICON_LAYER);
 	bool needInit = true;
 	for (int i = 0; i < 9; ++i) {
 		if(layer->getChildByTag(TAG_BG_ICON + i))
@@ -86,20 +89,121 @@ void TableScreen::makeTiles(std::vector<std::string> v)
 			break;
 		}
 	}
-	if(needInit)
-	{
-		for (int i = 0; i < 9; ++i) {
+	Size eachTile(tilesRect.size.width/3,tilesRect.size.height/3);
+	size_t wordSize = v.size();
 
+	for (int i = 0; i < 9; ++i)
+	{
+		if(needInit) // both layers are emptied
+		{
+			// add bg;
+			Node* bg = util::graphic::getSprite(Constants::ASS_ICO_BG_TABLE);
+			int row = 2-(i/3);
+			int col = i%3;
+			bg->setAnchorPoint(Vec2::ANCHOR_MIDDLE);
+			layer->addChild(bg);
+			bg->setPositionX(tilesRect.getMinX()+ eachTile.width*(col+0.5f));
+			bg->setPositionY(tilesRect.getMinY()+eachTile.height*(row+0.5f));
+			util::effects::reveal(bg, 0.15f*i);
+			bg->setTag(TAG_BG_ICON+i);
+
+			// add icon
+			if(i < wordSize)
+			{
+				bg->setName(v[i]);
+				Node* icon = util::graphic::getSprite(v[i]);
+				g->setAnchorPoint(Vec2::ANCHOR_MIDDLE);
+				icons->addChild(icon);
+				icon->setPosition(bg->getPosition());
+				util::effects::reveal(icon, 0.15f*i);
+				icon->setTag(TAG_ICON+i);
+			}
+		}
+		else
+		{
+			Vector<FiniteTimeAction*> vAct;
+			// get existing bg
+			Node* bg = layers->getChildByTag(TAG_BG_ICON+i);
+			if(bg)
+			{
+				float time = 0.15f*i;
+				if(time > 0)
+					vAct.pushBack(DelayTime::create(time));
+				vAct.pushBack(ScaleTo::create(0.2f,0.01f));
+				vAct.pushBack(ScaleTo::create(0.4f,1.f));
+				// add child icon
+				Node* oldIcon = icons->getChildByTag(TAG_ICON+i);
+				Vector<FiniteTimeAction*> vOld;
+				if(oldIcon)
+				{
+					if(time > 0)
+						vOld.pushBack(DelayTime::create(time));
+					vOld.pushBack(ScaleTo::create(0.2f,0.01f));
+					vOld.pushBack(RemoveSelf::create());
+				}
+				// new icon
+				bg->setName(v[i]);
+				Node* icon = util::graphic::getSprite(v[i]);
+				icon->setAnchorPoint(Vec2::ANCHOR_MIDDLE);
+				icons->addChild(icon);
+				icon->setPosition(bg->getPosition());
+				icon->setScale(0.01f);
+				icon->setOpacity(0);
+				icon->setTag(TAG_ICON+i);
+				Vector<FiniteTimeAction*> iconActs;
+				iconActs.pushBack(DelayTime::create(time+0.2f));
+				iconActs.pushBack(Spawn::createWithTwoActions(
+						FadeIn::create(0.4f),
+						ScaleTo::create(0.4f,1.f)
+						));
+
+				if(oldIcon)
+					oldIcon->runAction(Sequence::create(vOld));
+				icon->runAction(Sequence::create(iconActs));
+				bg->runAction(Sequence::create(vAct));
+			}
 		}
 	}
+
 }
 
 void TableScreen::vanishTile(int idx)
 {
+	Node* layer = getChildByTag(GUI_LAYER);
+	Node* icons = getChildByTag(ICON_LAYER);
 
+	auto bg = layer->getChildByTag(TAG_BG_ICON);
+	bg->runAction(ScaleTo::create(0.4f,0.01f));
+
+	auto icon = getChildByTag(TAG_ICON);
+	icon->runAction(ScaleTo::create(0.4f,0.01f));
+
+	// add pause timeout
 }
 
 void TableScreen::vanishTiles()
 {
+	Node* layer = getChildByTag(GUI_LAYER);
+	Node* icons = getChildByTag(ICON_LAYER);
+	for (int i = 0; i < 9; ++i)
+	{
+		Vector<FiniteTimeAction*> vAct;
+		Vector<FiniteTimeAction*> vIconAct;
+		Node* bg = layers->getChildByTag(TAG_BG_ICON+i);
+		if(bg)
+		{
+			vAct.pushBack(ScaleTo::create(0.2f,0.01f));
+			vACt.pushBack(RemoveSelf::create());
+			bg->runAction(Sequence::create(vAct));
 
+			Node* icon = icons->getChildByTag(TAG_ICON+i);
+			if(icon)
+			{
+				vIconAct.pushBack(ScaleTo::create(0.2f,0.01f));
+				vIconAct.pushBack(RemoveSelf::create());
+				icon->runAction(Sequence::create(vIconAct));
+			}
+
+		}
+	}
 }

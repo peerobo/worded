@@ -34,6 +34,8 @@ private:
     void makeTiles(std::vector<std::string> tiles = {});
     void vanishTiles();
     void vanishTile(int idx);
+    bool onTouchWordTileBegan(Touch* t, Event* e);
+    void onTouchWordTileEnded(Touch* t, Event* e);
 public:
     CREATE_FUNC(TableScreen);
 };
