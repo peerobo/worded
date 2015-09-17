@@ -45,7 +45,7 @@ std::vector<std::string> WordedApp::getRndFormation(const std::string& cat, int 
 {
 	Configuration* cfg = Configuration::getInstance();
 	std::vector<std::string> v = util::common::splitStr(cfg->getValue(cat).asString().c_str(), ';');
-	std::vector<std::string> rndV = std::vector<std::string>();
+    std::vector<std::string> rndV = {};
 	size_t len = v.size();
 	while (total > len)
 	{		
@@ -57,38 +57,66 @@ std::vector<std::string> WordedApp::getRndFormation(const std::string& cat, int 
 		total = total - len;
 	}
 	len = v.size();
-	while (len > 0)
+    while (len > 0 && total > 0)
 	{
 		int idx = rand() % len;
 		std::string item = v.at(idx);
 		util::common::trimSpace(item);
-		if(item != "")
-			rndV.push_back(v.at(idx));
+		if(item != " " && item != "")
+			rndV.push_back(v[idx]);
 		v.erase(v.begin() + idx);
 		len = v.size();
+        total--;
 	}
+    
 	return rndV;
 }
 
 std::vector<std::string> WordedApp::getRndFormationExcept(const std::string& cat, const std::string& exc, int total)
 {
-	auto v = getRndFormation(cat, total);
-	int len = v.size();
-	for (size_t i = 0; i < len; i++)
-	{
-		if (v[i] == exc)
-		{
-			v.erase(v.begin() + i);
-			len--;
-			i--;
-		}
-	}
+    Configuration* cfg = Configuration::getInstance();
+    std::vector<std::string> v = util::common::splitStr(cfg->getValue(cat).asString().c_str(), ';');
+    size_t len = v.size();
+    for (size_t i = 0; i < len; i++)
+    {
+        if (v[i] == exc)
+        {
+            v.erase(v.begin() + i);
+            len--;
+            i--;
+        }
+    }
+    std::vector<std::string> rndV = {};
+    
+    len = v.size();
+    while (total > len)
+    {
+        auto vclone = v;
+        int count = total - len;
+        if (count > len)
+            count = len;
+        v.insert(v.end(), vclone.begin(), vclone.begin() + count);
+        total = total - len;
+    }
+    len = v.size();
+    while (len > 0 && total > 0)
+    {
+        int idx = rand() % len;
+        std::string item = v.at(idx);
+        util::common::trimSpace(item);
+        if(item != " " && item != "")
+            rndV.push_back(v[idx]);
+        v.erase(v.begin() + idx);
+        len = v.size();
+        total--;
+    }
+	
 	return v;
 }
 
 std::vector<std::string> WordedApp::getRndFormationWith(const std::string& cat, const std::string& with, int total)
 {
-	std::vector<std::string> v = getRndFormation(cat, total - 1);
+	std::vector<std::string> v = getRndFormationExcept(cat, with, total - 1);
 	int idx = rand()%total;
 	if(idx == total-1)
 		v.push_back(with);

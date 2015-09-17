@@ -200,8 +200,9 @@ void TableScreen::makeTiles(std::vector<std::string> v)
 			// add icon
 			if(i < wordSize)
 			{
-				bg->setName(v[i]);
-				Node* icon = util::graphic::getSprite(v[i]);
+                std::string iconName = v[i];
+				bg->setName(iconName);
+				Node* icon = util::graphic::getSprite(iconName);
 				icon->setAnchorPoint(Vec2::ANCHOR_MIDDLE);
 				icons->addChild(icon);
 				icon->setPosition(bg->getPosition());
@@ -232,8 +233,9 @@ void TableScreen::makeTiles(std::vector<std::string> v)
 					vOld.pushBack(RemoveSelf::create());
 				}
 				// new icon
-				bg->setName(v[i]);
-				Node* icon = util::graphic::getSprite(v[i]);
+                std::string iconName = v[i];
+				bg->setName(iconName);
+				Node* icon = util::graphic::getSprite(iconName);
 				icon->setAnchorPoint(Vec2::ANCHOR_MIDDLE);
 				icons->addChild(icon);
 				icon->setPosition(bg->getPosition());
