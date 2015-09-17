@@ -64,15 +64,15 @@ void TableScreen::update(float dt)
         Node* n = WordedApp::getScoreBoard(gl->cat, gl->score, gl->score, CC_CALLBACK_0(TableScreen::onBack2Cats, this), CC_CALLBACK_0(TableScreen::onRetry, this));
         getChildByTag(GUI_LAYER)->addChild(n);
         n->setVisible(false);
+        currWord = "";
         log("show result");
     }
     else if(gl->isPlaying) // game is playing
     {
-        std::string shownWord = word->getString();
         std::string logicWord = gl->word;
-        util::common::capitalize(logicWord);
-        if(shownWord!=logicWord)
+        if(currWord!=logicWord)
         {
+            currWord = logicWord;
             Vector<FiniteTimeAction*> v;
             v.pushBack(FadeOut::create(0.2f));
             v.pushBack(CallFunc::create(CC_CALLBACK_0(Label::setString,word,logicWord)));
@@ -109,6 +109,7 @@ TableScreen::TableScreen():ICON_LAYER(4),LABEL_LAYER(3),GUI_LAYER(2), TAG_BG_ICO
 
     std::vector<int> layers = {GUI_LAYER, ICON_LAYER, LABEL_LAYER};
     util::graphic::generateLayerWithTag(this,layers, 1);
+    currWord = "";
 }
 
 void TableScreen::animateIn()
@@ -125,7 +126,7 @@ void TableScreen::animateIn()
 
     timeBar = util::graphic::getSprite(Constants::ASS_ICO_BAR_TABLE);
     timeBar->setAnchorPoint(Vec2::ANCHOR_MIDDLE);
-    timeBar->setPosition(sw*7/2,s.height-150);
+    timeBar->setPosition(sw + sw*7/2,s.height-150);
     getChildByTag(GUI_LAYER)->addChild(timeBar);
     util::effects::reveal(timeBar);
 
@@ -133,11 +134,11 @@ void TableScreen::animateIn()
     util::common::capitalize(wordStr);
     word = Label::createWithBMFont(Constants::ASS_FNT_NORMAL, wordStr);
     word->setAnchorPoint(Vec2::ANCHOR_MIDDLE_BOTTOM);
-    word->setPosition(s.width/2, s.height - 500);
+    word->setPosition(s.width/2, s.height - 400);
     getChildByTag(LABEL_LAYER)->addChild(word);
     word->setOpacity(0);
 
-    tilesRect = Rect(70, 150, s.width-140, s.height - 150 -word->getPositionY());
+    tilesRect = Rect(70, 150, s.width-140, s.height - 650);
 
     makeTiles();
     
@@ -186,7 +187,7 @@ void TableScreen::makeTiles(std::vector<std::string> v)
 			bg->setAnchorPoint(Vec2::ANCHOR_MIDDLE);
 			layer->addChild(bg);
 			bg->setPositionX(tilesRect.getMinX()+ eachTile.width*(col+0.5f));
-			bg->setPositionY(tilesRect.getMinY()+eachTile.height*(row+0.5f));
+			bg->setPositionY(tilesRect.getMinY()+ eachTile.height*(row+0.5f));
 			util::effects::reveal(bg, 0.15f*i);
 			bg->setTag(TAG_BG_ICON+i);
             
@@ -261,10 +262,10 @@ void TableScreen::vanishTile(int idx)
 	Node* layer = getChildByTag(GUI_LAYER);
 	Node* icons = getChildByTag(ICON_LAYER);
 
-	auto bg = layer->getChildByTag(TAG_BG_ICON);
+	auto bg = layer->getChildByTag(TAG_BG_ICON +idx);
 	bg->runAction(ScaleTo::create(0.4f,0.01f));
 
-	auto icon = icons->getChildByTag(TAG_ICON);
+	auto icon = icons->getChildByTag(TAG_ICON + idx);
 	icon->runAction(ScaleTo::create(0.4f,0.01f));
 
 	// add pause timeout

@@ -124,7 +124,7 @@ int WordedApp::getAdCat()
 
 Node* WordedApp::getScoreBoard(std::string cat, int score, int bestScore, std::function<void()> backCB, std::function<void()> retryCB)
 {
-	Node* container;
+    Node* container = Node::create();
 	return container;
 }
 

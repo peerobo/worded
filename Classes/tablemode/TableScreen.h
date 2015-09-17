@@ -27,6 +27,7 @@ private:
 	Label* score;
 	Node* timeBar;
 	Label* word;
+    std::string currWord;
 
 	~TableScreen();
     TableScreen();

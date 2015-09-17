@@ -126,13 +126,13 @@ namespace util {
 		{
 			Looper::create();
 		}
+        else
+        {
+            Looper::instance->removeFromParentAndCleanup(false);
+        }
 		scene->addChild(Looper::instance);
 		scene->addChild(layer);
 		layer->setTag(0);
-		//layer->setKeyboardEnabled(true);
-		EventListenerKeyboard* evt = EventListenerKeyboard::create();
-		evt->onKeyReleased = CC_CALLBACK_2(Layer::onKeyReleased, layer);
-		layer->getEventDispatcher()->addEventListenerWithSceneGraphPriority(evt, layer);
 
 		return scene;
 	}

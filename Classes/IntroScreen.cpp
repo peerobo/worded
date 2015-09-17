@@ -63,7 +63,7 @@ void IntroScreen::onTouchItem(int type)
         
         // bg fade out
         Vector<FiniteTimeAction*> v;
-        v.pushBack(FadeOut::create(0.7f));
+        v.pushBack(FadeOut::create(0.3f));
         v.pushBack(CallFunc::create(CC_CALLBACK_0(IntroScreen::processType, this,type)));
         getChildByTag(1)->runAction(Sequence::create(v));
         

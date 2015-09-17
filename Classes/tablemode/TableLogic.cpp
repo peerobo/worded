@@ -38,7 +38,7 @@ void TableLogic::loop(float dt)
 	{
 		if(pauseTime > 0)
 		{
-			pauseTime--;
+			pauseTime-=dt;
 		}
 		else
 		{
@@ -75,7 +75,8 @@ void TableLogic::validateState()
     {
         if(WordedApp::validateAnswer(word,answerWord))
         {
-            score += currTime* WordedApp::TABLE_MODE_SCORE_RATIO[WordedApp::difficult];
+            float rate =WordedApp::TABLE_MODE_SCORE_RATIO[WordedApp::difficult];
+            score += currTime* rate;
             nextWord();
             answerWord = "";
         }
@@ -90,7 +91,7 @@ void TableLogic::validateState()
 void TableLogic::nextWord()
 {
 	level++;
-	if(level > WordedApp::TABLE_MODE_LEVELS[WordedApp::difficult])
+	if(level == WordedApp::TABLE_MODE_LEVELS[WordedApp::difficult])
 	{
 		endGame();
 		return;
