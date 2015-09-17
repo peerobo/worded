@@ -4,6 +4,7 @@
 #include <audio/include/SimpleAudioEngine.h>
 #include "../../GlobalVar.h"
 #include <cctype>
+#include "../../Constants.h"
 
 USING_NS_CC;
 
@@ -114,16 +115,17 @@ namespace util {
 	{
 		if (!GlobalVar::myData.isEnableAudio)
 			return -1;
+		std::string sound(snd);
+//		std::size_t found = sound.find(Constants::ASS_SUFFIX_SOUND);
+//		if (found==std::string::npos)
+//			sound += std::string(Constants::ASS_SUFFIX_SOUND);
 		CocosDenshion::SimpleAudioEngine* ins = CocosDenshion::SimpleAudioEngine::getInstance();
-		return ins->playEffect(snd, loop);
+		return ins->playEffect(sound.c_str(), loop);
 	}
 
 	void common::playSoundNoResponse(const char* snd, bool loop)
 	{
-		if (!GlobalVar::myData.isEnableAudio)
-			return;
-		CocosDenshion::SimpleAudioEngine* ins = CocosDenshion::SimpleAudioEngine::getInstance();
-		ins->playEffect(snd, loop);
+		playSound(snd,loop);
 	}
 
 	void common::playMusic(const char* music)

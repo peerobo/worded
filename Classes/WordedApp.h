@@ -32,12 +32,15 @@ public:
 	static int getUnlockedCat();
 	static int getAdCat();
     static std::vector<std::string> getAllCats();
+    static std::vector<std::string> getAllWords(const std::string& cat);
 	static std::vector<std::string> getRndFormation(const std::string& cat, int total = 10);
 	static std::vector<std::string> getRndFormationExcept(const std::string& cat, const std::string& exc, int total = 10);
 	static std::vector<std::string> getRndFormationWith(const std::string& cat, const std::string& with, int total = 10);
 	static std::string getRndItemInCat(const std::string& cat);
 	static bool validateAnswer(const std::string& item1, const std::string& item2);
 	static Node* getScoreBoard(std::string cat, int score, int bestScore, std::function<void()> backCB, std::function<void()> retryCB);
+	static void playSound(const std::string& cat, const std::string& word);
+	static void loadSound(const std::string& cat);
 	/////////////////////////////////////
 	
 };

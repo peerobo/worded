@@ -7,6 +7,7 @@ public:
 	static const char* ASS_SUFFIX_IMAGE;
 	static const char* ASS_SUFFIX_IMAGE_JPG;
 	static const char* ASS_SUFFIX_TEXATL;
+	static const char* ASS_SUFFIX_SOUND;
 	static const char* CONST_CIDR[33];
 	static const char* CONST_IP_RANGE[327];
 	//////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -37,5 +38,9 @@ public:
     static const char* ASS_TEX_GUI;
 
 	static const char* ASS_SND_THEME;
-
+	static const char* ASS_SND_CLICK;
+	static const char* ASS_SND_ENDGAME;
+	static const char* ASS_SND_HIGHSCORE;
+	static const char* ASS_SND_TIMEOUT;
+	static const char* ASS_SND_WRONGANSWER;
 };

@@ -39,6 +39,7 @@ void IntroScreen::onMoreGame()
 
 void IntroScreen::onTouchItem(int type)
 {
+	util::common::playSound(Constants::ASS_SND_CLICK, false);
     if (type == 0 || type == 1) {
         
         // buttons vanish

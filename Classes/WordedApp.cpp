@@ -1,6 +1,8 @@
 #include "WordedApp.h"
 #include "base/Util.h"
 #include <cocos2d.h>
+#include "Constants.h"
+#include <audio/include/SimpleAudioEngine.h>
 
 USING_NS_CC;
 
@@ -41,10 +43,50 @@ std::vector<std::string> WordedApp::getAllCats()
     return  vs;
 }
 
-std::vector<std::string> WordedApp::getRndFormation(const std::string& cat, int total)
+void WordedApp::playSound(const std::string& cat, const std::string& word)
+{
+	std::string path = word + std::string( Constants::ASS_SUFFIX_SOUND);
+	util::common::playSound(path.c_str(),false);
+}
+
+void WordedApp::loadSound(const std::string& cat)
+{
+	std::vector<std::string> paths = FileUtils::getInstance()->getSearchPaths();
+	size_t len = paths.size();
+	for(size_t i = 0; i < len; i++)
+	{
+		std::size_t found = paths[i].find("sounds");
+		if(found != std::string::npos)
+		{
+			paths.erase(paths.begin()+found);
+			break;
+		}
+	}
+	paths.push_back("shared/sounds/" + cat);
+
+	for(auto path:paths)
+	{
+		log("path: %s", path.c_str());
+	}
+
+	FileUtils::getInstance()->setSearchPaths(paths);
+
+	CocosDenshion::SimpleAudioEngine* audioEngine = CocosDenshion::SimpleAudioEngine::getInstance();
+	std::vector<std::string> words = WordedApp::getAllWords(cat);
+	for(std::string word : words)
+		audioEngine->preloadEffect(word.c_str());
+}
+
+std::vector<std::string> WordedApp::getAllWords(const std::string& cat)
 {
 	Configuration* cfg = Configuration::getInstance();
 	std::vector<std::string> v = util::common::splitStr(cfg->getValue(cat).asString().c_str(), ';');
+	return v;
+}
+
+std::vector<std::string> WordedApp::getRndFormation(const std::string& cat, int total)
+{
+	std::vector<std::string> v = getAllWords(cat);
     std::vector<std::string> rndV = {};
 	size_t len = v.size();
 	while (total > len)
@@ -74,8 +116,7 @@ std::vector<std::string> WordedApp::getRndFormation(const std::string& cat, int 
 
 std::vector<std::string> WordedApp::getRndFormationExcept(const std::string& cat, const std::string& exc, int total)
 {
-    Configuration* cfg = Configuration::getInstance();
-    std::vector<std::string> v = util::common::splitStr(cfg->getValue(cat).asString().c_str(), ';');
+    std::vector<std::string> v = getAllWords(cat);
     size_t len = v.size();
     for (size_t i = 0; i < len; i++)
     {
@@ -110,8 +151,7 @@ std::vector<std::string> WordedApp::getRndFormationExcept(const std::string& cat
         len = v.size();
         total--;
     }
-	
-	return v;
+	return rndV;
 }
 
 std::vector<std::string> WordedApp::getRndFormationWith(const std::string& cat, const std::string& with, int total)
@@ -122,6 +162,9 @@ std::vector<std::string> WordedApp::getRndFormationWith(const std::string& cat, 
 		v.push_back(with);
 	else
 		v.insert(v.begin()+idx, with);
+//	for (std::string str : v) {
+//		log("words: %s", str.c_str());
+//	}
 	return v;
 }
 

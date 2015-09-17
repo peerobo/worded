@@ -372,6 +372,7 @@ const char* Constants::ASS_SUFFIX_DATA = ".plist";
 const char* Constants::ASS_SUFFIX_IMAGE = ".png";
 const char* Constants::ASS_SUFFIX_IMAGE_JPG = ".jpg";
 const char* Constants::ASS_SUFFIX_TEXATL = ".pvr.ccz";
+const char* Constants::ASS_SUFFIX_SOUND = ".mp3";
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -400,6 +401,11 @@ const char* Constants::ASS_BT_SHARE = "bt_share";
 const char* Constants::ASS_BT_WRONG = "bt_wrong";
 
 const char* Constants::ASS_SND_THEME = "Rest_Outro_(music_by_Dan_Knoflicek).mp3";
+const char* Constants::ASS_SND_CLICK = "clickbt.mp3";
+const char* Constants::ASS_SND_ENDGAME = "endgame.mp3";
+const char* Constants::ASS_SND_HIGHSCORE = "highscore.mp3";
+const char* Constants::ASS_SND_TIMEOUT = "timeout.mp3";
+const char* Constants::ASS_SND_WRONGANSWER = "wronganswer.mp3";
 
 const char* Constants::ASS_TEX_GUI = "gui";
 

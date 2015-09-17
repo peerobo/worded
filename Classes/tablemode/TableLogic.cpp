@@ -10,6 +10,8 @@
 #include "../GlobalVar.h"
 #include "../WordedApp.h"
 #include "../base/Looper.h"
+#include "../Constants.h"
+#include "../base/Util.h"
 
 const int TableLogic::LOOPER_IDX = 0;
 
@@ -43,7 +45,8 @@ void TableLogic::loop(float dt)
 		else
 		{
 			currTime-=dt;
-
+			if(currTime <=3.024 && currTime >=3)
+				util::common::playSound(Constants::ASS_SND_TIMEOUT,false);
 			if(currTime >=0)
 				validateState();
 			else
@@ -98,7 +101,7 @@ void TableLogic::nextWord()
 	}
 	pauseTime = WordedApp::TABLE_MODE_TIME_PAUSE_B4_COUNT;
 	word = WordedApp::getRndItemInCat(cat);
-	formation = WordedApp::getRndFormationWith(cat, word, 10);
+	formation = WordedApp::getRndFormationWith(cat, word, 9);
 	answerWord = "";
 	currTime = totalTime;
 }

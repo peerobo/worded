@@ -42,7 +42,6 @@ bool AppDelegate::applicationDidFinishLaunching() {
 	util::ad::initLeadbolt("PKOi4AX2StGGZquCKi4j461SHNG5GOHI");
 
     ZipUtils::setPvrEncryptionKeyPart(3, 0x3e26102b);	
-	CocosDenshion::SimpleAudioEngine::getInstance()->preloadBackgroundMusic(Constants::ASS_SND_THEME);
 
 	srand(time(NULL));
     
@@ -180,8 +179,10 @@ bool AppDelegate::applicationDidFinishLaunching() {
     util::graphic::loadTexAtl(Constants::ASS_TEX_GUI, false);
 	util::graphic::getSpriteFromImageJPG(Constants::ASS_BG_ONE);
 	util::graphic::getSpriteFromImageJPG(Constants::ASS_BG_TABLE);
-    CocosDenshion::SimpleAudioEngine::getInstance()->setEffectsVolume(1);
-    CocosDenshion::SimpleAudioEngine::getInstance()->setBackgroundMusicVolume(1);    
+	auto audioEngine = CocosDenshion::SimpleAudioEngine::getInstance();
+	audioEngine->preloadBackgroundMusic(Constants::ASS_SND_THEME);
+	audioEngine->setEffectsVolume(1);
+	audioEngine->setBackgroundMusicVolume(1);
     // create a scene. it's an autorelease object
 	GlobalVar::curScene = IntroScreen::create();
     auto scene = util::graphic::createSceneWithLayer(GlobalVar::curScene);

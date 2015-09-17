@@ -42,6 +42,7 @@ void CatChooser::catTouchEnd(cocos2d::Touch* t, cocos2d::Event* e, std::string c
     if(util::graphic::checkTouchStill(t))
     {
         util::graphic::loadTexAtl(cat, false);
+        WordedApp::loadSound(cat);
         // list
         Node* child = getChildByTag(2);
         util::effects::disappear(child);
@@ -51,6 +52,7 @@ void CatChooser::catTouchEnd(cocos2d::Touch* t, cocos2d::Event* e, std::string c
         util::effects::fadeAndRemove(child, 1.f, std::bind(&util::graphic::changeSceneWithLayer,TableScreen::create()));
         // init logic
         (new TableLogic())->init(cat);
+        util::common::playSound(Constants::ASS_SND_CLICK, false);
     }
 }
 

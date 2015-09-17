@@ -19,6 +19,18 @@ namespace util {
 		node->getEventDispatcher()->addEventListenerWithSceneGraphPriority(listener, node);
 	}
 
+	float graphic::fit(Node* fitTo, Node* toFit)
+	{
+		Size sFitTo = fitTo->getContentSize();
+		Size sToFit = toFit->getContentSize();
+		float scale = 1;
+		if(sToFit.width > sFitTo.width)
+			scale = sFitTo.width / sToFit.width;
+		if(sToFit.height*scale > sFitTo.height)
+			scale = sFitTo.height / sToFit.height;
+		return scale;
+	}
+
 	Vec2 graphic::convertPos(Node* node, Node* space)
 	{
 		Vec2 newPoint = node->convertToWorldSpace(Vec2(0, 0));

@@ -12,6 +12,7 @@
 #include "TableLogic.h"
 #include "../GlobalVar.h"
 #include "../WordedApp.h"
+#include "CatChooser.h"
 
 TableScreen::~TableScreen()
 {
@@ -47,6 +48,11 @@ void TableScreen::onTouchWordTileEnded(cocos2d::Touch *t, cocos2d::Event *e)
     auto gl = static_cast<TableLogic*>( GlobalVar::gameLogic);
     if (!WordedApp::validateAnswer(gl->word, word)) {
         vanishTile(bt->getTag()-TAG_BG_ICON);
+        util::common::playSound(Constants::ASS_SND_WRONGANSWER,false);
+    }
+    else
+    {
+    	util::common::playSound(Constants::ASS_SND_CLICK,false);
     }
     gl->answerWord = word;
 }
@@ -66,6 +72,11 @@ void TableScreen::update(float dt)
         n->setVisible(false);
         currWord = "";
         log("show result");
+        timeBar->setVisible(false);
+        score->setVisible(false);
+        word->setVisible(false);
+
+        runAction(Sequence::createWithTwoActions(DelayTime::create(1.f),CallFunc::create(CC_CALLBACK_0(TableScreen::onBack2Cats,this))));
     }
     else if(gl->isPlaying) // game is playing
     {
@@ -78,7 +89,7 @@ void TableScreen::update(float dt)
             v.pushBack(CallFunc::create(CC_CALLBACK_0(Label::setString,word,logicWord)));
             v.pushBack(FadeIn::create(0.4f));
             word->runAction(Sequence::create(v));
-            
+            WordedApp::playSound(gl->cat,gl->word);
             makeTiles(gl->formation);
         }
         
@@ -158,7 +169,8 @@ void TableScreen::onRetry()
 
 void TableScreen::onBack2Cats()
 {
-    
+	util::graphic::changeSceneWithLayer(CatChooser::create());
+	util::common::playMusic(Constants::ASS_SND_THEME);
 }
 
 void TableScreen::makeTiles(std::vector<std::string> v)
@@ -175,7 +187,7 @@ void TableScreen::makeTiles(std::vector<std::string> v)
 	}
 	Size eachTile(tilesRect.size.width/3,tilesRect.size.height/3);
 	size_t wordSize = v.size();
-
+	Size bgSize;
 	for (int i = 0; i < 9; ++i)
 	{
 		if(needInit) // both layers are emptied
@@ -205,6 +217,7 @@ void TableScreen::makeTiles(std::vector<std::string> v)
 				Node* icon = util::graphic::getSprite(iconName);
 				icon->setAnchorPoint(Vec2::ANCHOR_MIDDLE);
 				icons->addChild(icon);
+				icon->setScale(util::graphic::fit(bg,icon));
 				icon->setPosition(bg->getPosition());
 				util::effects::reveal(icon, 0.15f*i);
 				icon->setTag(TAG_ICON+i);
@@ -235,6 +248,7 @@ void TableScreen::makeTiles(std::vector<std::string> v)
 				// new icon
                 std::string iconName = v[i];
 				bg->setName(iconName);
+				log("word: %s",iconName.c_str());
 				Node* icon = util::graphic::getSprite(iconName);
 				icon->setAnchorPoint(Vec2::ANCHOR_MIDDLE);
 				icons->addChild(icon);
@@ -242,11 +256,12 @@ void TableScreen::makeTiles(std::vector<std::string> v)
 				icon->setScale(0.01f);
 				icon->setOpacity(0);
 				icon->setTag(TAG_ICON+i);
+
 				Vector<FiniteTimeAction*> iconActs;
 				iconActs.pushBack(DelayTime::create(time+0.2f));
 				iconActs.pushBack(Spawn::createWithTwoActions(
 						FadeIn::create(0.4f),
-						ScaleTo::create(0.4f,1.f)
+						ScaleTo::create(0.4f,util::graphic::fit(bg,icon))
 						));
 
 				if(oldIcon)

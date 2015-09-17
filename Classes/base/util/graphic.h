@@ -33,5 +33,6 @@ namespace util
 		static Sprite* getSprite(const std::string& sprFrameName);
 		static Size getScreenSize();
 		static void generateLayerWithTag(Node* p, std::vector<int> layerTags, int startZ = 0);
+		static float fit(Node* fitTo, Node* toFit);
 	};
 }
