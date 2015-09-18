@@ -3,6 +3,7 @@
 #include <cocos2d.h>
 #include "Constants.h"
 #include <audio/include/SimpleAudioEngine.h>
+#include <ui/UIButton.h>
 
 USING_NS_CC;
 
@@ -58,7 +59,7 @@ void WordedApp::loadSound(const std::string& cat)
 		std::size_t found = paths[i].find("sounds");
 		if(found != std::string::npos)
 		{
-			paths.erase(paths.begin()+found);
+			paths.erase(paths.begin()+i);
 			break;
 		}
 	}
@@ -195,7 +196,100 @@ int WordedApp::getAdCat()
 
 Node* WordedApp::getScoreBoard(std::string cat, int score, int bestScore, std::function<void()> backCB, std::function<void()> retryCB)
 {
+    Size s = util::graphic::getScreenSize();
     Node* container = Node::create();
+    Configuration* cfg = Configuration::getInstance();
+    
+    std::string title = cfg->getValue("scoreCat").asString();
+    std::string catTitle = cat;
+    util::common::capitalize(catTitle);
+    util::common::replace(title, "@cat", catTitle);
+    Label* catLbl = Label::createWithBMFont(Constants::ASS_FNT_NORMAL, title);
+    catLbl->setAnchorPoint(Vec2::ANCHOR_MIDDLE);
+    catLbl->setPosition(s.width/2, s.height - 250);
+    util::effects::reveal(catLbl);
+    container->addChild(catLbl,1);
+    
+    Label* descLbl = Label::createWithBMFont(Constants::ASS_FNT_NORMAL, cfg->getValue("scoreDesc").asString());
+    descLbl->setAnchorPoint(Vec2::ANCHOR_MIDDLE);
+    descLbl->setPosition(s.width/2, s.height - 420);
+    descLbl->setScale(0.8f);
+    util::effects::reveal(descLbl);
+    container->addChild(descLbl,1);
+    
+    Label* scoreLbl = Label::createWithBMFont(Constants::ASS_FNT_BIG, StringUtils::toString( score));
+    scoreLbl->setAnchorPoint(Vec2::ANCHOR_MIDDLE);
+    scoreLbl->setPosition(s.width/2,s.height/2);
+    util::effects::reveal(scoreLbl, 0.4f);
+    container->addChild(scoreLbl,2);
+    Rect rect = scoreLbl->getBoundingBox();
+    
+    Label* ptLbl = Label::createWithBMFont(Constants::ASS_FNT_NORMAL, "pt");
+    ptLbl->setAnchorPoint(Vec2::ANCHOR_BOTTOM_LEFT);
+    ptLbl->setPosition(rect.getMaxX(), rect.getMinY());
+    util::effects::reveal(ptLbl,0.4f);
+    ptLbl->setScale(0.8f);
+    container->addChild(ptLbl,1);
+    
+    Sprite* icoCheck = util::graphic::getSprite(Constants::ASS_ICO_CHECK);
+    icoCheck->setAnchorPoint(Vec2::ANCHOR_TOP_LEFT);
+    icoCheck->setPosition(rect.getMaxX(),rect.getMaxY());
+    util::effects::blink(icoCheck,0.6f);
+    icoCheck->setOpacity(0);
+    container->addChild(icoCheck,3);
+    
+    std::string best;
+    if(score > bestScore)
+    {
+        Sprite* highScore = util::graphic::getSprite(Constants::ASS_ICO_HIGHSCORE);
+        highScore->setAnchorPoint(Vec2::ANCHOR_TOP_LEFT);
+        highScore->setPosition(rect.getMaxX(),rect.getMaxY());
+        highScore->setVisible(false);
+        highScore->setScale(3);
+        container->addChild(highScore,3);
+        Vector<FiniteTimeAction*> vAct;
+        vAct.pushBack(DelayTime::create(1));
+        vAct.pushBack(Show::create());
+        vAct.pushBack(EaseElasticOut::create(ScaleTo::create(0.5, 1), 0.3f));
+        highScore->runAction(Sequence::create(vAct));
+        best = cfg->getValue("newBestScore").asString();
+    }
+    else
+    {
+        best = cfg->getValue("bestScore").asString();
+        util::common::replace(best, "@number", StringUtils::toString(bestScore));
+    }
+    
+    Label* highScoreLabel = Label::createWithBMFont(Constants::ASS_FNT_NORMAL, best);
+    highScoreLabel->setAnchorPoint(Vec2::ANCHOR_MIDDLE_TOP);
+    highScoreLabel->setPosition(rect.getMidX(), rect.getMinY() - 100);
+    container->addChild(highScoreLabel,1);
+    highScoreLabel->setScale(0.8f);
+    util::effects::reveal(highScoreLabel,0.4f);
+    
+    
+    auto backBt = ui::Button::create();
+    container->addChild(backBt,3);
+    backBt->loadTextureNormal(util::graphic::getAssetName(Constants::ASS_BT_BACK),ui::Widget::TextureResType::PLIST);
+    backBt->setAnchorPoint(Vec2::ANCHOR_MIDDLE_BOTTOM);
+    backBt->setPosition(Vec2(s.width/2 - 200, 100));
+    util::graphic::addClickBtCallback(backBt,backCB);
+    
+    
+    auto shareBt = ui::Button::create();
+    container->addChild(shareBt,3);
+    shareBt->loadTextureNormal(util::graphic::getAssetName(Constants::ASS_BT_SHARE),ui::Widget::TextureResType::PLIST);
+    shareBt->setAnchorPoint(Vec2::ANCHOR_MIDDLE_BOTTOM);
+    shareBt->setPosition(Vec2( s.width/2, 100));
+    util::graphic::addClickBtCallback(shareBt, std::bind(&util::graphic::captureScreen));
+    
+    auto retryBt = ui::Button::create();
+    container->addChild(retryBt,3);
+    retryBt->loadTextureNormal(util::graphic::getAssetName(Constants::ASS_BT_RETRY),ui::Widget::TextureResType::PLIST);
+    retryBt->setAnchorPoint(Vec2::ANCHOR_MIDDLE_BOTTOM);
+    retryBt->setPosition(Vec2(s.width/2 + 200,100));
+    util::graphic::addClickBtCallback(retryBt, retryCB);
+    
 	return container;
 }
 

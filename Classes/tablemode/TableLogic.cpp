@@ -45,8 +45,6 @@ void TableLogic::loop(float dt)
 		else
 		{
 			currTime-=dt;
-			if(currTime <=3.024 && currTime >=3)
-				util::common::playSound(Constants::ASS_SND_TIMEOUT,false);
 			if(currTime >=0)
 				validateState();
 			else

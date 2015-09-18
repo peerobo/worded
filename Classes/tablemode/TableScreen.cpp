@@ -60,26 +60,33 @@ void TableScreen::onTouchWordTileEnded(cocos2d::Touch *t, cocos2d::Event *e)
 void TableScreen::update(float dt)
 {
     TableLogic* gl = static_cast<TableLogic*>(GlobalVar::gameLogic);
+    Size s = util::graphic::getScreenSize();
     // update bar
-    timeBar->setScaleX(gl->currTime/gl->totalTime);
+    timeBar->setScaleX(gl->currTime/gl->totalTime *(s.width/timeBar->getContentSize().width));
     score->setString(StringUtils::toString(gl->score));
     if(gl->isShowScore) // finish category
     {
+        util::common::stopAllSounds();
         vanishTiles();
         gl->isShowScore = false;
         Node* n = WordedApp::getScoreBoard(gl->cat, gl->score, gl->score, CC_CALLBACK_0(TableScreen::onBack2Cats, this), CC_CALLBACK_0(TableScreen::onRetry, this));
-        getChildByTag(GUI_LAYER)->addChild(n);
-        n->setVisible(false);
+        n->setTag(23);
+        getChildByTag(LABEL_LAYER)->addChild(n);
+        
+        
         currWord = "";
         log("show result");
         timeBar->setVisible(false);
         score->setVisible(false);
         word->setVisible(false);
 
-        runAction(Sequence::createWithTwoActions(DelayTime::create(1.f),CallFunc::create(CC_CALLBACK_0(TableScreen::onBack2Cats,this))));
+//        runAction(Sequence::createWithTwoActions(DelayTime::create(1.f),CallFunc::create(CC_CALLBACK_0(TableScreen::onBack2Cats,this))));
     }
     else if(gl->isPlaying) // game is playing
     {
+        timeBar->setVisible(true);
+        score->setVisible(true);
+        word->setVisible(true);
         std::string logicWord = gl->word;
         if(currWord!=logicWord)
         {
@@ -93,7 +100,16 @@ void TableScreen::update(float dt)
             makeTiles(gl->formation);
         }
         
-        
+        if(gl->currTime <= 3 && !playTimeout)
+        {
+            util::common::playSound(Constants::ASS_SND_TIMEOUT,false);
+            playTimeout = true;
+        }
+        else if (gl->currTime > 3)
+        {
+            playTimeout = false;
+        }
+    
     }
     else    // is Pause
     {
@@ -110,7 +126,7 @@ TableScreen::TableScreen():ICON_LAYER(4),LABEL_LAYER(3),GUI_LAYER(2), TAG_BG_ICO
     bg->setTag(1);
     
     Vector<FiniteTimeAction*> vec;
-    vec.pushBack(DelayTime::create(0.3f));
+    vec.pushBack(DelayTime::create(0.1f));
     vec.pushBack(CallFunc::create(CC_CALLBACK_0(TableScreen::animateIn, this)));
     runAction(Sequence::create(vec));
     
@@ -125,19 +141,19 @@ TableScreen::TableScreen():ICON_LAYER(4),LABEL_LAYER(3),GUI_LAYER(2), TAG_BG_ICO
 
 void TableScreen::animateIn()
 {
-	util::common::stopAllSounds(true);
+	util::common::stopMusic(true);
 	Size s = util::graphic::getScreenSize();
-	float sw = s.width /8;
 
     score = Label::createWithBMFont(Constants::ASS_FNT_NORMAL,"0");
     score->setAnchorPoint(Vec2::ANCHOR_MIDDLE);
-    score->setPosition(sw/2,s.height-150);
+    score->setPosition(s.width/2,s.height-200);
     getChildByTag(LABEL_LAYER)->addChild(score);
     util::effects::reveal(score,0.3f);
 
     timeBar = util::graphic::getSprite(Constants::ASS_ICO_BAR_TABLE);
-    timeBar->setAnchorPoint(Vec2::ANCHOR_MIDDLE);
-    timeBar->setPosition(sw + sw*7/2,s.height-150);
+    timeBar->setAnchorPoint(Vec2::ANCHOR_MIDDLE_TOP);
+    timeBar->setPosition(s.width/2,s.height);
+    timeBar->setScale(s.width/timeBar->getContentSize().width);
     getChildByTag(GUI_LAYER)->addChild(timeBar);
     util::effects::reveal(timeBar);
 
@@ -155,7 +171,7 @@ void TableScreen::animateIn()
     
     TableLogic* gl = static_cast<TableLogic*>(GlobalVar::gameLogic);
     Vector<FiniteTimeAction*> v;
-    v.pushBack(DelayTime::create(2.f));
+    v.pushBack(DelayTime::create(1.5f));
     v.pushBack(CallFunc::create(CC_CALLBACK_0(TableLogic::start,gl)));
     this->runAction(Sequence::create(v));
     
@@ -164,7 +180,13 @@ void TableScreen::animateIn()
 
 void TableScreen::onRetry()
 {
-    
+    TableLogic* gl = static_cast<TableLogic*>(GlobalVar::gameLogic);
+    // remove score
+    getChildByTag(LABEL_LAYER)->getChildByTag(23)->removeFromParent();
+    Vector<FiniteTimeAction*> v;
+    v.pushBack(DelayTime::create(1.5f));
+    v.pushBack(CallFunc::create(CC_CALLBACK_0(TableLogic::start,gl)));
+    this->runAction(Sequence::create(v));
 }
 
 void TableScreen::onBack2Cats()
@@ -217,7 +239,10 @@ void TableScreen::makeTiles(std::vector<std::string> v)
 				Node* icon = util::graphic::getSprite(iconName);
 				icon->setAnchorPoint(Vec2::ANCHOR_MIDDLE);
 				icons->addChild(icon);
-				icon->setScale(util::graphic::fit(bg,icon));
+                Size sbg = bg->getContentSize();
+                sbg.width-=50;
+                sbg.height-=50;
+				icon->setScale(util::graphic::fit(sbg,icon));
 				icon->setPosition(bg->getPosition());
 				util::effects::reveal(icon, 0.15f*i);
 				icon->setTag(TAG_ICON+i);
@@ -248,7 +273,6 @@ void TableScreen::makeTiles(std::vector<std::string> v)
 				// new icon
                 std::string iconName = v[i];
 				bg->setName(iconName);
-				log("word: %s",iconName.c_str());
 				Node* icon = util::graphic::getSprite(iconName);
 				icon->setAnchorPoint(Vec2::ANCHOR_MIDDLE);
 				icons->addChild(icon);
@@ -256,12 +280,14 @@ void TableScreen::makeTiles(std::vector<std::string> v)
 				icon->setScale(0.01f);
 				icon->setOpacity(0);
 				icon->setTag(TAG_ICON+i);
-
+                auto sbg = bg->getContentSize();
+                sbg.width -= 50;
+                sbg.height -= 50;
 				Vector<FiniteTimeAction*> iconActs;
 				iconActs.pushBack(DelayTime::create(time+0.2f));
 				iconActs.pushBack(Spawn::createWithTwoActions(
 						FadeIn::create(0.4f),
-						ScaleTo::create(0.4f,util::graphic::fit(bg,icon))
+						ScaleTo::create(0.4f,util::graphic::fit(sbg,icon))
 						));
 
 				if(oldIcon)

@@ -19,6 +19,12 @@
 		<string>Table Mode</string>
 		<key>categories</key>
 		<string>Categories</string>
+		<key>scoreDesc</key>
+		<string>You got</string>
+		<key>newBestScore</key>
+		<string>New best SCORE!</string>
+		<key>bestScore</key>
+		<string>Your best score is @number</string>
 		<key>cats</key>
 		<array>
 			<string>letters</string>
@@ -83,7 +89,7 @@
 		<string>a;b;c;d;e;f;g;h;i;j;k;l;m;n;o;p;q;r;s;t;u;v;w;x;y;z</string>
 		<key>animals2</key>
 		<string>ant;bee;bull;dolphin;camel;dinosaur;donkey;eagle;kangaroo;turtle;caterpillar;deer;fly;hippo;lizard;octopus;parrot;rhino;snail;worm;goldfish;gorilla;monster;ostrich;seal;skunk;slug;squirrel;swan;zebra;badger;beetle;buffalo;grasshopper;hedgehog;kitten;koala;lamb;peacock;puppy</string>
-		<key>foold2</key>
+		<key>food2</key>
 		<string>cola;cucumber;hot dog;ice;lettuce;bell pepper;pineapple;pizza;potato;tea;beer;cheese;cherry;coconut;eggplant;hot chocolate;lemon;mushroom;spaghetti;pie;butter;celery;cereal;garlic;ginger;grapefruit;kiwi;milkshake;sausage;whiskey</string>
 		<key>transport</key>
 		<string>bike;bus;car;motorbike;plane;ship;taxi;train;truck;walking;ambulance;elevator;escalator;fire engine;glider;helicopter;rocket;skateboard;tractor;van</string>

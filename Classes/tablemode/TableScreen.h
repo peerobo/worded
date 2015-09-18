@@ -28,6 +28,7 @@ private:
 	Node* timeBar;
 	Label* word;
     std::string currWord;
+    bool playTimeout;
 
 	~TableScreen();
     TableScreen();

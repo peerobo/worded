@@ -30,7 +30,37 @@ namespace util {
 			scale = sFitTo.height / sToFit.height;
 		return scale;
 	}
-
+    
+    float graphic::fit(cocos2d::Size fitTo, cocos2d::Node *toFit)
+    {
+        Size sToFit = toFit->getContentSize();
+        float scale = 1;
+        if(sToFit.width > fitTo.width)
+            scale = fitTo.width / sToFit.width;
+        if(sToFit.height*scale > fitTo.height)
+            scale = fitTo.height / sToFit.height;
+        return scale;
+    }
+    
+    void graphic::addClickBtCallback(ui::Button* bt, std::function<void()> cb)
+    {
+        using namespace std::placeholders;
+        bt->addTouchEventListener(std::bind( &graphic::onBtTouch, _1,_2, cb));
+    }
+    
+    void graphic::onBtTouch(Ref* r, ui::Widget::TouchEventType type, std::function<void()> cb)
+    {
+        if(type == ui::Widget::TouchEventType::ENDED)
+        {
+            cb();
+        }
+    }
+    
+    void graphic::captureScreen()
+    {
+        //utils::captureScreen(<#const std::function<void (bool, const std::string &)> &afterCaptured#>, <#const std::string &filename#>);
+    }
+    
 	Vec2 graphic::convertPos(Node* node, Node* space)
 	{
 		Vec2 newPoint = node->convertToWorldSpace(Vec2(0, 0));

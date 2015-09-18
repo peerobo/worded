@@ -5,9 +5,11 @@ USING_NS_CC;
 
 namespace util
 {
-	void effects::blink(Node* node, std::function<void()> cb)
+	void effects::blink(Node* node, float delay, std::function<void()> cb)
 	{		
 		Vector<FiniteTimeAction*> v;
+        if(delay > 0)
+            v.pushBack(DelayTime::create(delay));
 		v.pushBack(FadeOut::create(0.3f));
 		v.pushBack(FadeIn::create(0.3f));
 		v.pushBack(FadeOut::create(0.3f));

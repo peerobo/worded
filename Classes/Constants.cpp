@@ -394,6 +394,7 @@ const char* Constants::ASS_ICO_CAT_BG = "ico_bg_cat";
 const char* Constants::ASS_ICO_PREFIX = "ico_";
 const char* Constants::ASS_ICO_BAR_TABLE = "ico_bar_table";
 const char* Constants::ASS_ICO_BG_TABLE = "ico_bg_table";
+const char* Constants::ASS_ICO_CHECK = "ico_check";
 const char* Constants::ASS_BT_BACK = "bt_back";
 const char* Constants::ASS_BT_CORRECT = "bt_correct";
 const char* Constants::ASS_BT_RETRY = "bt_retry";

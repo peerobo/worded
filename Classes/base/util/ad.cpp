@@ -2,7 +2,6 @@
 #include <cocos2d.h>
 #if CC_TARGET_PLATFORM == CC_PLATFORM_IOS
 #include "AppTrackerWrapper.h"
-#include "PluginVungle.h"
 #endif
 
 namespace util
@@ -23,14 +22,14 @@ namespace util
     void ad::initVungle()
     {
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
-        sdkbox::PluginVungle::init();
+        
 #endif
     }
     
     void ad::showVungle()
     {
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
-        sdkbox::PluginVungle::show("reward");
+      
 #endif
     }
 

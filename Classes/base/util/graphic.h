@@ -8,7 +8,9 @@ namespace util
 {
 	class graphic
 	{
-		public:
+    private:
+        static void onBtTouch(Ref* r, ui::Widget::TouchEventType type, std::function<void()> cb);
+    public:
 		static void addSwallowTouch(Node* node);
 		static Vec2 convertPos(Node* node, Node* space);
 		static void runAction(Node* node, Action* act);
@@ -34,5 +36,8 @@ namespace util
 		static Size getScreenSize();
 		static void generateLayerWithTag(Node* p, std::vector<int> layerTags, int startZ = 0);
 		static float fit(Node* fitTo, Node* toFit);
+        static float fit(Size fitTo, Node* toFit);
+        static void captureScreen();
+        static void addClickBtCallback(ui::Button* bt, std::function<void()> cb);
 	};
 }
