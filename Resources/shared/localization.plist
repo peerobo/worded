@@ -19,6 +19,8 @@
 		<string>Table Mode</string>
 		<key>categories</key>
 		<string>Categories</string>
+		<key>scoreCat</key>
+		<string>Category: @cat</string>
 		<key>scoreDesc</key>
 		<string>You got</string>
 		<key>newBestScore</key>
