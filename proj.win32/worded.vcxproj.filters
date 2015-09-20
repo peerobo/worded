@@ -62,6 +62,9 @@
     <ClCompile Include="..\Classes\base\comp\FScrollList.cpp">
       <Filter>Classess\base\comp</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\gui\ScoreGUI.cpp">
+      <Filter>Classess\gui</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h" />
@@ -128,6 +131,9 @@
     <ClInclude Include="..\Classes\base\comp\FScrollList.h">
       <Filter>Classess\base\comp</Filter>
     </ClInclude>
+    <ClInclude Include="..\Classes\gui\ScoreGUI.h">
+      <Filter>Classess\gui</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="game.rc" />
@@ -156,6 +162,9 @@
     </Filter>
     <Filter Include="Classess\base\comp">
       <UniqueIdentifier>{07571202-7492-4137-ae92-fe9756e92330}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Classess\gui">
+      <UniqueIdentifier>{07f2c212-5255-4ee2-960b-410ea68abfd9}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

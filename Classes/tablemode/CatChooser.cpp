@@ -12,6 +12,7 @@
 #include "../WordedApp.h"
 #include "TableScreen.h"
 #include "TableLogic.h"
+#include "../gui/ScoreGUI.h"
 
 CatChooser::CatChooser():LAYER_GUI(2), LAYER_LBL(3)
 {
@@ -90,7 +91,7 @@ Node* CatChooser::createCatItem(const std::string &cat, int type)
 
 void CatChooser::animateIn()
 {
-	Size s = util::graphic::getScreenSize();
+	/*Size s = util::graphic::getScreenSize();
 
 	Configuration* cfg = Configuration::getInstance();
 
@@ -117,5 +118,8 @@ void CatChooser::animateIn()
     addChild(lbl,LAYER_LBL);
     lbl->setPosition(s.width/2,s.height - 150);
     util::effects::reveal(lbl);
-    lbl->setTag(3);
+    lbl->setTag(3);*/
+
+	Node* n = ScoreGUI::create("Adjectives1", 90, 50, 5, []() {}, []() {});
+	addChild(n,LAYER_LBL);
 }

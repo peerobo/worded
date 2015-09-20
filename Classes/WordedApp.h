@@ -15,10 +15,12 @@ public:
 	/////////////////////////////////////
 	static const int DIFFICULT_EASY;
 	static const int DIFFICULT_HARD;
-	static const int ONE_MODE_TIME[2];
+	/*static const int ONE_MODE_TIME[2];
 	static const int ONE_MODE_LEVELS[2];
     static const int ONE_MODE_PENALTY[2];
-    static const float ONE_MODE_SCORE_RATIO[2];
+    static const float ONE_MODE_SCORE_RATIO[2];*/
+	static const int STAR_MAX;
+	static const int STAR_MIN_PT;
 	static const int TABLE_MODE_TIME[2];
 	static const int TABLE_MODE_LEVELS[2];
     static const int TABLE_MODE_PENALTY[2];
@@ -38,7 +40,6 @@ public:
 	static std::vector<std::string> getRndFormationWith(const std::string& cat, const std::string& with, int total = 10);
 	static std::string getRndItemInCat(const std::string& cat);
 	static bool validateAnswer(const std::string& item1, const std::string& item2);
-	static Node* getScoreBoard(std::string cat, int score, int bestScore, std::function<void()> backCB, std::function<void()> retryCB);
 	static void playSound(const std::string& cat, const std::string& word);
 	static void loadSound(const std::string& cat);
 	/////////////////////////////////////

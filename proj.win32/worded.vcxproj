@@ -158,6 +158,7 @@ xcopy /Y /Q "$(EngineRoot)external\websockets\prebuilt\win32\*.*" "$(OutDir)"</C
     <ClInclude Include="..\classes\base\util\platform.h" />
     <ClInclude Include="..\Classes\Constants.h" />
     <ClInclude Include="..\Classes\GlobalVar.h" />
+    <ClInclude Include="..\Classes\gui\ScoreGUI.h" />
     <ClInclude Include="..\Classes\IntroScreen.h" />
     <ClInclude Include="..\Classes\intro\IntroItem.h" />
     <ClInclude Include="..\Classes\onemode\OneScreen.h" />
@@ -189,6 +190,7 @@ xcopy /Y /Q "$(EngineRoot)external\websockets\prebuilt\win32\*.*" "$(OutDir)"</C
     <ClCompile Include="..\classes\base\util\platform.cpp" />
     <ClCompile Include="..\Classes\Constants.cpp" />
     <ClCompile Include="..\Classes\GlobalVar.cpp" />
+    <ClCompile Include="..\Classes\gui\ScoreGUI.cpp" />
     <ClCompile Include="..\Classes\IntroScreen.cpp" />
     <ClCompile Include="..\Classes\intro\IntroItem.cpp" />
     <ClCompile Include="..\Classes\onemode\OneScreen.cpp" />
