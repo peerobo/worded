@@ -63,7 +63,11 @@ void WordedApp::loadSound(const std::string& cat)
 			break;
 		}
 	}
+#if CC_TARGET_PLATFORM == CC_PLATFORM_WIN32
+	paths.push_back("../../Resources/shared/sounds/" + cat);
+#else
 	paths.push_back("shared/sounds/" + cat);
+#endif
 
 	for(auto path:paths)
 	{
@@ -226,14 +230,14 @@ Node* WordedApp::getScoreBoard(std::string cat, int score, int bestScore, std::f
     
     Label* ptLbl = Label::createWithBMFont(Constants::ASS_FNT_NORMAL, "pt");
     ptLbl->setAnchorPoint(Vec2::ANCHOR_BOTTOM_LEFT);
-    ptLbl->setPosition(rect.getMaxX(), rect.getMinY());
+    ptLbl->setPosition(rect.getMaxX(), rect.getMinY() + rect.size.height / 2);
     util::effects::reveal(ptLbl,0.4f);
     ptLbl->setScale(0.8f);
     container->addChild(ptLbl,1);
     
     Sprite* icoCheck = util::graphic::getSprite(Constants::ASS_ICO_CHECK);
     icoCheck->setAnchorPoint(Vec2::ANCHOR_TOP_LEFT);
-    icoCheck->setPosition(rect.getMaxX(),rect.getMaxY());
+    icoCheck->setPosition(rect.getMaxX(),rect.getMaxY() + rect.size.height/2);
     util::effects::blink(icoCheck,0.6f);
     icoCheck->setOpacity(0);
     container->addChild(icoCheck,3);

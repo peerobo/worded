@@ -145,8 +145,10 @@ xcopy /Y /Q "$(EngineRoot)external\websockets\prebuilt\win32\*.*" "$(OutDir)"</C
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="..\Classes\AppDelegate.h" />
+    <ClInclude Include="..\Classes\base\comp\FScrollList.h" />
     <ClInclude Include="..\Classes\base\Dlg.h" />
     <ClInclude Include="..\Classes\base\DlgMgr.h" />
+    <ClInclude Include="..\Classes\base\Looper.h" />
     <ClInclude Include="..\Classes\base\ParticleMgr.h" />
     <ClInclude Include="..\Classes\base\Util.h" />
     <ClInclude Include="..\Classes\base\util\ad.h" />
@@ -159,6 +161,9 @@ xcopy /Y /Q "$(EngineRoot)external\websockets\prebuilt\win32\*.*" "$(OutDir)"</C
     <ClInclude Include="..\Classes\IntroScreen.h" />
     <ClInclude Include="..\Classes\intro\IntroItem.h" />
     <ClInclude Include="..\Classes\onemode\OneScreen.h" />
+    <ClInclude Include="..\Classes\tablemode\CatChooser.h" />
+    <ClInclude Include="..\Classes\tablemode\TableLogic.h" />
+    <ClInclude Include="..\Classes\tablemode\TableScreen.h" />
     <ClInclude Include="..\Classes\WordedApp.h" />
     <ClInclude Include="main.h" />
   </ItemGroup>
@@ -172,8 +177,10 @@ xcopy /Y /Q "$(EngineRoot)external\websockets\prebuilt\win32\*.*" "$(OutDir)"</C
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Classes\AppDelegate.cpp" />
+    <ClCompile Include="..\Classes\base\comp\FScrollList.cpp" />
     <ClCompile Include="..\Classes\base\Dlg.cpp" />
     <ClCompile Include="..\Classes\base\DlgMgr.cpp" />
+    <ClCompile Include="..\Classes\base\Looper.cpp" />
     <ClCompile Include="..\Classes\base\ParticleMgr.cpp" />
     <ClCompile Include="..\Classes\base\util\ad.cpp" />
     <ClCompile Include="..\Classes\base\util\common.cpp" />
@@ -185,6 +192,9 @@ xcopy /Y /Q "$(EngineRoot)external\websockets\prebuilt\win32\*.*" "$(OutDir)"</C
     <ClCompile Include="..\Classes\IntroScreen.cpp" />
     <ClCompile Include="..\Classes\intro\IntroItem.cpp" />
     <ClCompile Include="..\Classes\onemode\OneScreen.cpp" />
+    <ClCompile Include="..\Classes\tablemode\CatChooser.cpp" />
+    <ClCompile Include="..\Classes\tablemode\TableLogic.cpp" />
+    <ClCompile Include="..\Classes\tablemode\TableScreen.cpp" />
     <ClCompile Include="..\Classes\WordedApp.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>

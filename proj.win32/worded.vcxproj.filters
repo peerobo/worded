@@ -47,6 +47,21 @@
     <ClCompile Include="..\classes\base\util\platform.cpp">
       <Filter>Classess\base\util</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\tablemode\CatChooser.cpp">
+      <Filter>Classess\tablemode</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\tablemode\TableLogic.cpp">
+      <Filter>Classess\tablemode</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\tablemode\TableScreen.cpp">
+      <Filter>Classess\tablemode</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\base\Looper.cpp">
+      <Filter>Classess\base</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\base\comp\FScrollList.cpp">
+      <Filter>Classess\base\comp</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h" />
@@ -98,6 +113,21 @@
     <ClInclude Include="..\classes\base\util\platform.h">
       <Filter>Classess\base\util</Filter>
     </ClInclude>
+    <ClInclude Include="..\Classes\tablemode\CatChooser.h">
+      <Filter>Classess\tablemode</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\tablemode\TableLogic.h">
+      <Filter>Classess\tablemode</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\tablemode\TableScreen.h">
+      <Filter>Classess\tablemode</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\base\Looper.h">
+      <Filter>Classess\base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\base\comp\FScrollList.h">
+      <Filter>Classess\base\comp</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="game.rc" />
@@ -123,6 +153,9 @@
     </Filter>
     <Filter Include="Classess\tablemode">
       <UniqueIdentifier>{c28a3d88-d967-4bd7-abe1-6293bbee993e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Classess\base\comp">
+      <UniqueIdentifier>{07571202-7492-4137-ae92-fe9756e92330}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
