@@ -44,4 +44,5 @@ public:
 	static const char* ASS_SND_HIGHSCORE;
 	static const char* ASS_SND_TIMEOUT;
 	static const char* ASS_SND_WRONGANSWER;
+	static const char* ASS_SND_INCREASE;
 };

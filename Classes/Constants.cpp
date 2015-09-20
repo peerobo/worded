@@ -407,6 +407,7 @@ const char* Constants::ASS_SND_ENDGAME = "endgame.mp3";
 const char* Constants::ASS_SND_HIGHSCORE = "highscore.mp3";
 const char* Constants::ASS_SND_TIMEOUT = "timeout.mp3";
 const char* Constants::ASS_SND_WRONGANSWER = "wronganswer.mp3";
+const char* Constants::ASS_SND_INCREASE = "increaseBell.mp3";
 
 const char* Constants::ASS_TEX_GUI = "gui";
 

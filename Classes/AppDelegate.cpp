@@ -183,6 +183,12 @@ bool AppDelegate::applicationDidFinishLaunching() {
 	audioEngine->preloadBackgroundMusic(Constants::ASS_SND_THEME);
 	audioEngine->setEffectsVolume(1);
 	audioEngine->setBackgroundMusicVolume(1);
+	audioEngine->preloadEffect(Constants::ASS_SND_INCREASE);
+	audioEngine->preloadEffect(Constants::ASS_SND_ENDGAME);
+	audioEngine->preloadEffect(Constants::ASS_SND_HIGHSCORE);
+	audioEngine->preloadEffect(Constants::ASS_SND_CLICK);
+	audioEngine->preloadEffect(Constants::ASS_SND_TIMEOUT);
+	audioEngine->preloadEffect(Constants::ASS_SND_WRONGANSWER);
     // create a scene. it's an autorelease object
 	GlobalVar::curScene = IntroScreen::create();
     auto scene = util::graphic::createSceneWithLayer(GlobalVar::curScene);

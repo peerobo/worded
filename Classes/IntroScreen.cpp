@@ -122,7 +122,7 @@ void IntroScreen::startIntro()
     float posY = s.height/2;
     
     IntroItem* item = IntroItem::create();
-    item->setValue(cfg->getValue("onemode").asString(), CC_CALLBACK_0(IntroScreen::onTouchItem, this,0));
+    item->setValue(cfg->getValue("learn").asString(), CC_CALLBACK_0(IntroScreen::onTouchItem, this,0));
     addChild(item,1);
     item->setPositionX(s.width/2);
     item->setPositionY(posY-100);

@@ -13,6 +13,8 @@
 		<string>More</string>
 		<key>leaderboard</key>
 		<string>Leaderboard</string>
+    <key>learn</key>
+    <string>Learn</string>
 		<key>onemode</key>
 		<string>One Mode</string>
 		<key>tablemode</key>

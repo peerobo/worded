@@ -120,6 +120,7 @@ void CatChooser::animateIn()
     util::effects::reveal(lbl);
     lbl->setTag(3);*/
 
-	Node* n = ScoreGUI::create("Adjectives1", 90, 50, 5, []() {}, []() {});
+	util::common::stopAllSounds();
+	Node* n = ScoreGUI::create("Adjectives1", 90, 99, 5, []() {}, []() {});
 	addChild(n,LAYER_LBL);
 }

@@ -129,6 +129,7 @@ ScoreGUI::ScoreGUI(std::string cat, int score, int bestScore, int star, std::fun
 
 	scheduleUpdate();
 	updateFlag = 0;
+	
 }
 
 void ScoreGUI::update(float dt)
@@ -137,6 +138,7 @@ void ScoreGUI::update(float dt)
 	if (scoreProgress != targetScore)
 	{
 		updateFlag += dt;
+		
 		if (updateFlag > 0.1f)
 		{
 			updateFlag = 0;
@@ -147,9 +149,9 @@ void ScoreGUI::update(float dt)
 				if (scoreProgress == 0)
 				{
 					starIcon->setVisible(true);
-
 					auto starBG = getChildByTag(21);
 					starBG->setVisible(true);
+					util::common::playSound(Constants::ASS_SND_INCREASE,false);
 				}
 				
 				int dScore = (targetScore - scoreProgress);
@@ -163,30 +165,33 @@ void ScoreGUI::update(float dt)
 				Size starSize = starIcon->getChildByTag(12)->getContentSize();
 				starSize.height = scoreProgress / (float)WordedApp::STAR_MIN_PT * starSize.height;
 				starIcon->setContentSize(starSize);
-
-				if (scoreProgress == targetScore && targetScore >= WordedApp::STAR_MIN_PT)
+				
+				if (scoreProgress == targetScore)
 				{
-					auto targetStar = getChildByTag(19);
-					auto starLbl = dynamic_cast<Label*>( getChildByTag(20));
-					auto starBG = getChildByTag(21);
-					Size starS = starBG->getContentSize();
-					starBG->setVisible(false);
-					Vector<FiniteTimeAction*> v;
-					// star fly effect
-					Vec2 pos = targetStar->getPosition();
-					pos.x -= starS.width / 2;
-					pos.y -= starS.height / 2;
-					auto ccCfg = ccBezierConfig();					
-					ccCfg.endPosition = pos;
-					Vec2 currPos = starIcon->getPosition();
-					ccCfg.controlPoint_1 = Vec2(currPos.x + 70, currPos.y + 70);
-					ccCfg.controlPoint_2 = Vec2(pos.x + 120, pos.y - 40);
-					v.pushBack(BezierTo::create(0.7f, ccCfg));
-					v.pushBack(CallFunc::create(CC_CALLBACK_0(Label::setString, starLbl, StringUtils::format("%d/%d", (star +1), WordedApp::STAR_MAX))));
-					v.pushBack(RemoveSelf::create());
-					starIcon->runAction(Sequence::create(v));
-					starIcon->getChildByTag(12)->runAction(FadeOut::create(0.7f));
-
+					if (targetScore >= WordedApp::STAR_MIN_PT)
+					{
+						auto targetStar = getChildByTag(19);
+						auto starLbl = dynamic_cast<Label*>(getChildByTag(20));
+						auto starBG = getChildByTag(21);
+						Size starS = starBG->getContentSize();
+						starBG->setVisible(false);
+						Vector<FiniteTimeAction*> v;
+						// star fly effect
+						Vec2 pos = targetStar->getPosition();
+						pos.x -= starS.width / 2;
+						pos.y -= starS.height / 2;
+						auto ccCfg = ccBezierConfig();
+						ccCfg.endPosition = pos;
+						Vec2 currPos = starIcon->getPosition();
+						ccCfg.controlPoint_1 = Vec2(currPos.x + 70, currPos.y + 70);
+						ccCfg.controlPoint_2 = Vec2(pos.x + 120, pos.y - 40);
+						v.pushBack(BezierTo::create(0.7f, ccCfg));
+						v.pushBack(CallFunc::create(CC_CALLBACK_0(Label::setString, starLbl, StringUtils::format("%d/%d", (star + 1), WordedApp::STAR_MAX))));
+						v.pushBack(RemoveSelf::create());
+						starIcon->runAction(Sequence::create(v));
+						starIcon->getChildByTag(12)->runAction(FadeOut::create(0.7f));
+						util::common::playSoundNoResponse(Constants::ASS_SND_HIGHSCORE, false);
+					}
 					if (targetScore > bestScore)
 					{
 						Size s = util::graphic::getScreenSize();
@@ -197,13 +202,18 @@ void ScoreGUI::update(float dt)
 						highScore->setScale(3);
 						addChild(highScore, 3);
 						Vector<FiniteTimeAction*> vAct;
-						vAct.pushBack(DelayTime::create(1));
+						vAct.pushBack(DelayTime::create(1.5f));
 						vAct.pushBack(Show::create());
-						vAct.pushBack(EaseElasticOut::create(ScaleTo::create(0.5, 1), 0.3f));
+						vAct.pushBack(EaseElasticOut::create(ScaleTo::create(0.5, 1), 0.3f));						
 						highScore->runAction(Sequence::create(vAct));
+						Vector<FiniteTimeAction*> vSound;
+						vSound.pushBack(DelayTime::create(1.7f));
+						vSound.pushBack(CallFunc::create(std::bind(&util::common::playSoundNoResponse, Constants::ASS_SND_ENDGAME, false)));
+						highScore->runAction(Sequence::create( vSound));
 					}
 				}
+				
 			}
-		}
+		}		
 	}	
 }
