@@ -35,9 +35,6 @@
     <ClCompile Include="..\Classes\base\util\ad.cpp">
       <Filter>Classess\base\util</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\onemode\OneScreen.cpp">
-      <Filter>Classess\onemode</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\base\util\effects.cpp">
       <Filter>Classess\base\util</Filter>
     </ClCompile>
@@ -63,6 +60,15 @@
       <Filter>Classess\base\comp</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\gui\ScoreGUI.cpp">
+      <Filter>Classess\gui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\base\ScoreDB.cpp">
+      <Filter>Classess\base</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\learn\LearnScreen.cpp">
+      <Filter>Classess\learn</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\gui\SettingGUI.cpp">
       <Filter>Classess\gui</Filter>
     </ClCompile>
   </ItemGroup>
@@ -104,9 +110,6 @@
     <ClInclude Include="..\Classes\base\util\ad.h">
       <Filter>Classess\base\util</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\onemode\OneScreen.h">
-      <Filter>Classess\onemode</Filter>
-    </ClInclude>
     <ClInclude Include="..\Classes\base\util\effects.h">
       <Filter>Classess\base\util</Filter>
     </ClInclude>
@@ -134,6 +137,15 @@
     <ClInclude Include="..\Classes\gui\ScoreGUI.h">
       <Filter>Classess\gui</Filter>
     </ClInclude>
+    <ClInclude Include="..\Classes\base\ScoreDB.h">
+      <Filter>Classess\base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\learn\LearnScreen.h">
+      <Filter>Classess\learn</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\gui\SettingGUI.h">
+      <Filter>Classess\gui</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="game.rc" />
@@ -154,9 +166,6 @@
     <Filter Include="Classess\base\util">
       <UniqueIdentifier>{7b8085fd-a412-4e16-a5bb-d784b1ab8232}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Classess\onemode">
-      <UniqueIdentifier>{00b398ab-f12f-4545-b7c0-787e74bfcd4f}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Classess\tablemode">
       <UniqueIdentifier>{c28a3d88-d967-4bd7-abe1-6293bbee993e}</UniqueIdentifier>
     </Filter>
@@ -165,6 +174,9 @@
     </Filter>
     <Filter Include="Classess\gui">
       <UniqueIdentifier>{07f2c212-5255-4ee2-960b-410ea68abfd9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Classess\learn">
+      <UniqueIdentifier>{00b398ab-f12f-4545-b7c0-787e74bfcd4f}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

@@ -5,6 +5,7 @@
 #include "audio/include/SimpleAudioEngine.h"
 #include "GlobalVar.h"
 #include "tablemode/CatChooser.h"
+#include "base/ScoreDB.h"
 
 USING_NS_CC;
 
@@ -61,7 +62,7 @@ bool AppDelegate::applicationDidFinishLaunching() {
     director->setDisplayStats(true);
 
     // set FPS. the default value is 1.0/60 if you don't call this
-    director->setAnimationInterval(1.0 / 40);
+    director->setAnimationInterval(1.0f / 40);
     
     int w, h;
     int sw = glview->getFrameSize().width;
@@ -189,6 +190,8 @@ bool AppDelegate::applicationDidFinishLaunching() {
 	audioEngine->preloadEffect(Constants::ASS_SND_CLICK);
 	audioEngine->preloadEffect(Constants::ASS_SND_TIMEOUT);
 	audioEngine->preloadEffect(Constants::ASS_SND_WRONGANSWER);
+
+	(new ScoreDB())->loadDB();
     // create a scene. it's an autorelease object
 	GlobalVar::curScene = IntroScreen::create();
     auto scene = util::graphic::createSceneWithLayer(GlobalVar::curScene);

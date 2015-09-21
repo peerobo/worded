@@ -14,6 +14,7 @@
 #include "../WordedApp.h"
 #include "CatChooser.h"
 #include "../gui/ScoreGUI.h"
+#include "../base/ScoreDB.h"
 
 TableScreen::~TableScreen()
 {
@@ -56,6 +57,7 @@ void TableScreen::onTouchWordTileEnded(cocos2d::Touch *t, cocos2d::Event *e)
     	util::common::playSound(Constants::ASS_SND_CLICK,false);
     }
     gl->answerWord = word;
+	log("word clicked: %s", word.c_str());
 }
 
 void TableScreen::update(float dt)
@@ -70,17 +72,30 @@ void TableScreen::update(float dt)
         util::common::stopAllSounds();
         vanishTiles();
         gl->isShowScore = false;
-        Node* n = ScoreGUI::create(gl->cat, gl->score, gl->score,5, CC_CALLBACK_0(TableScreen::onBack2Cats, this), CC_CALLBACK_0(TableScreen::onRetry, this));
+		int best = ScoreDB::instance->getScoreFor(gl->cat);
+		int star = ScoreDB::instance->getScoreFor(StringUtils::format("star-%s", gl->cat.c_str()));
+        Node* n = ScoreGUI::create(gl->cat, gl->score, best, star, CC_CALLBACK_0(TableScreen::onBack2Cats, this), CC_CALLBACK_0(TableScreen::onRetry, this));
         n->setTag(23);
         getChildByTag(LABEL_LAYER)->addChild(n);
-        
+		bool isSave = false;
+		if (gl->score > best)
+		{
+			ScoreDB::instance->setScoreFor(gl->cat, gl->score);
+			isSave = true;
+		}
+		if (gl->score > WordedApp::STAR_MIN_PT)
+		{
+			star++;
+			ScoreDB::instance->setScoreFor(StringUtils::format("star-%s", gl->cat.c_str()), star);
+			isSave = true;
+		}
+		if(isSave)
+			ScoreDB::instance->saveDB();
         
         currWord = "";
-        log("show result");
         timeBar->setVisible(false);
         score->setVisible(false);
         word->setVisible(false);
-
 //        runAction(Sequence::createWithTwoActions(DelayTime::create(1.f),CallFunc::create(CC_CALLBACK_0(TableScreen::onBack2Cats,this))));
     }
     else if(gl->isPlaying) // game is playing
@@ -221,8 +236,8 @@ void TableScreen::makeTiles(std::vector<std::string> v)
 			int col = i%3;
 			bg->setAnchorPoint(Vec2::ANCHOR_MIDDLE);
 			layer->addChild(bg);
-			bg->setPositionX(tilesRect.getMinX()+ eachTile.width*(col+0.5f));
-			bg->setPositionY(tilesRect.getMinY()+ eachTile.height*(row+0.5f));
+			Vec2 posBG(tilesRect.getMinX() + eachTile.width*(col + 0.5f), tilesRect.getMinY() + eachTile.height*(row + 0.5f));
+			bg->setPosition(posBG);
 			util::effects::reveal(bg, 0.15f*i);
 			bg->setTag(TAG_BG_ICON+i);
             
@@ -244,7 +259,7 @@ void TableScreen::makeTiles(std::vector<std::string> v)
                 sbg.width-=50;
                 sbg.height-=50;
 				icon->setScale(util::graphic::fit(sbg,icon));
-				icon->setPosition(bg->getPosition());
+				icon->setPosition(posBG);
 				util::effects::reveal(icon, 0.15f*i);
 				icon->setTag(TAG_ICON+i);
 			}
@@ -256,7 +271,7 @@ void TableScreen::makeTiles(std::vector<std::string> v)
 			Node* bg = layer->getChildByTag(TAG_BG_ICON+i);
 			if(bg)
 			{
-				float time = 0.15f*i;
+				float time = 0.05f*i;
 				if(time > 0)
 					vAct.pushBack(DelayTime::create(time));
 				vAct.pushBack(ScaleTo::create(0.2f,0.01f));

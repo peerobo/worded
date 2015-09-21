@@ -24,7 +24,7 @@ private:
     
     void processType(int type);
     
-    void onOneMode();
+    void onLearnMode();
     void onTableMode();
     void onLeaderboard();
     void onMoreGame();

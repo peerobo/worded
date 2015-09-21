@@ -10,15 +10,15 @@
 #include "IntroScreen.h"
 #include "base/Util.h"
 #include "Constants.h"
-#include "onemode/OneScreen.h"
+#include "learn/LearnScreen.h"
 #include "tablemode/CatChooser.h"
 #if CC_TARGET_PLATFORM == CC_PLATFORM_IOS
 #include "AppTrackerWrapper.h"
 #endif
 
-void IntroScreen::onOneMode()
+void IntroScreen::onLearnMode()
 {
-	util::graphic::changeSceneWithLayer(OneScreen::create());
+	util::graphic::changeSceneWithLayer(LearnScreen::create());
 	
 }
 
@@ -82,7 +82,7 @@ void IntroScreen::processType(int type)
 {
     switch (type) {
         case 0:
-            onOneMode();
+            onLearnMode();
             break;
         case 1:
             onTableMode();

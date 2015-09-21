@@ -91,7 +91,7 @@ Node* CatChooser::createCatItem(const std::string &cat, int type)
 
 void CatChooser::animateIn()
 {
-	/*Size s = util::graphic::getScreenSize();
+	Size s = util::graphic::getScreenSize();
 
 	Configuration* cfg = Configuration::getInstance();
 
@@ -118,9 +118,9 @@ void CatChooser::animateIn()
     addChild(lbl,LAYER_LBL);
     lbl->setPosition(s.width/2,s.height - 150);
     util::effects::reveal(lbl);
-    lbl->setTag(3);*/
+    lbl->setTag(3);
 
-	util::common::stopAllSounds();
+	/*util::common::stopAllSounds();
 	Node* n = ScoreGUI::create("Adjectives1", 90, 99, 5, []() {}, []() {});
-	addChild(n,LAYER_LBL);
+	addChild(n,LAYER_LBL);*/
 }

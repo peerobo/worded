@@ -1,14 +1,41 @@
 #include "common.h"
-#include <cocos/platform/CCFileUtils.h>
 #include <regex>
 #include <audio/include/SimpleAudioEngine.h>
 #include "../../GlobalVar.h"
 #include <cctype>
 #include "../../Constants.h"
 
-USING_NS_CC;
-
 namespace util {
+
+	ValueMap common::dataDict = {};
+
+	void common::saveValue(const std::string& key, Value val)
+	{
+		FileUtils* fileUtil = FileUtils::getInstance();
+		std::string path = getCacheDirectory();
+		path += "data.dat";
+		dataDict[key] = val;
+		fileUtil->writeToFile(dataDict, path);
+	}
+
+	Value common::getValue(const std::string& key)
+	{
+		FileUtils* fileUtil = FileUtils::getInstance();
+		std::string path = getCacheDirectory();
+		path += "data.dat";		
+		dataDict = fileUtil->getValueMapFromFile(path);
+
+		ValueMap::iterator it = dataDict.find(key);
+		if (it != dataDict.end())
+		{
+			Value val = it->second;
+			return val;
+		}
+		else
+		{
+			return Value::Null;
+		}
+	}
 
 	std::vector<std::string> common::splitStr(const char* source, char delim)
 	{

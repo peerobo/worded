@@ -77,7 +77,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>$(EngineRoot)external;..\Classes;$(EngineRoot)extensions;$(EngineRoot);$(EngineRoot)cocos;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\..\..\lib\c++\cocos2d-x-3.8.1\external;..\Classes;..\..\..\..\lib\c++\cocos2d-x-3.8.1\extensions;..\..\..\..\lib\c++\cocos2d-x-3.8.1\;..\..\..\..\lib\c++\cocos2d-x-3.8.1\cocos;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USE_MATH_DEFINES;GL_GLEXT_PROTOTYPES;COCOS2D_DEBUG=1;_CRT_SECURE_NO_WARNINGS;_SCL_SECURE_NO_WARNINGS;ADMIN=1;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>false</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -90,7 +90,7 @@
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>libcurl_imp.lib;websockets.lib;opengl32.lib;glew32.lib;libcocos2d.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>libcurl_imp.lib;websockets.lib;opengl32.lib;glew32.lib;libcocos2d_2015.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)\$(Configuration).win32\worded.exe</OutputFile>
       <AdditionalLibraryDirectories>$(OutDir);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -103,7 +103,7 @@
     </PostBuildEvent>
     <PreLinkEvent>
       <Command>if not exist "$(OutDir)" mkdir "$(OutDir)"
-xcopy /Y /Q "$(EngineRoot)external\websockets\prebuilt\win32\*.*" "$(OutDir)"</Command>
+xcopy /Y /Q "..\..\..\..\lib\c++\cocos2d-x-3.8.1\external\websockets\prebuilt\win32\*.*" "$(OutDir)"</Command>
     </PreLinkEvent>
     <ProjectReference>
       <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
@@ -113,7 +113,7 @@ xcopy /Y /Q "$(EngineRoot)external\websockets\prebuilt\win32\*.*" "$(OutDir)"</C
     <ClCompile>
       <Optimization>MaxSpeed</Optimization>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>$(EngineRoot)cocos\audio\include;$(EngineRoot)external;$(EngineRoot)external\chipmunk\include\chipmunk;$(EngineRoot)extensions;..\Classes;..\;..\..\;..\..\client\cocos2d;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\..\..\lib\c++\cocos2d-x-3.8.1\cocos\audio\include;..\..\..\..\lib\c++\cocos2d-x-3.8.1\external;..\..\..\..\lib\c++\cocos2d-x-3.8.1\external\chipmunk\include\chipmunk;..\..\..\..\lib\c++\cocos2d-x-3.8.1\extensions;..\Classes;..\;..\..\;..\..\client\cocos2d;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USE_MATH_DEFINES;GL_GLEXT_PROTOTYPES;_CRT_SECURE_NO_WARNINGS;_SCL_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -140,7 +140,7 @@ xcopy /Y /Q "$(EngineRoot)external\websockets\prebuilt\win32\*.*" "$(OutDir)"</C
     </PostBuildEvent>
     <PreLinkEvent>
       <Command>if not exist "$(OutDir)" mkdir "$(OutDir)"
-xcopy /Y /Q "$(EngineRoot)external\websockets\prebuilt\win32\*.*" "$(OutDir)"</Command>
+xcopy /Y /Q "..\..\..\..\lib\c++\cocos2d-x-3.8.1\external\websockets\prebuilt\win32\*.*" "$(OutDir)"</Command>
     </PreLinkEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -150,6 +150,7 @@ xcopy /Y /Q "$(EngineRoot)external\websockets\prebuilt\win32\*.*" "$(OutDir)"</C
     <ClInclude Include="..\Classes\base\DlgMgr.h" />
     <ClInclude Include="..\Classes\base\Looper.h" />
     <ClInclude Include="..\Classes\base\ParticleMgr.h" />
+    <ClInclude Include="..\Classes\base\ScoreDB.h" />
     <ClInclude Include="..\Classes\base\Util.h" />
     <ClInclude Include="..\Classes\base\util\ad.h" />
     <ClInclude Include="..\Classes\base\util\common.h" />
@@ -159,9 +160,10 @@ xcopy /Y /Q "$(EngineRoot)external\websockets\prebuilt\win32\*.*" "$(OutDir)"</C
     <ClInclude Include="..\Classes\Constants.h" />
     <ClInclude Include="..\Classes\GlobalVar.h" />
     <ClInclude Include="..\Classes\gui\ScoreGUI.h" />
+    <ClInclude Include="..\Classes\gui\SettingGUI.h" />
     <ClInclude Include="..\Classes\IntroScreen.h" />
     <ClInclude Include="..\Classes\intro\IntroItem.h" />
-    <ClInclude Include="..\Classes\onemode\OneScreen.h" />
+    <ClInclude Include="..\Classes\learn\LearnScreen.h" />
     <ClInclude Include="..\Classes\tablemode\CatChooser.h" />
     <ClInclude Include="..\Classes\tablemode\TableLogic.h" />
     <ClInclude Include="..\Classes\tablemode\TableScreen.h" />
@@ -183,6 +185,7 @@ xcopy /Y /Q "$(EngineRoot)external\websockets\prebuilt\win32\*.*" "$(OutDir)"</C
     <ClCompile Include="..\Classes\base\DlgMgr.cpp" />
     <ClCompile Include="..\Classes\base\Looper.cpp" />
     <ClCompile Include="..\Classes\base\ParticleMgr.cpp" />
+    <ClCompile Include="..\Classes\base\ScoreDB.cpp" />
     <ClCompile Include="..\Classes\base\util\ad.cpp" />
     <ClCompile Include="..\Classes\base\util\common.cpp" />
     <ClCompile Include="..\Classes\base\util\effects.cpp" />
@@ -191,9 +194,10 @@ xcopy /Y /Q "$(EngineRoot)external\websockets\prebuilt\win32\*.*" "$(OutDir)"</C
     <ClCompile Include="..\Classes\Constants.cpp" />
     <ClCompile Include="..\Classes\GlobalVar.cpp" />
     <ClCompile Include="..\Classes\gui\ScoreGUI.cpp" />
+    <ClCompile Include="..\Classes\gui\SettingGUI.cpp" />
     <ClCompile Include="..\Classes\IntroScreen.cpp" />
     <ClCompile Include="..\Classes\intro\IntroItem.cpp" />
-    <ClCompile Include="..\Classes\onemode\OneScreen.cpp" />
+    <ClCompile Include="..\Classes\learn\LearnScreen.cpp" />
     <ClCompile Include="..\Classes\tablemode\CatChooser.cpp" />
     <ClCompile Include="..\Classes\tablemode\TableLogic.cpp" />
     <ClCompile Include="..\Classes\tablemode\TableScreen.cpp" />

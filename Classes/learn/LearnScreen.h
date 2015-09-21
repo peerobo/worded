@@ -2,7 +2,7 @@
 #include <cocos2d.h>
 USING_NS_CC;
 
-class OneScreen : public Layer
+class LearnScreen : public Layer
 {
 private:
 	const int LAYER_GUI;
@@ -10,7 +10,7 @@ private:
 	const int LAYER_CAT;
 
 	void animateIn();
-	OneScreen();
+	LearnScreen();
 public:
-	CREATE_FUNC(OneScreen);
+	CREATE_FUNC(LearnScreen);
 };

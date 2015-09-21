@@ -1,8 +1,8 @@
-#include "OneScreen.h"
+#include "LearnScreen.h"
 #include "../base/Util.h"
 #include "../Constants.h"
 
-OneScreen::OneScreen() : LAYER_GUI(2), LAYER_LBL(3), LAYER_CAT(4)
+LearnScreen::LearnScreen() : LAYER_GUI(2), LAYER_LBL(3), LAYER_CAT(4)
 {
 	auto bg = util::graphic::getSpriteFromImageJPG(Constants::ASS_BG_ONE);
 	Size s = util::graphic::getScreenSize();
@@ -15,11 +15,11 @@ OneScreen::OneScreen() : LAYER_GUI(2), LAYER_LBL(3), LAYER_CAT(4)
 
 	Vector<FiniteTimeAction*> vec;
 	vec.pushBack(DelayTime::create(0.3f));
-	vec.pushBack(CallFunc::create(CC_CALLBACK_0(OneScreen::animateIn, this)));
+	vec.pushBack(CallFunc::create(CC_CALLBACK_0(LearnScreen::animateIn, this)));
 	runAction(Sequence::create(vec));
 }
 
-void OneScreen::animateIn()
+void LearnScreen::animateIn()
 {
 	util::common::stopAllSounds(true);
 }

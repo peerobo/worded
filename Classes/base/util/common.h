@@ -1,10 +1,15 @@
 #pragma once
 #include <cocos2d.h>
+#include <platform/CCFileUtils.h>
+
+USING_NS_CC;
 
 namespace util
 {
 	class common
 	{
+	private:
+		static ValueMap dataDict;
 	public:
 		static std::string getCacheDirectory();
 		static std::string getTmpDirectory();
@@ -19,5 +24,7 @@ namespace util
         static void stopMusic(bool fadeOut = false);
 		static std::vector<std::string> splitStr(const char* source, char delim);
 		static void capitalize(std::string& str);
+		static Value getValue(const std::string& key);
+		static void saveValue(const std::string& key, Value value);
 	};
 }

@@ -19,7 +19,7 @@ const int WordedApp::TABLE_MODE_TIME[2] = { 15, 8};
 const int WordedApp::TABLE_MODE_LEVELS[2] = { 10, 10};
 const int WordedApp::TABLE_MODE_PENALTY[2] = {-4,-4};
 const float WordedApp::TABLE_MODE_SCORE_RATIO[2] = {1.f/3.f, 1.25f};
-const float WordedApp::TABLE_MODE_TIME_PAUSE_B4_COUNT = 2.f;
+const float WordedApp::TABLE_MODE_TIME_PAUSE_B4_COUNT = 1.f;
 int WordedApp::difficult = WordedApp::DIFFICULT_EASY;
 
 int WordedApp::_currCat = -1;
