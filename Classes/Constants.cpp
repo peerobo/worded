@@ -373,7 +373,7 @@ const char* Constants::ASS_SUFFIX_IMAGE = ".png";
 const char* Constants::ASS_SUFFIX_IMAGE_JPG = ".jpg";
 const char* Constants::ASS_SUFFIX_TEXATL = ".pvr.ccz";
 const char* Constants::ASS_SUFFIX_SOUND = ".mp3";
-
+const char* Constants::KEY_VIBRATION = "vibrate";
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 
 const char* Constants::ASS_BG_INTRO = "intro";
@@ -397,6 +397,7 @@ const char* Constants::ASS_ICO_PREFIX = "ico_";
 const char* Constants::ASS_ICO_BAR_TABLE = "ico_bar_table";
 const char* Constants::ASS_ICO_BG_TABLE = "ico_bg_table";
 const char* Constants::ASS_ICO_CHECK = "ico_check";
+const char* Constants::ASS_ICO_UNCHECK = "ico_uncheck";
 const char* Constants::ASS_BT_BACK = "bt_back";
 const char* Constants::ASS_BT_CORRECT = "bt_correct";
 const char* Constants::ASS_BT_RETRY = "bt_retry";
@@ -413,3 +414,4 @@ const char* Constants::ASS_SND_INCREASE = "increaseBell.mp3";
 
 const char* Constants::ASS_TEX_GUI = "gui";
 
+const char* Constants::KEY_HARDMODE = "hardmode";

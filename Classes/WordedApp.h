@@ -42,6 +42,7 @@ public:
 	static bool validateAnswer(const std::string& item1, const std::string& item2);
 	static void playSound(const std::string& cat, const std::string& word);
 	static void loadSound(const std::string& cat);
+	static void unloadSound(const std::string& cat);
 	/////////////////////////////////////
 	
 };

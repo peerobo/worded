@@ -5,6 +5,12 @@
 #include <ui/UILayout.h>
 #include <string>
 
+void _internalClickShare()
+{
+	util::common::playSound(Constants::ASS_SND_CLICK, false);
+	util::graphic::captureScreen();
+}
+
 ScoreGUI::ScoreGUI(std::string cat, int score, int bestScore, int star, std::function<void()> backCB, std::function<void()> retryCB)
 {
 	this->star = star;
@@ -108,7 +114,7 @@ ScoreGUI::ScoreGUI(std::string cat, int score, int bestScore, int star, std::fun
 	addChild(backBt, 3);
 	backBt->loadTextureNormal(util::graphic::getAssetName(Constants::ASS_BT_BACK), ui::Widget::TextureResType::PLIST);
 	backBt->setAnchorPoint(Vec2::ANCHOR_MIDDLE_BOTTOM);
-	backBt->setPosition(Vec2(s.width / 2 - 200, 100));
+	backBt->setPosition(Vec2(s.width / 2 - 300, 100));
 	util::graphic::addClickBtCallback(backBt, backCB);
 
 	auto shareBt = ui::Button::create();
@@ -116,13 +122,13 @@ ScoreGUI::ScoreGUI(std::string cat, int score, int bestScore, int star, std::fun
 	shareBt->loadTextureNormal(util::graphic::getAssetName(Constants::ASS_BT_SHARE), ui::Widget::TextureResType::PLIST);
 	shareBt->setAnchorPoint(Vec2::ANCHOR_MIDDLE_BOTTOM);
 	shareBt->setPosition(Vec2(s.width / 2, 100));
-	util::graphic::addClickBtCallback(shareBt, std::bind(&util::graphic::captureScreen));
+	util::graphic::addClickBtCallback(shareBt, std::bind(&_internalClickShare));
 
 	auto retryBt = ui::Button::create();
 	addChild(retryBt, 3);
 	retryBt->loadTextureNormal(util::graphic::getAssetName(Constants::ASS_BT_RETRY), ui::Widget::TextureResType::PLIST);
 	retryBt->setAnchorPoint(Vec2::ANCHOR_MIDDLE_BOTTOM);
-	retryBt->setPosition(Vec2(s.width / 2 + 200, 100));
+	retryBt->setPosition(Vec2(s.width / 2 + 300, 100));
 	util::graphic::addClickBtCallback(retryBt, retryCB);
 
 	targetScore = score;
@@ -170,27 +176,31 @@ void ScoreGUI::update(float dt)
 				{
 					if (targetScore >= WordedApp::STAR_MIN_PT)
 					{
-						auto targetStar = getChildByTag(19);
-						auto starLbl = dynamic_cast<Label*>(getChildByTag(20));
-						auto starBG = getChildByTag(21);
-						Size starS = starBG->getContentSize();
-						starBG->setVisible(false);
-						Vector<FiniteTimeAction*> v;
-						// star fly effect
-						Vec2 pos = targetStar->getPosition();
-						pos.x -= starS.width / 2;
-						pos.y -= starS.height / 2;
-						auto ccCfg = ccBezierConfig();
-						ccCfg.endPosition = pos;
-						Vec2 currPos = starIcon->getPosition();
-						ccCfg.controlPoint_1 = Vec2(currPos.x + 70, currPos.y + 70);
-						ccCfg.controlPoint_2 = Vec2(pos.x + 120, pos.y - 40);
-						v.pushBack(BezierTo::create(0.7f, ccCfg));
-						v.pushBack(CallFunc::create(CC_CALLBACK_0(Label::setString, starLbl, StringUtils::format("%d/%d", (star + 1), WordedApp::STAR_MAX))));
-						v.pushBack(RemoveSelf::create());
-						starIcon->runAction(Sequence::create(v));
-						starIcon->getChildByTag(12)->runAction(FadeOut::create(0.7f));
-						util::common::playSoundNoResponse(Constants::ASS_SND_HIGHSCORE, false);
+						if (star < WordedApp::STAR_MAX)
+						{
+							auto targetStar = getChildByTag(19);
+							auto starLbl = dynamic_cast<Label*>(getChildByTag(20));
+							auto starBG = getChildByTag(21);
+							Size starS = starBG->getContentSize();
+							starBG->setVisible(false);
+							Vector<FiniteTimeAction*> v;
+							// star fly effect
+							Vec2 pos = targetStar->getPosition();
+							pos.x -= starS.width / 2;
+							pos.y -= starS.height / 2;
+							auto ccCfg = ccBezierConfig();
+							ccCfg.endPosition = pos;
+							Vec2 currPos = starIcon->getPosition();
+							ccCfg.controlPoint_1 = Vec2(currPos.x + 70, currPos.y + 70);
+							ccCfg.controlPoint_2 = Vec2(pos.x + 120, pos.y - 40);
+							v.pushBack(BezierTo::create(0.7f, ccCfg));
+							v.pushBack(CallFunc::create(CC_CALLBACK_0(Label::setString, starLbl, StringUtils::format("%d/%d", (star + 1), WordedApp::STAR_MAX))));
+							v.pushBack(RemoveSelf::create());
+							starIcon->runAction(Sequence::create(v));
+							starIcon->getChildByTag(12)->runAction(FadeOut::create(0.7f));
+							util::common::playSoundNoResponse(Constants::ASS_SND_HIGHSCORE, false);
+						}
+						
 					}
 					if (targetScore > bestScore)
 					{
@@ -212,7 +222,6 @@ void ScoreGUI::update(float dt)
 						highScore->runAction(Sequence::create( vSound));
 					}
 				}
-				
 			}
 		}		
 	}	

@@ -1,5 +1,6 @@
 #include <cocos2d.h>
 #include <ui/UILayout.h>
+#include <vector>
 
 USING_NS_CC;
 using namespace cocos2d::ui;
@@ -21,6 +22,7 @@ public:
 	void clearAllItems();
 	bool checkItemVisible(Node* node);
 	float spacing;
+	Vector<Node*> getAllItems();
 private:	
 	const int BOUNDING_BACK;
 	int maxCol;

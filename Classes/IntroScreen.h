@@ -28,7 +28,7 @@ private:
     void onTableMode();
     void onLeaderboard();
     void onMoreGame();
-    
+	void onSetting();
 public:
     CREATE_FUNC(IntroScreen);
 };

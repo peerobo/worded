@@ -119,6 +119,13 @@
 		<string>bag;camera;card;glasses;key;mobile phone;money;mp three;wallet;watch;balloon;bottle opener;candle;coat hanger;comb;dice;flashlight;gun;magnet;suitcase;binoculars;kite;map;newspaper;passport;rucksack;shopping cart;straw;ticket;trashcan</string>
 		<key>body1</key>
 		<string>arm;ear;eye;finger;foot;hand;leg;mouth;nose;teeth;hair;head;neck;toe;thumb;belly;chin;beard;bottom;tongue</string>
+    <key>hardMode</key>
+    <string>Hard Mode
+(Play this mode to get stars)</string>
+    <key>vibrate</key>
+    <string>Vibration</string>
 	</dict>
 </dict>
 </plist>
+
+

@@ -243,6 +243,11 @@ void FScrollList::clearAllItems()
 	container->removeAllChildren();
 }
 
+Vector<Node*> FScrollList::getAllItems()
+{
+	return container->getChildren();
+}
+
 bool FScrollList::checkItemVisible(Node* node)
 {
 	Rect rect = node->getBoundingBox();

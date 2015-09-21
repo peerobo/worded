@@ -10,6 +10,7 @@ public:
 	static const char* ASS_SUFFIX_SOUND;
 	static const char* CONST_CIDR[33];
 	static const char* CONST_IP_RANGE[327];
+	static const char* KEY_VIBRATION;
 	//////////////////////////////////////////////////////////////////////////////////////////////////////
 
     static const char* ASS_BG_INTRO;
@@ -28,7 +29,8 @@ public:
     static const char* ASS_ICO_PREFIX;
     static const char* ASS_ICO_BAR_TABLE;
     static const char* ASS_ICO_BG_TABLE;
-    static const char* ASS_ICO_CHECK;
+	static const char* ASS_ICO_CHECK;
+	static const char* ASS_ICO_UNCHECK;
 	static const char* ASS_BT_BACK;
 	static const char* ASS_BT_CORRECT;
 	static const char* ASS_BT_RETRY;
@@ -47,4 +49,6 @@ public:
 	static const char* ASS_SND_TIMEOUT;
 	static const char* ASS_SND_WRONGANSWER;
 	static const char* ASS_SND_INCREASE;
+
+	static const char* KEY_HARDMODE;
 };

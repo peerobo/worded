@@ -22,7 +22,8 @@ TableScreen::~TableScreen()
 	timeBar = NULL;
 	word = NULL;
     TableLogic* gl = static_cast<TableLogic*>( GlobalVar::gameLogic);
-    util::graphic::removeTexAtl(gl->word);
+    util::graphic::removeTexAtl(gl->cat);
+	WordedApp::unloadSound(gl->cat);
 	if(gl)
 	{
 		gl->kill();
@@ -86,8 +87,11 @@ void TableScreen::update(float dt)
 		if (gl->score > WordedApp::STAR_MIN_PT)
 		{
 			star++;
-			ScoreDB::instance->setScoreFor(StringUtils::format("star-%s", gl->cat.c_str()), star);
-			isSave = true;
+			if (star <= WordedApp::STAR_MAX)
+			{
+				ScoreDB::instance->setScoreFor(StringUtils::format("star-%s", gl->cat.c_str()), star);
+				isSave = true;
+			}			
 		}
 		if(isSave)
 			ScoreDB::instance->saveDB();
@@ -203,12 +207,14 @@ void TableScreen::onRetry()
     v.pushBack(DelayTime::create(1.5f));
     v.pushBack(CallFunc::create(CC_CALLBACK_0(TableLogic::start,gl)));
     this->runAction(Sequence::create(v));
+	util::common::playSound(Constants::ASS_SND_CLICK, false);
 }
 
 void TableScreen::onBack2Cats()
 {
 	util::graphic::changeSceneWithLayer(CatChooser::create());
 	util::common::playMusic(Constants::ASS_SND_THEME);
+	util::common::playSound(Constants::ASS_SND_CLICK, false);
 }
 
 void TableScreen::makeTiles(std::vector<std::string> v)
@@ -330,6 +336,8 @@ void TableScreen::vanishTile(int idx)
 	// add pause timeout
     auto gl =static_cast<TableLogic*>(GlobalVar::gameLogic);
     gl->pauseTime = 0.5f;
+
+	util::platform::vibrate();
 }
 
 void TableScreen::vanishTiles()

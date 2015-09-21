@@ -188,7 +188,8 @@ namespace util {
 		if (!GlobalVar::myData.isEnableAudio)
 			return;
 		CocosDenshion::SimpleAudioEngine* ins = CocosDenshion::SimpleAudioEngine::getInstance();
-		ins->playBackgroundMusic(music, true);
+		if(!ins->isBackgroundMusicPlaying())
+			ins->playBackgroundMusic(music, true);
 	}
 
 	void common::stopAllSounds(bool fadeOut)

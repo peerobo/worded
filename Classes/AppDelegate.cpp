@@ -6,6 +6,7 @@
 #include "GlobalVar.h"
 #include "tablemode/CatChooser.h"
 #include "base/ScoreDB.h"
+#include "WordedApp.h"
 
 USING_NS_CC;
 
@@ -171,7 +172,8 @@ bool AppDelegate::applicationDidFinishLaunching() {
 		paths.push_back(assetPath);
 		paths.push_back("shared");
 	}
-    
+	paths.push_back(util::common::getCacheDirectory());
+
     FileUtils::getInstance()->setSearchPaths(paths);
     ZipUtils::setPvrEncryptionKeyPart(2, 0x51ce7d9e);
     register_all_packages();
@@ -190,8 +192,10 @@ bool AppDelegate::applicationDidFinishLaunching() {
 	audioEngine->preloadEffect(Constants::ASS_SND_CLICK);
 	audioEngine->preloadEffect(Constants::ASS_SND_TIMEOUT);
 	audioEngine->preloadEffect(Constants::ASS_SND_WRONGANSWER);
-
+	// load data
 	(new ScoreDB())->loadDB();
+	GlobalVar::myData.isEnableVibration = util::common::getValue(Constants::KEY_VIBRATION).asBool();
+	WordedApp::difficult = util::common::getValue(Constants::KEY_HARDMODE).asBool() ? WordedApp::DIFFICULT_HARD : WordedApp::DIFFICULT_EASY;
     // create a scene. it's an autorelease object
 	GlobalVar::curScene = IntroScreen::create();
     auto scene = util::graphic::createSceneWithLayer(GlobalVar::curScene);

@@ -25,11 +25,11 @@ def buildTexureAtlas(name, isFolder, noAlpha) :
 	else :
 		nameOut = name
 	if VER[2:3] == "0" :
-		cmd = PATH_TEXTURE_PACKER + "texturepacker --force-identical-layout --content-protection fc5cc0ed15b97c4251ce7d9e3e26102b --pack-mode Best --dither-fs-alpha --reduce-border-artifacts --texture-format pvr2ccz --sheet " + DEST_PATH_RES + nameOut + "@4x.pvr.ccz --data " + DEST_PATH_RES + nameOut + "@4x.plist --format cocos2d --max-width 4096 --max-height 4096 --main-extension \"@4x.\" "
+		cmd = PATH_TEXTURE_PACKER + "texturepacker --force-identical-layout --content-protection fc5cc0ed15b97c4251ce7d9e3e26102b --pack-mode Best --reduce-border-artifacts --texture-format pvr2ccz --sheet " + DEST_PATH_RES + nameOut + "@4x.pvr.ccz --data " + DEST_PATH_RES + nameOut + "@4x.plist --format cocos2d --max-width 4096 --max-height 4096 --main-extension \"@4x.\" "
 		if noAlpha :
 			cmd += "--autosd-variant 0.25:\"@1x.\":allowfraction:1024 --autosd-variant 0.5:\"@2x.\":allowfraction:2048 --opt RGB565 --size-constraints NPOT --algorithm MaxRects " +  PATH_RES + name
 		else :
-			cmd += "--autosd-variant 0.25:\"@1x.\":allowfraction:1024 --autosd-variant 0.5:\"@2x.\":allowfraction:2048 --opt RGBA4444 --size-constraints NPOT --algorithm MaxRects " +  PATH_RES + name
+			cmd += "--autosd-variant 0.25:\"@1x.\":allowfraction:1024 --autosd-variant 0.5:\"@2x.\":allowfraction:2048 --opt RGBA8888 --size-constraints NPOT --algorithm MaxRects " +  PATH_RES + name
 	else :
 		cmd = PATH_TEXTURE_PACKER + "texturepacker --force-identical-layout --pack-mode Best --content-protection fc5cc0ed15b97c4251ce7d9e3e26102b --dither-fs-alpha --reduce-border-artifacts --texture-format pvr2ccz --sheet " + DEST_PATH_RES + nameOut + "@{v}x.pvr.ccz --data " + DEST_PATH_RES + nameOut + "@{v}x.plist --format cocos2d "
 		if noAlpha :
@@ -42,7 +42,7 @@ def buildTexureAtlas(name, isFolder, noAlpha) :
 # build all folder in PATH_RES
 for root, dirs, filenames in os.walk(PATH_RES):	
 	for dir in dirs:		
-		if dir != BG_FOLDER and dir != NOPACK_FOLDER:
+		if dir == "gui":
 			buildTexureAtlas(dir, True, False)
 	break
 # move newly create res to multi folder

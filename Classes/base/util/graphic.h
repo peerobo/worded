@@ -10,6 +10,8 @@ namespace util
 	{
     private:
         static void onBtTouch(Ref* r, ui::Widget::TouchEventType type, std::function<void()> cb);
+		static bool onNodeTouchBegan(Touch* t, Event* e);
+		static void onNodeTouchEnded(Touch* t, Event* e, std::function<void()> cb);
     public:
 		static void addSwallowTouch(Node* node);
 		static Vec2 convertPos(Node* node, Node* space);
@@ -21,7 +23,7 @@ namespace util
 		static void setOpacity(Node* object, GLubyte opaque);
 		static bool checkHit(Touch* touch, Node* node);
 		static bool checkHitPt(Vec2 worldPt, Node* node);
-		static bool checkTouchStill(Touch* t, int threshold = 80);
+		static bool checkTouchStill(Touch* t, int threshold = 40);
 		static Scene* createSceneWithLayer(Layer* layer);
 		static void changeSceneWithLayer(Layer* layer);
 		static void resize4scr(Node* node, bool isFill);
@@ -38,6 +40,7 @@ namespace util
 		static float fit(Node* fitTo, Node* toFit);
         static float fit(Size fitTo, Node* toFit);
         static void captureScreen();
-        static void addClickBtCallback(ui::Button* bt, std::function<void()> cb);
+        static void addClickBtCallback(ui::Widget* bt, std::function<void()> cb);
+		static void addNodeClickCallback(Node* node, std::function<void()> cb);
 	};
 }

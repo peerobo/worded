@@ -37,9 +37,9 @@ namespace util
     {
         Vector<FiniteTimeAction*> v;
         v.pushBack(FadeOut::create(time));
-        v.pushBack(RemoveSelf::create());
-        if (cb)
-            v.pushBack(CallFunc::create(cb));
+		if (cb)
+			v.pushBack(CallFunc::create(cb));
+        v.pushBack(RemoveSelf::create());        
         node->runAction(Sequence::create(v));
     }
     
@@ -50,9 +50,9 @@ namespace util
 		if (delay > 0)
 			v.pushBack(DelayTime::create(delay*0.2f));
 		v.pushBack(MoveBy::create(0.7f, Vec2(-s.width, 0)));
-		v.pushBack(RemoveSelf::create());
 		if (cb)
 			v.pushBack(CallFunc::create(cb));
+		v.pushBack(RemoveSelf::create());		
 		node->runAction(Sequence::create(v));
 
 		node->runAction(FadeOut::create(0.4f + delay*0.2f));

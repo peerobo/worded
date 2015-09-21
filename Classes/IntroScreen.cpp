@@ -12,6 +12,7 @@
 #include "Constants.h"
 #include "learn/LearnScreen.h"
 #include "tablemode/CatChooser.h"
+#include "gui/SettingGUI.h"
 #if CC_TARGET_PLATFORM == CC_PLATFORM_IOS
 #include "AppTrackerWrapper.h"
 #endif
@@ -32,9 +33,14 @@ void IntroScreen::onLeaderboard()
     
 }
 
+void IntroScreen::onSetting()
+{
+	SettingGUI::create()->show();
+}
+
 void IntroScreen::onMoreGame()
 {
-    util::ad::showVungle();
+    util::ad::showLeadboltAd();
 }
 
 void IntroScreen::onTouchItem(int type)
@@ -93,6 +99,9 @@ void IntroScreen::processType(int type)
         case 3:
             onMoreGame();
             break;
+		case 4:
+			onSetting();
+			break;
         default:
             break;
     }
@@ -152,4 +161,12 @@ void IntroScreen::startIntro()
     item->setPositionY(posY-550);
     item->runIn(3);
     item->setTag(13);
+
+	item = IntroItem::create();
+	item->setValue(cfg->getValue("setting",Value("Settings")).asString(), CC_CALLBACK_0(IntroScreen::onTouchItem, this, 4));
+	addChild(item, 1);
+	item->setPositionX(s.width / 2);
+	item->setPositionY(posY - 700);
+	item->runIn(4);
+	item->setTag(14);
 }

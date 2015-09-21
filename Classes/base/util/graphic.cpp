@@ -1,4 +1,5 @@
 #include "graphic.h"
+#include "common.h"
 #include "../../Constants.h"
 #include  "../../GlobalVar.h"
 #include "../Looper.h"
@@ -42,7 +43,7 @@ namespace util {
         return scale;
     }
     
-    void graphic::addClickBtCallback(ui::Button* bt, std::function<void()> cb)
+    void graphic::addClickBtCallback(ui::Widget* bt, std::function<void()> cb)
     {
         using namespace std::placeholders;
         bt->addTouchEventListener(std::bind( &graphic::onBtTouch, _1,_2, cb));
@@ -58,7 +59,9 @@ namespace util {
     
     void graphic::captureScreen()
     {
-        //utils::captureScreen(<#const std::function<void (bool, const std::string &)> &afterCaptured#>, <#const std::string &filename#>);
+		std::string cachePath = common::getCacheDirectory();
+		cachePath += "/screenshot.png";
+		utils::captureScreen([](bool ret, const std::string& file) {}, cachePath);
     }
     
 	Vec2 graphic::convertPos(Node* node, Node* space)
@@ -307,5 +310,35 @@ namespace util {
 	Size graphic::getScreenSize()
 	{
 		return Director::getInstance()->getVisibleSize();
+	}
+
+	void graphic::addNodeClickCallback(Node* node, std::function<void()> cb)
+	{
+		auto evtL = EventListenerTouchOneByOne::create();
+		using namespace std::placeholders;
+		evtL->onTouchBegan = std::bind(&graphic::onNodeTouchBegan,_1,_2);
+		evtL->onTouchEnded = std::bind(&graphic::onNodeTouchEnded,_1,_2, cb);
+		evtL->setSwallowTouches(true);
+		node->getEventDispatcher()->addEventListenerWithSceneGraphPriority(evtL, node);
+	}
+
+	bool graphic::onNodeTouchBegan(Touch* t, Event* e)
+	{
+		if (checkHit(t, e->getCurrentTarget()))
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+
+	void graphic::onNodeTouchEnded(Touch* t, Event* e, std::function<void()> cb)
+	{
+		if (checkTouchStill(t))
+		{
+			cb();
+		}
 	}
 }

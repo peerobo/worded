@@ -19,6 +19,7 @@ private:
     Node* createCatItem(const std::string& cat, int type);
     bool catTouchBegan(cocos2d::Touch* t, cocos2d::Event* e);
     void catTouchEnd(cocos2d::Touch* t, cocos2d::Event* e, std::string cat);
+	void onBackScreen();
 public:
 	CREATE_FUNC(CatChooser);
 

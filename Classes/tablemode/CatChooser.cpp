@@ -13,6 +13,7 @@
 #include "TableScreen.h"
 #include "TableLogic.h"
 #include "../gui/ScoreGUI.h"
+#include "../IntroScreen.h"
 
 CatChooser::CatChooser():LAYER_GUI(2), LAYER_LBL(3)
 {
@@ -20,7 +21,7 @@ CatChooser::CatChooser():LAYER_GUI(2), LAYER_LBL(3)
 	Size s = util::graphic::getScreenSize();
 	bg->setPosition(s.width / 2, s.height / 2);
 	addChild(bg, 1);
-	bg->setTag(1);
+	bg->setTag(199);
 
 	Vector<FiniteTimeAction*> vec;
 	vec.pushBack(DelayTime::create(0.3f));
@@ -64,7 +65,7 @@ Node* CatChooser::createCatItem(const std::string &cat, int type)
     auto bg = util::graphic::getSprite(StringUtils::format("%s%d",Constants::ASS_ICO_CAT_BG,type));
     bg->setAnchorPoint(Vec2::ANCHOR_BOTTOM_LEFT);
     Size itemSize = bg->getContentSize();
-    bg->setPosition(0, 120);
+    bg->setPosition(0, 120);	
     container->addChild(bg,0);
     
     auto catIcon = util::graphic::getSprite(StringUtils::format("%s%s", Constants::ASS_ICO_PREFIX,cat.c_str()));
@@ -72,7 +73,9 @@ Node* CatChooser::createCatItem(const std::string &cat, int type)
     catIcon->setPosition(itemSize.width/2, itemSize.height/2 + bg->getPositionY());
     container->addChild(catIcon,0);
     
-    auto lbl = Label::createWithBMFont(Constants::ASS_FNT_NORMAL, cat);
+	std::string catClone = cat;
+	util::common::capitalize(catClone);
+    auto lbl = Label::createWithBMFont(Constants::ASS_FNT_NORMAL, catClone);
     lbl->setAnchorPoint(Vec2::ANCHOR_MIDDLE_BOTTOM);
     lbl->setPosition(itemSize.width/2, 0);
     lbl->setScale(0.7f);
@@ -81,7 +84,7 @@ Node* CatChooser::createCatItem(const std::string &cat, int type)
     itemSize.height += bg->getPositionY();
     container->setContentSize(itemSize);
     
-    std::string catClone = cat;
+	catClone = cat;
     EventListenerTouchOneByOne* evt = EventListenerTouchOneByOne::create();
     evt->onTouchBegan = CC_CALLBACK_2(CatChooser::catTouchBegan,this);
     evt->onTouchEnded = CC_CALLBACK_2(CatChooser::catTouchEnd,this, catClone);
@@ -120,7 +123,44 @@ void CatChooser::animateIn()
     util::effects::reveal(lbl);
     lbl->setTag(3);
 
+	auto backBt = ui::Button::create();
+	addChild(backBt, 3);
+	backBt->loadTextureNormal(util::graphic::getAssetName(Constants::ASS_BT_BACK), ui::Widget::TextureResType::PLIST);
+	backBt->setAnchorPoint(Vec2::ANCHOR_TOP_LEFT);
+	backBt->setPosition(Vec2(100, s.height - 100));
+	util::graphic::addClickBtCallback(backBt, CC_CALLBACK_0(CatChooser::onBackScreen,this));
+
 	/*util::common::stopAllSounds();
 	Node* n = ScoreGUI::create("Adjectives1", 90, 99, 5, []() {}, []() {});
 	addChild(n,LAYER_LBL);*/
+}
+
+void _internalChangeScene()
+{
+	util::graphic::changeSceneWithLayer(IntroScreen::create());
+}
+
+void CatChooser::onBackScreen()
+{
+	auto v = getChildren();
+	int vsize = v.size();
+	for (auto c : v)
+	{
+		int tag = c->getTag();
+		if(tag == 199)
+			util::effects::fadeAndRemove(c, 1, std::bind(&_internalChangeScene));
+		else if(tag!=2)
+			util::effects::fadeAndRemove(c, 0.5f);
+	}
+	auto list = dynamic_cast<FScrollList*>( getChildByTag(2));
+	list->clearAllItems();
+	list->removeFromParent();
+
+	// cache next bg
+	auto bg = util::graphic::getSpriteFromImageJPG(Constants::ASS_BG_INTRO);
+	Size s = util::graphic::getScreenSize();
+	bg->setPosition(s.width / 2, s.height / 2);
+	addChild(bg, 0);
+
+	util::common::playSound(Constants::ASS_SND_CLICK, false);
 }

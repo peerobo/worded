@@ -81,7 +81,15 @@ void WordedApp::loadSound(const std::string& cat)
 	CocosDenshion::SimpleAudioEngine* audioEngine = CocosDenshion::SimpleAudioEngine::getInstance();
 	std::vector<std::string> words = WordedApp::getAllWords(cat);
 	for(std::string word : words)
-		audioEngine->preloadEffect(word.c_str());
+		audioEngine->preloadEffect(word.c_str());	
+}
+
+void WordedApp::unloadSound(const std::string& cat)
+{
+	CocosDenshion::SimpleAudioEngine* audioEngine = CocosDenshion::SimpleAudioEngine::getInstance();
+	std::vector<std::string> words = WordedApp::getAllWords(cat);
+	for (std::string word : words)
+		audioEngine->unloadEffect(word.c_str());
 }
 
 std::vector<std::string> WordedApp::getAllWords(const std::string& cat)
