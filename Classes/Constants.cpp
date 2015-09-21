@@ -384,6 +384,8 @@ const char* Constants::ASS_FNT_NORMAL = "worded.fnt";
 const char* Constants::ASS_FNT_BIG = "score.fnt";
 
 // ico
+const char* Constants::ASS_BG_DLG_TEXT = "ico_bg_dlg_text";
+const char* Constants::ASS_BG_DLG_BT = "ico_bg_dlg_bt";
 const char* Constants::ASS_ICO_BG_WORD = "bg_word";
 const char* Constants::ASS_ICO_BAR_ONE = "ico_bar_one";
 const char* Constants::ASS_ICO_CORRECT_FALSE = "ico_correct_false";

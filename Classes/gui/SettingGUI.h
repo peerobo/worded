@@ -1,11 +1,10 @@
 #pragma once
-#include "../base/DlgMgr.h"
+#include "OneBtDlg.h"
 
-class SettingGUI : public Dlg
+class SettingGUI : public OneBtDlg
 {
 private:
 	SettingGUI();
 public:
-	CREATE_FUNC(SettingGUI);
-	void show();
+	CREATE_FUNC(SettingGUI);	
 };

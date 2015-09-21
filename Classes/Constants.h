@@ -16,6 +16,8 @@ public:
     static const char* ASS_BG_ONE;
     static const char* ASS_BG_TABLE;
 
+	static const char* ASS_BG_DLG_TEXT;
+	static const char* ASS_BG_DLG_BT;
 	static const char* ASS_ICO_BG_WORD;
 	static const char* ASS_ICO_BAR_ONE;
 	static const char* ASS_ICO_CORRECT_FALSE;
