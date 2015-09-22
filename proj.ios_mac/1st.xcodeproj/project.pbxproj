@@ -65,6 +65,7 @@
 		C2DC74661B9613A60086BC7B /* @2x in Resources */ = {isa = PBXBuildFile; fileRef = C2DC74621B9613A60086BC7B /* @2x */; settings = {ASSET_TAGS = (); }; };
 		C2DC74671B9613A60086BC7B /* @4x in Resources */ = {isa = PBXBuildFile; fileRef = C2DC74631B9613A60086BC7B /* @4x */; settings = {ASSET_TAGS = (); }; };
 		C2DC74681B9613A60086BC7B /* shared in Resources */ = {isa = PBXBuildFile; fileRef = C2DC74641B9613A60086BC7B /* shared */; settings = {ASSET_TAGS = (); }; };
+		C2E7237F1BB170470063B9C7 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2E7237E1BB170470063B9C7 /* GameKit.framework */; };
 		C2FFD6991BB13FA200275733 /* LearnScreen.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C2FFD6971BB13FA200275733 /* LearnScreen.cpp */; settings = {ASSET_TAGS = (); }; };
 		C2FFD69D1BB13FC600275733 /* IOS.mm in Sources */ = {isa = PBXBuildFile; fileRef = C2FFD69C1BB13FC600275733 /* IOS.mm */; settings = {ASSET_TAGS = (); }; };
 		C2FFD6A01BB13FE300275733 /* ScoreDB.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C2FFD69E1BB13FE300275733 /* ScoreDB.cpp */; settings = {ASSET_TAGS = (); }; };
@@ -165,6 +166,7 @@
 		C2DC74631B9613A60086BC7B /* @4x */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "@4x"; sourceTree = "<group>"; };
 		C2DC74641B9613A60086BC7B /* shared */ = {isa = PBXFileReference; lastKnownFileType = folder; path = shared; sourceTree = "<group>"; };
 		C2DC746A1B961D650086BC7B /* lib */ = {isa = PBXFileReference; lastKnownFileType = folder; path = lib; sourceTree = "<group>"; };
+		C2E7237E1BB170470063B9C7 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 		C2FFD6971BB13FA200275733 /* LearnScreen.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = LearnScreen.cpp; path = learn/LearnScreen.cpp; sourceTree = "<group>"; };
 		C2FFD6981BB13FA200275733 /* LearnScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LearnScreen.h; path = learn/LearnScreen.h; sourceTree = "<group>"; };
 		C2FFD69B1BB13FC600275733 /* IOS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IOS.h; path = base/util/ios/IOS.h; sourceTree = "<group>"; };
@@ -207,6 +209,7 @@
 				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
 				288765A50DF7441C002DB57D /* CoreGraphics.framework in Frameworks */,
 				BF171245129291EC00B8313A /* OpenGLES.framework in Frameworks */,
+				C2E7237F1BB170470063B9C7 /* GameKit.framework in Frameworks */,
 				BF1712471292920000B8313A /* libz.dylib in Frameworks */,
 				BF1C47F01293687400B63C5D /* QuartzCore.framework in Frameworks */,
 				D44C620C132DFF330009C878 /* OpenAL.framework in Frameworks */,
@@ -278,6 +281,7 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C2E7237E1BB170470063B9C7 /* GameKit.framework */,
 				C22EA0F21BA1EB170097336A /* MediaPlayer.framework */,
 				C29BBF4B1B99E04E00B323FC /* AdSupport.framework */,
 				5087E78817EB974C00C73F5D /* AppKit.framework */,
@@ -535,6 +539,11 @@
 				TargetAttributes = {
 					1D6058900D05DD3D006BFB54 = {
 						DevelopmentTeam = TR9R8V9UX9;
+						SystemCapabilities = {
+							com.apple.GameCenter = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -637,6 +646,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = BrandAsset;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COMPRESS_PNG_FILES = NO;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -674,6 +684,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.fc.peeWorded;
 				PRODUCT_NAME = "Worded by PE";
+				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "$(_COCOS_HEADER_IOS_BEGIN) $(_COCOS_HEADER_IOS_END) \"$(SRCROOT)/PluginVungle.framework/Headers\" \"$(SRCROOT)/VungleSDK.framework/Headers\"";
@@ -688,6 +699,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = BrandAsset;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COMPRESS_PNG_FILES = NO;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -723,6 +735,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.fc.peeWorded;
 				PRODUCT_NAME = "Worded by PE";
+				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "$(_COCOS_HEADER_IOS_BEGIN) $(_COCOS_HEADER_IOS_END) \"$(SRCROOT)/PluginVungle.framework/Headers\" \"$(SRCROOT)/VungleSDK.framework/Headers\"";

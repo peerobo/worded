@@ -6,6 +6,7 @@ namespace util
 	{
 	public:
 		static void vibrate();
+        static void rate();
 	};
 	
 }

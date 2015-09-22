@@ -29,6 +29,7 @@ private:
     void onLeaderboard();
     void onMoreGame();
 	void onSetting();
+    void onRate();
 public:
     CREATE_FUNC(IntroScreen);
 };

@@ -1,6 +1,7 @@
 #include "platform.h"
 #include "cocos2d.h"
 #include "../../GlobalVar.h"
+#include "../../Constants.h"
 
 #if CC_TARGET_PLATFORM == CC_PLATFORM_IOS
 #include "ios/IOS.h"
@@ -22,4 +23,11 @@ namespace util
 #endif
 		}
 	}
+    
+    void platform::rate()
+    {
+#if CC_TARGET_PLATFORM == CC_PLATFORM_IOS
+        IOS::rate(Constants::KEY_APPID);
+#endif
+    }
 }

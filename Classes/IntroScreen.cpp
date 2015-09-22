@@ -33,6 +33,11 @@ void IntroScreen::onLeaderboard()
     
 }
 
+void IntroScreen::onRate()
+{
+    util::platform::rate();
+}
+
 void IntroScreen::onSetting()
 {
 	SettingGUI::create()->show();
@@ -102,6 +107,9 @@ void IntroScreen::processType(int type)
 		case 4:
 			onSetting();
 			break;
+        case 5:
+            onRate();
+            break;
         default:
             break;
     }
@@ -128,7 +136,7 @@ void IntroScreen::startIntro()
 {
     Configuration* cfg = Configuration::getInstance();
     Size s = util::graphic::getScreenSize();
-    float posY = s.height/2;
+    float posY = s.height/2 + 150;
     
     IntroItem* item = IntroItem::create();
     item->setValue(cfg->getValue("learn").asString(), CC_CALLBACK_0(IntroScreen::onTouchItem, this,0));
@@ -146,19 +154,20 @@ void IntroScreen::startIntro()
     item->runIn(1);
     item->setTag(11);
     
-    item = IntroItem::create();
-    item->setValue(cfg->getValue("leaderboard").asString(),  CC_CALLBACK_0(IntroScreen::onTouchItem, this,2));
-    addChild(item,1);
-    item->setPositionX(s.width/2);
-    item->setPositionY(posY-400);
-    item->runIn(2);
-    item->setTag(12);
+ //   item = IntroItem::create();
+//    item->setValue(cfg->getValue("leaderboard").asString(),  CC_CALLBACK_0(IntroScreen::onTouchItem, this,2));
+//    addChild(item,1);
+//    item->setPositionX(s.width/2);
+//    item->setPositionY(posY-400);
+//    item->runIn(2);
+//    item->setTag(12);
     
     item = IntroItem::create();
     item->setValue(cfg->getValue("more").asString(),  CC_CALLBACK_0(IntroScreen::onTouchItem, this,3));
     addChild(item,1);
     item->setPositionX(s.width/2);
-    item->setPositionY(posY-550);
+    item->setPositionY(posY-400);
+//    item->setPositionY(posY-550);
     item->runIn(3);
     item->setTag(13);
 
@@ -166,7 +175,17 @@ void IntroScreen::startIntro()
 	item->setValue(cfg->getValue("setting",Value("Settings")).asString(), CC_CALLBACK_0(IntroScreen::onTouchItem, this, 4));
 	addChild(item, 1);
 	item->setPositionX(s.width / 2);
-	item->setPositionY(posY - 700);
+	item->setPositionY(posY - 550);
+//    item->setPositionY(posY - 700);
 	item->runIn(4);
 	item->setTag(14);
+    
+    item = IntroItem::create();
+    item->setValue(cfg->getValue("rate",Value("Settings")).asString(), CC_CALLBACK_0(IntroScreen::onTouchItem, this, 5));
+    addChild(item, 1);
+    item->setPositionX(s.width / 2);
+    item->setPositionY(posY - 700);
+//        item->setPositionY(posY - 850);
+    item->runIn(5);
+    item->setTag(15);
 }

@@ -3,6 +3,7 @@
 class Constants {
 public:
 	//////////////////////////////////////////////////////////////////////////////////////////////////////
+    static const char* KEY_APPID;
 	static const char* ASS_SUFFIX_DATA;
 	static const char* ASS_SUFFIX_IMAGE;
 	static const char* ASS_SUFFIX_IMAGE_JPG;

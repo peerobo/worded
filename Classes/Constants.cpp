@@ -374,6 +374,7 @@ const char* Constants::ASS_SUFFIX_IMAGE_JPG = ".jpg";
 const char* Constants::ASS_SUFFIX_TEXATL = ".pvr.ccz";
 const char* Constants::ASS_SUFFIX_SOUND = ".mp3";
 const char* Constants::KEY_VIBRATION = "vibrate";
+const char* Constants::KEY_APPID = "worded-by-pe-play-with-words/id1042210331?ls=1&mt=8";
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 
 const char* Constants::ASS_BG_INTRO = "intro";
