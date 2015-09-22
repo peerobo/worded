@@ -162,7 +162,7 @@ namespace util {
             Vector<FiniteTimeAction*> v;
             auto instance = CocosDenshion::SimpleAudioEngine::getInstance();
             float sound = 1.0f;
-            float delayTime = 0.3f;
+            float delayTime = 0.2f;
             for (int i = 0; i < 9; i++)
             {
                 sound -= 0.1f;

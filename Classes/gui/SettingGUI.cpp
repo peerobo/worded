@@ -10,13 +10,17 @@ SettingGUI::SettingGUI()
 	
 }
 
-void SettingGUI::onTouchedHard(bool isTouchedHard)
+void SettingGUI::onTouchedHard(bool isTouchedHard, bool isTouchText)
 {
 	if (!isTouchedHard)
-	{
-		
+	{		
 		auto bx = dynamic_cast<ui::CheckBox*>(getChildByTag(24));
 		bool val = bx->isSelected();
+		if (isTouchText)
+		{
+			val = !val;
+			bx->setSelected(val);
+		}
 		GlobalVar::myData.isEnableVibration = val;
 		util::common::saveValue(Constants::KEY_VIBRATION, Value(val));
 	}
@@ -24,6 +28,11 @@ void SettingGUI::onTouchedHard(bool isTouchedHard)
 	{
 		auto bx = dynamic_cast<ui::CheckBox*>(getChildByTag(23));
 		bool val = bx->isSelected();
+		if (isTouchText)
+		{
+			val = !val;
+			bx->setSelected(val);
+		}
 		WordedApp::difficult = val ? WordedApp::DIFFICULT_HARD : WordedApp::DIFFICULT_EASY;
 		util::common::saveValue(Constants::KEY_HARDMODE, Value(val));
 	}
@@ -42,7 +51,7 @@ void SettingGUI::show()
 	lbl->setScale(0.7f);
 	lbl->setColor(Color3B(229, 94, 72));
 	addChild(lbl, 2);
-	util::graphic::addNodeClickCallback(lbl, CC_CALLBACK_0(SettingGUI::onTouchedHard, this, true));
+	util::graphic::addNodeClickCallback(lbl, CC_CALLBACK_0(SettingGUI::onTouchedHard, this, true, true));
 
 	ui::CheckBox* bx = ui::CheckBox::create(
 		util::graphic::getAssetName(Constants::ASS_ICO_UNCHECK),
@@ -54,7 +63,7 @@ void SettingGUI::show()
 	bx->setTag(23);
 	bx->setSelected(WordedApp::difficult == WordedApp::DIFFICULT_HARD);
 	addChild(bx, 1);
-	util::graphic::addClickBtCallback(bx, CC_CALLBACK_0(SettingGUI::onTouchedHard, this, true));
+	util::graphic::addClickBtCallback(bx, CC_CALLBACK_0(SettingGUI::onTouchedHard, this, true,false));
 
 	lbl = Label::createWithBMFont(Constants::ASS_FNT_NORMAL, cfg->getValue("vibrate").asString());
 	lbl->setAnchorPoint(Vec2::ANCHOR_BOTTOM_LEFT);
@@ -63,7 +72,7 @@ void SettingGUI::show()
 	lbl->setScale(0.7f);
 	lbl->setColor(Color3B(229, 94, 72));
 	addChild(lbl, 2);
-	util::graphic::addNodeClickCallback(lbl, CC_CALLBACK_0(SettingGUI::onTouchedHard, this, false));
+	util::graphic::addNodeClickCallback(lbl, CC_CALLBACK_0(SettingGUI::onTouchedHard, this, false, true));
 
 	bx = ui::CheckBox::create(
 		util::graphic::getAssetName(Constants::ASS_ICO_UNCHECK),
@@ -75,7 +84,7 @@ void SettingGUI::show()
 	bx->setTag(24);
 	bx->setSelected(GlobalVar::myData.isEnableVibration);
 	addChild(bx, 1);
-	util::graphic::addClickBtCallback(bx, CC_CALLBACK_0(SettingGUI::onTouchedHard, this, false));
+	util::graphic::addClickBtCallback(bx, CC_CALLBACK_0(SettingGUI::onTouchedHard, this, false,false));
 
 	OneBtDlg::show();
 }

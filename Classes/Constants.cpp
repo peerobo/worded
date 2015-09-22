@@ -398,6 +398,7 @@ const char* Constants::ASS_ICO_BAR_TABLE = "ico_bar_table";
 const char* Constants::ASS_ICO_BG_TABLE = "ico_bg_table";
 const char* Constants::ASS_ICO_CHECK = "ico_check";
 const char* Constants::ASS_ICO_UNCHECK = "ico_uncheck";
+const char* Constants::ASS_ICO_TOUCHME = "ico_touchme";
 const char* Constants::ASS_BT_BACK = "bt_back";
 const char* Constants::ASS_BT_CORRECT = "bt_correct";
 const char* Constants::ASS_BT_RETRY = "bt_retry";

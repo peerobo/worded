@@ -55,10 +55,10 @@ void TableScreen::onTouchWordTileEnded(cocos2d::Touch *t, cocos2d::Event *e)
     }
     else
     {
+		util::common::stopAllSounds();
     	util::common::playSound(Constants::ASS_SND_CLICK,false);
     }
-    gl->answerWord = word;
-	log("word clicked: %s", word.c_str());
+    gl->answerWord = word;	
 }
 
 void TableScreen::update(float dt)
@@ -74,7 +74,7 @@ void TableScreen::update(float dt)
         vanishTiles();
         gl->isShowScore = false;
 		int best = ScoreDB::instance->getScoreFor(gl->cat);
-		int star = ScoreDB::instance->getScoreFor(StringUtils::format("star-%s", gl->cat.c_str()));
+		int star = ScoreDB::instance->getScoreFor(STAR_KEY_FOR(gl->cat.c_str()));
         Node* n = ScoreGUI::create(gl->cat, gl->score, best, star, CC_CALLBACK_0(TableScreen::onBack2Cats, this), CC_CALLBACK_0(TableScreen::onRetry, this));
         n->setTag(23);
         getChildByTag(LABEL_LAYER)->addChild(n);
@@ -89,7 +89,10 @@ void TableScreen::update(float dt)
 			star++;
 			if (star <= WordedApp::STAR_MAX)
 			{
-				ScoreDB::instance->setScoreFor(StringUtils::format("star-%s", gl->cat.c_str()), star);
+				ScoreDB::instance->setScoreFor(STAR_KEY_FOR(gl->cat.c_str()), star);
+				int starTotal = ScoreDB::instance->getScoreFor(std::string(WordedApp::STARTOTAL_KEY));
+				starTotal++;
+				ScoreDB::instance->setScoreFor(std::string(WordedApp::STARTOTAL_KEY), starTotal);
 				isSave = true;
 			}			
 		}
@@ -111,12 +114,15 @@ void TableScreen::update(float dt)
         if(currWord!=logicWord)
         {
             currWord = logicWord;
-            Vector<FiniteTimeAction*> v;
-            v.pushBack(FadeOut::create(0.2f));
-            v.pushBack(CallFunc::create(CC_CALLBACK_0(Label::setString,word,logicWord)));
-            v.pushBack(FadeIn::create(0.4f));
-            word->runAction(Sequence::create(v));
-            WordedApp::playSound(gl->cat,gl->word);
+			if (WordedApp::difficult == WordedApp::DIFFICULT_EASY)
+			{
+				Vector<FiniteTimeAction*> v;
+				v.pushBack(FadeOut::create(0.2f));
+				v.pushBack(CallFunc::create(CC_CALLBACK_0(Label::setString, word, logicWord)));
+				v.pushBack(FadeIn::create(0.4f));
+				word->runAction(Sequence::create(v));
+			}            
+            WordedApp::playSound(gl->word);
             makeTiles(gl->formation);
         }
         
@@ -244,7 +250,7 @@ void TableScreen::makeTiles(std::vector<std::string> v)
 			layer->addChild(bg);
 			Vec2 posBG(tilesRect.getMinX() + eachTile.width*(col + 0.5f), tilesRect.getMinY() + eachTile.height*(row + 0.5f));
 			bg->setPosition(posBG);
-			util::effects::reveal(bg, 0.15f*i);
+			util::effects::reveal(bg, 0.05f*i);
 			bg->setTag(TAG_BG_ICON+i);
             
             EventListenerTouchOneByOne* evt = EventListenerTouchOneByOne::create();
@@ -266,7 +272,7 @@ void TableScreen::makeTiles(std::vector<std::string> v)
                 sbg.height-=50;
 				icon->setScale(util::graphic::fit(sbg,icon));
 				icon->setPosition(posBG);
-				util::effects::reveal(icon, 0.15f*i);
+				util::effects::reveal(icon, 0.05f*i);
 				icon->setTag(TAG_ICON+i);
 			}
 		}

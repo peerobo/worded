@@ -23,6 +23,7 @@ public:
 	bool checkItemVisible(Node* node);
 	float spacing;
 	Vector<Node*> getAllItems();
+	Node* getContainer();
 private:	
 	const int BOUNDING_BACK;
 	int maxCol;

@@ -41,6 +41,6 @@ namespace util
         static float fit(Size fitTo, Node* toFit);
         static void captureScreen();
         static void addClickBtCallback(ui::Widget* bt, std::function<void()> cb);
-		static void addNodeClickCallback(Node* node, std::function<void()> cb);
+		static void addNodeClickCallback(Node* node, std::function<void()> cb, bool swallowTouch = true);
 	};
 }

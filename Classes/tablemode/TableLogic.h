@@ -13,6 +13,8 @@
 
 class TableLogic
 {
+private:
+	std::vector<std::string> wordSequence;
 public:
     //////////////////////////////////////
     static const int LOOPER_IDX;
@@ -22,7 +24,7 @@ public:
     float totalTime;
     std::string word;
     std::string cat;
-    std::vector<std::string> formation;
+    std::vector<std::string> formation;	
     int score;
     int level;
     float pauseTime;

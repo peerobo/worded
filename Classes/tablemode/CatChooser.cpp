@@ -14,6 +14,7 @@
 #include "TableLogic.h"
 #include "../gui/ScoreGUI.h"
 #include "../IntroScreen.h"
+#include "../base/ScoreDB.h"
 
 CatChooser::CatChooser():LAYER_GUI(2), LAYER_LBL(3)
 {
@@ -61,7 +62,8 @@ void CatChooser::catTouchEnd(cocos2d::Touch* t, cocos2d::Event* e, std::string c
 Node* CatChooser::createCatItem(const std::string &cat, int type)
 {
     auto container = Node::create();
-    
+	int star = ScoreDB::instance->getScoreFor(STAR_KEY_FOR(cat));
+	
     auto bg = util::graphic::getSprite(StringUtils::format("%s%d",Constants::ASS_ICO_CAT_BG,type));
     bg->setAnchorPoint(Vec2::ANCHOR_BOTTOM_LEFT);
     Size itemSize = bg->getContentSize();
@@ -80,7 +82,17 @@ Node* CatChooser::createCatItem(const std::string &cat, int type)
     lbl->setPosition(itemSize.width/2, 0);
     lbl->setScale(0.7f);
     container->addChild(lbl,1);
-    
+
+	// check finish
+    if(star == WordedApp::STAR_MAX)
+	{
+		auto icon = util::graphic::getSprite(Constants::ASS_ICO_CHECK);
+		icon->setAnchorPoint(Vec2::ANCHOR_BOTTOM_LEFT);
+		Rect r = lbl->getBoundingBox();
+		icon->setPosition(r.getMaxX() + 20, r.getMinY());
+		container->addChild(icon, 0);
+	}
+
     itemSize.height += bg->getPositionY();
     container->setContentSize(itemSize);
     
@@ -110,21 +122,37 @@ void CatChooser::animateIn()
         scList->addAutoPosItem( createCatItem((*it), count));
         count++;
     }
-    scList->setPosition(s.width/2,s.height/2);
+    scList->setPosition(s.width/2,s.height/2 - 50);
     scList->setAnchorPoint(Vec2::ANCHOR_MIDDLE);
     addChild(scList,LAYER_GUI);
     scList->setTag(2);
     util::effects::reveal(scList);
     
+	int star = ScoreDB::instance->getScoreFor(WordedApp::STARTOTAL_KEY);
+	auto starCount = Label::createWithBMFont(Constants::ASS_FNT_NORMAL, StringUtils::toString(star));
+	starCount->setTag(20);
+	starCount->setAnchorPoint(Vec2::ANCHOR_MIDDLE_RIGHT);
+	starCount->setPosition(s.width / 2 - 10, s.height - 310);
+	starCount->setScale(0.8f);
+	addChild(starCount, LAYER_LBL);
+	util::effects::reveal(starCount);
+
+	auto icon = util::graphic::getSprite(Constants::ASS_ICO_STAR);
+	icon->setAnchorPoint(Vec2::ANCHOR_MIDDLE_LEFT);
+	icon->setPosition(s.width / 2 + 30, s.height - 300);
+	addChild(icon, LAYER_GUI);	
+	util::effects::reveal(icon);
+
     Label* lbl = Label::createWithBMFont(Constants::ASS_FNT_NORMAL,cfg->getValue("categories").asString());
     lbl->setAnchorPoint(Vec2::ANCHOR_MIDDLE_TOP);
     addChild(lbl,LAYER_LBL);
-    lbl->setPosition(s.width/2,s.height - 150);
+    lbl->setPosition(s.width/2,s.height - 70);
     util::effects::reveal(lbl);
     lbl->setTag(3);
+	lbl->setColor(Color3B(229, 94, 72));
 
 	auto backBt = ui::Button::create();
-	addChild(backBt, 3);
+	addChild(backBt, 1);
 	backBt->loadTextureNormal(util::graphic::getAssetName(Constants::ASS_BT_BACK), ui::Widget::TextureResType::PLIST);
 	backBt->setAnchorPoint(Vec2::ANCHOR_TOP_LEFT);
 	backBt->setPosition(Vec2(100, s.height - 100));

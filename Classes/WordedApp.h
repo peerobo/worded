@@ -5,6 +5,8 @@
 
 USING_NS_CC;
 
+#define STAR_KEY_FOR(cat) StringUtils::format("%s%s", WordedApp::STAR_PREFIX_KEY, cat)
+
 class WordedApp
 {
 	static int _unlockedCat;
@@ -26,6 +28,8 @@ public:
     static const int TABLE_MODE_PENALTY[2];
     static const float TABLE_MODE_SCORE_RATIO[2];
     static const float TABLE_MODE_TIME_PAUSE_B4_COUNT;
+	static const char* STARTOTAL_KEY;
+	static const char* STAR_PREFIX_KEY;
 	/////////////////////////////////////
 	static int difficult;
 	/////////////////////////////////////
@@ -40,7 +44,7 @@ public:
 	static std::vector<std::string> getRndFormationWith(const std::string& cat, const std::string& with, int total = 10);
 	static std::string getRndItemInCat(const std::string& cat);
 	static bool validateAnswer(const std::string& item1, const std::string& item2);
-	static void playSound(const std::string& cat, const std::string& word);
+	static void playSound(const std::string& word);
 	static void loadSound(const std::string& cat);
 	static void unloadSound(const std::string& cat);
 	/////////////////////////////////////

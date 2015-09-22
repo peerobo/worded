@@ -4,6 +4,8 @@
 
 USING_NS_CC;
 
+#define CONST_STR const std::string& 
+
 namespace util
 {
 	class common

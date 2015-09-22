@@ -312,13 +312,13 @@ namespace util {
 		return Director::getInstance()->getVisibleSize();
 	}
 
-	void graphic::addNodeClickCallback(Node* node, std::function<void()> cb)
+	void graphic::addNodeClickCallback(Node* node, std::function<void()> cb, bool swallowTouch)
 	{
 		auto evtL = EventListenerTouchOneByOne::create();
 		using namespace std::placeholders;
 		evtL->onTouchBegan = std::bind(&graphic::onNodeTouchBegan,_1,_2);
 		evtL->onTouchEnded = std::bind(&graphic::onNodeTouchEnded,_1,_2, cb);
-		evtL->setSwallowTouches(true);
+		evtL->setSwallowTouches(swallowTouch);
 		node->getEventDispatcher()->addEventListenerWithSceneGraphPriority(evtL, node);
 	}
 

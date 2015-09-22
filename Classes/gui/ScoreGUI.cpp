@@ -164,9 +164,12 @@ void ScoreGUI::update(float dt)
 				scoreProgress += dScore<3 ? dScore : dScore / 3;
 				lbl->setString(StringUtils::toString(scoreProgress));
 
+				auto starBG = getChildByTag(21);
 				Rect rect = lbl->getBoundingBox();
 				Node* lblPt = getChildByTag(24);
-				lblPt->setPositionX(rect.getMaxX());
+				lblPt->setPositionX(rect.getMaxX() + 20);
+				starIcon->setPositionX(lblPt->getPositionX());
+				starBG->setPositionX(lblPt->getPositionX());
 
 				Size starSize = starIcon->getChildByTag(12)->getContentSize();
 				starSize.height = scoreProgress / (float)WordedApp::STAR_MIN_PT * starSize.height;
@@ -180,7 +183,7 @@ void ScoreGUI::update(float dt)
 						{
 							auto targetStar = getChildByTag(19);
 							auto starLbl = dynamic_cast<Label*>(getChildByTag(20));
-							auto starBG = getChildByTag(21);
+							
 							Size starS = starBG->getContentSize();
 							starBG->setVisible(false);
 							Vector<FiniteTimeAction*> v;

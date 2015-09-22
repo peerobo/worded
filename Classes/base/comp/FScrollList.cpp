@@ -243,6 +243,11 @@ void FScrollList::clearAllItems()
 	container->removeAllChildren();
 }
 
+Node* FScrollList::getContainer()
+{
+	return container;
+}
+
 Vector<Node*> FScrollList::getAllItems()
 {
 	return container->getChildren();

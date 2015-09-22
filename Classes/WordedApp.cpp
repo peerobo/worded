@@ -9,8 +9,8 @@ USING_NS_CC;
 
 const int WordedApp::DIFFICULT_EASY = 0;
 const int WordedApp::DIFFICULT_HARD = 1;
-const int WordedApp::STAR_MAX = 10;
-const int WordedApp::STAR_MIN_PT = 90;
+const int WordedApp::STAR_MAX = 5;
+const int WordedApp::STAR_MIN_PT = 82;
 //const int WordedApp::ONE_MODE_TIME[2] = { 10, 5 };
 //const int WordedApp::ONE_MODE_LEVELS[2] = { 10, 10 };
 //const int WordedApp::ONE_MODE_PENALTY[2] = {-5,-5};
@@ -19,7 +19,9 @@ const int WordedApp::TABLE_MODE_TIME[2] = { 15, 8};
 const int WordedApp::TABLE_MODE_LEVELS[2] = { 10, 10};
 const int WordedApp::TABLE_MODE_PENALTY[2] = {-4,-4};
 const float WordedApp::TABLE_MODE_SCORE_RATIO[2] = {1.f/3.f, 1.25f};
-const float WordedApp::TABLE_MODE_TIME_PAUSE_B4_COUNT = 1.f;
+const float WordedApp::TABLE_MODE_TIME_PAUSE_B4_COUNT = 1.2f;
+const char* WordedApp::STARTOTAL_KEY = "star_total";
+const char* WordedApp::STAR_PREFIX_KEY = "star-";
 int WordedApp::difficult = WordedApp::DIFFICULT_EASY;
 
 int WordedApp::_currCat = -1;
@@ -46,7 +48,7 @@ std::vector<std::string> WordedApp::getAllCats()
     return  vs;
 }
 
-void WordedApp::playSound(const std::string& cat, const std::string& word)
+void WordedApp::playSound(const std::string& word)
 {
 	std::string path = word + std::string( Constants::ASS_SUFFIX_SOUND);
 	util::common::playSound(path.c_str(),false);

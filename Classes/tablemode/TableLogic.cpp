@@ -65,6 +65,7 @@ void TableLogic::start()
     isPlaying = true;
     isPause = false;
     score = 0;
+	wordSequence = WordedApp::getRndFormation(cat, WordedApp::TABLE_MODE_LEVELS[WordedApp::difficult]);
     nextWord();
     level = -1;
     isShowScore = false;
@@ -90,15 +91,17 @@ void TableLogic::validateState()
 }
 
 void TableLogic::nextWord()
-{
-	level++;
-	if(level == WordedApp::TABLE_MODE_LEVELS[WordedApp::difficult])
+{	
+	int size = wordSequence.size();
+	if(size == 0)
 	{
 		endGame();
 		return;
 	}
 	pauseTime = WordedApp::TABLE_MODE_TIME_PAUSE_B4_COUNT;
-	word = WordedApp::getRndItemInCat(cat);
+	word = wordSequence[size-1];
+	log("new word: %s", word.c_str());
+	wordSequence.pop_back();
 	formation = WordedApp::getRndFormationWith(cat, word, 9);
 	answerWord = "";
 	currTime = totalTime;
