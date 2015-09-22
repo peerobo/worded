@@ -15,7 +15,7 @@ namespace util
 #if CC_TARGET_PLATFORM == CC_PLATFORM_IOS
 			GlobalVar::curScene->runAction(Sequence::create(
 				CallFunc::create(std::bind(&IOS::vibrate)),
-				DelayTime::create(0.7f),
+				DelayTime::create(0.3f),
 				CallFunc::create(std::bind(&IOS::vibrate)),
 				NULL
 				));

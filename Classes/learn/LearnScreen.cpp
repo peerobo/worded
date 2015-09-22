@@ -32,11 +32,13 @@ void LearnScreen::animateIn()
 	lbl->setAnchorPoint(Vec2::ANCHOR_MIDDLE_TOP);
 	lbl->setPosition(s.width / 2, s.height - 100);
 	getChildByTag(LAYER_LBL)->addChild(lbl);
+    lbl->setTag(10);
 	util::effects::reveal(lbl);
 	lbl->setColor(Color3B(229, 94, 72));
 
 	auto backBt = ui::Button::create();
 	getChildByTag(LAYER_GUI)->addChild(backBt);
+    backBt->setTag(9);
 	backBt->loadTextureNormal(util::graphic::getAssetName(Constants::ASS_BT_BACK), ui::Widget::TextureResType::PLIST);
 	backBt->setAnchorPoint(Vec2::ANCHOR_TOP_LEFT);
 	backBt->setPosition(Vec2(100, s.height - 100));
@@ -247,6 +249,11 @@ void LearnScreen::onBackScreen()
 {
 	if (isListCat)
 	{
+        auto lbl = getChildByTag(LAYER_LBL)->getChildByTag(10);
+        util::effects::fadeAndRemove(lbl, 0.5f);
+        auto bt = getChildByTag(LAYER_GUI)->getChildByTag(9);
+        util::effects::fadeAndRemove(bt, 0.5f);
+
 		auto v = getChildren();
 		int vsize = v.size();
 		for (auto c : v)

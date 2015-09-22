@@ -62,7 +62,7 @@ void CatChooser::catTouchEnd(cocos2d::Touch* t, cocos2d::Event* e, std::string c
 Node* CatChooser::createCatItem(const std::string &cat, int type)
 {
     auto container = Node::create();
-	int star = ScoreDB::instance->getScoreFor(STAR_KEY_FOR(cat));
+	int star = ScoreDB::instance->getScoreFor(STAR_KEY_FOR(cat.c_str()));
 	
     auto bg = util::graphic::getSprite(StringUtils::format("%s%d",Constants::ASS_ICO_CAT_BG,type));
     bg->setAnchorPoint(Vec2::ANCHOR_BOTTOM_LEFT);

@@ -21,7 +21,9 @@ void SettingGUI::onTouchedHard(bool isTouchedHard, bool isTouchText)
 			val = !val;
 			bx->setSelected(val);
 		}
-		GlobalVar::myData.isEnableVibration = val;
+        GlobalVar::myData.isEnableVibration = val;
+        if(val)
+            util::platform::vibrate();
 		util::common::saveValue(Constants::KEY_VIBRATION, Value(val));
 	}
 	else

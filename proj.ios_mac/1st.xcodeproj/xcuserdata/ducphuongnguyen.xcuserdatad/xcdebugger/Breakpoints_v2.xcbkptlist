@@ -155,7 +155,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "101"
             endingLineNumber = "101"
-            landmarkName = "CatChooser::animateIn()"
+            landmarkName = "CatChooser::createCatItem(const std::string &amp;cat, int type)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -171,7 +171,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "100"
             endingLineNumber = "100"
-            landmarkName = "CatChooser::animateIn()"
+            landmarkName = "CatChooser::createCatItem(const std::string &amp;cat, int type)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -283,7 +283,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "199"
             endingLineNumber = "199"
-            landmarkName = "TableScreen::makeTiles(std::vector&lt;std::string&gt; v)"
+            landmarkName = "TableScreen::animateIn()"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -299,7 +299,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "157"
             endingLineNumber = "157"
-            landmarkName = "TableScreen::animateIn()"
+            landmarkName = "TableScreen::TableScreen()"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -533,7 +533,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "62"
             endingLineNumber = "62"
-            landmarkName = "TableScreen::update(float dt)"
+            landmarkName = "TableScreen::onTouchWordTileEnded(cocos2d::Touch *t, cocos2d::Event *e)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -597,7 +597,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "120"
             endingLineNumber = "120"
-            landmarkName = "WordedApp::getRndFormationExcept(const std::string&amp; cat, const std::string&amp; exc, int total)"
+            landmarkName = "WordedApp::getRndFormation(const std::string&amp; cat, int total)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -709,7 +709,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "121"
             endingLineNumber = "121"
-            landmarkName = "WordedApp::getRndFormationExcept(const std::string&amp; cat, const std::string&amp; exc, int total)"
+            landmarkName = "WordedApp::getRndFormation(const std::string&amp; cat, int total)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -724,9 +724,7 @@
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "50"
-            endingLineNumber = "50"
-            landmarkName = "WordedApp::playSound(const std::string&amp; cat, const std::string&amp; word)"
-            landmarkType = "5">
+            endingLineNumber = "50">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -757,7 +755,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "49"
             endingLineNumber = "49"
-            landmarkName = "WordedApp::playSound(const std::string&amp; cat, const std::string&amp; word)"
+            landmarkName = "WordedApp::getAllCats()"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -772,9 +770,7 @@
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "31"
-            endingLineNumber = "31"
-            landmarkName = "WordedApp::getRndItemInCat(const std::string&amp; cat)"
-            landmarkType = "5">
+            endingLineNumber = "31">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -788,9 +784,7 @@
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "30"
-            endingLineNumber = "30"
-            landmarkName = "WordedApp::getRndItemInCat(const std::string&amp; cat)"
-            landmarkType = "5">
+            endingLineNumber = "30">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -852,8 +846,22 @@
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "56"
-            endingLineNumber = "56"
-            landmarkName = "WordedApp::loadSound(const std::string&amp; cat)"
+            endingLineNumber = "56">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../Classes/gui/SettingGUI.cpp"
+            timestampString = "464601802.342603"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "26"
+            endingLineNumber = "26"
+            landmarkName = "SettingGUI::onTouchedHard(bool isTouchedHard, bool isTouchText)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
