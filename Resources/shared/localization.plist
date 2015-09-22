@@ -126,6 +126,8 @@
 (Play this mode to get stars)</string>
 		<key>vibrate</key>
 		<string>Vibration</string>
+		<key>gcdisable</key>
+		<string>Game Center is disabled or not logged in.</string>
 	</dict>
 </dict>
 </plist>

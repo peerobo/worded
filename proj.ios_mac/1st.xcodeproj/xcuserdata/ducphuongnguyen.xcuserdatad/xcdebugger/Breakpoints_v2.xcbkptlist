@@ -54,11 +54,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../Classes/IntroScreen.cpp"
-            timestampString = "464019301.717162"
+            timestampString = "464630843.802323"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "105"
-            endingLineNumber = "105"
+            startingLineNumber = "119"
+            endingLineNumber = "119"
             landmarkName = "IntroScreen::processType(int type)"
             landmarkType = "5">
          </BreakpointContent>
@@ -86,11 +86,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../Classes/IntroScreen.cpp"
-            timestampString = "464019301.717162"
+            timestampString = "464630843.802323"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "115"
-            endingLineNumber = "115"
+            startingLineNumber = "129"
+            endingLineNumber = "129"
             landmarkName = "IntroScreen::processType(int type)"
             landmarkType = "5">
          </BreakpointContent>
@@ -102,11 +102,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../Classes/IntroScreen.cpp"
-            timestampString = "464019301.717162"
+            timestampString = "464630843.802323"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "36"
-            endingLineNumber = "36"
+            startingLineNumber = "46"
+            endingLineNumber = "46"
             landmarkName = "IntroScreen::onRate()"
             landmarkType = "5">
          </BreakpointContent>
@@ -278,11 +278,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../Classes/tablemode/TableScreen.cpp"
-            timestampString = "464275612.197991"
+            timestampString = "464628499.661713"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "199"
-            endingLineNumber = "199"
+            startingLineNumber = "200"
+            endingLineNumber = "200"
             landmarkName = "TableScreen::animateIn()"
             landmarkType = "5">
          </BreakpointContent>
@@ -294,11 +294,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../Classes/tablemode/TableScreen.cpp"
-            timestampString = "464275612.197991"
+            timestampString = "464628499.661713"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "157"
-            endingLineNumber = "157"
+            startingLineNumber = "158"
+            endingLineNumber = "158"
             landmarkName = "TableScreen::TableScreen()"
             landmarkType = "5">
          </BreakpointContent>
@@ -864,6 +864,38 @@
             startingLineNumber = "26"
             endingLineNumber = "26"
             landmarkName = "SettingGUI::onTouchedHard(bool isTouchedHard, bool isTouchText)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../Classes/base/util/ios/IOS.mm"
+            timestampString = "464630843.802323"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "49"
+            endingLineNumber = "49"
+            landmarkName = "IOS::authenGC()"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../Classes/base/util/ios/IOS.mm"
+            timestampString = "464630843.802323"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "47"
+            endingLineNumber = "47"
+            landmarkName = "IOS::authenGC()"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

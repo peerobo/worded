@@ -30,4 +30,34 @@ namespace util
         IOS::rate(Constants::KEY_APPID);
 #endif
     }
+    
+    void platform::authenGC()
+    {
+#if CC_TARGET_PLATFORM == CC_PLATFORM_IOS
+        IOS::authenGC();
+#endif
+    }
+    
+    bool platform::isGC()
+    {
+#if CC_TARGET_PLATFORM == CC_PLATFORM_IOS
+        return IOS::isGC;
+#else
+        return false;
+#endif
+    }
+    
+    void platform::showGC()
+    {
+#if CC_TARGET_PLATFORM == CC_PLATFORM_IOS
+        IOS::showGC();
+#endif
+    }
+    
+    void platform::setScoreGC(const std::string &cat, int score)
+    {
+#if CC_TARGET_PLATFORM == CC_PLATFORM_IOS
+        IOS::setScoreGC(cat, score);
+#endif
+    }
 }

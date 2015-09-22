@@ -13,6 +13,7 @@
 #include "learn/LearnScreen.h"
 #include "tablemode/CatChooser.h"
 #include "gui/SettingGUI.h"
+#include "gui/AlertGUI.h"
 #if CC_TARGET_PLATFORM == CC_PLATFORM_IOS
 #include "AppTrackerWrapper.h"
 #endif
@@ -30,7 +31,16 @@ void IntroScreen::onTableMode()
 
 void IntroScreen::onLeaderboard()
 {
-    
+    if(util::platform::isGC())
+    {
+        util::platform::showGC();
+    }
+    else
+    {
+        auto alert = AlertGUI::create();
+        alert->setMsg(Configuration::getInstance()->getValue("gcdisable").asString());
+        alert->show();
+    }
 }
 
 void IntroScreen::onRate()
@@ -57,15 +67,19 @@ void IntroScreen::onTouchItem(int type)
         int count = 0;
         for (int i =0; i<4; i++) {
             auto node = dynamic_cast<IntroItem*>(getChildByTag(10+i));
-            if(i!=type)
+            if(node)
             {
-                node->runOut(count);
-                count++;
+                if(i!=type)
+                {
+                    node->runOut(count);
+                    count++;
+                }
+                else
+                {
+                    node->fadeOut();
+                }
             }
-            else
-            {
-                node->fadeOut();
-            }
+            
         }
         // cache next bg
         auto bg = util::graphic::getSpriteFromImageJPG(type == 0 ? Constants::ASS_BG_ONE:Constants::ASS_BG_TABLE);
@@ -154,20 +168,20 @@ void IntroScreen::startIntro()
     item->runIn(1);
     item->setTag(11);
     
- //   item = IntroItem::create();
-//    item->setValue(cfg->getValue("leaderboard").asString(),  CC_CALLBACK_0(IntroScreen::onTouchItem, this,2));
-//    addChild(item,1);
-//    item->setPositionX(s.width/2);
-//    item->setPositionY(posY-400);
-//    item->runIn(2);
-//    item->setTag(12);
+    item = IntroItem::create();
+    item->setValue(cfg->getValue("leaderboard").asString(),  CC_CALLBACK_0(IntroScreen::onTouchItem, this,2));
+    addChild(item,1);
+    item->setPositionX(s.width/2);
+    item->setPositionY(posY-400);
+    item->runIn(2);
+    item->setTag(12);
     
     item = IntroItem::create();
     item->setValue(cfg->getValue("more").asString(),  CC_CALLBACK_0(IntroScreen::onTouchItem, this,3));
     addChild(item,1);
     item->setPositionX(s.width/2);
-    item->setPositionY(posY-400);
-//    item->setPositionY(posY-550);
+//    item->setPositionY(posY-400);
+    item->setPositionY(posY-550);
     item->runIn(3);
     item->setTag(13);
 
@@ -175,8 +189,8 @@ void IntroScreen::startIntro()
 	item->setValue(cfg->getValue("setting",Value("Settings")).asString(), CC_CALLBACK_0(IntroScreen::onTouchItem, this, 4));
 	addChild(item, 1);
 	item->setPositionX(s.width / 2);
-	item->setPositionY(posY - 550);
-//    item->setPositionY(posY - 700);
+//	item->setPositionY(posY - 550);
+    item->setPositionY(posY - 700);
 	item->runIn(4);
 	item->setTag(14);
     
@@ -184,8 +198,8 @@ void IntroScreen::startIntro()
     item->setValue(cfg->getValue("rate",Value("Settings")).asString(), CC_CALLBACK_0(IntroScreen::onTouchItem, this, 5));
     addChild(item, 1);
     item->setPositionX(s.width / 2);
-    item->setPositionY(posY - 700);
-//        item->setPositionY(posY - 850);
+//    item->setPositionY(posY - 700);
+    item->setPositionY(posY - 850);
     item->runIn(5);
     item->setTag(15);
 }

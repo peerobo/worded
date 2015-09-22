@@ -177,7 +177,7 @@ bool AppDelegate::applicationDidFinishLaunching() {
     FileUtils::getInstance()->setSearchPaths(paths);
     ZipUtils::setPvrEncryptionKeyPart(2, 0x51ce7d9e);
     register_all_packages();
-    
+    util::platform::authenGC();
     Configuration::getInstance()->loadConfigFile("localization.plist");
     util::graphic::loadTexAtl(Constants::ASS_TEX_GUI, false);
 	util::graphic::getSpriteFromImageJPG(Constants::ASS_BG_ONE);
