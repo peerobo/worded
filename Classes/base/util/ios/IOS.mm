@@ -22,6 +22,12 @@ void IOS::vibrate()
 	AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
 }
 
+void IOS::saveToAlbum(const std::string &filePath)
+{
+    UIImage* img = [[UIImage alloc]initWithContentsOfFile: [NSString stringWithUTF8String:filePath.c_str()]];
+    UIImageWriteToSavedPhotosAlbum(img, nil, nil, nil);
+}
+
 void IOS::rate(const std::string& appId)
 {
     NSString* nsAppId = [NSString stringWithUTF8String:appId.c_str()];

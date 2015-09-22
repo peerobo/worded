@@ -60,4 +60,11 @@ namespace util
         IOS::setScoreGC(cat, score);
 #endif
     }
+    
+    void platform::saveToAlbum(const std::string &fileURL)
+    {
+#if CC_TARGET_PLATFORM == CC_PLATFORM_IOS
+        IOS::saveToAlbum(fileURL);
+#endif
+    }
 }

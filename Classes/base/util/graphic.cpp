@@ -3,6 +3,7 @@
 #include "../../Constants.h"
 #include  "../../GlobalVar.h"
 #include "../Looper.h"
+#include "platform.h"
 
 namespace util {
 	void graphic::addSwallowTouch(Node* node)
@@ -61,7 +62,10 @@ namespace util {
     {
 		std::string cachePath = common::getCacheDirectory();
 		cachePath += "/screenshot.png";
-		utils::captureScreen([](bool ret, const std::string& file) {}, cachePath);
+		utils::captureScreen([cachePath](bool ret, const std::string& file) {
+            if(ret)
+                util::platform::saveToAlbum(cachePath);
+        }, cachePath);
     }
     
 	Vec2 graphic::convertPos(Node* node, Node* space)
