@@ -63,31 +63,31 @@
 			<string>positions</string>
 			<string>sports</string>
 		</array>
-    <key>numbers1</key>
+    <key>c_numbers1</key>
     <string>numbers 1</string>
-    <key>numbers2</key>
+    <key>c_numbers2</key>
     <string>numbers 2</string>
-    <key>food1</key>
+    <key>c_food1</key>
     <string>food 1</string>
-    <key>food2</key>
+    <key>c_food2</key>
     <string>food 2</string>
-    <key>animals1</key>
+    <key>c_animals1</key>
     <string>animals 1</string>
-    <key>animals2</key>
+    <key>c_animals2</key>
     <string>animals 2</string>
-    <key>verbs2</key>
+    <key>c_verbs2</key>
     <string>verbs 2</string>
-    <key>verbs1</key>
+    <key>c_verbs1</key>
     <string>verbs 1</string>
-    <key>body1</key>
+    <key>c_body1</key>
     <string>body 1</string>
-    <key>body2</key>
+    <key>c_body2</key>
     <string>body 2</string>
-    <key>animalparts</key>
+    <key>c_animalparts</key>
     <string>animal parts</string>
-    <key>clothes2</key>
+    <key>c_clothes2</key>
     <string>clothes 2</string>
-    <key>clothes1</key>
+    <key>c_clothes1</key>
     <string>clothes 1</string>
 		<key>body2</key>
 		<string>shoulder;knee;moustache;elbow;forehead;heel;ankle;eyebrow;eyelash;wrist;armpit;belly button;bicep;bone;calf;earlobe;hip;lips;nostril;thigh</string>
