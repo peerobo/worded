@@ -24,15 +24,16 @@ void IOS::vibrate()
 
 void IOS::updateGCAchievement(const std::string& ach, float percent)
 {
-	GKAchievement gk = [[GKAchievement alloc] init];
+	GKAchievement* gk = [[GKAchievement alloc] init];
 	NSString* idAch = [NSString stringWithUTF8String:ach.c_str()];
 	gk.identifier = idAch;
 	gk.percentComplete = percent;
-	[GKAchievement reportAchievements:[gk] withCompletionHandler:^(NSError *error) {
-         if (error != nil) {
-             NSLog(@"%", [error localizedDescription]);
-         }
-     }];
+    [GKAchievement reportAchievements:@[gk] withCompletionHandler:^(NSError * _Nullable error) {
+        if (error) {
+            NSLog(@"%@", [error localizedDescription]);
+        }
+        
+    }];
 
 }
 
