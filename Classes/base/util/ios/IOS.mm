@@ -2,6 +2,7 @@
 #include "AppController.h"
 #import <AudioToolbox/AudioServices.h>
 #import <GameKit/GameKit.h>
+#import <Social/Social.h>
 
 @interface IOSUtility : NSObject <GKGameCenterControllerDelegate>
 
@@ -35,6 +36,28 @@ void IOS::updateGCAchievement(const std::string& ach, float percent)
         
     }];
 
+}
+
+void IOS::share2Twitter(const std::string& path,const std::string& msg)
+{
+    if ([SLComposeViewController isAvailableForServiceType: SLServiceTypeTwitter]) {
+        SLComposeViewController* tweetSheetOBJ = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeTwitter];
+        [tweetSheetOBJ setInitialText:[NSString stringWithUTF8String:msg.c_str()]];
+        UIImage* img = [[UIImage alloc]initWithContentsOfFile: [NSString stringWithUTF8String:path.c_str()]];
+        [tweetSheetOBJ addImage: img];
+        [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:tweetSheetOBJ animated:YES completion:nil];
+    }
+}
+
+void IOS::share2Facebook(const std::string& path,const std::string& msg)
+{
+    if ([SLComposeViewController isAvailableForServiceType: SLServiceTypeFacebook]) {
+        SLComposeViewController* fbSheetObj = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeFacebook];
+        [fbSheetObj setInitialText:[NSString stringWithUTF8String:msg.c_str()]];
+        UIImage* img = [[UIImage alloc]initWithContentsOfFile: [NSString stringWithUTF8String:path.c_str()]];
+        [fbSheetObj addImage: img];
+        [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:fbSheetObj animated:YES completion:nil];
+    }
 }
 
 void IOS::saveToAlbum(const std::string &filePath)
