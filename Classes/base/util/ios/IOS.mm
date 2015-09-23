@@ -22,6 +22,20 @@ void IOS::vibrate()
 	AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
 }
 
+void IOS::updateGCAchievement(const std::string& ach, float percent)
+{
+	GKAchievement gk = [[GKAchievement alloc] init];
+	NSString* idAch = [NSString stringWithUTF8String:ach.c_str()];
+	gk.identifier = idAch;
+	gk.percentComplete = percent;
+	[GKAchievement reportAchievements:[gk] withCompletionHandler:^(NSError *error) {
+         if (error != nil) {
+             NSLog(@"%", [error localizedDescription]);
+         }
+     }];
+
+}
+
 void IOS::saveToAlbum(const std::string &filePath)
 {
     UIImage* img = [[UIImage alloc]initWithContentsOfFile: [NSString stringWithUTF8String:filePath.c_str()]];
@@ -64,7 +78,7 @@ void IOS::showGC()
         GKGameCenterViewController* gcView = [[GKGameCenterViewController alloc]init];
         gcView.gameCenterDelegate = iosUtil;
         
-        gcView.viewState = GKGameCenterViewControllerStateLeaderboards;
+        gcView.viewState = GKGameCenterViewControllerStateDefault;
         [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:gcView animated:YES completion:nil];
     }
 }

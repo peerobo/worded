@@ -67,4 +67,11 @@ namespace util
         IOS::saveToAlbum(fileURL);
 #endif
     }
+
+	static void updateAchGC(const std::string& ach, float percent)
+	{
+#if CC_TARGET_PLATFORM == CC_PLATFORM_IOS
+		IOS::updateGCAchievement(ach, percent);
+#endif
+	}
 }

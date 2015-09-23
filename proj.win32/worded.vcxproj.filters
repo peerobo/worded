@@ -74,6 +74,9 @@
     <ClCompile Include="..\Classes\gui\OneBtDlg.cpp">
       <Filter>Classess\gui</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\gui\AlertGUI.cpp">
+      <Filter>Classess\gui</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h" />
@@ -150,6 +153,9 @@
       <Filter>Classess\gui</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\gui\OneBtDlg.h">
+      <Filter>Classess\gui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\gui\AlertGUI.h">
       <Filter>Classess\gui</Filter>
     </ClInclude>
   </ItemGroup>

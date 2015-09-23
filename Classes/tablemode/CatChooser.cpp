@@ -75,7 +75,7 @@ Node* CatChooser::createCatItem(const std::string &cat, int type)
     catIcon->setPosition(itemSize.width/2, itemSize.height/2 + bg->getPositionY());
     container->addChild(catIcon,0);
     
-	std::string catClone = cat;
+	std::string catClone = Configuration::getInstance()->getValue(cat,Value(cat)).asString();	
 	util::common::capitalize(catClone);
     auto lbl = Label::createWithBMFont(Constants::ASS_FNT_NORMAL, catClone);
     lbl->setAnchorPoint(Vec2::ANCHOR_MIDDLE_BOTTOM);

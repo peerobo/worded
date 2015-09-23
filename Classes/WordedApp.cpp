@@ -22,6 +22,17 @@ const float WordedApp::TABLE_MODE_SCORE_RATIO[2] = {1.f/3.f, 1.25f};
 const float WordedApp::TABLE_MODE_TIME_PAUSE_B4_COUNT = 1.2f;
 const char* WordedApp::STARTOTAL_KEY = "star_total";
 const char* WordedApp::STAR_PREFIX_KEY = "star-";
+const char* WordedApp::ACH_HARD_MODE = "70088667";
+const char* WordedApp::ACH_1_STAR = "70088668";
+const char* WordedApp::ACH_25_STAR = "70088669";
+const char* WordedApp::ACH_50_STAR = "70088670";
+const char* WordedApp::ACH_100_STAR = "70088671";
+const char* WordedApp::ACH_145_STAR = "70088734";
+const char* WordedApp::ACH_1_CAT = "70088735";
+const char* WordedApp::ACH_ONE_90 = "70088736";
+const char* WordedApp::ACH_FIVE_90 = "70088737";
+const char* WordedApp::ACH_TEN_90 = "70088738";
+const char* WordedApp::ACH_ALL_90 = "70088742";
 int WordedApp::difficult = WordedApp::DIFFICULT_EASY;
 
 int WordedApp::_currCat = -1;

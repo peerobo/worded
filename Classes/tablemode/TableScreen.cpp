@@ -239,15 +239,25 @@ void TableScreen::makeTiles(std::vector<std::string> v)
 	Size eachTile(tilesRect.size.width/3,tilesRect.size.height/3);
 	size_t wordSize = v.size();
 	Size bgSize;
+    float scaleBG = 1;
 	for (int i = 0; i < 9; ++i)
 	{
 		if(needInit) // both layers are emptied
 		{
 			// add bg;
             Node* bg = util::graphic::getSprite(StringUtils::format("%s%d",Constants::ASS_ICO_BG_TABLE,i));
+            if (i == 0) {
+                bgSize = bg->getContentSize();
+                if (bgSize.width > eachTile.width) {
+                    scaleBG = eachTile.width / (bgSize.width+20);
+                    bgSize.width = (bgSize.width+20)*scaleBG;
+                    bgSize.height = (bgSize.height+20)*scaleBG;
+                }
+            }
 			int row = 2-(i/3);
 			int col = i%3;
 			bg->setAnchorPoint(Vec2::ANCHOR_MIDDLE);
+            bg->setScale(scaleBG);
 			layer->addChild(bg);
 			Vec2 posBG(tilesRect.getMinX() + eachTile.width*(col + 0.5f), tilesRect.getMinY() + eachTile.height*(row + 0.5f));
 			bg->setPosition(posBG);
@@ -268,7 +278,7 @@ void TableScreen::makeTiles(std::vector<std::string> v)
 				Node* icon = util::graphic::getSprite(iconName);
 				icon->setAnchorPoint(Vec2::ANCHOR_MIDDLE);
 				icons->addChild(icon);
-                Size sbg = bg->getContentSize();
+                Size sbg = bgSize;
                 sbg.width-=50;
                 sbg.height-=50;
 				icon->setScale(util::graphic::fit(sbg,icon));
@@ -284,11 +294,19 @@ void TableScreen::makeTiles(std::vector<std::string> v)
 			Node* bg = layer->getChildByTag(TAG_BG_ICON+i);
 			if(bg)
 			{
+                if (i == 0) {
+                    bgSize = bg->getContentSize();
+                    if (bgSize.width > eachTile.width) {
+                        scaleBG = eachTile.width / (bgSize.width+20);
+                        bgSize.width = (bgSize.width+20)*scaleBG;
+                        bgSize.height = (bgSize.height+20)*scaleBG;
+                    }
+                }
 				float time = 0.05f*i;
 				if(time > 0)
 					vAct.pushBack(DelayTime::create(time));
 				vAct.pushBack(ScaleTo::create(0.2f,0.01f));
-				vAct.pushBack(ScaleTo::create(0.4f,1.f));
+				vAct.pushBack(ScaleTo::create(0.4f,scaleBG));
 				// add child icon
 				Node* oldIcon = icons->getChildByTag(TAG_ICON+i);
 				Vector<FiniteTimeAction*> vOld;
@@ -309,7 +327,7 @@ void TableScreen::makeTiles(std::vector<std::string> v)
 				icon->setScale(0.01f);
 				icon->setOpacity(0);
 				icon->setTag(TAG_ICON+i);
-                auto sbg = bg->getContentSize();
+                auto sbg = bgSize;
                 sbg.width -= 50;
                 sbg.height -= 50;
 				Vector<FiniteTimeAction*> iconActs;

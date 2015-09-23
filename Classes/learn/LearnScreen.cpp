@@ -94,7 +94,7 @@ Node* LearnScreen::createItem(CONST_STR cat, int type, int w)
 	auto spr = util::graphic::getSprite(Constants::ASS_BT_BACK);
 	spr->setAnchorPoint(Vec2::ANCHOR_MIDDLE_RIGHT);
 	spr->setFlippedX(true);
-	spr->setPosition(Vec2(w - 70, itemSize.height / 2));
+	spr->setPosition(Vec2(w - 10, itemSize.height / 2));
 	node->addChild(spr, 0);
 
 	util::graphic::addNodeClickCallback(node, CC_CALLBACK_0(LearnScreen::showWords, this, cat), false);

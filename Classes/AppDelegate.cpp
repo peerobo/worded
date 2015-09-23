@@ -81,7 +81,7 @@ bool AppDelegate::applicationDidFinishLaunching() {
         scale = 0.25;
         assetPath = "@1x";
     }
-    else if (maxSize <= 1024)
+    else if (maxSize <= 1136)
     {
         w = sw / 0.5;
         h = sh / 0.5;

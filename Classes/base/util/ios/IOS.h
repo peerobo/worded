@@ -9,4 +9,5 @@ public:
     static void showGC();
     static void setScoreGC(const std::string& cat, int score);
     static void saveToAlbum(const std::string& filePath);
+	static void updateGCAchievement(const std::string& ach, float percent);
 };

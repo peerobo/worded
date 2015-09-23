@@ -159,6 +159,7 @@ xcopy /Y /Q "..\..\..\..\lib\c++\cocos2d-x-3.8.1\external\websockets\prebuilt\wi
     <ClInclude Include="..\classes\base\util\platform.h" />
     <ClInclude Include="..\Classes\Constants.h" />
     <ClInclude Include="..\Classes\GlobalVar.h" />
+    <ClInclude Include="..\Classes\gui\AlertGUI.h" />
     <ClInclude Include="..\Classes\gui\OneBtDlg.h" />
     <ClInclude Include="..\Classes\gui\ScoreGUI.h" />
     <ClInclude Include="..\Classes\gui\SettingGUI.h" />
@@ -194,6 +195,7 @@ xcopy /Y /Q "..\..\..\..\lib\c++\cocos2d-x-3.8.1\external\websockets\prebuilt\wi
     <ClCompile Include="..\classes\base\util\platform.cpp" />
     <ClCompile Include="..\Classes\Constants.cpp" />
     <ClCompile Include="..\Classes\GlobalVar.cpp" />
+    <ClCompile Include="..\Classes\gui\AlertGUI.cpp" />
     <ClCompile Include="..\Classes\gui\OneBtDlg.cpp" />
     <ClCompile Include="..\Classes\gui\ScoreGUI.cpp" />
     <ClCompile Include="..\Classes\gui\SettingGUI.cpp" />

@@ -11,7 +11,7 @@
 
 void AlertGUI::setMsg(const std::string &msg)
 {
-    this->setData("Settings", "Close");
+    this->setData("Alert", "Close");
     Label* lbl = dynamic_cast<Label*>(getChildByTag(23));
     if (!lbl) {
         Size s = this->getContentSize();
