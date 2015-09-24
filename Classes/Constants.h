@@ -34,6 +34,8 @@ public:
 	static const char* ASS_ICO_UNCHECK;
 	static const char* ASS_ICO_TOUCHME;
 	static const char* ASS_ICO_BG_BUBBLE;
+	static const char* ASS_ICO_CURR_PAGE;
+	static const char* ASS_ICO_PAGE;
 	static const char* ASS_BT_BACK;
 	static const char* ASS_BT_CORRECT;
 	static const char* ASS_BT_RETRY;

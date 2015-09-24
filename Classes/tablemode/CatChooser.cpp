@@ -15,6 +15,7 @@
 #include "../gui/ScoreGUI.h"
 #include "../IntroScreen.h"
 #include "../base/ScoreDB.h"
+#include "../base/comp/PageIndicator.h"
 
 CatChooser::CatChooser():LAYER_GUI(2), LAYER_LBL(3)
 {
@@ -28,7 +29,18 @@ CatChooser::CatChooser():LAYER_GUI(2), LAYER_LBL(3)
 	vec.pushBack(DelayTime::create(0.3f));
 	vec.pushBack(CallFunc::create(CC_CALLBACK_0(CatChooser::animateIn, this)));
 	runAction(Sequence::create(vec));
+	scheduleUpdate();
+}
 
+void CatChooser::update(float dt)
+{
+	auto list = dynamic_cast<FScrollList*>(getChildByTag(2));
+	auto pages = dynamic_cast<PageIndicator*>(getChildByTag(4));
+	if (list && pages)
+	{
+		pages->curPage = list->getCurrentPage();
+		pages->totalPage = list->getTotalPage();
+	}
 }
 
 bool CatChooser::catTouchBegan(cocos2d::Touch* t, cocos2d::Event* e)
@@ -157,9 +169,16 @@ void CatChooser::animateIn()
 	backBt->setPosition(Vec2(100, s.height - 100));
 	util::graphic::addClickBtCallback(backBt, CC_CALLBACK_0(CatChooser::onBackScreen,this));
 
+
 	/*util::common::stopAllSounds();
 	Node* n = ScoreGUI::create("Adjectives1", 90, 99, 5, []() {}, []() {});
 	addChild(n,LAYER_LBL);*/
+
+	auto pageIndicator = PageIndicator::create(Constants::ASS_ICO_CURR_PAGE, Constants::ASS_ICO_PAGE);
+	pageIndicator->setAnchorPoint(Vec2::ANCHOR_MIDDLE);
+	pageIndicator->setPosition(s.width/2, 150);
+	pageIndicator->setTag(4);
+	addChild(pageIndicator, 1);
 }
 
 void _internalChangeScene()

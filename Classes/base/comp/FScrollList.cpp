@@ -1,5 +1,6 @@
 #include "FScrollList.h"
 #include "../Util.h"
+#include <math.h>
 
 FScrollList::FScrollList() : BOUNDING_BACK(850)
 {
@@ -232,6 +233,38 @@ void FScrollList::addAutoPosItem(Node* node)
         }
 	
 	addItem(node, pos);	
+}
+
+int FScrollList::getCurrentPage()
+{
+	if (direction == HORIZONTAL)
+	{
+		return std::abs(offset.x) / (float)getContentSize().width;
+	}
+	else if (direction == VERTICAL)
+	{
+		return std::abs(offset.y) / (float)getContentSize().height;
+	}
+	else
+	{
+		return 0;
+	}
+}
+
+int FScrollList::getTotalPage()
+{
+	if (direction == HORIZONTAL)
+	{
+		return std::ceilf(realSize.width / (float)getContentSize().width);
+	}
+	else if(direction == VERTICAL)
+	{
+		return std::ceilf(realSize.height / (float)getContentSize().height);
+	}
+	else
+	{
+		return 0;
+	}
 }
 
 void FScrollList::clearAllItems()

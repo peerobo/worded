@@ -22,6 +22,7 @@ private:
 	void onBackScreen();
 public:
 	CREATE_FUNC(CatChooser);
+	void update(float dt) override;
 
 };
 

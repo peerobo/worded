@@ -24,6 +24,8 @@ public:
 	float spacing;
 	Vector<Node*> getAllItems();
 	Node* getContainer();
+	int getCurrentPage();
+	int getTotalPage();
 private:	
 	const int BOUNDING_BACK;
 	int maxCol;

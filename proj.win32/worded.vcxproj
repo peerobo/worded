@@ -146,6 +146,7 @@ xcopy /Y /Q "..\..\..\..\lib\c++\cocos2d-x-3.8.1\external\websockets\prebuilt\wi
   <ItemGroup>
     <ClInclude Include="..\Classes\AppDelegate.h" />
     <ClInclude Include="..\Classes\base\comp\FScrollList.h" />
+    <ClInclude Include="..\Classes\base\comp\PageIndicator.h" />
     <ClInclude Include="..\Classes\base\Dlg.h" />
     <ClInclude Include="..\Classes\base\DlgMgr.h" />
     <ClInclude Include="..\Classes\base\Looper.h" />
@@ -183,6 +184,7 @@ xcopy /Y /Q "..\..\..\..\lib\c++\cocos2d-x-3.8.1\external\websockets\prebuilt\wi
   <ItemGroup>
     <ClCompile Include="..\Classes\AppDelegate.cpp" />
     <ClCompile Include="..\Classes\base\comp\FScrollList.cpp" />
+    <ClCompile Include="..\Classes\base\comp\PageIndicator.cpp" />
     <ClCompile Include="..\Classes\base\Dlg.cpp" />
     <ClCompile Include="..\Classes\base\DlgMgr.cpp" />
     <ClCompile Include="..\Classes\base\Looper.cpp" />
