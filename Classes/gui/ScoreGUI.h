@@ -1,16 +1,21 @@
 #pragma once
 #include <cocos2d.h>
+#include "../base/Util.h"
 
 USING_NS_CC;
 
 class ScoreGUI : public Node
 {
-private:	
+private:		
 	float updateFlag;
 	int targetScore;
 	int star;
 	int bestScore;
+	std::string cat;
 	ScoreGUI(std::string cat, int score, int bestScore, int star, std::function<void()> backCB, std::function<void()> retryCB);
+	void showShareBts(bool ret, const std::string& str);
+	void saveImage();
+	void share(CONST_STR img, CONST_STR msg, bool fb);
 public:
 	int scoreProgress;
 	static ScoreGUI* create(std::string cat, int score, int bestScore, int star, std::function<void()> backCB, std::function<void()> retryCB)

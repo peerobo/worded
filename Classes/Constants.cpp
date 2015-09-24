@@ -374,7 +374,7 @@ const char* Constants::ASS_SUFFIX_IMAGE_JPG = ".jpg";
 const char* Constants::ASS_SUFFIX_TEXATL = ".pvr.ccz";
 const char* Constants::ASS_SUFFIX_SOUND = ".mp3";
 const char* Constants::KEY_VIBRATION = "vibrate";
-const char* Constants::KEY_APPID = "worded-by-pe-play-with-words/id1042210331?ls=1&mt=8";
+const char* Constants::KEY_APPID = "https://goo.gl/8V9fhc";
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 
 const char* Constants::ASS_BG_INTRO = "intro";
@@ -400,11 +400,14 @@ const char* Constants::ASS_ICO_BG_TABLE = "ico_bg_table";
 const char* Constants::ASS_ICO_CHECK = "ico_check";
 const char* Constants::ASS_ICO_UNCHECK = "ico_uncheck";
 const char* Constants::ASS_ICO_TOUCHME = "ico_touchme";
+const char* Constants::ASS_ICO_BG_BUBBLE = "ico_bg_smallpopup";
 const char* Constants::ASS_BT_BACK = "bt_back";
 const char* Constants::ASS_BT_CORRECT = "bt_correct";
 const char* Constants::ASS_BT_RETRY = "bt_retry";
 const char* Constants::ASS_BT_SHARE = "bt_share";
 const char* Constants::ASS_BT_WRONG = "bt_wrong";
+const char* Constants::ASS_BT_FB = "bt_fb";
+const char* Constants::ASS_BT_TWITTER = "bt_twitter";
 
 const char* Constants::ASS_SND_THEME = "Rest_Outro_(music_by_Dan_Knoflicek).mp3";
 const char* Constants::ASS_SND_CLICK = "clickbt.mp3";

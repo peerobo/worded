@@ -33,8 +33,7 @@ void LearnScreen::animateIn()
 	lbl->setPosition(s.width / 2, s.height - 100);
 	getChildByTag(LAYER_LBL)->addChild(lbl);
     lbl->setTag(10);
-	util::effects::reveal(lbl);
-	lbl->setColor(Color3B(229, 94, 72));
+	util::effects::reveal(lbl);	
 
 	auto backBt = ui::Button::create();
 	getChildByTag(LAYER_GUI)->addChild(backBt);

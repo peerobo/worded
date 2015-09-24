@@ -58,13 +58,14 @@ namespace util {
         }
     }
     
-    void graphic::captureScreen()
+    void graphic::captureScreen(std::function<void(bool, const std::string&)> captureDoneCB)
     {
 		std::string cachePath = common::getCacheDirectory();
 		cachePath += "/screenshot.png";
-		utils::captureScreen([cachePath](bool ret, const std::string& file) {
+		utils::captureScreen([captureDoneCB,cachePath](bool ret, const std::string& file) {
             if(ret)
                 util::platform::saveToAlbum(cachePath);
+			captureDoneCB(ret, cachePath);
         }, cachePath);
     }
     
@@ -253,18 +254,31 @@ namespace util {
 		return drawNode;
 	}
 
-	void graphic::showDisp(Node* node, bool withModalBG, int layer)
+	void graphic::showDisp(Node* node, bool withModalBG, bool fit, int layer)
 	{
 		Size nodeSize = node->getContentSize();
 		Size scrSize = getScreenSize();
+		float scale = 1;
+		if (fit)
+		{
+			
+			if (nodeSize.width >= scrSize.width)
+				scale = (scrSize.width - 50) / nodeSize.width;
+			if (nodeSize.height > scrSize.height)
+				scale = (scrSize.height - 50) / nodeSize.height;
+			nodeSize.width *= scale;
+			nodeSize.height *= scale;
+			node->setScale(scale);
+		}
 		Vec2 pt((nodeSize.width - scrSize.width) / 2, (nodeSize.height - scrSize.height) / 2);
 		if (withModalBG)
 		{
 			if (!node->getChildByTag(1001))
 			{
 				auto bg = drawModalBG();
+				bg->setScale(1 / scale);
 				bg->setTag(1001);
-				bg->setPosition(pt);
+				bg->setPosition(pt.x/scale,pt.y/scale);
 				node->addChild(bg, 0);
 			}
 		}

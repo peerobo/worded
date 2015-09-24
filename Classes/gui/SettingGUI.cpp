@@ -43,9 +43,9 @@ void SettingGUI::onTouchedHard(bool isTouchedHard, bool isTouchText)
 void SettingGUI::show()
 {
 	Size s = this->getContentSize();
-	this->setData("Settings", "Close");
+	auto cfg = Configuration::getInstance();
+	this->setData(cfg->getValue("setting",Value("Settings")).asString(), cfg->getValue("close", Value("Close")).asString());
 	
-	Configuration* cfg = Configuration::getInstance();
 	Label* lbl = Label::createWithBMFont(Constants::ASS_FNT_NORMAL, cfg->getValue("hardMode").asString());
 	lbl->setAnchorPoint(Vec2::ANCHOR_BOTTOM_LEFT);
 	lbl->setPositionX(220);

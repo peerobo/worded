@@ -33,11 +33,14 @@ public:
 	static const char* ASS_ICO_CHECK;
 	static const char* ASS_ICO_UNCHECK;
 	static const char* ASS_ICO_TOUCHME;
+	static const char* ASS_ICO_BG_BUBBLE;
 	static const char* ASS_BT_BACK;
 	static const char* ASS_BT_CORRECT;
 	static const char* ASS_BT_RETRY;
 	static const char* ASS_BT_SHARE;
 	static const char* ASS_BT_WRONG;
+	static const char* ASS_BT_FB;
+	static const char* ASS_BT_TWITTER;
 
     static const char* ASS_FNT_NORMAL;
     static const char* ASS_FNT_BIG;

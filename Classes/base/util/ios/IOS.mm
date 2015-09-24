@@ -38,26 +38,38 @@ void IOS::updateGCAchievement(const std::string& ach, float percent)
 
 }
 
-void IOS::share2Twitter(const std::string& path,const std::string& msg)
+bool IOS::share2Twitter(const std::string& path,const std::string& msg,  const std::string& url)
 {
     if ([SLComposeViewController isAvailableForServiceType: SLServiceTypeTwitter]) {
         SLComposeViewController* tweetSheetOBJ = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeTwitter];
         [tweetSheetOBJ setInitialText:[NSString stringWithUTF8String:msg.c_str()]];
         UIImage* img = [[UIImage alloc]initWithContentsOfFile: [NSString stringWithUTF8String:path.c_str()]];
         [tweetSheetOBJ addImage: img];
+		[tweetSheetOBJ addURL:[NSString stringWithUTF8String:url.c_str()]];
         [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:tweetSheetOBJ animated:YES completion:nil];
+		return true;
     }
+	else
+	{
+		return false;
+	}
 }
 
-void IOS::share2Facebook(const std::string& path,const std::string& msg)
+bool IOS::share2Facebook(const std::string& path,const std::string& msg, const std::string& url)
 {
     if ([SLComposeViewController isAvailableForServiceType: SLServiceTypeFacebook]) {
         SLComposeViewController* fbSheetObj = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeFacebook];
         [fbSheetObj setInitialText:[NSString stringWithUTF8String:msg.c_str()]];
         UIImage* img = [[UIImage alloc]initWithContentsOfFile: [NSString stringWithUTF8String:path.c_str()]];
         [fbSheetObj addImage: img];
+		[tweetSheetOBJ addURL:[NSString stringWithUTF8String:url.c_str()]];
         [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:fbSheetObj animated:YES completion:nil];
+		return true;
     }
+	else
+	{
+		return false;
+	}
 }
 
 void IOS::saveToAlbum(const std::string &filePath)
@@ -69,7 +81,7 @@ void IOS::saveToAlbum(const std::string &filePath)
 void IOS::rate(const std::string& appId)
 {
     NSString* nsAppId = [NSString stringWithUTF8String:appId.c_str()];
-    NSString* url = [NSString stringWithFormat:@"https://itunes.apple.com/app/%@", nsAppId];
+    NSString* url = [NSString stringWithFormat:@"%@", nsAppId];
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
 }
 

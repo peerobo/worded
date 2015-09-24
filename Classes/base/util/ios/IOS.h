@@ -10,6 +10,6 @@ public:
     static void setScoreGC(const std::string& cat, int score);
     static void saveToAlbum(const std::string& filePath);
 	static void updateGCAchievement(const std::string& ach, float percent);
-    static void share2Twitter(const std::string& path,const std::string& msg);
-    static void share2Facebook(const std::string& path,const std::string& msg);
+    static bool share2Twitter(const std::string& path,const std::string& msg, const std::string& url);
+    static bool share2Facebook(const std::string& path,const std::string& msg, const std::string& url);
 };

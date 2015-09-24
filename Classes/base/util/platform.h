@@ -13,6 +13,8 @@ namespace util
         static void setScoreGC(const std::string& cat, int score);
         static void saveToAlbum(const std::string& fileURL);
 		static void updateAchGC(const std::string& ach, float percent);
+		static bool share2Twitter(const std::string& imagePath, const std::string msg);
+		static bool share2FB(const std::string& imagePath, const std::string msg);
 	};
 	
 }

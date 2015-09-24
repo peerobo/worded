@@ -31,7 +31,7 @@ namespace util
 		static Sprite* getSpriteFromImageJPG(const std::string& imgName);
 		static Node* drawRect(Rect rec, Color4F color);
 		static Node* drawModalBG();
-		static void showDisp(Node* node, bool withModalBG, int layer = 100);
+		static void showDisp(Node* node, bool withModalBG, bool fit = false, int layer = 100);
 		static void setBtEnable(ui::Button* bt, bool val, float opacity = 0.2f);
 		static void addClosedWhenClickOutside(Node* node, bool autoclean = true);
 		static Sprite* getSprite(const std::string& sprFrameName);
@@ -39,7 +39,7 @@ namespace util
 		static void generateLayerWithTag(Node* p, std::vector<int> layerTags, int startZ = 0);
 		static float fit(Node* fitTo, Node* toFit);
         static float fit(Size fitTo, Node* toFit);
-        static void captureScreen();
+        static void captureScreen(std::function<void(bool, const std::string&)> captureDoneCB);
         static void addClickBtCallback(ui::Widget* bt, std::function<void()> cb);
 		static void addNodeClickCallback(Node* node, std::function<void()> cb, bool swallowTouch = true);
 	};

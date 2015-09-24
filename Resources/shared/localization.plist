@@ -13,12 +13,18 @@
 		<string>More</string>
 		<key>leaderboard</key>
 		<string>Leaderboards/Achievements</string>
+    <key>alert</key>
+    <string>Alert</string>
 		<key>learn</key>
 		<string>Learn</string>
 		<key>rate</key>
 		<string>Rate/Feedback</string>
 		<key>setting</key>
 		<string>Settings</string>
+    <key>imageError</key>
+    <string>Cannot save image!</string>
+    <key>close</key>
+    <string>Close</string>
 		<key>tablemode</key>
 		<string>Play</string>
 		<key>categories</key>
@@ -31,6 +37,12 @@
 		<string>New best SCORE!</string>
 		<key>bestScore</key>
 		<string>Your best score is @number</string>
+    <key>shareMsg</key>
+    <string>I've got @pt points in category @cat. What about you? @url</string>
+    <key>socialErrorFB</key>
+    <string>You must setup Facebook account in System Settings!</string>
+    <key>socialErrorTwitter</key>
+    <string>You must setup Twitter account in System Settings!</string>
 		<key>cats</key>
 		<array>
 			<string>letters</string>

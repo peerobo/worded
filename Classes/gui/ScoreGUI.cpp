@@ -4,19 +4,91 @@
 #include "../Constants.h"
 #include <ui/UILayout.h>
 #include <string>
+#include "AlertGUI.h"
 
-void _internalClickShare()
+void ScoreGUI::share(CONST_STR img, CONST_STR msg, bool fb)
+{
+	util::common::playSound(Constants::ASS_SND_CLICK,false);
+	bool ret;
+	if (fb)
+	{
+		ret = util::platform::share2FB(img, msg);
+	}
+	else
+	{
+		ret = util::platform::share2Twitter(img, msg);
+	}
+	if (!ret)
+	{
+		auto alert = AlertGUI::create();
+		auto cfg = Configuration::getInstance();
+		alert->setMsg( cfg->getValue(fb ? "socialErrorFB" : "socialErrorTwitter").asString());
+		alert->show();
+	}
+	else
+	{
+		getChildByTag(45)->removeFromParent();
+	}
+}
+
+void ScoreGUI::showShareBts(bool ret, CONST_STR str)
+{
+	if (ret)
+	{
+		auto cfg = Configuration::getInstance();
+		Size s = util::graphic::getScreenSize();
+		auto pos = Vec2(s.width / 2, 340);
+		auto bg = util::graphic::getSprite(Constants::ASS_ICO_BG_BUBBLE);
+		bg->setAnchorPoint(Vec2::ANCHOR_MIDDLE_BOTTOM);
+		bg->setPosition(pos);
+		util::graphic::addClosedWhenClickOutside(bg);
+		this->addChild(bg, 3);
+
+		std::string msgShare = cfg->getValue("shareMsg").asString();
+		util::common::replace(msgShare, "@pt", StringUtils::toString(targetScore));
+		util::common::replace(msgShare, "@cat", cat);
+		util::common::replace(msgShare, "@url", Constants::KEY_APPID);
+
+		auto size = bg->getContentSize();
+		auto bt = ui::Button::create();
+		bt->loadTextureNormal(util::graphic::getAssetName(Constants::ASS_BT_FB), ui::Widget::TextureResType::PLIST);
+		bt->setAnchorPoint(Vec2::ANCHOR_MIDDLE);
+		bt->setPosition(Vec2(size.width/4,size.height/2));
+		bg->addChild(bt);
+		util::graphic::addClickBtCallback(bt, CC_CALLBACK_0(ScoreGUI::share, this, str, msgShare, true));
+
+		bt = ui::Button::create();
+		bt->loadTextureNormal(util::graphic::getAssetName(Constants::ASS_BT_TWITTER), ui::Widget::TextureResType::PLIST);
+		bt->setAnchorPoint(Vec2::ANCHOR_MIDDLE);
+		bt->setPosition(Vec2(size.width * 3 / 4, size.height / 2));
+		bg->addChild(bt);
+		util::graphic::addClickBtCallback(bt, CC_CALLBACK_0(ScoreGUI::share, this, str, msgShare, false));
+
+		bg->setTag(45);
+	}
+	else
+	{
+		Configuration* cfg = Configuration::getInstance();
+		auto msgBox = AlertGUI::create();
+		msgBox->setMsg(cfg->getValue("imageError").asString());
+		msgBox->show();
+	}
+}
+
+void ScoreGUI::saveImage()
 {
 	util::common::playSound(Constants::ASS_SND_CLICK, false);
-	util::graphic::captureScreen();
+	util::graphic::captureScreen(CC_CALLBACK_2(ScoreGUI::showShareBts,this));
 }
 
 ScoreGUI::ScoreGUI(std::string cat, int score, int bestScore, int star, std::function<void()> backCB, std::function<void()> retryCB)
 {
+	Configuration* cfg = Configuration::getInstance();
+	this->cat = cfg->getValue(StringUtils::format("c_%s",cat),Value(cat)).asString();
+	util::common::capitalize(this->cat);
 	this->star = star;
 	this->bestScore = bestScore;
 	Size s = util::graphic::getScreenSize();	
-	Configuration* cfg = Configuration::getInstance();
 
 	std::string title = cfg->getValue("scoreCat").asString();
 	std::string catTitle = cat;
@@ -122,7 +194,7 @@ ScoreGUI::ScoreGUI(std::string cat, int score, int bestScore, int star, std::fun
 	shareBt->loadTextureNormal(util::graphic::getAssetName(Constants::ASS_BT_SHARE), ui::Widget::TextureResType::PLIST);
 	shareBt->setAnchorPoint(Vec2::ANCHOR_MIDDLE_BOTTOM);
 	shareBt->setPosition(Vec2(s.width / 2, 100));
-	util::graphic::addClickBtCallback(shareBt, std::bind(&_internalClickShare));
+	util::graphic::addClickBtCallback(shareBt, std::bind(&ScoreGUI::saveImage, this));
 
 	auto retryBt = ui::Button::create();
 	addChild(retryBt, 3);
@@ -141,6 +213,17 @@ ScoreGUI::ScoreGUI(std::string cat, int score, int bestScore, int star, std::fun
 void ScoreGUI::update(float dt)
 {
 	Node::update(dt);
+	if (scoreProgress == 0)
+	{
+		Label* lbl = dynamic_cast<Label*>(getChildByTag(23));
+		if (lbl->getOpacity() == 255)
+		{
+			lbl->setString(StringUtils::toString(scoreProgress));
+			Rect rect = lbl->getBoundingBox();
+			Node* lblPt = getChildByTag(24);
+			lblPt->setPositionX(rect.getMaxX() + 20);
+		}
+	}
 	if (scoreProgress != targetScore)
 	{
 		updateFlag += dt;
@@ -170,10 +253,12 @@ void ScoreGUI::update(float dt)
 				lblPt->setPositionX(rect.getMaxX() + 20);
 				starIcon->setPositionX(lblPt->getPositionX());
 				starBG->setPositionX(lblPt->getPositionX());
-
+				float percent = scoreProgress / (float)WordedApp::STAR_MIN_PT;
 				Size starSize = starIcon->getChildByTag(12)->getContentSize();
-				starSize.height = scoreProgress / (float)WordedApp::STAR_MIN_PT * starSize.height;
+				starSize.height = percent * starSize.height;
 				starIcon->setContentSize(starSize);
+				starBG->setOpacity(255*percent);
+				starIcon->getChildByTag(12)->setOpacity(255 * percent);
 				
 				if (scoreProgress == targetScore)
 				{

@@ -71,7 +71,7 @@ void DlgMgr::showDlg(Dlg* dlg, int layer, bool withAnimation, bool withModalBG)
 {	
 	removeFromList(dlg);
 	dlgs.push_back(dlg);
-	util::graphic::showDisp(dlg,withModalBG,layer);
+	util::graphic::showDisp(dlg,withModalBG,true,layer);
 
 	// animation
 	if (withAnimation)

@@ -149,7 +149,6 @@ void CatChooser::animateIn()
     lbl->setPosition(s.width/2,s.height - 70);
     util::effects::reveal(lbl);
     lbl->setTag(3);
-	lbl->setColor(Color3B(229, 94, 72));
 
 	auto backBt = ui::Button::create();
 	addChild(backBt, 1);
