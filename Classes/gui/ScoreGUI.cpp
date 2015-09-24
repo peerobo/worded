@@ -204,7 +204,6 @@ ScoreGUI::ScoreGUI(std::string cat, int score, int bestScore, int star, std::fun
 	util::graphic::addClickBtCallback(retryBt, retryCB);
 
 	targetScore = score;
-
 	scheduleUpdate();
 	updateFlag = 0;
 	

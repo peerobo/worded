@@ -68,12 +68,19 @@ namespace util
 #endif
     }
 
-	void platform::updateAchGC(const std::string& ach, float percent)
+    void platform::updateAchGC(const std::string& ach, float percent, std::function<void()> okCB)
 	{
 #if CC_TARGET_PLATFORM == CC_PLATFORM_IOS
-		IOS::updateGCAchievement(ach, percent);
+		IOS::updateGCAchievement(ach, percent, okCB);
 #endif
 	}
+    
+    void platform::resetAchGC()
+    {
+#if CC_TARGET_PLATFORM == CC_PLATFORM_IOS
+        IOS::resetAchievement();
+#endif
+    }
 	
 	bool platform::share2Twitter(const std::string& imagePath, const std::string msg)
 	{

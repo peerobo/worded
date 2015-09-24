@@ -69,6 +69,16 @@ void TableLogic::start()
     nextWord();
     level = -1;
     isShowScore = false;
+    bool finishAchHard = util::common::getValue("achHard").asBool();
+    if(WordedApp::difficult == WordedApp::DIFFICULT_HARD && !finishAchHard)
+    {
+        if (util::platform::isGC()) {
+            //util::platform::updateAchGC(WordedApp::ACH_HARD_MODE, 100, [](){});
+            util::platform::updateAchGC(WordedApp::ACH_HARD_MODE, 100, std::bind(&util::common::saveValue,"achHard",Value(true)));
+        }
+
+        
+    }
 }
 
 void TableLogic::validateState()

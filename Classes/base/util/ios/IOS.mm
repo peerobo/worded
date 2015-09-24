@@ -18,20 +18,33 @@ static IOSUtility* iosUtil = nil;
 
 bool IOS::isGC = false;
 
+void IOS::resetAchievement()
+{
+    [GKAchievement resetAchievementsWithCompletionHandler:^(NSError * _Nullable error) {
+        if(error){
+            NSLog(@"%@", [error localizedDescription]);
+        }
+    }];
+}
+
 void IOS::vibrate()
 {
 	AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
 }
 
-void IOS::updateGCAchievement(const std::string& ach, float percent)
+void IOS::updateGCAchievement(const std::string& ach, float percent, std::function<void()> okCB)
 {
 	GKAchievement* gk = [[GKAchievement alloc] init];
 	NSString* idAch = [NSString stringWithUTF8String:ach.c_str()];
 	gk.identifier = idAch;
 	gk.percentComplete = percent;
+    gk.showsCompletionBanner = YES;
     [GKAchievement reportAchievements:@[gk] withCompletionHandler:^(NSError * _Nullable error) {
         if (error) {
             NSLog(@"%@", [error localizedDescription]);
+        }
+        else{
+            okCB();
         }
         
     }];
