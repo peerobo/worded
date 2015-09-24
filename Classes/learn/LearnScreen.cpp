@@ -58,8 +58,48 @@ void LearnScreen::animateIn()
 	wordsContainer->setPosition(list->getPosition());
 	wordsContainer->setVisible(false);
 	wordsContainer->setTag(100);
+	
+	EventListenerTouchOneByOne* evt = EventListenerTouchOneByOne::create();
+	evt->onTouchBegan = CC_CALLBACK_2(LearnScreen::onWordBegan, this);
+	evt->onTouchMoved = CC_CALLBACK_2(LearnScreen::onWordMoved, this);
+	evt->onTouchEnded = CC_CALLBACK_2(LearnScreen::onWordEnded, this);
+	evt->setSwallowTouches(true);
+	wordsContainer->getEventDispatcher()->addEventListenerWithSceneGraphPriority(evt, wordsContainer);
 
 	showList();
+}
+
+bool LearnScreen::onWordBegan(Touch* t, Event* e)
+{
+	if (util::graphic::checkHit(t, e->getCurrentTarget()) && !disableTouch)
+	{
+		return true;
+	}
+	return false;
+}
+
+void LearnScreen::onWordMoved(Touch* t, Event* e)
+{
+	int delta = std::abs( t->getLocation().x - t->getStartLocation().x);
+	float total = e->getCurrentTarget()->getContentSize().width;
+	float percent = 1 - delta / total;
+	auto container = e->getCurrentTarget();
+	auto v = container->getChildren();
+	bool moved = !util::graphic::checkTouchStill(t);
+	for (auto c : v)
+	{
+		c->setOpacity(moved ? 255*percent : 255);
+	}
+	
+}
+
+void LearnScreen::onWordEnded(Touch* t, Event* e)
+{
+	int delta = t->getLocation().x - t->getStartLocation().x;
+	if (delta < 0)
+		advanceWord(true);
+	else
+		advanceWord(false);
 }
 
 void _internalLearnChangeScene()
@@ -143,27 +183,27 @@ void LearnScreen::setWord()
 		util::effects::fadeAndRemove(c, 0.5f);
 	}
 
-	if (idxWord > 0)
-	{
-		ui::Button* bt = Button::create();
-		bt->loadTextureNormal(util::graphic::getAssetName(Constants::ASS_BT_BACK), ui::Widget::TextureResType::PLIST);
-		bt->setAnchorPoint(Vec2::ANCHOR_MIDDLE_LEFT);
-		container->addChild(bt, 0);
-		bt->setPosition(Vec2(0, sList.height / 2));
-		util::graphic::addClickBtCallback(bt, CC_CALLBACK_0(LearnScreen::advanceWord, this, false));
-	}
-	
-	int size = words.size();
-	if (idxWord < size-1)
-	{
-		ui::Button* bt = Button::create();
-		bt->loadTextureNormal(util::graphic::getAssetName(Constants::ASS_BT_BACK), ui::Widget::TextureResType::PLIST);
-		bt->setAnchorPoint(Vec2::ANCHOR_MIDDLE_RIGHT);
-		bt->setFlippedX(true);
-		container->addChild(bt, 0);
-		bt->setPosition(Vec2(sList.width - 100, sList.height / 2));
-		util::graphic::addClickBtCallback(bt, CC_CALLBACK_0(LearnScreen::advanceWord, this, true));
-	}
+	//if (idxWord > 0)
+	//{
+	//	ui::Button* bt = Button::create();
+	//	bt->loadTextureNormal(util::graphic::getAssetName(Constants::ASS_BT_BACK), ui::Widget::TextureResType::PLIST);
+	//	bt->setAnchorPoint(Vec2::ANCHOR_MIDDLE_LEFT);
+	//	container->addChild(bt, 0);
+	//	bt->setPosition(Vec2(0, sList.height / 2));
+	//	util::graphic::addClickBtCallback(bt, CC_CALLBACK_0(LearnScreen::advanceWord, this, false));
+	//}
+	//
+	//int size = words.size();
+	//if (idxWord < size-1)
+	//{
+	//	ui::Button* bt = Button::create();
+	//	bt->loadTextureNormal(util::graphic::getAssetName(Constants::ASS_BT_BACK), ui::Widget::TextureResType::PLIST);
+	//	bt->setAnchorPoint(Vec2::ANCHOR_MIDDLE_RIGHT);
+	//	bt->setFlippedX(true);
+	//	container->addChild(bt, 0);
+	//	bt->setPosition(Vec2(sList.width - 100, sList.height / 2));
+	//	util::graphic::addClickBtCallback(bt, CC_CALLBACK_0(LearnScreen::advanceWord, this, true));
+	//}
 
 	// word
 	auto bg = util::graphic::getSprite(Constants::ASS_ICO_BG_WORD);
@@ -171,6 +211,7 @@ void LearnScreen::setWord()
 	bg->setAnchorPoint(Vec2::ANCHOR_MIDDLE);
 	auto bgSize = bg->getContentSize();
 	container->addChild(bg, 0);
+	bg->setTag(1);
 	util::graphic::addNodeClickCallback(bg, std::bind(&WordedApp::playSound,words[idxWord]) , true);
 
 	std::string wordStr = words[idxWord];
@@ -179,6 +220,14 @@ void LearnScreen::setWord()
 	lbl->setAnchorPoint(Vec2::ANCHOR_MIDDLE);
 	lbl->setPosition(sList.width / 2, (sList.height - bgSize.height) / 2 - 100);
 	container->addChild(lbl, 2);
+	lbl->setTag(2);
+
+	WordedApp::playSound(words[idxWord]);
+	int size = words.size();
+	Label* lblPage = Label::createWithBMFont(Constants::ASS_FNT_NORMAL, StringUtils::format("%d/%d", idxWord + 1, size));
+	lblPage->setAnchorPoint(Vec2::ANCHOR_BOTTOM_RIGHT);
+	container->addChild(lblPage, 2);
+	lblPage->setPosition(sList.width - 20, 20);
 
 	Node* icon = util::graphic::getSprite(words[idxWord]);
 	icon->setAnchorPoint(Vec2::ANCHOR_MIDDLE);
@@ -187,6 +236,7 @@ void LearnScreen::setWord()
 	bgSize.height -= 50;
 	icon->setScale(util::graphic::fit(bgSize, icon));
 	icon->setPosition(bg->getPosition());
+	lbl->setTag(3);
 
 	if (needTut)
 	{
@@ -206,12 +256,17 @@ void LearnScreen::setWord()
 		tut->runAction(Sequence::create(vact));
 		needTut = false;
 	}
-
+	disableTouch = true;
 	util::effects::reveal(bg,0.5f);
 	util::effects::reveal(icon, 0.5f);
-	util::effects::reveal(lbl, 0.5f);
+	util::effects::reveal(lblPage, 0.5f);
+	util::effects::reveal(lbl, 0.5f,CC_CALLBACK_0(LearnScreen::enableTouch,this));	
 
-	WordedApp::playSound(words[idxWord]);
+}
+
+void LearnScreen::enableTouch()
+{
+	disableTouch = false;
 }
 
 void LearnScreen::showList()

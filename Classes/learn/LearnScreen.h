@@ -13,6 +13,9 @@ private:
 	int idxWord;
 	bool needTut;
 
+	bool disableTouch;
+	void enableTouch();
+
 	const int LAYER_GUI;
 	const int LAYER_LBL;
 	const int LAYER_CAT;
@@ -25,6 +28,10 @@ private:
 	void setWord();
 	void advanceWord(bool next);
 	LearnScreen();
+
+	bool onWordBegan(Touch* t, Event* e);
+	void onWordMoved(Touch* t, Event* e);
+	void onWordEnded(Touch* t, Event* e);
 public:
 	CREATE_FUNC(LearnScreen);
 };
