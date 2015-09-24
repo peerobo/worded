@@ -84,7 +84,7 @@ void ScoreGUI::saveImage()
 ScoreGUI::ScoreGUI(std::string cat, int score, int bestScore, int star, std::function<void()> backCB, std::function<void()> retryCB)
 {
 	Configuration* cfg = Configuration::getInstance();
-	this->cat = cfg->getValue(StringUtils::format("c_%s",cat),Value(cat)).asString();
+	this->cat = cfg->getValue(StringUtils::format("c_%s",cat.c_str()),Value(cat)).asString();
 	util::common::capitalize(this->cat);
 	this->star = star;
 	this->bestScore = bestScore;

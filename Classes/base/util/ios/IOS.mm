@@ -45,7 +45,7 @@ bool IOS::share2Twitter(const std::string& path,const std::string& msg,  const s
         [tweetSheetOBJ setInitialText:[NSString stringWithUTF8String:msg.c_str()]];
         UIImage* img = [[UIImage alloc]initWithContentsOfFile: [NSString stringWithUTF8String:path.c_str()]];
         [tweetSheetOBJ addImage: img];
-		[tweetSheetOBJ addURL:[NSString stringWithUTF8String:url.c_str()]];
+		[tweetSheetOBJ addURL:[NSURL URLWithString:[NSString stringWithUTF8String:url.c_str()]]];
         [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:tweetSheetOBJ animated:YES completion:nil];
 		return true;
     }
@@ -62,7 +62,7 @@ bool IOS::share2Facebook(const std::string& path,const std::string& msg, const s
         [fbSheetObj setInitialText:[NSString stringWithUTF8String:msg.c_str()]];
         UIImage* img = [[UIImage alloc]initWithContentsOfFile: [NSString stringWithUTF8String:path.c_str()]];
         [fbSheetObj addImage: img];
-		[tweetSheetOBJ addURL:[NSString stringWithUTF8String:url.c_str()]];
+        [fbSheetObj addURL:[NSURL URLWithString:[NSString stringWithUTF8String:url.c_str()]]];
         [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:fbSheetObj animated:YES completion:nil];
 		return true;
     }

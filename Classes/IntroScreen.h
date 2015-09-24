@@ -28,6 +28,8 @@ private:
     void onTableMode();
     void onLeaderboard();
     void onMoreGame();
+    void onMore();
+    void onBack();
 	void onSetting();
     void onRate();
 public:

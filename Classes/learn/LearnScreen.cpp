@@ -122,11 +122,12 @@ Node* LearnScreen::createItem(CONST_STR cat, int type, int w)
 	catIcon->setPosition(itemSize.width / 2, itemSize.height / 2);
 	node->addChild(catIcon, 1);
 
-	std::string catClone = cat;
+    std::string catClone = Configuration::getInstance()->getValue(StringUtils::format("c_%s",cat.c_str()),Value(cat)).asString();
 	util::common::capitalize(catClone);
 	auto lbl = Label::createWithBMFont(Constants::ASS_FNT_NORMAL, catClone);
 	lbl->setAnchorPoint(Vec2::ANCHOR_MIDDLE_LEFT);
 	lbl->setPosition(itemSize.width+100, itemSize.height/2);
+    lbl->setMaxLineWidth(w-bg->getContentSize().width - 100);
 	lbl->setScale(0.7f);
 	node->addChild(lbl, 2);
 
@@ -270,7 +271,8 @@ void LearnScreen::enableTouch()
 }
 
 void LearnScreen::showList()
-{	
+{
+    disableTouch = true;
 	if (cat != "")
 	{
 		util::graphic::removeTexAtl(cat);

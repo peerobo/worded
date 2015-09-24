@@ -24,6 +24,50 @@ void IntroScreen::onLearnMode()
 	
 }
 
+void IntroScreen::onMore()
+{
+    Configuration* cfg = Configuration::getInstance();
+    Size s = util::graphic::getScreenSize();
+    float posY = s.height/2 + 150;
+    
+    IntroItem* item = IntroItem::create();
+    item->setValue(cfg->getValue("back").asString(), CC_CALLBACK_0(IntroScreen::onTouchItem, this,4));
+    addChild(item,1);
+    item->setPositionX(s.width/2);
+    item->setPositionY(posY-100);
+    item->setTag(14);
+    item->runIn(0);
+    
+    item = IntroItem::create();
+    item->setValue(cfg->getValue("leaderboard").asString(),  CC_CALLBACK_0(IntroScreen::onTouchItem, this,5));
+    addChild(item,1);
+    item->setPositionX(s.width/2);
+    item->setPositionY(posY-250);
+    item->runIn(1);
+    item->setTag(15);
+    
+    item = IntroItem::create();
+    item->setValue(cfg->getValue("rate").asString(),  CC_CALLBACK_0(IntroScreen::onTouchItem, this,6));
+    addChild(item,1);
+    item->setPositionX(s.width/2);
+    item->setPositionY(posY-400);
+    item->runIn(2);
+    item->setTag(16);
+    
+    item = IntroItem::create();
+    item->setValue(cfg->getValue("moreGames").asString(),  CC_CALLBACK_0(IntroScreen::onTouchItem, this,7));
+    addChild(item,1);
+    item->setPositionX(s.width/2);
+    item->setPositionY(posY-550);
+    item->runIn(3);
+    item->setTag(17);
+}
+
+void IntroScreen::onBack()
+{
+    startIntro();
+}
+
 void IntroScreen::onTableMode()
 {
     util::graphic::changeSceneWithLayer(CatChooser::create());
@@ -60,12 +104,16 @@ void IntroScreen::onMoreGame()
 
 void IntroScreen::onTouchItem(int type)
 {
+    auto node = dynamic_cast<IntroItem*>(getChildByTag(10+type));
+    if(node->getOpacity() < 255)
+        return;
 	util::common::playSound(Constants::ASS_SND_CLICK, false);
-    if (type == 0 || type == 1) {
+    if (type == 0 || type == 1 || type == 3 || type == 4)
+    {
         
         // buttons vanish
         int count = 0;
-        for (int i =0; i<4; i++) {
+        for (int i =0; i<8; i++) {
             auto node = dynamic_cast<IntroItem*>(getChildByTag(10+i));
             if(node)
             {
@@ -81,17 +129,24 @@ void IntroScreen::onTouchItem(int type)
             }
             
         }
-        // cache next bg
-        auto bg = util::graphic::getSpriteFromImageJPG(type == 0 ? Constants::ASS_BG_ONE:Constants::ASS_BG_TABLE);
-        Size s = util::graphic::getScreenSize();
-        bg->setPosition(s.width/2,s.height/2);
-        addChild(bg,0);
-        
-        // bg fade out
-        Vector<FiniteTimeAction*> v;
-        v.pushBack(FadeOut::create(0.3f));
-        v.pushBack(CallFunc::create(CC_CALLBACK_0(IntroScreen::processType, this,type)));
-        getChildByTag(1)->runAction(Sequence::create(v));
+        if (type == 0 || type == 1) {
+            // cache next bg
+            auto bg = util::graphic::getSpriteFromImageJPG(type == 0 ? Constants::ASS_BG_ONE:Constants::ASS_BG_TABLE);
+            Size s = util::graphic::getScreenSize();
+            bg->setPosition(s.width/2,s.height/2);
+            addChild(bg,0);
+            
+            // bg fade out
+            Vector<FiniteTimeAction*> v;
+            v.pushBack(FadeOut::create(0.3f));
+            v.pushBack(CallFunc::create(CC_CALLBACK_0(IntroScreen::processType, this,type)));
+            getChildByTag(1)->runAction(Sequence::create(v));
+
+        }
+        else
+        {
+            processType(type);
+        }
         
     }
     else
@@ -113,16 +168,22 @@ void IntroScreen::processType(int type)
             onTableMode();
             break;
         case 2:
-            onLeaderboard();
+            onSetting();
             break;
         case 3:
-            onMoreGame();
+            onMore();
             break;
 		case 4:
-			onSetting();
+            onBack();
 			break;
         case 5:
+            onLeaderboard();
+            break;
+        case 6:
             onRate();
+            break;
+        case 7:
+            onMoreGame();
             break;
         default:
             break;
@@ -169,7 +230,7 @@ void IntroScreen::startIntro()
     item->setTag(11);
     
     item = IntroItem::create();
-    item->setValue(cfg->getValue("leaderboard").asString(),  CC_CALLBACK_0(IntroScreen::onTouchItem, this,2));
+    item->setValue(cfg->getValue("setting").asString(),  CC_CALLBACK_0(IntroScreen::onTouchItem, this,2));
     addChild(item,1);
     item->setPositionX(s.width/2);
     item->setPositionY(posY-400);
@@ -184,22 +245,22 @@ void IntroScreen::startIntro()
     item->setPositionY(posY-550);
     item->runIn(3);
     item->setTag(13);
-
-	item = IntroItem::create();
-	item->setValue(cfg->getValue("setting",Value("Settings")).asString(), CC_CALLBACK_0(IntroScreen::onTouchItem, this, 4));
-	addChild(item, 1);
-	item->setPositionX(s.width / 2);
-//	item->setPositionY(posY - 550);
-    item->setPositionY(posY - 700);
-	item->runIn(4);
-	item->setTag(14);
-    
-    item = IntroItem::create();
-    item->setValue(cfg->getValue("rate",Value("Settings")).asString(), CC_CALLBACK_0(IntroScreen::onTouchItem, this, 5));
-    addChild(item, 1);
-    item->setPositionX(s.width / 2);
+//
+//	item = IntroItem::create();
+//	item->setValue(cfg->getValue("setting",Value("Settings")).asString(), CC_CALLBACK_0(IntroScreen::onTouchItem, this, 4));
+//	addChild(item, 1);
+//	item->setPositionX(s.width / 2);
+////	item->setPositionY(posY - 550);
 //    item->setPositionY(posY - 700);
-    item->setPositionY(posY - 850);
-    item->runIn(5);
-    item->setTag(15);
+//	item->runIn(4);
+//	item->setTag(14);
+//    
+//    item = IntroItem::create();
+//    item->setValue(cfg->getValue("rate",Value("Settings")).asString(), CC_CALLBACK_0(IntroScreen::onTouchItem, this, 5));
+//    addChild(item, 1);
+//    item->setPositionX(s.width / 2);
+////    item->setPositionY(posY - 700);
+//    item->setPositionY(posY - 850);
+//    item->runIn(5);
+//    item->setTag(15);
 }

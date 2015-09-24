@@ -11,20 +11,24 @@
 	<dict>
 		<key>more</key>
 		<string>More</string>
+		<key>moreGames</key>
+		<string>More Games</string>
 		<key>leaderboard</key>
-		<string>Leaderboards/Achievements</string>
-    <key>alert</key>
-    <string>Alert</string>
+		<string>GameCenter</string>
+		<key>back</key>
+		<string>Back</string>
+		<key>alert</key>
+		<string>Alert</string>
 		<key>learn</key>
 		<string>Learn</string>
 		<key>rate</key>
 		<string>Rate/Feedback</string>
 		<key>setting</key>
 		<string>Settings</string>
-    <key>imageError</key>
-    <string>Cannot save image!</string>
-    <key>close</key>
-    <string>Close</string>
+		<key>imageError</key>
+		<string>Cannot save image!</string>
+		<key>close</key>
+		<string>Close</string>
 		<key>tablemode</key>
 		<string>Play</string>
 		<key>categories</key>
@@ -37,12 +41,12 @@
 		<string>New best SCORE!</string>
 		<key>bestScore</key>
 		<string>Your best score is @number</string>
-    <key>shareMsg</key>
-    <string>I've got @pt points in category @cat. What about you? @url</string>
-    <key>socialErrorFB</key>
-    <string>You must setup Facebook account in System Settings!</string>
-    <key>socialErrorTwitter</key>
-    <string>You must setup Twitter account in System Settings!</string>
+		<key>shareMsg</key>
+		<string>I&apos;ve got @pt points in category @cat. What about you? @url</string>
+		<key>socialErrorFB</key>
+		<string>You must setup Facebook account in System Settings!</string>
+		<key>socialErrorTwitter</key>
+		<string>You must setup Twitter account in System Settings!</string>
 		<key>cats</key>
 		<array>
 			<string>letters</string>
@@ -75,32 +79,32 @@
 			<string>positions</string>
 			<string>sports</string>
 		</array>
-    <key>c_numbers1</key>
-    <string>numbers 1</string>
-    <key>c_numbers2</key>
-    <string>numbers 2</string>
-    <key>c_food1</key>
-    <string>food 1</string>
-    <key>c_food2</key>
-    <string>food 2</string>
-    <key>c_animals1</key>
-    <string>animals 1</string>
-    <key>c_animals2</key>
-    <string>animals 2</string>
-    <key>c_verbs2</key>
-    <string>verbs 2</string>
-    <key>c_verbs1</key>
-    <string>verbs 1</string>
-    <key>c_body1</key>
-    <string>body 1</string>
-    <key>c_body2</key>
-    <string>body 2</string>
-    <key>c_animalparts</key>
-    <string>animal parts</string>
-    <key>c_clothes2</key>
-    <string>clothes 2</string>
-    <key>c_clothes1</key>
-    <string>clothes 1</string>
+		<key>c_numbers1</key>
+		<string>numbers 1</string>
+		<key>c_numbers2</key>
+		<string>numbers 2</string>
+		<key>c_food1</key>
+		<string>food 1</string>
+		<key>c_food2</key>
+		<string>food 2</string>
+		<key>c_animals1</key>
+		<string>animals 1</string>
+		<key>c_animals2</key>
+		<string>animals 2</string>
+		<key>c_verbs2</key>
+		<string>verbs 2</string>
+		<key>c_verbs1</key>
+		<string>verbs 1</string>
+		<key>c_body1</key>
+		<string>body 1</string>
+		<key>c_body2</key>
+		<string>body 2</string>
+		<key>c_animalparts</key>
+		<string>animal parts</string>
+		<key>c_clothes2</key>
+		<string>clothes 2</string>
+		<key>c_clothes1</key>
+		<string>clothes 1</string>
 		<key>body2</key>
 		<string>shoulder;knee;moustache;elbow;forehead;heel;ankle;eyebrow;eyelash;wrist;armpit;belly button;bicep;bone;calf;earlobe;hip;lips;nostril;thigh</string>
 		<key>jobs</key>
