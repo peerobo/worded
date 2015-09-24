@@ -21,7 +21,7 @@ namespace util
 		static std::string getAssetName(const std::string& texName);
 		static bool checkHasFrameName(const char* name);
 		static void setOpacity(Node* object, GLubyte opaque);
-		static bool checkHit(Touch* touch, Node* node);
+		static bool checkHit(Touch* touch, Node* node, bool needVisible = true);
 		static bool checkHitPt(Vec2 worldPt, Node* node);
 		static bool checkTouchStill(Touch* t, int threshold = 40);
 		static Scene* createSceneWithLayer(Layer* layer);

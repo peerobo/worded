@@ -189,7 +189,6 @@ void _internalChangeScene()
 void CatChooser::onBackScreen()
 {
 	auto v = getChildren();
-	int vsize = v.size();
 	for (auto c : v)
 	{
 		int tag = c->getTag();

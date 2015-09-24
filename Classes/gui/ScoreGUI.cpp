@@ -5,6 +5,7 @@
 #include <ui/UILayout.h>
 #include <string>
 #include "AlertGUI.h"
+#include "../base/ScoreDB.h"
 
 void ScoreGUI::share(CONST_STR img, CONST_STR msg, bool fb)
 {
@@ -261,8 +262,78 @@ void ScoreGUI::update(float dt)
 				
 				if (scoreProgress == targetScore)
 				{
-					if (targetScore >= WordedApp::STAR_MIN_PT)
+					if (targetScore >= WordedApp::STAR_MIN_PT)  // finish effect
 					{
+                        // check stars achievement
+                        {
+                            int starTotal =ScoreDB::instance->getScoreFor(std::string(WordedApp::STARTOTAL_KEY));
+                            std::vector<std::string> starsAch = {
+                                std::string(WordedApp::ACH_1_STAR),
+                                std::string(WordedApp::ACH_25_STAR),
+                                std::string(WordedApp::ACH_50_STAR),
+                                std::string(WordedApp::ACH_100_STAR),
+                                std::string(WordedApp::ACH_145_STAR)
+                            };
+                            float starsNum[] = {1,25,50,100,145};
+                            int len = starsAch.size();
+                            for (int i = 0; i< len; i++) {
+                                bool checkAch = util::common::getValue(starsAch[i]).asBool();
+                                if(!checkAch)
+                                {
+                                    float percent = starTotal / starsNum[i];
+                                    if (((int)percent)*100 >= 100)
+                                    {
+                                        // update and save
+                                        util::platform::updateAchGC(
+                                                starsAch[i],
+                                                100,
+                                                std::bind(&util::common::saveValue,starsAch[i],Value(true))
+                                            );
+                                    }
+                                    else
+                                    {
+                                        util::platform::updateAchGC(starsAch[i],percent*100);
+                                    }
+                                    break;
+                                }
+                            }
+                        }
+                        
+                        // check 90 points achievement
+                        {
+                            int time90 = ScoreDB::instance->getScoreFor(std::string(WordedApp::TOTAL_90STAR));
+                            std::vector<std::string> _90achs = {
+                                std::string(WordedApp::ACH_ONE_90),
+                                std::string(WordedApp::ACH_FIVE_90),
+                                std::string(WordedApp::ACH_TEN_90),
+                                std::string(WordedApp::ACH_ALL_90)
+                            };
+                            float num90[] = {1,5,10,29};
+                            int lenPt = _90achs.size();
+                            
+                            for (int i = 0; i< lenPt; i++) {
+                                bool checkAch = util::common::getValue(_90achs[i]).asBool();
+                                if(!checkAch)
+                                {
+                                    float percent = time90 / num90[i];
+                                    if (((int)percent)*100 >= 100)
+                                    {
+                                        // update and save
+                                        util::platform::updateAchGC(
+                                                                    _90achs[i],
+                                                                    100,
+                                                                    std::bind(&util::common::saveValue,_90achs[i],Value(true))
+                                                                    );
+                                    }
+                                    else
+                                    {
+                                        util::platform::updateAchGC(_90achs[i],percent*100);
+                                    }
+                                    break;
+                                }
+                            }
+                        }
+                        
 						if (star < WordedApp::STAR_MAX)
 						{
 							auto targetStar = getChildByTag(19);
@@ -286,6 +357,15 @@ void ScoreGUI::update(float dt)
 							starIcon->runAction(Sequence::create(v));
 							starIcon->getChildByTag(12)->runAction(FadeOut::create(0.7f));
 							util::common::playSoundNoResponse(Constants::ASS_SND_HIGHSCORE, false);
+                            // update achievement
+                            if(star + 1 == WordedApp::STAR_MAX)
+                            {
+                                bool checkAch = util::common::getValue(WordedApp::ACH_1_CAT).asBool();
+                                if(!checkAch)
+                                {
+                                    util::platform::updateAchGC(WordedApp::ACH_1_CAT, 100, std::bind(&util::common::saveValue,WordedApp::ACH_1_CAT, Value(true)) );
+                                }
+                            }
 						}
 						
 					}

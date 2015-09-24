@@ -44,11 +44,12 @@ void IOS::updateGCAchievement(const std::string& ach, float percent, std::functi
             NSLog(@"%@", [error localizedDescription]);
         }
         else{
-            okCB();
+            if(okCB)
+                okCB();
         }
         
     }];
-
+    [gk autorelease];
 }
 
 bool IOS::share2Twitter(const std::string& path,const std::string& msg,  const std::string& url)
@@ -60,6 +61,7 @@ bool IOS::share2Twitter(const std::string& path,const std::string& msg,  const s
         [tweetSheetOBJ addImage: img];
 		[tweetSheetOBJ addURL:[NSURL URLWithString:[NSString stringWithUTF8String:url.c_str()]]];
         [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:tweetSheetOBJ animated:YES completion:nil];
+        [img autorelease];
 		return true;
     }
 	else
@@ -77,6 +79,7 @@ bool IOS::share2Facebook(const std::string& path,const std::string& msg, const s
         [fbSheetObj addImage: img];
         [fbSheetObj addURL:[NSURL URLWithString:[NSString stringWithUTF8String:url.c_str()]]];
         [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:fbSheetObj animated:YES completion:nil];
+        [img autorelease];
 		return true;
     }
 	else
@@ -89,6 +92,7 @@ void IOS::saveToAlbum(const std::string &filePath)
 {
     UIImage* img = [[UIImage alloc]initWithContentsOfFile: [NSString stringWithUTF8String:filePath.c_str()]];
     UIImageWriteToSavedPhotosAlbum(img, nil, nil, nil);
+    [img autorelease];
 }
 
 void IOS::rate(const std::string& appId)
@@ -146,5 +150,5 @@ void IOS::setScoreGC(const std::string &cat, int score)
         }
 
     }];
-
+    [scoreGC autorelease];
 }

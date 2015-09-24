@@ -33,7 +33,7 @@ TableScreen::~TableScreen()
 
 bool TableScreen::onTouchWordTileBegan(cocos2d::Touch *t, cocos2d::Event *e)
 {
-    if (util::graphic::checkHit(t, e->getCurrentTarget())) {
+    if (util::graphic::checkHit(t, e->getCurrentTarget(),false)) {
         auto gl = static_cast<TableLogic*>( GlobalVar::gameLogic);
         bool check = gl->isPause || !gl->isPlaying || gl->isShowScore || (gl->pauseTime > 0);
         if (check) {
@@ -95,7 +95,19 @@ void TableScreen::update(float dt)
 				starTotal++;
 				ScoreDB::instance->setScoreFor(std::string(WordedApp::STARTOTAL_KEY), starTotal);
 				isSave = true;
-			}			
+			}
+            
+            if(gl->score >=90)
+            {
+                bool checkGot90 = util::common::getValue(STAR90_KEY_FOR(gl->cat.c_str())).asBool();
+                if(!checkGot90)
+                {
+                    int score = ScoreDB::instance->getScoreFor(WordedApp::TOTAL_90STAR);
+                    ScoreDB::instance->setScoreFor(WordedApp::TOTAL_90STAR, score+1);
+                    util::common::saveValue(STAR90_KEY_FOR(gl->cat.c_str()), Value(true));
+                    isSave = true;
+                }
+            }
 		}
 		if(isSave)
 			ScoreDB::instance->saveDB();
@@ -236,16 +248,23 @@ void TableScreen::makeTiles(std::vector<std::string> v)
 			break;
 		}
 	}
-	Size eachTile(tilesRect.size.width/3,tilesRect.size.height/3);
+    
+    TableLogic* gl = static_cast<TableLogic*>(GlobalVar::gameLogic);
+    bool needHidBG = false;
+    if(gl->cat == "colors" || gl->cat == "positions")
+        needHidBG = true;
+    Size eachTile(tilesRect.size.width/3,tilesRect.size.height/3);
 	size_t wordSize = v.size();
 	Size bgSize;
     float scaleBG = 1;
+    
 	for (int i = 0; i < 9; ++i)
 	{
 		if(needInit) // both layers are emptied
 		{
 			// add bg;
             Node* bg = util::graphic::getSprite(StringUtils::format("%s%d",Constants::ASS_ICO_BG_TABLE,i));
+            bg->setVisible(!needHidBG);
             if (i == 0) {
                 bgSize = bg->getContentSize();
                 if (bgSize.width > eachTile.width) {

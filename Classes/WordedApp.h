@@ -6,6 +6,7 @@
 USING_NS_CC;
 
 #define STAR_KEY_FOR(cat) StringUtils::format("%s%s", WordedApp::STAR_PREFIX_KEY, cat)
+#define STAR90_KEY_FOR(cat) StringUtils::format("%s%s", WordedApp::PREFIX_90STAR, cat)
 
 class WordedApp
 {
@@ -30,6 +31,8 @@ public:
     static const float TABLE_MODE_TIME_PAUSE_B4_COUNT;
 	static const char* STARTOTAL_KEY;
 	static const char* STAR_PREFIX_KEY;
+    static const char* PREFIX_90STAR;
+    static const char* TOTAL_90STAR;
 	// achievement
 	static const char* ACH_HARD_MODE;
 	static const char* ACH_1_STAR;

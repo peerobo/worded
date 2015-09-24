@@ -311,7 +311,6 @@ void LearnScreen::onBackScreen()
         util::effects::fadeAndRemove(bt, 0.5f);
 
 		auto v = getChildren();
-		int vsize = v.size();
 		for (auto c : v)
 		{
 			int tag = c->getTag();

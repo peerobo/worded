@@ -121,7 +121,7 @@ namespace util {
 		}
 	}
 
-	bool graphic::checkHit(Touch* touch, Node* node)
+	bool graphic::checkHit(Touch* touch, Node* node, bool needVisible)
 	{
 		if (node == NULL)
 			return false;
@@ -131,7 +131,7 @@ namespace util {
 		bb.size = node->getContentSize();
 		bb.size.width = bb.size.width;
 		bb.size.height = bb.size.height;
-		if (bb.containsPoint(nsp) && node->isVisible())
+		if (bb.containsPoint(nsp) && (!needVisible || (needVisible && node->isVisible())))
 		{
 			return true;
 		}
