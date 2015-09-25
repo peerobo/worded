@@ -41,10 +41,10 @@
 		C22EA1091BA1EBB30097336A /* WordedApp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C22EA1071BA1EBB30097336A /* WordedApp.cpp */; settings = {ASSET_TAGS = (); }; };
 		C2624D751BA713C000725019 /* Looper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C2624D741BA713C000725019 /* Looper.cpp */; settings = {ASSET_TAGS = (); }; };
 		C2624D781BA7208900725019 /* TableLogic.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C2624D761BA7208900725019 /* TableLogic.cpp */; settings = {ASSET_TAGS = (); }; };
-		C26967651BB3173000F29F39 /* libcocos2d iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C24582511B9627A400958B25 /* libcocos2d iOS.a */; };
 		C26967671BB3174400F29F39 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C26967661BB3174400F29F39 /* Social.framework */; };
 		C26967681BB31BB500F29F39 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = C22EA0F01BA1EA950097336A /* libsqlite3.tbd */; };
 		C26967691BB31BC100F29F39 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C22EA0F21BA1EB170097336A /* MediaPlayer.framework */; };
+		C269676C1BB4204400F29F39 /* PageIndicator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C269676A1BB4204400F29F39 /* PageIndicator.cpp */; settings = {ASSET_TAGS = (); }; };
 		C28768BE1B96B1E60052D80C /* Dlg.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C28768B51B96B1E60052D80C /* Dlg.cpp */; settings = {ASSET_TAGS = (); }; };
 		C28768BF1B96B1E60052D80C /* DlgMgr.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C28768B71B96B1E60052D80C /* DlgMgr.cpp */; settings = {ASSET_TAGS = (); }; };
 		C28768C01B96B1E60052D80C /* ParticleMgr.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C28768B91B96B1E60052D80C /* ParticleMgr.cpp */; settings = {ASSET_TAGS = (); }; };
@@ -68,6 +68,7 @@
 		C2DC74681B9613A60086BC7B /* shared in Resources */ = {isa = PBXBuildFile; fileRef = C2DC74641B9613A60086BC7B /* shared */; settings = {ASSET_TAGS = (); }; };
 		C2E7237F1BB170470063B9C7 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2E7237E1BB170470063B9C7 /* GameKit.framework */; };
 		C2F8420E1BB1AE64001C4A24 /* AlertGUI.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C2F8420C1BB1AE64001C4A24 /* AlertGUI.cpp */; settings = {ASSET_TAGS = (); }; };
+		C2FF71371BB44F6F00992F92 /* libcocos2d iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C24582511B9627A400958B25 /* libcocos2d iOS.a */; };
 		C2FFD6991BB13FA200275733 /* LearnScreen.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C2FFD6971BB13FA200275733 /* LearnScreen.cpp */; settings = {ASSET_TAGS = (); }; };
 		C2FFD69D1BB13FC600275733 /* IOS.mm in Sources */ = {isa = PBXBuildFile; fileRef = C2FFD69C1BB13FC600275733 /* IOS.mm */; settings = {ASSET_TAGS = (); }; };
 		C2FFD6A01BB13FE300275733 /* ScoreDB.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C2FFD69E1BB13FE300275733 /* ScoreDB.cpp */; settings = {ASSET_TAGS = (); }; };
@@ -135,6 +136,8 @@
 		C2624D761BA7208900725019 /* TableLogic.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TableLogic.cpp; path = tablemode/TableLogic.cpp; sourceTree = "<group>"; };
 		C2624D771BA7208900725019 /* TableLogic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TableLogic.h; path = tablemode/TableLogic.h; sourceTree = "<group>"; };
 		C26967661BB3174400F29F39 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
+		C269676A1BB4204400F29F39 /* PageIndicator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = PageIndicator.cpp; path = base/comp/PageIndicator.cpp; sourceTree = "<group>"; };
+		C269676B1BB4204400F29F39 /* PageIndicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PageIndicator.h; path = base/comp/PageIndicator.h; sourceTree = "<group>"; };
 		C28768B51B96B1E60052D80C /* Dlg.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Dlg.cpp; path = base/Dlg.cpp; sourceTree = "<group>"; };
 		C28768B61B96B1E60052D80C /* Dlg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Dlg.h; path = base/Dlg.h; sourceTree = "<group>"; };
 		C28768B71B96B1E60052D80C /* DlgMgr.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = DlgMgr.cpp; path = base/DlgMgr.cpp; sourceTree = "<group>"; };
@@ -197,10 +200,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C2FF71371BB44F6F00992F92 /* libcocos2d iOS.a in Frameworks */,
 				C26967691BB31BC100F29F39 /* MediaPlayer.framework in Frameworks */,
 				C26967681BB31BB500F29F39 /* libsqlite3.tbd in Frameworks */,
 				C26967671BB3174400F29F39 /* Social.framework in Frameworks */,
-				C26967651BB3173000F29F39 /* libcocos2d iOS.a in Frameworks */,
 				C22EA0EF1BA1EA640097336A /* CFNetwork.framework in Frameworks */,
 				C29BBF541B99E07A00B323FC /* SystemConfiguration.framework in Frameworks */,
 				C29BBF521B99E06F00B323FC /* StoreKit.framework in Frameworks */,
@@ -471,6 +474,8 @@
 		C2BAA36F1BA83BE400D4B21D /* comp */ = {
 			isa = PBXGroup;
 			children = (
+				C269676A1BB4204400F29F39 /* PageIndicator.cpp */,
+				C269676B1BB4204400F29F39 /* PageIndicator.h */,
 				C2BAA3701BA83C0E00D4B21D /* FScrollList.cpp */,
 				C2BAA3711BA83C0E00D4B21D /* FScrollList.h */,
 			);
@@ -622,6 +627,7 @@
 				C2624D781BA7208900725019 /* TableLogic.cpp in Sources */,
 				C2FFD6A01BB13FE300275733 /* ScoreDB.cpp in Sources */,
 				C22EA1021BA1EB910097336A /* graphic.cpp in Sources */,
+				C269676C1BB4204400F29F39 /* PageIndicator.cpp in Sources */,
 				503AE10017EB989F00D1A890 /* AppController.mm in Sources */,
 				C2BAA3751BA882A400D4B21D /* TableScreen.cpp in Sources */,
 				C2BAA36E1BA83BD800D4B21D /* CatChooser.cpp in Sources */,
