@@ -28,7 +28,7 @@ void LearnScreen::animateIn()
 	util::common::stopMusic(true);
 	Size s = util::graphic::getScreenSize();
 
-	auto lbl = Label::createWithBMFont(Constants::ASS_FNT_NORMAL, "Learn");
+	auto lbl = Label::createWithBMFont(Constants::ASS_FNT_SHADOW, Configuration::getInstance()->getValue( "learn").asString());
 	lbl->setAnchorPoint(Vec2::ANCHOR_MIDDLE_TOP);
 	lbl->setPosition(s.width / 2, s.height - 100);
 	getChildByTag(LAYER_LBL)->addChild(lbl);

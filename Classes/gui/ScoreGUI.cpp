@@ -95,7 +95,7 @@ ScoreGUI::ScoreGUI(std::string cat, int score, int bestScore, int star, std::fun
 	std::string catTitle = cat;
 	util::common::capitalize(catTitle);
 	util::common::replace(title, "@cat", catTitle);
-	Label* catLbl = Label::createWithBMFont(Constants::ASS_FNT_NORMAL, title);
+	Label* catLbl = Label::createWithBMFont(Constants::ASS_FNT_SHADOW, title);
 	catLbl->setAnchorPoint(Vec2::ANCHOR_MIDDLE);
 	catLbl->setPosition(s.width / 2, s.height - 200);
 	util::effects::reveal(catLbl);
@@ -181,7 +181,7 @@ ScoreGUI::ScoreGUI(std::string cat, int score, int bestScore, int star, std::fun
 	addChild(highScoreLabel, 1);
 	highScoreLabel->setScale(0.8f);
 	util::effects::reveal(highScoreLabel, 0.4f);
-	highScoreLabel->setColor(Color3B(229, 94, 72));	
+	highScoreLabel->setColor(Color3B(248, 143, 116));
 
 	auto backBt = ui::Button::create();
 	addChild(backBt, 3);

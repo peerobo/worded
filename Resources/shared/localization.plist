@@ -17,6 +17,8 @@
 		<string>GameCenter</string>
 		<key>back</key>
 		<string>Back</string>
+    <key>learn</key>
+    <string>Learn</string>
 		<key>alert</key>
 		<string>Alert</string>
 		<key>learn</key>
@@ -42,7 +44,7 @@
 		<key>bestScore</key>
 		<string>Your best score is @number</string>
 		<key>shareMsg</key>
-		<string>I&apos;ve got @pt points in category @cat. What about you? @url</string>
+		<string>I&apos;ve got @pt points in category @cat. What about you? #wordedbyPE @url</string>
 		<key>socialErrorFB</key>
 		<string>You must setup Facebook account in System Settings!</string>
 		<key>socialErrorTwitter</key>

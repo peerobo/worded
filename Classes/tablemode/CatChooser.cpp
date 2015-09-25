@@ -155,7 +155,7 @@ void CatChooser::animateIn()
 	addChild(icon, LAYER_GUI);	
 	util::effects::reveal(icon);
 
-    Label* lbl = Label::createWithBMFont(Constants::ASS_FNT_NORMAL,cfg->getValue("categories").asString());
+    Label* lbl = Label::createWithBMFont(Constants::ASS_FNT_SHADOW,cfg->getValue("categories").asString());
     lbl->setAnchorPoint(Vec2::ANCHOR_MIDDLE_TOP);
     addChild(lbl,LAYER_LBL);
     lbl->setPosition(s.width/2,s.height - 70);

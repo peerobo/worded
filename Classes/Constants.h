@@ -46,6 +46,7 @@ public:
 
     static const char* ASS_FNT_NORMAL;
     static const char* ASS_FNT_BIG;
+	static const char* ASS_FNT_SHADOW;
     
     static const char* ASS_TEX_GUI;
 

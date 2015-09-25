@@ -383,6 +383,7 @@ const char* Constants::ASS_BG_TABLE = "tablebg";
 
 const char* Constants::ASS_FNT_NORMAL = "worded.fnt";
 const char* Constants::ASS_FNT_BIG = "score.fnt";
+const char* Constants::ASS_FNT_SHADOW = "wordedShadow.fnt";
 
 // ico
 const char* Constants::ASS_BG_DLG_TEXT = "ico_bg_dlg_text";
