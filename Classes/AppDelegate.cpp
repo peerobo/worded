@@ -48,7 +48,7 @@ bool AppDelegate::applicationDidFinishLaunching() {
 	srand(time(NULL));
     
     // initialize director
-    auto director = Director::getInstance();
+    auto director = Director::getInstance();	
     auto glview = director->getOpenGLView();
     if(!glview) {
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32) || (CC_TARGET_PLATFORM == CC_PLATFORM_MAC) || (CC_TARGET_PLATFORM == CC_PLATFORM_LINUX)
@@ -72,7 +72,7 @@ bool AppDelegate::applicationDidFinishLaunching() {
     float scale;
     std::string	assetPath;
     ResolutionPolicy resPolicy = ResolutionPolicy::EXACT_FIT;
-#if(CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
+#if(CC_TARGET_PLATFORM == CC_PLATFORM_IOS || CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
 
     if (maxSize <= 480)
     {

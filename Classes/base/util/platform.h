@@ -1,5 +1,7 @@
 #pragma once
 #include <string>
+#include <stdio.h>
+#include <functional>
 namespace util
 {
 	class platform
