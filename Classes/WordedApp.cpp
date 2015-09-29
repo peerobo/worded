@@ -10,7 +10,13 @@ USING_NS_CC;
 const int WordedApp::DIFFICULT_EASY = 0;
 const int WordedApp::DIFFICULT_HARD = 1;
 const int WordedApp::STAR_MAX = 5;
+#ifdef LITE
+const int WordedApp::STAR_MIN_PT = 85;
+#else
 const int WordedApp::STAR_MIN_PT = 82;
+#endif
+const int WordedApp::TIME_AD_REMAIN = 12;
+const int WordedApp::BEGINNER_CAT_NUM = 4;
 //const int WordedApp::ONE_MODE_TIME[2] = { 10, 5 };
 //const int WordedApp::ONE_MODE_LEVELS[2] = { 10, 10 };
 //const int WordedApp::ONE_MODE_PENALTY[2] = {-5,-5};
@@ -35,11 +41,13 @@ const char* WordedApp::ACH_ONE_90 = "ach_one90";
 const char* WordedApp::ACH_FIVE_90 = "ach_five90";
 const char* WordedApp::ACH_TEN_90 = "ach_ten90";
 const char* WordedApp::ACH_ALL_90 = "ach_all90";
+const char* WordedApp::KEY_AD_IDX = "key_ad_idx";
+const char* WordedApp::KEY_AD_START_TIME = "key_ad_start";
+const char* WordedApp::KEY_NUM_CAT_UNLOCKED = "key_unlocked_cat";
 int WordedApp::difficult = WordedApp::DIFFICULT_EASY;
 
 int WordedApp::_currCat = -1;
 int WordedApp::_unlockedCat = 4;
-bool WordedApp::_adCat = false;
 int WordedApp::_adCatIdx = -1;
 
 std::string WordedApp::getRndItemInCat(const std::string& cat)
@@ -201,16 +209,32 @@ std::vector<std::string> WordedApp::getRndFormationWith(const std::string& cat, 
 void WordedApp::initialize()
 {	
 	// load all data
-}
-
-void WordedApp::rndOneModeCat()
-{
-	ValueVector v = Configuration::getInstance()->getValue("cats").asValueVector();
-	_currCat = rand() % (_unlockedCat+(_adCat ? 1 : 0));
-	if (_currCat == _unlockedCat && _adCat)
+	// cat idx
+	Value adCatIdx = util::common::getValue(KEY_AD_IDX);
+	if (adCatIdx.isNull())
 	{
-		_currCat = _adCatIdx;
+		adCatIdx = Value(-1);
+		util::common::saveValue(KEY_AD_IDX, adCatIdx);		
 	}
+	else
+	{
+		int64_t timeStart = util::common::getValue(KEY_AD_START_TIME).asDouble();
+		time_t currTime = time(NULL);
+		if (currTime - timeStart > TIME_AD_REMAIN * 3600 * 1000)
+		{
+			adCatIdx = Value(-1);
+			util::common::saveValue(KEY_AD_IDX, adCatIdx);
+		}
+	}
+	_adCatIdx = adCatIdx.asInt();
+	// cat unlocked
+	Value catUnlockedNum = util::common::getValue(KEY_NUM_CAT_UNLOCKED);
+	if(catUnlockedNum.isNull())
+	{
+		catUnlockedNum = Value(BEGINNER_CAT_NUM);
+		util::common::saveValue(KEY_AD_IDX, adCatIdx);
+	}	
+	_unlockedCat = catUnlockedNum.asInt();
 }
 
 int WordedApp::getUnlockedCat()

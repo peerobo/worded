@@ -306,6 +306,7 @@ void FScrollList::addItem(Node* node, Vec2 pos)
 	if (direction == SCROLL_TYPE::VERTICAL)
 	{
 		offset.y = goalOffset.y = getContentSize().height - realSize.height;
+		updateView();
 	}
 }
 

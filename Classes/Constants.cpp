@@ -1,5 +1,4 @@
  #include "Constants.h"
-#include "cocos2d.h"
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 // suffix
@@ -385,11 +384,16 @@ const char* Constants::ASS_FNT_NORMAL = "worded.fnt";
 const char* Constants::ASS_FNT_BIG = "score.fnt";
 const char* Constants::ASS_FNT_SHADOW = "wordedShadow.fnt";
 
+const cocos2d::Color3B Constants::COLOR_LIGHT_BLUE = cocos2d::Color3B(28, 176, 255);
+
 // ico
 const char* Constants::ASS_BG_DLG_TEXT = "ico_bg_dlg_text";
 const char* Constants::ASS_BG_DLG_BT = "ico_bg_dlg_bt";
+const char* Constants::ASS_BG_DLG_BT_MID = "ico_bg_dlg_bt_between";
 const char* Constants::ASS_ICO_BG_WORD = "bg_word";
 const char* Constants::ASS_ICO_BAR_ONE = "ico_bar_one";
+const char* Constants::ASS_ICO_BG_CAT_LOCK = "ico_bg_cat_locked";
+const char* Constants::ASS_ICO_LOCK = "ico_lock";
 const char* Constants::ASS_ICO_CORRECT_FALSE = "ico_correct_false";
 const char* Constants::ASS_ICO_WRONG_FALSE = "ico_wrong_false";
 const char* Constants::ASS_ICO_HIGHSCORE = "ico_highscore";

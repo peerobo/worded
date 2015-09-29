@@ -85,6 +85,10 @@
 		<string>numbers 1</string>
 		<key>c_numbers2</key>
 		<string>numbers 2</string>
+		<key>try</key>
+		<string>Try?</string>
+		<key>unlock</key>
+		<string>Unlock?</string>
 		<key>c_food1</key>
 		<string>food 1</string>
 		<key>c_food2</key>

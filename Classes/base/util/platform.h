@@ -18,6 +18,7 @@ namespace util
         static void resetAchGC();
 		static bool share2Twitter(const std::string& imagePath, const std::string msg);
 		static bool share2FB(const std::string& imagePath, const std::string msg);
+		static std::string getBuildVersion();
 	};
 	
 }

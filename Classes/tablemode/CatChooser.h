@@ -16,7 +16,7 @@ private:
 	const int LAYER_LBL;
 	CatChooser();
 	void animateIn();
-    Node* createCatItem(const std::string& cat, int type);
+    Node* createCatItem(const std::string& cat, int type, bool isLock);
     bool catTouchBegan(cocos2d::Touch* t, cocos2d::Event* e);
     void catTouchEnd(cocos2d::Touch* t, cocos2d::Event* e, std::string cat);
 	void onBackScreen();

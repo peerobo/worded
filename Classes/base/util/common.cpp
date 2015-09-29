@@ -19,11 +19,15 @@ namespace util {
 	}
 
 	Value common::getValue(const std::string& key)
-	{
-		FileUtils* fileUtil = FileUtils::getInstance();
-		std::string path = getCacheDirectory();
-		path += "data.dat";		
-		dataDict = fileUtil->getValueMapFromFile(path);
+	{	
+		if (dataDict.size() == 0)
+		{
+			FileUtils* fileUtil = FileUtils::getInstance();
+			std::string path = getCacheDirectory();
+			path += "data.dat";
+			dataDict = fileUtil->getValueMapFromFile(path);
+			dataDict[key] = Value::Null;
+		}
 
 		ValueMap::iterator it = dataDict.find(key);
 		if (it != dataDict.end())

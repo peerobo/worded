@@ -1,4 +1,5 @@
 #include <string>
+#include <cocos2d.h>
 
 class Constants {
 public:
@@ -20,7 +21,10 @@ public:
 
 	static const char* ASS_BG_DLG_TEXT;
 	static const char* ASS_BG_DLG_BT;
+	static const char* ASS_BG_DLG_BT_MID;
 	static const char* ASS_ICO_BG_WORD;
+	static const char* ASS_ICO_BG_CAT_LOCK;
+	static const char* ASS_ICO_LOCK;
 	static const char* ASS_ICO_BAR_ONE;
 	static const char* ASS_ICO_CORRECT_FALSE;
 	static const char* ASS_ICO_WRONG_FALSE;
@@ -43,6 +47,8 @@ public:
 	static const char* ASS_BT_WRONG;
 	static const char* ASS_BT_FB;
 	static const char* ASS_BT_TWITTER;
+
+	static const cocos2d::Color3B COLOR_LIGHT_BLUE;
 
     static const char* ASS_FNT_NORMAL;
     static const char* ASS_FNT_BIG;

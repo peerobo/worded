@@ -47,7 +47,7 @@ void OneBtDlg::setData(const std::string& title, const std::string& closebt)
 		addChild(lbl, 2);
 		lbl->setAnchorPoint(Vec2::ANCHOR_MIDDLE);
 		lbl->setPosition(s.width / 2, 140);
-		lbl->setColor(Color3B(42, 96, 223));
+		lbl->setColor(Constants::COLOR_LIGHT_BLUE);
 	}
 	lbl->setString(closebt);
 }

@@ -16,6 +16,7 @@
 #include "../IntroScreen.h"
 #include "../base/ScoreDB.h"
 #include "../base/comp/PageIndicator.h"
+#include "../gui/MultiBtDlg.h"
 
 CatChooser::CatChooser():LAYER_GUI(2), LAYER_LBL(3)
 {
@@ -56,25 +57,46 @@ void CatChooser::catTouchEnd(cocos2d::Touch* t, cocos2d::Event* e, std::string c
 {
     if(util::graphic::checkTouchStill(t))
     {
-        util::graphic::loadTexAtl(cat, false);
-        WordedApp::loadSound(cat);
-        // list
-        Node* child = getChildByTag(2);
-        util::effects::disappear(child);
-        // lbl
-        child =getChildByTag(3);
-        // change scene
-        util::effects::fadeAndRemove(child, 1.f, std::bind(&util::graphic::changeSceneWithLayer,TableScreen::create()));
-        // init logic
-        (new TableLogic())->init(cat);
-        util::common::playSound(Constants::ASS_SND_CLICK, false);
+		auto container = e->getCurrentTarget();
+		if(container->getChildByTag(12))
+		{
+			auto lockedBG = container->getChildByTag(13);
+			if (!lockedBG->isVisible())
+			{
+				lockedBG->setVisible(true);
+			}
+			else
+			{
+				auto multiBtDlg = MultiBtDlg::create();
+				std::vector<std::string> v = { "Watch Ad", "Use 5 stars", "Buy", "Rate App" };
+				multiBtDlg->setData("Unlock Category", "You can unlock this category by\n- Watch Ad\n- Buy", v);
+				multiBtDlg->show();
+			}
+			
+		}
+		else
+		{
+			util::graphic::loadTexAtl(cat, false);
+			WordedApp::loadSound(cat);
+			// list
+			Node* child = getChildByTag(2);
+			util::effects::disappear(child);
+			// lbl
+			child =getChildByTag(3);
+			// change scene
+			util::effects::fadeAndRemove(child, 1.f, std::bind(&util::graphic::changeSceneWithLayer,TableScreen::create()));
+			// init logic
+			(new TableLogic())->init(cat);
+			util::common::playSound(Constants::ASS_SND_CLICK, false);
+		}
     }
 }
 
-Node* CatChooser::createCatItem(const std::string &cat, int type)
+Node* CatChooser::createCatItem(const std::string &cat, int type, bool isLocked)
 {
     auto container = Node::create();
 	int star = ScoreDB::instance->getScoreFor(STAR_KEY_FOR(cat.c_str()));
+	auto cfg = Configuration::getInstance();
 	
     auto bg = util::graphic::getSprite(StringUtils::format("%s%d",Constants::ASS_ICO_CAT_BG,type));
     bg->setAnchorPoint(Vec2::ANCHOR_BOTTOM_LEFT);
@@ -94,6 +116,33 @@ Node* CatChooser::createCatItem(const std::string &cat, int type)
     lbl->setPosition(itemSize.width/2, 0);
     lbl->setScale(0.7f);
     container->addChild(lbl,1);
+	
+	if (isLocked)
+	{
+		catClone = cat;
+		auto lockedIcon = util::graphic::getSprite(Constants::ASS_ICO_LOCK);
+		lockedIcon->setPosition(Vec2(itemSize.width, bg->getPositionY()));
+		lockedIcon->setAnchorPoint(Vec2::ANCHOR_BOTTOM_RIGHT);
+		container->addChild(lockedIcon, 0);
+		lockedIcon->setTag(12);
+		
+		auto lockedBG = util::graphic::getSprite(Constants::ASS_ICO_BG_CAT_LOCK);
+		lockedBG->setAnchorPoint(Vec2::ANCHOR_MIDDLE);
+		lockedBG->setPosition(itemSize.width/2, itemSize.height/2 + bg->getPositionY());
+		container->addChild(lockedBG, 0);
+		lockedBG->setTag(13);
+		lockedBG->setVisible(false);
+		auto lblDesc = Label::createWithBMFont(Constants::ASS_FNT_NORMAL, cfg->getValue("try").asString());
+		lblDesc->setAnchorPoint(Vec2::ANCHOR_MIDDLE_TOP);
+		lblDesc->setPosition(itemSize.width/2, itemSize.height - 50);
+		lockedBG->addChild(lblDesc);
+		lblDesc->setColor(Constants::COLOR_LIGHT_BLUE);
+		lblDesc = Label::createWithBMFont(Constants::ASS_FNT_NORMAL, cfg->getValue("unlock").asString());
+		lblDesc->setAnchorPoint(Vec2::ANCHOR_MIDDLE_BOTTOM);
+		lblDesc->setPosition(itemSize.width/2, bg->getPositionY());
+		lockedBG->addChild(lblDesc);		
+		lblDesc->setColor(Constants::COLOR_LIGHT_BLUE);
+	}
 
 	// check finish
     if(star == WordedApp::STAR_MAX)
@@ -121,18 +170,21 @@ void CatChooser::animateIn()
 	Size s = util::graphic::getScreenSize();
 
 	Configuration* cfg = Configuration::getInstance();
-
+	int unlocked = WordedApp::getUnlockedCat();
     std::vector<std::string> v = WordedApp::getAllCats();
-    Node* catNode = createCatItem(v[0],0);
+    Node* catNode = createCatItem(v[0],0, false);
+	int adCatIdx = WordedApp::getAdCat();
 	Size catSize = catNode->getContentSize();
 	Size listSize((catSize.width + 50)*2, (catSize.height+50)*2);
 	FScrollList* scList = FScrollList::create();
 	scList->initView(listSize, 50,0.03f, FScrollList::SCROLL_TYPE::HORIZONTAL, 2, -1, true);
     int count = 0;
+	int i = 0;
     for (std::vector<std::string>::const_iterator it = v.begin(); it != v.end(); it++) {
         count = count%4;
-        scList->addAutoPosItem( createCatItem((*it), count));
+        scList->addAutoPosItem( createCatItem((*it), count, !(i < unlocked || i == adCatIdx)));
         count++;
+		i++;
     }
     scList->setPosition(s.width/2,s.height/2 - 50);
     scList->setAnchorPoint(Vec2::ANCHOR_MIDDLE);

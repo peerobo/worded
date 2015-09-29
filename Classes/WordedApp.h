@@ -12,7 +12,6 @@ class WordedApp
 {
 	static int _unlockedCat;
 	static int _currCat;
-	static bool _adCat;
 	static int _adCatIdx;
 public:
 	/////////////////////////////////////
@@ -27,12 +26,17 @@ public:
 	static const int TABLE_MODE_TIME[2];
 	static const int TABLE_MODE_LEVELS[2];
     static const int TABLE_MODE_PENALTY[2];
+	static const int TIME_AD_REMAIN;
+	static const int BEGINNER_CAT_NUM;
     static const float TABLE_MODE_SCORE_RATIO[2];
     static const float TABLE_MODE_TIME_PAUSE_B4_COUNT;
 	static const char* STARTOTAL_KEY;
 	static const char* STAR_PREFIX_KEY;
     static const char* PREFIX_90STAR;
     static const char* TOTAL_90STAR;
+	static const char* KEY_AD_IDX;
+	static const char* KEY_AD_START_TIME;
+	static const char* KEY_NUM_CAT_UNLOCKED;
 	// achievement
 	static const char* ACH_HARD_MODE;
 	static const char* ACH_1_STAR;
@@ -49,7 +53,6 @@ public:
 	static int difficult;
 	/////////////////////////////////////
 	static void initialize();
-	static void rndOneModeCat();
 	static int getUnlockedCat();
 	static int getAdCat();
     static std::vector<std::string> getAllCats();
@@ -63,5 +66,4 @@ public:
 	static void loadSound(const std::string& cat);
 	static void unloadSound(const std::string& cat);
 	/////////////////////////////////////
-	
 };

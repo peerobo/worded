@@ -24,6 +24,13 @@ namespace util
 		}
 	}
     
+	std::string platform::getBuildVersion()
+	{
+		//NSString *version = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
+		return "";
+	}
+
+
     void platform::rate()
     {
 #if CC_TARGET_PLATFORM == CC_PLATFORM_IOS
