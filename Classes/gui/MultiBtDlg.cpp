@@ -4,13 +4,17 @@
 
 void MultiBtDlg::onBtClick(int idx)
 {
-
+	if (onBtClickCB && !alreadyCB)
+	{
+		alreadyCB = true;
+		onBtClickCB(idx);
+	}
 }
 
 void MultiBtDlg::setData(const std::string& title, const std::string& msg, std::vector<std::string> bts)
 {
 	removeAllChildren();
-	
+	alreadyCB = false;
 	auto bg = util::graphic::getSprite(Constants::ASS_BG_DLG_TEXT);
 	bg->setAnchorPoint(Vec2::ANCHOR_BOTTOM_LEFT);
 	Size size = bg->getContentSize();
@@ -19,13 +23,13 @@ void MultiBtDlg::setData(const std::string& title, const std::string& msg, std::
 	auto lbl = Label::createWithBMFont(Constants::ASS_FNT_NORMAL, title);	
 	addChild(lbl, 2);
 	lbl->setAnchorPoint(Vec2::ANCHOR_MIDDLE);
-	lbl->setPosition(size.width / 2, size.height - 140);
+	lbl->setPosition(size.width / 2, size.height - 125);
 	lbl->setColor(Color3B::BLACK);
 
 	lbl = Label::createWithBMFont(Constants::ASS_FNT_NORMAL, msg);	
 	addChild(lbl, 2);
 	lbl->setAnchorPoint(Vec2::ANCHOR_MIDDLE);
-	lbl->setPosition(size.width / 2, size.height/2 - 120);
+	lbl->setPosition(size.width / 2, size.height/2 - 100);
 	lbl->setColor(Color3B::BLACK);
 	lbl->setScale(0.8f);
 	lbl->setMaxLineWidth(size.width / 0.9f );
@@ -59,13 +63,26 @@ void MultiBtDlg::setData(const std::string& title, const std::string& msg, std::
 		lbl->setAnchorPoint(Vec2::ANCHOR_MIDDLE);
 		lbl->setScale(0.8f);
 		addChild(lbl, 2);
-		lbl->setPosition(btSize.width / 2, btSize.height / 2);
+		if (i < sizeBTs - 1)
+			lbl->setPosition(btSize.width / 2, btSize.height / 2);
+		else
+			lbl->setPosition(btSize.width / 2, btSize.height / 2 + 10);
 		lbl->setColor(Constants::COLOR_LIGHT_BLUE);
 	}
 	
 	this->setContentSize(size);
 	util::graphic::addSwallowTouch(this);
 	util::graphic::addClosedWhenClickOutside(this);
+}
+
+void MultiBtDlg::removeFromParentAndCleanup(bool clean)
+{
+	if (onBtClickCB && !alreadyCB)
+	{
+		alreadyCB = true;
+		onBtClickCB(-1);
+	}
+	Dlg::removeFromParentAndCleanup(clean);
 }
 
 void MultiBtDlg::show()

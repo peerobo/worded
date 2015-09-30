@@ -20,6 +20,16 @@ private:
     bool catTouchBegan(cocos2d::Touch* t, cocos2d::Event* e);
     void catTouchEnd(cocos2d::Touch* t, cocos2d::Event* e, std::string cat);
 	void onBackScreen();
+
+	// on unlock item
+	enum UNLOCK {
+		AD = 0,
+		RATE,
+		STAR
+	};
+	void onUnlockByRate( int btIdx, const std::string& cat, Node* node);
+	void unlockCat(const std::string& cat, UNLOCK by);
+	
 public:
 	CREATE_FUNC(CatChooser);
 	void update(float dt) override;

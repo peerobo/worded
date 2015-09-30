@@ -21,6 +21,7 @@ const int WordedApp::BEGINNER_CAT_NUM = 4;
 //const int WordedApp::ONE_MODE_LEVELS[2] = { 10, 10 };
 //const int WordedApp::ONE_MODE_PENALTY[2] = {-5,-5};
 //const float WordedApp::ONE_MODE_SCORE_RATIO[2] = {0.5f,2.0f};
+const int WordedApp::RATE_REMIND_ROUND = 20;
 const int WordedApp::TABLE_MODE_TIME[2] = { 15, 8};
 const int WordedApp::TABLE_MODE_LEVELS[2] = { 10, 10};
 const int WordedApp::TABLE_MODE_PENALTY[2] = {-4,-4};
@@ -42,13 +43,38 @@ const char* WordedApp::ACH_FIVE_90 = "ach_five90";
 const char* WordedApp::ACH_TEN_90 = "ach_ten90";
 const char* WordedApp::ACH_ALL_90 = "ach_all90";
 const char* WordedApp::KEY_AD_IDX = "key_ad_idx";
+const char* WordedApp::KEY_RATE_IDX = "key_rate_idx";
+const char* WordedApp::KEY_RATE_START_TIME = "key_rate_start";
 const char* WordedApp::KEY_AD_START_TIME = "key_ad_start";
 const char* WordedApp::KEY_NUM_CAT_UNLOCKED = "key_unlocked_cat";
+const char* WordedApp::KEY_REMIND_RATE = "key_remindRate";
+const char* WordedApp::KEY_ALREADY_RATE = "key_rated";
 int WordedApp::difficult = WordedApp::DIFFICULT_EASY;
 
 int WordedApp::_currCat = -1;
 int WordedApp::_unlockedCat = 4;
 int WordedApp::_adCatIdx = -1;
+int WordedApp::_rateCatIdx = -1;
+
+void WordedApp::setRateCatIdx(int catIdx)
+{
+	_rateCatIdx = catIdx;
+}
+
+void WordedApp::setUnlockCatNum(int num)
+{
+	_unlockedCat = num;
+}
+
+void WordedApp::setAdCatIdx(int catIdx)
+{
+	_adCatIdx = catIdx;
+}
+
+int WordedApp::getRateCat()
+{
+	return _rateCatIdx;
+}
 
 std::string WordedApp::getRndItemInCat(const std::string& cat)
 {
@@ -232,9 +258,35 @@ void WordedApp::initialize()
 	if(catUnlockedNum.isNull())
 	{
 		catUnlockedNum = Value(BEGINNER_CAT_NUM);
-		util::common::saveValue(KEY_AD_IDX, adCatIdx);
+		util::common::saveValue(KEY_AD_IDX, catUnlockedNum);
 	}	
 	_unlockedCat = catUnlockedNum.asInt();
+
+	// rate idx
+	Value rateCatIdx = util::common::getValue(KEY_RATE_IDX);
+	if (rateCatIdx.isNull())
+	{
+		rateCatIdx = Value(-1);
+		util::common::saveValue(KEY_RATE_IDX, rateCatIdx);
+	}
+	else
+	{
+		int64_t timeStart = util::common::getValue(KEY_RATE_START_TIME).asDouble();
+		time_t currTime = time(NULL);
+		if (currTime - timeStart > TIME_AD_REMAIN * 3600 * 1000)
+		{
+			rateCatIdx = Value(-1);
+			util::common::saveValue(KEY_RATE_IDX, rateCatIdx);
+		}
+	}
+	_rateCatIdx = rateCatIdx.asInt();
+	// init rate remind
+	Value rateRemind = util::common::getValue(KEY_REMIND_RATE);
+	if (rateRemind.isNull())
+	{
+		rateRemind = Value(RATE_REMIND_ROUND);
+		util::common::saveValue(KEY_REMIND_RATE, rateRemind);
+	}
 }
 
 int WordedApp::getUnlockedCat()
@@ -245,6 +297,26 @@ int WordedApp::getUnlockedCat()
 int WordedApp::getAdCat()
 {
 	return _adCatIdx;
+}
+
+bool WordedApp::checkShowRateDlg()
+{
+	Value build = util::common::getValue(KEY_ALREADY_RATE);
+	if (build.isNull())
+	{
+		build = Value("-1");
+		util::common::saveValue(KEY_ALREADY_RATE, build);
+	}
+	std::string realBuild = util::platform::getBuildVersion();
+	if (realBuild != build.asString())
+	{
+		int valCountRate = util::common::getValue(KEY_REMIND_RATE).asInt();
+		if (valCountRate < 0)
+		{
+			return true;
+		}
+	}
+	return false;
 }
 
 bool WordedApp::validateAnswer(const std::string& item1, const std::string& item2)

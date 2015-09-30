@@ -23,7 +23,7 @@ namespace util
     void ad::initVungle(const std::string& appid)
     {
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
-        IOS::vungleInit("55f02da22eeba03a4c000144");
+        IOS::vungleInit(appid);
 #endif
     }
     

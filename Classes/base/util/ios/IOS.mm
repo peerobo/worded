@@ -221,3 +221,9 @@ void IOS::vungleShow()
         NSLog(@"Error encountered playing ad: %@", error);
     }
 }
+
+static std::string getBuildVer()
+{
+	NSString *version = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
+	return std::string(version.UTF8String);
+}

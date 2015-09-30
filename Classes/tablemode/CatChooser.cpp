@@ -17,6 +17,7 @@
 #include "../base/ScoreDB.h"
 #include "../base/comp/PageIndicator.h"
 #include "../gui/MultiBtDlg.h"
+#include "../GlobalVar.h"
 
 CatChooser::CatChooser():LAYER_GUI(2), LAYER_LBL(3)
 {
@@ -53,6 +54,89 @@ bool CatChooser::catTouchBegan(cocos2d::Touch* t, cocos2d::Event* e)
     return false;
 }
 
+void CatChooser::unlockCat(const std::string& cat, UNLOCK type)
+{
+	auto v = WordedApp::getAllCats();
+	size_t sizeV = v.size();
+	int idx = -1;
+	for (size_t i = 0; i < sizeV; i++)
+	{
+		if (v[i] == cat)
+		{
+			idx = i;
+			break;
+		}
+	}
+	if (type == UNLOCK::RATE)
+	{
+		util::common::saveValue(WordedApp::KEY_RATE_IDX, Value(idx));
+		time_t t = time(NULL);
+		double tD = t;
+		util::common::saveValue(WordedApp::KEY_RATE_START_TIME, Value(tD));
+		WordedApp::setRateCatIdx(idx);
+	}
+	else if (type == UNLOCK::AD)
+	{
+		util::common::saveValue(WordedApp::KEY_AD_IDX, Value(idx));
+		time_t t = time(NULL);
+		double tD = t;
+		util::common::saveValue(WordedApp::KEY_AD_START_TIME, Value(tD));
+		WordedApp::setRateCatIdx(idx);
+	}
+	else
+	{
+		int count = util::common::getValue(WordedApp::KEY_NUM_CAT_UNLOCKED).asInt();
+		count++;
+		util::common::saveValue(WordedApp::KEY_NUM_CAT_UNLOCKED, Value(count));
+		WordedApp::setUnlockCatNum(count);
+	}
+	auto scene = dynamic_cast<CatChooser*>(GlobalVar::curScene);
+	if (scene)
+	{		
+		auto list = dynamic_cast<FScrollList*>(scene->getChildByTag(2));
+		if (!list)
+			return;
+		auto vc = list->getAllItems();
+		if (idx > -1)
+		{
+			if (vc.size()> idx && vc.at(idx))
+			{
+				vc.at(idx)->removeChildByTag(12);
+			}
+		}
+	}
+}
+
+void CatChooser::onUnlockByRate(int btIdx, const std::string& cat, Node* node)
+{
+	// advance next dialog or unlock
+	if (btIdx == 0)
+	{
+		util::platform::rate();
+		Vector<FiniteTimeAction*> vAct;
+		vAct.pushBack(DelayTime::create(15));
+		vAct.pushBack(CallFunc::create(CC_CALLBACK_0(CatChooser::unlockCat,this,cat,UNLOCK::RATE)));
+		this->runAction(Sequence::create( vAct));
+		node->removeFromParent();
+	}
+	else
+	{
+		auto multiBtDlg = MultiBtDlg::create();
+		auto cfg = Configuration::getInstance();
+		std::string title = "";
+		std::string msg = "";
+		std::vector<std::string> v;
+		title = Configuration::getInstance()->getValue(StringUtils::format("c_%s", cat.c_str()), Value(cat)).asString();
+		util::common::capitalize(title);
+		msg = cfg->getValue("normalUnlock").asString();
+		v = { cfg->getValue("watchAd").asString(),
+			cfg->getValue("useStars").asString(),
+			cfg->getValue("buyFreeAd").asString() };
+		multiBtDlg->setData(title, msg, v);
+		multiBtDlg->show();
+	}
+}
+
 void CatChooser::catTouchEnd(cocos2d::Touch* t, cocos2d::Event* e, std::string cat)
 {
     if(util::graphic::checkTouchStill(t))
@@ -67,10 +151,33 @@ void CatChooser::catTouchEnd(cocos2d::Touch* t, cocos2d::Event* e, std::string c
 			}
 			else
 			{
+				bool checkShowRateDlg = WordedApp::checkShowRateDlg();
 				auto multiBtDlg = MultiBtDlg::create();
-				std::vector<std::string> v = { "Watch Ad", "Use 5 stars", "Buy", "Rate App" };
-				multiBtDlg->setData("Unlock Category", "You can unlock this category by\n- Watch Ad\n- Buy", v);
+				auto cfg = Configuration::getInstance();
+				std::string title = "";
+				std::string msg = "";
+				std::vector<std::string> v; 
+				if (checkShowRateDlg)
+				{
+					title = Configuration::getInstance()->getValue(StringUtils::format("c_%s", cat.c_str()), Value(cat)).asString();
+					util::common::capitalize(title);
+					msg = cfg->getValue("rateAppUnlock").asString();
+					v = { cfg->getValue("rate").asString()};
+					multiBtDlg->onBtClickCB = CC_CALLBACK_1(CatChooser::onUnlockByRate,this, cat, multiBtDlg);
+				}
+				else
+				{
+					title = Configuration::getInstance()->getValue(StringUtils::format("c_%s", cat.c_str()), Value(cat)).asString();
+					util::common::capitalize(title);
+					msg = cfg->getValue("normalUnlock").asString();
+					v = { cfg->getValue("watchAd").asString(), 
+						cfg->getValue("useStars").asString(), 
+						cfg->getValue("buyFreeAd").asString() };
+				}
+				multiBtDlg->setData( title, msg, v);
 				multiBtDlg->show();
+
+				lockedBG->setVisible(false);
 			}
 			
 		}
@@ -174,6 +281,7 @@ void CatChooser::animateIn()
     std::vector<std::string> v = WordedApp::getAllCats();
     Node* catNode = createCatItem(v[0],0, false);
 	int adCatIdx = WordedApp::getAdCat();
+	int rateCatIdx = WordedApp::getRateCat();
 	Size catSize = catNode->getContentSize();
 	Size listSize((catSize.width + 50)*2, (catSize.height+50)*2);
 	FScrollList* scList = FScrollList::create();
@@ -182,7 +290,7 @@ void CatChooser::animateIn()
 	int i = 0;
     for (std::vector<std::string>::const_iterator it = v.begin(); it != v.end(); it++) {
         count = count%4;
-        scList->addAutoPosItem( createCatItem((*it), count, !(i < unlocked || i == adCatIdx)));
+        scList->addAutoPosItem( createCatItem((*it), count, !(i < unlocked || i == adCatIdx || i==rateCatIdx)));
         count++;
 		i++;
     }

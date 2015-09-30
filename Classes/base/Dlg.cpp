@@ -2,8 +2,7 @@
 #include "DlgMgr.h"
 
 void Dlg::removeFromParent()
-{
-	DlgMgr::getInstance()->removeFromList(this);
+{	
 	Node::removeFromParent();	
 }
 

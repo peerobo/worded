@@ -14,8 +14,30 @@ namespace util {
 		FileUtils* fileUtil = FileUtils::getInstance();
 		std::string path = getCacheDirectory();
 		path += "data.dat";
-		dataDict[key] = val;
+		dataDict[enc(key)] = val;
 		fileUtil->writeToFile(dataDict, path);
+	}
+
+	std::string common::enc(const std::string& msg)
+	{
+		std::string out(msg);
+		for (int i = 0; i < msg.length(); ++i)
+		{
+			out[i] += 10;
+		}
+		return out;
+		
+	}
+
+	std::string common::dec(const std::string& msg)
+	{
+		std::string out(msg);
+		for (int i = 0; i < msg.length(); ++i)
+		{
+			out[i] -= 10;
+		}
+		return out;
+
 	}
 
 	Value common::getValue(const std::string& key)
@@ -26,7 +48,7 @@ namespace util {
 			std::string path = getCacheDirectory();
 			path += "data.dat";
 			dataDict = fileUtil->getValueMapFromFile(path);
-			dataDict[key] = Value::Null;
+			dataDict[enc(key)] = Value::Null;
 		}
 
 		ValueMap::iterator it = dataDict.find(key);

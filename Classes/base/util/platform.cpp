@@ -26,7 +26,9 @@ namespace util
     
 	std::string platform::getBuildVersion()
 	{
-		//NSString *version = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
+#if CC_TARGET_PLATFORM == CC_PLATFORM_IOS
+		return IOS::getBuildVer();
+#endif
 		return "";
 	}
 

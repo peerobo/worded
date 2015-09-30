@@ -13,6 +13,7 @@ class WordedApp
 	static int _unlockedCat;
 	static int _currCat;
 	static int _adCatIdx;
+	static int _rateCatIdx;
 public:
 	/////////////////////////////////////
 	static const int DIFFICULT_EASY;
@@ -21,6 +22,7 @@ public:
 	static const int ONE_MODE_LEVELS[2];
     static const int ONE_MODE_PENALTY[2];
     static const float ONE_MODE_SCORE_RATIO[2];*/
+	static const int RATE_REMIND_ROUND;
 	static const int STAR_MAX;
 	static const int STAR_MIN_PT;
 	static const int TABLE_MODE_TIME[2];
@@ -35,7 +37,11 @@ public:
     static const char* PREFIX_90STAR;
     static const char* TOTAL_90STAR;
 	static const char* KEY_AD_IDX;
+	static const char* KEY_RATE_IDX;
 	static const char* KEY_AD_START_TIME;
+	static const char* KEY_RATE_START_TIME;
+	static const char* KEY_REMIND_RATE;
+	static const char* KEY_ALREADY_RATE;
 	static const char* KEY_NUM_CAT_UNLOCKED;
 	// achievement
 	static const char* ACH_HARD_MODE;
@@ -55,6 +61,7 @@ public:
 	static void initialize();
 	static int getUnlockedCat();
 	static int getAdCat();
+	static int getRateCat();
     static std::vector<std::string> getAllCats();
     static std::vector<std::string> getAllWords(const std::string& cat);
 	static std::vector<std::string> getRndFormation(const std::string& cat, int total = 10);
@@ -64,6 +71,10 @@ public:
 	static bool validateAnswer(const std::string& item1, const std::string& item2);
 	static void playSound(const std::string& word);
 	static void loadSound(const std::string& cat);
+	static bool checkShowRateDlg();
 	static void unloadSound(const std::string& cat);
+	static void setRateCatIdx(int catIdx);
+	static void setAdCatIdx(int catIdx);
+	static void setUnlockCatNum(int num);
 	/////////////////////////////////////
 };

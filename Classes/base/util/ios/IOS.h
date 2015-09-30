@@ -19,4 +19,5 @@ public:
     static void resetAchievement();
     static void vungleInit(const std::string& appID);
     static void vungleShow();
+	static std::string getBuildVer();
 };

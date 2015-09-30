@@ -15,6 +15,23 @@
 		<string>More Games</string>
 		<key>leaderboard</key>
 		<string>GameCenter</string>
+    <key>rateAppUnlock</key>
+    <string>Do you want to rate app to unlock this category for 12 hours?</string>
+    <key>normalUnlock</key>
+    <string>Unlock by one of following ways:
+- Watch a video, unlock for 12 hours
+- Using 5 stars
+- Buying premium app</string>
+    <key>unlockCat</key>
+    <string>Unlock Category</string>
+    <key>watchAd</key>
+    <string>Watch Video advertising</string>
+    <key>useStars</key>
+    <string>Using 5 stars</string>
+    <key>buyFreeAd</key>
+    <string>Buy premium version</string>
+    <key>no</key>
+    <string>No</string>
 		<key>back</key>
 		<string>Back</string>
     <key>learn</key>

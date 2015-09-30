@@ -28,5 +28,7 @@ namespace util
 		static void capitalize(std::string& str);
 		static Value getValue(const std::string& key);
 		static void saveValue(const std::string& key, Value value);
+		static std::string enc(const std::string& msg);
+		static std::string dec(const std::string& msg);
 	};
 }

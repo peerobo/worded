@@ -126,6 +126,12 @@ void TableLogic::endGame()
 {
 	isPlaying = false;
 	isShowScore = true;
+
+	// decrease count rate
+	int rateCount = util::common::getValue(WordedApp::KEY_REMIND_RATE).asInt();
+	if (rateCount > -1)
+		rateCount--;
+	util::common::saveValue(WordedApp::KEY_REMIND_RATE, Value(rateCount));
 }
 
 bool TableLogic::checkFinishCat()
