@@ -46,8 +46,8 @@ bool AppDelegate::applicationDidFinishLaunching() {
 #else
 	util::ad::initLeadbolt("PKOi4AX2StGGZquCKi4j461SHNG5GOHI");	
 #endif
-
-    ZipUtils::setPvrEncryptionKeyPart(3, 0x3e26102b);	
+util::ad::initVungle("55f02da22eeba03a4c000144");
+    ZipUtils::setPvrEncryptionKeyPart(3, 0x3e26102b);
 
 	srand(time(NULL));
     
@@ -200,7 +200,6 @@ bool AppDelegate::applicationDidFinishLaunching() {
 	(new ScoreDB())->loadDB();
 	GlobalVar::myData.isEnableVibration = util::common::getValue(Constants::KEY_VIBRATION).asBool();
 	WordedApp::difficult = util::common::getValue(Constants::KEY_HARDMODE).asBool() ? WordedApp::DIFFICULT_HARD : WordedApp::DIFFICULT_EASY;
-	WordedApp::initialize();
     // create a scene. it's an autorelease object
 	GlobalVar::curScene = IntroScreen::create();
     auto scene = util::graphic::createSceneWithLayer(GlobalVar::curScene);

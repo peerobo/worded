@@ -2,11 +2,12 @@
 #include <cocos2d.h>
 #if CC_TARGET_PLATFORM == CC_PLATFORM_IOS
 #include "AppTrackerWrapper.h"
+#include "ios/IOS.h"
 #endif
 
 namespace util
 {
-	void ad::initLeadbolt(std::string apikey)
+	void ad::initLeadbolt(const std::string& apikey)
 	{
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
 
@@ -19,17 +20,17 @@ namespace util
 #endif
 	}
     
-    void ad::initVungle()
+    void ad::initVungle(const std::string& appid)
     {
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
-        
+        IOS::vungleInit("55f02da22eeba03a4c000144");
 #endif
     }
     
     void ad::showVungle()
     {
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
-      
+        IOS::vungleShow();
 #endif
     }
 

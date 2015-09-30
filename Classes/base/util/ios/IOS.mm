@@ -3,8 +3,13 @@
 #import <AudioToolbox/AudioServices.h>
 #import <GameKit/GameKit.h>
 #import <Social/Social.h>
+#import <VungleSDK/VungleSDK.h>
 
-@interface IOSUtility : NSObject <GKGameCenterControllerDelegate>
+////////////////////////////////////////////////////////////////////////////////////////
+//                                   objective c
+////////////////////////////////////////////////////////////////////////////////////////
+
+@interface IOSUtility : NSObject <GKGameCenterControllerDelegate, VungleSDKDelegate>
 
 @end
 
@@ -12,11 +17,60 @@
 - (void)gameCenterViewControllerDidFinish:(GKGameCenterViewController *)gameCenterViewController {
     [gameCenterViewController dismissViewControllerAnimated:YES completion:nil];
 }
+
+- (void)vungleSDKAdPlayableChanged:(BOOL)isAdPlayable
+{
+    IOS::isVungleAvailable = isAdPlayable == YES ? true: false;
+    
+    NSLog(@"Ad Vungle available: %@", isAdPlayable ? @"yes" : @"no");
+}
+
+- (void)vungleSDKwillShowAd
+{
+    if(IOS::vungleShownCB != nullptr)
+        IOS::vungleShownCB(true);
+}
+
+- (void)vungleSDKwillCloseAdWithViewInfo:(NSDictionary*)viewInfo willPresentProductSheet:(BOOL)willPresentProductSheet
+{
+    if(willPresentProductSheet == NO)
+    {
+        if(IOS::vungleShownCB != nullptr)
+            IOS::vungleShownCB(false);
+        NSLog(@"The ad presented was not tapped - the user has returned to the app");
+        NSLog(@"ViewInfo Dictionary:");
+        for(NSString * key in [viewInfo allKeys]) {
+            NSLog(@"%@ : %@", key, [[viewInfo objectForKey:key] description]);
+        }
+//        2015-09-27 00:21:07.288 Worded by PE[1566:60b] The ad presented was not tapped - the user has returned to the app
+//        2015-09-27 00:21:07.292 Worded by PE[1566:60b] ViewInfo Dictionary:
+//        2015-09-27 00:21:07.295 Worded by PE[1566:60b] playTime : 15.08166666666667
+//        2015-09-27 00:21:07.297 Worded by PE[1566:60b] didDownload : 0
+//        2015-09-27 00:21:07.298 Worded by PE[1566:60b] videoLength : 15.08166666666667
+//        2015-09-27 00:21:07.300 Worded by PE[1566:60b] completedView : 1
+    }
+        
+}
+
+- (void)vungleSDKwillCloseProductSheet:(id)productSheet
+{
+    if(IOS::vungleShownCB != nullptr)
+        IOS::vungleShownCB(false);
+    if(IOS::vungleRewardCB != nullptr)
+        IOS::vungleRewardCB(true);
+}
 @end
 
-static IOSUtility* iosUtil = nil;
 
+////////////////////////////////////////////////////////////////////////////////////////
+//                                   c++
+////////////////////////////////////////////////////////////////////////////////////////
+
+static IOSUtility* iosUtil = [[IOSUtility alloc]init];
+bool IOS::isVungleAvailable = false;
 bool IOS::isGC = false;
+std::function<void(bool)> IOS::vungleShownCB = nullptr;
+std::function<void(bool)> IOS::vungleRewardCB = nullptr;
 
 void IOS::resetAchievement()
 {
@@ -119,9 +173,6 @@ void IOS::authenGC()
                 
         }
     };
-    if (iosUtil == nil) {
-        iosUtil = [[IOSUtility alloc]init];
-    }
 }
 
 void IOS::showGC()
@@ -151,4 +202,22 @@ void IOS::setScoreGC(const std::string &cat, int score)
 
     }];
     [scoreGC autorelease];
+}
+
+void IOS::vungleInit(const std::string &appID)
+{
+    NSString* vungleID = [NSString stringWithUTF8String:appID.c_str()];
+    [[VungleSDK sharedSDK] startWithAppId:vungleID];
+    [[VungleSDK sharedSDK] setDelegate: iosUtil];
+    [vungleID autorelease];
+}
+
+void IOS::vungleShow()
+{
+    UIViewController* v = [UIApplication sharedApplication].keyWindow.rootViewController;
+    NSError *error;
+    [[VungleSDK sharedSDK] playAd:v error:&error];
+    if (error) {
+        NSLog(@"Error encountered playing ad: %@", error);
+    }
 }
