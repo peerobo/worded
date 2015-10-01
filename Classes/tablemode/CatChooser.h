@@ -20,7 +20,8 @@ private:
     bool catTouchBegan(cocos2d::Touch* t, cocos2d::Event* e);
     void catTouchEnd(cocos2d::Touch* t, cocos2d::Event* e, std::string cat);
 	void onBackScreen();
-
+	void pause(bool isPause);
+	void vungleReward(bool reward, const std::string& cat);
 	// on unlock item
 	enum UNLOCK {
 		AD = 0,
@@ -29,7 +30,7 @@ private:
 	};
 	void onUnlockByRate( int btIdx, const std::string& cat, Node* node);
 	void unlockCat(const std::string& cat, UNLOCK by);
-	
+	void onUnlockNormal(int btIdx, const std::string& cat, Node* node);
 public:
 	CREATE_FUNC(CatChooser);
 	void update(float dt) override;

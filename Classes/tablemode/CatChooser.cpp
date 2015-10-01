@@ -18,6 +18,7 @@
 #include "../base/comp/PageIndicator.h"
 #include "../gui/MultiBtDlg.h"
 #include "../GlobalVar.h"
+#include "../gui/AlertGUI.h"
 
 CatChooser::CatChooser():LAYER_GUI(2), LAYER_LBL(3)
 {
@@ -81,14 +82,40 @@ void CatChooser::unlockCat(const std::string& cat, UNLOCK type)
 		time_t t = time(NULL);
 		double tD = t;
 		util::common::saveValue(WordedApp::KEY_AD_START_TIME, Value(tD));
-		WordedApp::setRateCatIdx(idx);
+		WordedApp::setAdCatIdx(idx);
 	}
 	else
 	{
-		int count = util::common::getValue(WordedApp::KEY_NUM_CAT_UNLOCKED).asInt();
-		count++;
-		util::common::saveValue(WordedApp::KEY_NUM_CAT_UNLOCKED, Value(count));
-		WordedApp::setUnlockCatNum(count);
+		int star = ScoreDB::instance->getScoreFor(WordedApp::STARTOTAL_KEY);
+		if (star >= WordedApp::STAR_MAX)
+		{
+			int count = util::common::getValue(WordedApp::KEY_NUM_CAT_UNLOCKED).asInt();
+			if (count == idx)
+			{
+				count++;
+				util::common::saveValue(WordedApp::KEY_NUM_CAT_UNLOCKED, Value(count));
+				WordedApp::setUnlockCatNum(count);
+			}
+			else
+			{
+				auto gui = AlertGUI::create();
+				std::string msg = Configuration::getInstance()->getValue("prevNotUnlocked").asString();
+				auto catClone = Configuration::getInstance()->getValue(StringUtils::format("c_%s", cat.c_str()), Value(cat)).asString();
+				util::common::capitalize(catClone);
+				util::common::replace(msg, "@cat", catClone);
+				gui->setMsg(msg);
+				gui->show();
+			}
+		}
+		else
+		{
+			auto alert = AlertGUI::create();
+			std::string msg = Configuration::getInstance()->getValue("notEnoughStars").asString();
+			util::common::replace(msg,"@star", StringUtils::toString(WordedApp::STAR_MAX));
+			util::common::replace(msg, "@pt", StringUtils::toString(WordedApp::STAR_MIN_PT));
+			alert->setMsg(msg);
+			alert->show();
+		}
 	}
 	auto scene = dynamic_cast<CatChooser*>(GlobalVar::curScene);
 	if (scene)
@@ -134,6 +161,59 @@ void CatChooser::onUnlockByRate(int btIdx, const std::string& cat, Node* node)
 			cfg->getValue("buyFreeAd").asString() };
 		multiBtDlg->setData(title, msg, v);
 		multiBtDlg->show();
+	}
+}
+
+void CatChooser::pause(bool isPause)
+{
+	if (isPause)
+		util::common::stopMusic(true);
+	else
+		util::common::playMusic(Constants::ASS_SND_THEME);
+
+}
+
+void CatChooser::vungleReward(bool isReward, const std::string& cat)
+{
+	if (isReward)
+	{
+		unlockCat(cat, UNLOCK::AD);
+	}
+	else
+	{
+		auto alert = AlertGUI::create();
+		alert->setMsg(Configuration::getInstance()->getValue("videoSkip").asString());
+		alert->show();
+	}
+}
+
+void CatChooser::onUnlockNormal(int btIdx, const std::string& cat, Node* node)
+{
+	if (btIdx != -1)
+	{
+		Configuration* cfg = Configuration::getInstance();
+		node->removeFromParent();
+		if (btIdx == 0) // watch ad
+		{
+			if (!util::ad::isVideoAdAvailable())
+			{
+				auto alert = AlertGUI::create();
+				alert->setMsg(cfg->getValue( "videoAdFailed").asString());
+				alert->show();
+			}
+			else
+			{
+				util::ad::showVungle(CC_CALLBACK_1(CatChooser::pause,this),CC_CALLBACK_1(CatChooser::vungleReward,this,cat));
+			}
+		}
+		else if(btIdx == 1) // use stars
+		{
+			
+		}
+		else
+		{
+
+		}
 	}
 }
 

@@ -42,6 +42,11 @@
         for(NSString * key in [viewInfo allKeys]) {
             NSLog(@"%@ : %@", key, [[viewInfo objectForKey:key] description]);
         }
+		if([viewInfo valueForKey:@"completedView"]  == 1 && IOS::vungleRewardCB != nullptr)
+			IOS::vungleRewardCB(true);
+		else
+			IOS::vungleRewardCB(false);
+			
 //        2015-09-27 00:21:07.288 Worded by PE[1566:60b] The ad presented was not tapped - the user has returned to the app
 //        2015-09-27 00:21:07.292 Worded by PE[1566:60b] ViewInfo Dictionary:
 //        2015-09-27 00:21:07.295 Worded by PE[1566:60b] playTime : 15.08166666666667
