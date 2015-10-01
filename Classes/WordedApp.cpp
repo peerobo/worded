@@ -49,6 +49,7 @@ const char* WordedApp::KEY_AD_START_TIME = "key_ad_start";
 const char* WordedApp::KEY_NUM_CAT_UNLOCKED = "key_unlocked_cat";
 const char* WordedApp::KEY_REMIND_RATE = "key_remindRate";
 const char* WordedApp::KEY_ALREADY_RATE = "key_rated";
+const char* WordedApp::URL_FULL_APP = "https://goo.gl/8V9fhc";
 int WordedApp::difficult = WordedApp::DIFFICULT_EASY;
 
 int WordedApp::_currCat = -1;
@@ -246,7 +247,7 @@ void WordedApp::initialize()
 	{
 		int64_t timeStart = util::common::getValue(KEY_AD_START_TIME).asDouble();
 		time_t currTime = time(NULL);
-		if (currTime - timeStart > TIME_AD_REMAIN * 3600 * 1000)
+		if (currTime - timeStart > TIME_AD_REMAIN * 3600)
 		{
 			adCatIdx = Value(-1);
 			util::common::saveValue(KEY_AD_IDX, adCatIdx);
@@ -273,7 +274,7 @@ void WordedApp::initialize()
 	{
 		int64_t timeStart = util::common::getValue(KEY_RATE_START_TIME).asDouble();
 		time_t currTime = time(NULL);
-		if (currTime - timeStart > TIME_AD_REMAIN * 3600 * 1000)
+		if (currTime - timeStart > TIME_AD_REMAIN * 3600)
 		{
 			rateCatIdx = Value(-1);
 			util::common::saveValue(KEY_RATE_IDX, rateCatIdx);

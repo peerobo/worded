@@ -80,6 +80,9 @@
     <ClCompile Include="..\Classes\base\comp\PageIndicator.cpp">
       <Filter>Classess\base\comp</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\gui\MultiBtDlg.cpp">
+      <Filter>Classess\gui</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h" />
@@ -163,6 +166,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\base\comp\PageIndicator.h">
       <Filter>Classess\base\comp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\gui\MultiBtDlg.h">
+      <Filter>Classess\gui</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

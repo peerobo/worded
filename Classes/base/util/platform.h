@@ -9,6 +9,7 @@ namespace util
 	public:
 		static void vibrate();
         static void rate();
+		static void openURL(const std::string& url);
         static void authenGC();
         static bool isGC();
         static void showGC();

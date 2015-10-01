@@ -228,4 +228,5 @@ void AppDelegate::applicationWillEnterForeground() {
     		|| dynamic_cast<IntroScreen*>(GlobalVar::curScene);
     if(checkBGMusic)
     	CocosDenshion::SimpleAudioEngine::getInstance()->resumeBackgroundMusic();
+	GlobalVar::timeShowAd = time(NULL);
 }

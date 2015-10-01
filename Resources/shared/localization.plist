@@ -9,6 +9,14 @@
 	</dict>
 	<key>data</key>
 	<dict>
+    <key>videoAdFailed</key>
+    <string>Video is not yet available. Please try again later.</string>
+    <key>videoSkip</key>
+    <string>You have skipped the video. You have to watch the whole video to unlock!</string>
+    <key>prevNotUnlocked</key>
+    <string>You have to unlock the category @cat first.</string>
+    <key>notEnoughStars</key>
+    <string>You need @star to unlock a category. Get star by scoring @pt points or more.</string>
 		<key>more</key>
 		<string>More</string>
 		<key>moreGames</key>

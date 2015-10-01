@@ -75,6 +75,7 @@ void CatChooser::unlockCat(const std::string& cat, UNLOCK type)
 		double tD = t;
 		util::common::saveValue(WordedApp::KEY_RATE_START_TIME, Value(tD));
 		WordedApp::setRateCatIdx(idx);
+		util::common::saveValue(WordedApp::KEY_ALREADY_RATE, Value(util::platform::getBuildVersion())); 
 	}
 	else if (type == UNLOCK::AD)
 	{
@@ -208,11 +209,11 @@ void CatChooser::onUnlockNormal(int btIdx, const std::string& cat, Node* node)
 		}
 		else if(btIdx == 1) // use stars
 		{
-			
+			unlockCat(cat, UNLOCK::STAR);
 		}
 		else
 		{
-
+			util::platform::openURL(WordedApp::URL_FULL_APP);
 		}
 	}
 }
@@ -370,7 +371,11 @@ void CatChooser::animateIn()
 	int i = 0;
     for (std::vector<std::string>::const_iterator it = v.begin(); it != v.end(); it++) {
         count = count%4;
+#ifdef LITE
         scList->addAutoPosItem( createCatItem((*it), count, !(i < unlocked || i == adCatIdx || i==rateCatIdx)));
+#else
+		scList->addAutoPosItem(createCatItem((*it), count, false));
+#endif
         count++;
 		i++;
     }

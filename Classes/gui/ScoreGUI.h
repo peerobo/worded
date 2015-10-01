@@ -16,6 +16,8 @@ private:
 	void showShareBts(bool ret, const std::string& str);
 	void saveImage();
 	void share(CONST_STR img, CONST_STR msg, bool fb);
+	bool enableTouch;
+	bool swallowTouchHelper(Touch* t, Event* e);
 public:
 	int scoreProgress;
 	static ScoreGUI* create(std::string cat, int score, int bestScore, int star, std::function<void()> backCB, std::function<void()> retryCB)

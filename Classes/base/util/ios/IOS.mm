@@ -154,9 +154,9 @@ void IOS::saveToAlbum(const std::string &filePath)
     [img autorelease];
 }
 
-void IOS::rate(const std::string& appId)
+void IOS::openURL(const std::string& URL)
 {
-    NSString* nsAppId = [NSString stringWithUTF8String:appId.c_str()];
+    NSString* nsAppId = [NSString stringWithUTF8String:URL.c_str()];
     NSString* url = [NSString stringWithFormat:@"%@", nsAppId];
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
 }

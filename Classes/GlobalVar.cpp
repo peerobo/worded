@@ -7,6 +7,7 @@
 //
 
 #include "GlobalVar.h"
+#include <time.h>
 
 cocos2d::Layer* GlobalVar::curScene = NULL;
 sMyData GlobalVar::myData = {
@@ -15,3 +16,4 @@ sMyData GlobalVar::myData = {
 	true,	// vibration
 };
 void* GlobalVar::gameLogic = NULL;
+time_t GlobalVar::timeShowAd = time(NULL);

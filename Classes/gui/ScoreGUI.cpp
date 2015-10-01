@@ -6,6 +6,7 @@
 #include <string>
 #include "AlertGUI.h"
 #include "../base/ScoreDB.h"
+#include "../GlobalVar.h"
 
 void ScoreGUI::share(CONST_STR img, CONST_STR msg, bool fb)
 {
@@ -32,7 +33,7 @@ void ScoreGUI::share(CONST_STR img, CONST_STR msg, bool fb)
 	}
 }
 
-void ScoreGUI::showShareBts(bool ret, CONST_STR str)
+void ScoreGUI::showShareBts(bool ret, const std::string & str)
 {
 	if (ret)
 	{
@@ -208,6 +209,32 @@ ScoreGUI::ScoreGUI(std::string cat, int score, int bestScore, int star, std::fun
 	scheduleUpdate();
 	updateFlag = 0;
 	
+	time_t currTime = time(NULL);
+	if (currTime - GlobalVar::timeShowAd >= Constants::TIME_SHOW_AD * 60)
+	{
+		GlobalVar::timeShowAd = currTime;
+		enableTouch = false;
+	}
+	else
+	{
+		enableTouch = true;
+	}
+		
+	Node* node = Node::create();
+	node->setContentSize(s);
+	EventListenerTouchOneByOne* evt = EventListenerTouchOneByOne::create();
+	evt->onTouchBegan = CC_CALLBACK_2(ScoreGUI::swallowTouchHelper, this);
+	evt->setSwallowTouches(true);
+	node->getEventDispatcher()->addEventListenerWithSceneGraphPriority(evt, node);
+	addChild(node, 10);
+}
+
+bool ScoreGUI::swallowTouchHelper(Touch* t, Event* e)
+{
+	if (!enableTouch)
+		return true;
+	else
+		return false;
 }
 
 void ScoreGUI::update(float dt)
@@ -388,6 +415,14 @@ void ScoreGUI::update(float dt)
 						vSound.pushBack(CallFunc::create(std::bind(&util::common::playSoundNoResponse, Constants::ASS_SND_ENDGAME, false)));
 						highScore->runAction(Sequence::create( vSound));
 					}
+
+#ifdef LITE
+					if (!enableTouch)	// show ad
+					{
+						util::ad::showLeadboltAd();
+						enableTouch = true;
+					}
+#endif
 				}
 			}
 		}		

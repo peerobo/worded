@@ -22,6 +22,7 @@ public:
 	/////////////////////////////////////	
     static cocos2d::Layer* curScene;	
 	static sMyData myData;
+	static time_t timeShowAd;
 /////////////////////////////////////
     static void* gameLogic;
 };

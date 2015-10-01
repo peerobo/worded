@@ -78,7 +78,7 @@
     <ClCompile>
       <Optimization>Disabled</Optimization>
       <AdditionalIncludeDirectories>..\..\..\..\lib\c++\cocos2d-x-3.8.1\external;..\Classes;..\..\..\..\lib\c++\cocos2d-x-3.8.1\extensions;..\..\..\..\lib\c++\cocos2d-x-3.8.1\;..\..\..\..\lib\c++\cocos2d-x-3.8.1\cocos;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USE_MATH_DEFINES;GL_GLEXT_PROTOTYPES;COCOS2D_DEBUG=1;_CRT_SECURE_NO_WARNINGS;_SCL_SECURE_NO_WARNINGS;ADMIN=1;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>LITE;WIN32;_DEBUG;_WINDOWS;_USE_MATH_DEFINES;GL_GLEXT_PROTOTYPES;COCOS2D_DEBUG=1;_CRT_SECURE_NO_WARNINGS;_SCL_SECURE_NO_WARNINGS;ADMIN=1;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>false</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
@@ -161,6 +161,7 @@ xcopy /Y /Q "..\..\..\..\lib\c++\cocos2d-x-3.8.1\external\websockets\prebuilt\wi
     <ClInclude Include="..\Classes\Constants.h" />
     <ClInclude Include="..\Classes\GlobalVar.h" />
     <ClInclude Include="..\Classes\gui\AlertGUI.h" />
+    <ClInclude Include="..\Classes\gui\MultiBtDlg.h" />
     <ClInclude Include="..\Classes\gui\OneBtDlg.h" />
     <ClInclude Include="..\Classes\gui\ScoreGUI.h" />
     <ClInclude Include="..\Classes\gui\SettingGUI.h" />
@@ -198,6 +199,7 @@ xcopy /Y /Q "..\..\..\..\lib\c++\cocos2d-x-3.8.1\external\websockets\prebuilt\wi
     <ClCompile Include="..\Classes\Constants.cpp" />
     <ClCompile Include="..\Classes\GlobalVar.cpp" />
     <ClCompile Include="..\Classes\gui\AlertGUI.cpp" />
+    <ClCompile Include="..\Classes\gui\MultiBtDlg.cpp" />
     <ClCompile Include="..\Classes\gui\OneBtDlg.cpp" />
     <ClCompile Include="..\Classes\gui\ScoreGUI.cpp" />
     <ClCompile Include="..\Classes\gui\SettingGUI.cpp" />

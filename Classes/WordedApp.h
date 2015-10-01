@@ -43,6 +43,7 @@ public:
 	static const char* KEY_REMIND_RATE;
 	static const char* KEY_ALREADY_RATE;
 	static const char* KEY_NUM_CAT_UNLOCKED;
+	static const char* URL_FULL_APP;
 	// achievement
 	static const char* ACH_HARD_MODE;
 	static const char* ACH_1_STAR;
@@ -75,6 +76,6 @@ public:
 	static void unloadSound(const std::string& cat);
 	static void setRateCatIdx(int catIdx);
 	static void setAdCatIdx(int catIdx);
-	static void setUnlockCatNum(int num);
+	static void setUnlockCatNum(int num);	
 	/////////////////////////////////////
 };

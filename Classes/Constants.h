@@ -13,6 +13,7 @@ public:
 	static const char* CONST_CIDR[33];
 	static const char* CONST_IP_RANGE[327];
 	static const char* KEY_VIBRATION;
+	static const int TIME_SHOW_AD;	
 	//////////////////////////////////////////////////////////////////////////////////////////////////////
 
     static const char* ASS_BG_INTRO;

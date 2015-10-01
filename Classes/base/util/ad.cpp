@@ -12,6 +12,7 @@ namespace util
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
 		return IOS::isVungleAvailable;
 #endif
+		return true;
 	}
 
 	void ad::initLeadbolt(const std::string& apikey)
@@ -23,7 +24,6 @@ namespace util
 
 		// cache Leadbolt Ad without showing it
 		AppTrackerWrapper::loadModuleToCache("inapp");
-
 #endif
 	}
     
@@ -40,6 +40,9 @@ namespace util
 		IOS::vungleShownCB = onShownCB;
 		IOS::vungleRewardCB = onRewardCB;
         IOS::vungleShow();
+#elif (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
+		cocos2d::log("show Video Vungle");
+		onRewardCB(true);
 #endif
     }
 
@@ -48,5 +51,6 @@ namespace util
 #if CC_TARGET_PLATFORM == CC_PLATFORM_IOS
 		AppTrackerWrapper::loadModule("inapp");
 #endif
+		cocos2d::log("Show Leadbolt ad");
 	}
 }

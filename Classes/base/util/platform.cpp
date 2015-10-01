@@ -39,6 +39,13 @@ namespace util
         IOS::rate(Constants::KEY_APPID);
 #endif
     }
+
+	void platform::openURL(const std::string& url)
+	{
+#if CC_TARGET_PLATFORM == CC_PLATFORM_IOS
+		IOS::openURL(url);
+#endif
+	}
     
     void platform::authenGC()
     {

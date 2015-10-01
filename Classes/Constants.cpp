@@ -373,7 +373,8 @@ const char* Constants::ASS_SUFFIX_IMAGE_JPG = ".jpg";
 const char* Constants::ASS_SUFFIX_TEXATL = ".pvr.ccz";
 const char* Constants::ASS_SUFFIX_SOUND = ".mp3";
 const char* Constants::KEY_VIBRATION = "vibrate";
-const char* Constants::KEY_APPID = "https://goo.gl/8V9fhc";
+const char* Constants::KEY_APPID = "https://goo.gl/Ue01ZZ";
+const int Constants::TIME_SHOW_AD = 4;	// minute
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 
 const char* Constants::ASS_BG_INTRO = "intro";
