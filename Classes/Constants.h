@@ -50,6 +50,7 @@ public:
 	static const char* ASS_BT_TWITTER;
 
 	static const cocos2d::Color3B COLOR_LIGHT_BLUE;
+    static const cocos2d::Color3B COLOR_GREY;
 
     static const char* ASS_FNT_NORMAL;
     static const char* ASS_FNT_BIG;

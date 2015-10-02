@@ -390,6 +390,7 @@ const char* Constants::ASS_FNT_BIG = "score.fnt";
 const char* Constants::ASS_FNT_SHADOW = "wordedShadow.fnt";
 
 const cocos2d::Color3B Constants::COLOR_LIGHT_BLUE = cocos2d::Color3B(29, 122, 250);
+const cocos2d::Color3B Constants::COLOR_GREY = cocos2d::Color3B(210,210,210);
 
 // ico
 const char* Constants::ASS_BG_DLG_TEXT = "ico_bg_dlg_text";

@@ -101,7 +101,7 @@ void CatChooser::unlockCat(const std::string& cat, UNLOCK type)
 			{
 				auto gui = AlertGUI::create();
 				std::string msg = Configuration::getInstance()->getValue("prevNotUnlocked").asString();
-				auto catClone = Configuration::getInstance()->getValue(StringUtils::format("c_%s", cat.c_str()), Value(cat)).asString();
+				auto catClone = Configuration::getInstance()->getValue(StringUtils::format("c_%s", v[idx-1].c_str()), Value(cat)).asString();
 				util::common::capitalize(catClone);
 				util::common::replace(msg, "@cat", catClone);
 				gui->setMsg(msg);
@@ -156,13 +156,21 @@ void CatChooser::onUnlockByRate(int btIdx, const std::string& cat, Node* node)
 		std::string title = "";
 		std::string msg = "";
 		std::vector<std::string> v;
-		title = Configuration::getInstance()->getValue(StringUtils::format("c_%s", cat.c_str()), Value(cat)).asString();
-		util::common::capitalize(title);
-		msg = cfg->getValue("normalUnlock").asString();
-		v = { cfg->getValue("watchAd").asString(),
-			cfg->getValue("useStars").asString(),
-			cfg->getValue("buyFreeAd").asString() };
-		multiBtDlg->setData(title, msg, v);
+        std::vector<bool> vb = {false,false,false};
+        title = Configuration::getInstance()->getValue(StringUtils::format("c_%s", cat.c_str()), Value(cat)).asString();
+        util::common::capitalize(title);
+        msg = cfg->getValue("normalUnlock").asString();
+        v = { cfg->getValue("watchAd").asString(),
+            cfg->getValue("useStars").asString(),
+            cfg->getValue("buyFreeAd").asString() };
+        
+        if(util::common::getValue(WordedApp::KEY_AD_IDX).asInt() > -1 || !util::ad::isVideoAdAvailable())
+        {
+            v[0] = cfg->getValue("adNotAvail").asString();
+            vb[0] = true;
+        }
+        multiBtDlg->onBtClickCB = CC_CALLBACK_1(CatChooser::onUnlockNormal,this, cat, multiBtDlg);
+		multiBtDlg->setData(title, msg, v, vb);
 		multiBtDlg->show();
 	}
 }
@@ -239,8 +247,9 @@ void CatChooser::catTouchEnd(cocos2d::Touch* t, cocos2d::Event* e, std::string c
 				auto cfg = Configuration::getInstance();
 				std::string title = "";
 				std::string msg = "";
-				std::vector<std::string> v; 
-				if (checkShowRateDlg)
+				std::vector<std::string> v;
+                std::vector<bool> vb = {false,false,false};
+                if (checkShowRateDlg)
 				{
 					title = Configuration::getInstance()->getValue(StringUtils::format("c_%s", cat.c_str()), Value(cat)).asString();
 					util::common::capitalize(title);
@@ -256,11 +265,15 @@ void CatChooser::catTouchEnd(cocos2d::Touch* t, cocos2d::Event* e, std::string c
 					v = { cfg->getValue("watchAd").asString(), 
 						cfg->getValue("useStars").asString(), 
 						cfg->getValue("buyFreeAd").asString() };
+                    
                     if(util::common::getValue(WordedApp::KEY_AD_IDX).asInt() > -1 || !util::ad::isVideoAdAvailable())
+                    {
                         v[0] = cfg->getValue("adNotAvail").asString();
+                        vb[0] = true;
+                    }
                     multiBtDlg->onBtClickCB = CC_CALLBACK_1(CatChooser::onUnlockNormal,this, cat, multiBtDlg);
 				}
-				multiBtDlg->setData( title, msg, v);
+				multiBtDlg->setData( title, msg, v, vb);
 				multiBtDlg->show();
 
 				lockedBG->setVisible(false);

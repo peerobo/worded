@@ -85,7 +85,7 @@ void TableScreen::update(float dt)
 			isSave = true;
             util::platform::setScoreGC(gl->cat, gl->score);
 		}
-		if (gl->score > WordedApp::STAR_MIN_PT)
+		if (gl->score >= WordedApp::STAR_MIN_PT)
 		{
 			star++;
 			if (star <= WordedApp::STAR_MAX)
