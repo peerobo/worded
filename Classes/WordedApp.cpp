@@ -259,7 +259,7 @@ void WordedApp::initialize()
 	if(catUnlockedNum.isNull())
 	{
 		catUnlockedNum = Value(BEGINNER_CAT_NUM);
-		util::common::saveValue(KEY_AD_IDX, catUnlockedNum);
+		util::common::saveValue(KEY_NUM_CAT_UNLOCKED, catUnlockedNum);
 	}	
 	_unlockedCat = catUnlockedNum.asInt();
 
