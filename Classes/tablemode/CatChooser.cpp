@@ -96,12 +96,17 @@ void CatChooser::unlockCat(const std::string& cat, UNLOCK type)
 				count++;
 				util::common::saveValue(WordedApp::KEY_NUM_CAT_UNLOCKED, Value(count));
 				WordedApp::setUnlockCatNum(count);
+                star -= WordedApp::STAR_MAX;
+                ScoreDB::instance->setScoreFor(WordedApp::STARTOTAL_KEY,star);
+                auto starLbl = dynamic_cast<Label*>( getChildByTag(20));
+                if(starLbl)
+                    starLbl->setString(StringUtils::toString(star));
 			}
 			else
 			{
 				auto gui = AlertGUI::create();
 				std::string msg = Configuration::getInstance()->getValue("prevNotUnlocked").asString();
-				auto catClone = Configuration::getInstance()->getValue(StringUtils::format("c_%s", v[idx-1].c_str()), Value(cat)).asString();
+				auto catClone = Configuration::getInstance()->getValue(StringUtils::format("c_%s", v[idx-1].c_str()), Value(v[idx-1])).asString();
 				util::common::capitalize(catClone);
 				util::common::replace(msg, "@cat", catClone);
 				gui->setMsg(msg);
@@ -238,8 +243,17 @@ void CatChooser::catTouchEnd(cocos2d::Touch* t, cocos2d::Event* e, std::string c
 			auto lockedBG = container->getChildByTag(13);
 			if (!lockedBG->isVisible())
 			{
-				lockedBG->setVisible(true);
-			}
+                auto list = dynamic_cast<FScrollList*>(this->getChildByTag(2));
+                if (!list)
+                    return;
+                auto vc = list->getAllItems();
+                for (auto c : vc) {
+                    auto l = c->getChildByTag(13);
+                    if(l)
+                        l->setVisible(false);
+                }
+                lockedBG->setVisible(true);
+            }
 			else
 			{
 				bool checkShowRateDlg = WordedApp::checkShowRateDlg();

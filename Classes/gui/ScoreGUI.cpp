@@ -283,6 +283,7 @@ void ScoreGUI::update(float dt)
 				starIcon->setPositionX(lblPt->getPositionX());
 				starBG->setPositionX(lblPt->getPositionX());
 				float percent = scoreProgress / (float)WordedApp::STAR_MIN_PT;
+                percent = percent > 1 ? 1 : percent;
 				Size starSize = starIcon->getChildByTag(12)->getContentSize();
 				starSize.height = percent * starSize.height;
 				starIcon->setContentSize(starSize);
@@ -387,6 +388,7 @@ void ScoreGUI::update(float dt)
 							v.pushBack(BezierTo::create(0.7f, ccCfg));
 							v.pushBack(CallFunc::create(CC_CALLBACK_0(Label::setString, starLbl, StringUtils::format("%d/%d", (star + 1), WordedApp::STAR_MAX))));
 							v.pushBack(RemoveSelf::create());
+                            starIcon->getChildByTag(12)->runAction(FadeOut::create(0.7f));
 							starIcon->runAction(Sequence::create(v));
 							util::common::playSoundNoResponse(Constants::ASS_SND_HIGHSCORE, false);
                             // update achievement

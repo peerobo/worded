@@ -96,7 +96,7 @@
 /* Begin PBXFileReference section */
 		1ACB3243164770DE00914215 /* libcurl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcurl.a; path = ../../../cocos2dxx/platform/third_party/ios/libraries/libcurl.a; sourceTree = "<group>"; };
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		1D6058910D05DD3D006BFB54 /* Worded by PE.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Worded by PE.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		1D6058910D05DD3D006BFB54 /* Worded Blitz.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Worded Blitz.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		288765A40DF7441C002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		46880B8419C43A87006E1F66 /* AppDelegate.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AppDelegate.cpp; sourceTree = "<group>"; };
@@ -289,7 +289,7 @@
 		19C28FACFE9D520D11CA2CBB /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				1D6058910D05DD3D006BFB54 /* Worded by PE.app */,
+				1D6058910D05DD3D006BFB54 /* Worded Blitz.app */,
 				5087E76F17EB910900C73F5D /* 1st-desktop.app */,
 			);
 			name = Products;
@@ -565,7 +565,7 @@
 			);
 			name = "1st-mobile";
 			productName = iphone;
-			productReference = 1D6058910D05DD3D006BFB54 /* Worded by PE.app */;
+			productReference = 1D6058910D05DD3D006BFB54 /* Worded Blitz.app */;
 			productType = "com.apple.product-type.application";
 		};
 		5087E73D17EB910900C73F5D /* 1st-desktop */ = {
@@ -709,8 +709,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIconLite;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImageLite;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COMPRESS_PNG_FILES = NO;
@@ -729,7 +729,7 @@
 					CC_TARGET_OS_IPHONE,
 					"COCOS2D_DEBUG=1",
 					"CC_ENABLE_CHIPMUNK_INTEGRATION=1",
-					LITE1,
+					LITE,
 				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				HEADER_SEARCH_PATHS = (
@@ -750,8 +750,8 @@
 					"$(_COCOS_LIB_IOS_END)",
 					"-ObjC",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.fc.peeWorded;
-				PRODUCT_NAME = "Worded by PE";
+				PRODUCT_BUNDLE_IDENTIFIER = com.fc.peeWordedLite;
+				PRODUCT_NAME = "Worded Blitz";
 				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -764,8 +764,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIconLite;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImageLite;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COMPRESS_PNG_FILES = NO;
@@ -782,7 +782,7 @@
 					USE_FILE32API,
 					CC_TARGET_OS_IPHONE,
 					"CC_ENABLE_CHIPMUNK_INTEGRATION=1",
-					LITE1,
+					LITE,
 				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				HEADER_SEARCH_PATHS = (
@@ -803,8 +803,8 @@
 					"$(_COCOS_LIB_IOS_END)",
 					"-ObjC",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.fc.peeWorded;
-				PRODUCT_NAME = "Worded by PE";
+				PRODUCT_BUNDLE_IDENTIFIER = com.fc.peeWordedLite;
+				PRODUCT_NAME = "Worded Blitz";
 				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
