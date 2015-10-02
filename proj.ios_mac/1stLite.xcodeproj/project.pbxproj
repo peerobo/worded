@@ -113,7 +113,7 @@
 		503AE10417EB98FF00D1A890 /* Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Prefix.pch; path = mac/Prefix.pch; sourceTree = "<group>"; };
 		503AE11117EB99EE00D1A890 /* libcurl.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libcurl.dylib; path = usr/lib/libcurl.dylib; sourceTree = SDKROOT; };
 		503AE11A17EB9C5A00D1A890 /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
-		5087E76F17EB910900C73F5D /* 1st-desktop.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "1st-desktop.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5087E76F17EB910900C73F5D /* 1stLite-desktop.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "1stLite-desktop.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5087E78817EB974C00C73F5D /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		5087E78A17EB975400C73F5D /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
 		52B47A461A53D09B004E4C60 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.1.sdk/System/Library/Frameworks/Security.framework; sourceTree = DEVELOPER_DIR; };
@@ -290,7 +290,7 @@
 			isa = PBXGroup;
 			children = (
 				1D6058910D05DD3D006BFB54 /* Worded Blitz.app */,
-				5087E76F17EB910900C73F5D /* 1st-desktop.app */,
+				5087E76F17EB910900C73F5D /* 1stLite-desktop.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -551,9 +551,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		1D6058900D05DD3D006BFB54 /* 1st-mobile */ = {
+		1D6058900D05DD3D006BFB54 /* 1stLite-mobile */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "1st-mobile" */;
+			buildConfigurationList = 1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "1stLite-mobile" */;
 			buildPhases = (
 				1D60588D0D05DD3D006BFB54 /* Resources */,
 				1D60588E0D05DD3D006BFB54 /* Sources */,
@@ -563,14 +563,14 @@
 			);
 			dependencies = (
 			);
-			name = "1st-mobile";
+			name = "1stLite-mobile";
 			productName = iphone;
 			productReference = 1D6058910D05DD3D006BFB54 /* Worded Blitz.app */;
 			productType = "com.apple.product-type.application";
 		};
-		5087E73D17EB910900C73F5D /* 1st-desktop */ = {
+		5087E73D17EB910900C73F5D /* 1stLite-desktop */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 5087E76C17EB910900C73F5D /* Build configuration list for PBXNativeTarget "1st-desktop" */;
+			buildConfigurationList = 5087E76C17EB910900C73F5D /* Build configuration list for PBXNativeTarget "1stLite-desktop" */;
 			buildPhases = (
 				5087E74817EB910900C73F5D /* Resources */,
 				5087E75617EB910900C73F5D /* Sources */,
@@ -580,9 +580,9 @@
 			);
 			dependencies = (
 			);
-			name = "1st-desktop";
+			name = "1stLite-desktop";
 			productName = iphone;
-			productReference = 5087E76F17EB910900C73F5D /* 1st-desktop.app */;
+			productReference = 5087E76F17EB910900C73F5D /* 1stLite-desktop.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -603,7 +603,7 @@
 					};
 				};
 			};
-			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "1st" */;
+			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "1stLite" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 1;
@@ -617,8 +617,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				1D6058900D05DD3D006BFB54 /* 1st-mobile */,
-				5087E73D17EB910900C73F5D /* 1st-desktop */,
+				1D6058900D05DD3D006BFB54 /* 1stLite-mobile */,
+				5087E73D17EB910900C73F5D /* 1stLite-desktop */,
 			);
 		};
 /* End PBXProject section */
@@ -843,6 +843,7 @@
 					"$(_COCOS_LIB_MAC_END)",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.fc.pee1st;
+				PRODUCT_NAME = "1stLite-desktop";
 				USER_HEADER_SEARCH_PATHS = "$(_COCOS_HEADER_MAC_BEGIN) $(_COCOS_HEADER_MAC_END)";
 			};
 			name = Debug;
@@ -875,6 +876,7 @@
 					"$(_COCOS_LIB_MAC_END)",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.fc.pee1st;
+				PRODUCT_NAME = "1stLite-desktop";
 				USER_HEADER_SEARCH_PATHS = "$(_COCOS_HEADER_MAC_BEGIN) $(_COCOS_HEADER_MAC_END)";
 			};
 			name = Release;
@@ -944,7 +946,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "1st-mobile" */ = {
+		1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "1stLite-mobile" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				1D6058940D05DD3E006BFB54 /* Debug */,
@@ -953,7 +955,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
 		};
-		5087E76C17EB910900C73F5D /* Build configuration list for PBXNativeTarget "1st-desktop" */ = {
+		5087E76C17EB910900C73F5D /* Build configuration list for PBXNativeTarget "1stLite-desktop" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				5087E76D17EB910900C73F5D /* Debug */,
@@ -962,7 +964,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
 		};
-		C01FCF4E08A954540054247B /* Build configuration list for PBXProject "1st" */ = {
+		C01FCF4E08A954540054247B /* Build configuration list for PBXProject "1stLite" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C01FCF4F08A954540054247B /* Debug */,
