@@ -37,12 +37,7 @@
     {
         if(IOS::vungleShownCB != nullptr)
             IOS::vungleShownCB(false);
-        NSLog(@"The ad presented was not tapped - the user has returned to the app");
-        NSLog(@"ViewInfo Dictionary:");
-        for(NSString * key in [viewInfo allKeys]) {
-            NSLog(@"%@ : %@", key, [[viewInfo objectForKey:key] description]);
-        }
-		if([viewInfo valueForKey:@"completedView"]  == 1 && IOS::vungleRewardCB != nullptr)
+		if([[viewInfo valueForKey:@"completedView"] integerValue]  == 1 && IOS::vungleRewardCB != nullptr)
 			IOS::vungleRewardCB(true);
 		else
 			IOS::vungleRewardCB(false);
@@ -213,8 +208,10 @@ void IOS::vungleInit(const std::string &appID)
 {
     NSString* vungleID = [NSString stringWithUTF8String:appID.c_str()];
     [[VungleSDK sharedSDK] startWithAppId:vungleID];
+#ifdef COCOS2D_DEBUG
+    [[VungleSDK sharedSDK] setLoggingEnabled:YES];
+#endif
     [[VungleSDK sharedSDK] setDelegate: iosUtil];
-    [vungleID autorelease];
 }
 
 void IOS::vungleShow()
@@ -227,7 +224,7 @@ void IOS::vungleShow()
     }
 }
 
-static std::string getBuildVer()
+std::string IOS::getBuildVer()
 {
 	NSString *version = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
 	return std::string(version.UTF8String);

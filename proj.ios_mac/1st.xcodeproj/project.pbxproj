@@ -59,6 +59,16 @@
 		C2BAA3721BA83C0E00D4B21D /* FScrollList.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C2BAA3701BA83C0E00D4B21D /* FScrollList.cpp */; settings = {ASSET_TAGS = (); }; };
 		C2BAA3751BA882A400D4B21D /* TableScreen.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C2BAA3731BA882A300D4B21D /* TableScreen.cpp */; settings = {ASSET_TAGS = (); }; };
 		C2CBF83E1B985D9C00C63CD2 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C2CBF83D1B985D9C00C63CD2 /* Images.xcassets */; settings = {ASSET_TAGS = (); }; };
+		C2D0F79B1BBD693300E201E9 /* __vungle.db in Resources */ = {isa = PBXBuildFile; fileRef = C2D0F7931BBD693200E201E9 /* __vungle.db */; settings = {ASSET_TAGS = (); }; };
+		C2D0F79C1BBD693300E201E9 /* Thumbs.db in Resources */ = {isa = PBXBuildFile; fileRef = C2D0F7941BBD693300E201E9 /* Thumbs.db */; settings = {ASSET_TAGS = (); }; };
+		C2D0F79D1BBD693300E201E9 /* vg_close.png in Resources */ = {isa = PBXBuildFile; fileRef = C2D0F7951BBD693300E201E9 /* vg_close.png */; settings = {ASSET_TAGS = (); }; };
+		C2D0F79E1BBD693300E201E9 /* vg_cta.png in Resources */ = {isa = PBXBuildFile; fileRef = C2D0F7961BBD693300E201E9 /* vg_cta.png */; settings = {ASSET_TAGS = (); }; };
+		C2D0F79F1BBD693300E201E9 /* vg_mute_off.png in Resources */ = {isa = PBXBuildFile; fileRef = C2D0F7971BBD693300E201E9 /* vg_mute_off.png */; settings = {ASSET_TAGS = (); }; };
+		C2D0F7A01BBD693300E201E9 /* vg_mute_on.png in Resources */ = {isa = PBXBuildFile; fileRef = C2D0F7981BBD693300E201E9 /* vg_mute_on.png */; settings = {ASSET_TAGS = (); }; };
+		C2D0F7A11BBD693300E201E9 /* vg_privacy.png in Resources */ = {isa = PBXBuildFile; fileRef = C2D0F7991BBD693300E201E9 /* vg_privacy.png */; settings = {ASSET_TAGS = (); }; };
+		C2D0F7A21BBD693300E201E9 /* VungleSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2D0F79A1BBD693300E201E9 /* VungleSDK.framework */; settings = {ASSET_TAGS = (); }; };
+		C2D0F7A41BBD694000E201E9 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2D0F7A31BBD694000E201E9 /* WebKit.framework */; };
+		C2D0F7A71BBD69A300E201E9 /* MultiBtDlg.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C2D0F7A51BBD69A300E201E9 /* MultiBtDlg.cpp */; settings = {ASSET_TAGS = (); }; };
 		C2DC74581B960D8B0086BC7B /* IntroScreen.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C2DC74571B960D8B0086BC7B /* IntroScreen.cpp */; settings = {ASSET_TAGS = (); }; };
 		C2DC745D1B9610740086BC7B /* Constants.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C2DC74591B9610740086BC7B /* Constants.cpp */; settings = {ASSET_TAGS = (); }; };
 		C2DC745E1B9610740086BC7B /* GlobalVar.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C2DC745B1B9610740086BC7B /* GlobalVar.cpp */; settings = {ASSET_TAGS = (); }; };
@@ -86,7 +96,7 @@
 /* Begin PBXFileReference section */
 		1ACB3243164770DE00914215 /* libcurl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcurl.a; path = ../../../cocos2dxx/platform/third_party/ios/libraries/libcurl.a; sourceTree = "<group>"; };
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		1D6058910D05DD3D006BFB54 /* Worded by PE.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Worded by PE.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		1D6058910D05DD3D006BFB54 /* Worded Blitz.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Worded Blitz.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		288765A40DF7441C002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		46880B8419C43A87006E1F66 /* AppDelegate.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AppDelegate.cpp; sourceTree = "<group>"; };
@@ -104,7 +114,6 @@
 		503AE11117EB99EE00D1A890 /* libcurl.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libcurl.dylib; path = usr/lib/libcurl.dylib; sourceTree = SDKROOT; };
 		503AE11A17EB9C5A00D1A890 /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
 		5087E76F17EB910900C73F5D /* 1st-desktop.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "1st-desktop.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		5087E77C17EB970100C73F5D /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5087E78817EB974C00C73F5D /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		5087E78A17EB975400C73F5D /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
 		52B47A461A53D09B004E4C60 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.1.sdk/System/Library/Frameworks/Security.framework; sourceTree = DEVELOPER_DIR; };
@@ -161,6 +170,18 @@
 		C2BAA3731BA882A300D4B21D /* TableScreen.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TableScreen.cpp; path = tablemode/TableScreen.cpp; sourceTree = "<group>"; };
 		C2BAA3741BA882A300D4B21D /* TableScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TableScreen.h; path = tablemode/TableScreen.h; sourceTree = "<group>"; };
 		C2CBF83D1B985D9C00C63CD2 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = "1st-mobile/Images.xcassets"; sourceTree = SOURCE_ROOT; };
+		C2D0F7931BBD693200E201E9 /* __vungle.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = __vungle.db; sourceTree = "<group>"; };
+		C2D0F7941BBD693300E201E9 /* Thumbs.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = Thumbs.db; sourceTree = "<group>"; };
+		C2D0F7951BBD693300E201E9 /* vg_close.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = vg_close.png; sourceTree = "<group>"; };
+		C2D0F7961BBD693300E201E9 /* vg_cta.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = vg_cta.png; sourceTree = "<group>"; };
+		C2D0F7971BBD693300E201E9 /* vg_mute_off.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = vg_mute_off.png; sourceTree = "<group>"; };
+		C2D0F7981BBD693300E201E9 /* vg_mute_on.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = vg_mute_on.png; sourceTree = "<group>"; };
+		C2D0F7991BBD693300E201E9 /* vg_privacy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = vg_privacy.png; sourceTree = "<group>"; };
+		C2D0F79A1BBD693300E201E9 /* VungleSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = VungleSDK.framework; sourceTree = "<group>"; };
+		C2D0F7A31BBD694000E201E9 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
+		C2D0F7A51BBD69A300E201E9 /* MultiBtDlg.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MultiBtDlg.cpp; path = gui/MultiBtDlg.cpp; sourceTree = "<group>"; };
+		C2D0F7A61BBD69A300E201E9 /* MultiBtDlg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MultiBtDlg.h; path = gui/MultiBtDlg.h; sourceTree = "<group>"; };
+		C2D0F7A81BBD6A5C00E201E9 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = ios/Info.plist; sourceTree = SOURCE_ROOT; };
 		C2DC74561B960D720086BC7B /* IntroScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IntroScreen.h; sourceTree = "<group>"; };
 		C2DC74571B960D8B0086BC7B /* IntroScreen.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = IntroScreen.cpp; sourceTree = "<group>"; };
 		C2DC74591B9610740086BC7B /* Constants.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Constants.cpp; sourceTree = "<group>"; };
@@ -200,6 +221,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C2D0F7A41BBD694000E201E9 /* WebKit.framework in Frameworks */,
 				C2FF71371BB44F6F00992F92 /* libcocos2d iOS.a in Frameworks */,
 				C26967691BB31BC100F29F39 /* MediaPlayer.framework in Frameworks */,
 				C26967681BB31BB500F29F39 /* libsqlite3.tbd in Frameworks */,
@@ -223,6 +245,7 @@
 				BF1C47F01293687400B63C5D /* QuartzCore.framework in Frameworks */,
 				D44C620C132DFF330009C878 /* OpenAL.framework in Frameworks */,
 				D44C620E132DFF430009C878 /* AVFoundation.framework in Frameworks */,
+				C2D0F7A21BBD693300E201E9 /* VungleSDK.framework in Frameworks */,
 				D44C6210132DFF4E0009C878 /* AudioToolbox.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -251,7 +274,7 @@
 		080E96DDFE201D6D7F000001 /* ios */ = {
 			isa = PBXGroup;
 			children = (
-				5087E77117EB970100C73F5D /* Icons */,
+				C2D0F7A81BBD6A5C00E201E9 /* Info.plist */,
 				503AE0FA17EB989F00D1A890 /* AppController.h */,
 				503AE0FB17EB989F00D1A890 /* AppController.mm */,
 				503AE0FC17EB989F00D1A890 /* main.m */,
@@ -266,7 +289,7 @@
 		19C28FACFE9D520D11CA2CBB /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				1D6058910D05DD3D006BFB54 /* Worded by PE.app */,
+				1D6058910D05DD3D006BFB54 /* Worded Blitz.app */,
 				5087E76F17EB910900C73F5D /* 1st-desktop.app */,
 			);
 			name = Products;
@@ -290,6 +313,8 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C2D0F7A31BBD694000E201E9 /* WebKit.framework */,
+				C2D0F7911BBD693200E201E9 /* VungleSDK.embeddedframework */,
 				C26967661BB3174400F29F39 /* Social.framework */,
 				C2E7237E1BB170470063B9C7 /* GameKit.framework */,
 				C22EA0F21BA1EB170097336A /* MediaPlayer.framework */,
@@ -329,10 +354,10 @@
 		46880B7519C43A67006E1F66 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				C2CBF83D1B985D9C00C63CD2 /* Images.xcassets */,
 				C2DC74611B9613A60086BC7B /* @1x */,
 				C2DC74621B9613A60086BC7B /* @2x */,
 				C2DC74631B9613A60086BC7B /* @4x */,
+				C2CBF83D1B985D9C00C63CD2 /* Images.xcassets */,
 				C2DC74641B9613A60086BC7B /* shared */,
 			);
 			name = Resources;
@@ -381,15 +406,6 @@
 			);
 			name = mac;
 			sourceTree = "<group>";
-		};
-		5087E77117EB970100C73F5D /* Icons */ = {
-			isa = PBXGroup;
-			children = (
-				5087E77C17EB970100C73F5D /* Info.plist */,
-			);
-			name = Icons;
-			path = ios;
-			sourceTree = SOURCE_ROOT;
 		};
 		C22799E81B98A4D8004E3475 /* intro */ = {
 			isa = PBXGroup;
@@ -482,6 +498,30 @@
 			name = comp;
 			sourceTree = "<group>";
 		};
+		C2D0F7911BBD693200E201E9 /* VungleSDK.embeddedframework */ = {
+			isa = PBXGroup;
+			children = (
+				C2D0F7921BBD693200E201E9 /* Resources */,
+				C2D0F79A1BBD693300E201E9 /* VungleSDK.framework */,
+			);
+			name = VungleSDK.embeddedframework;
+			path = vungle/VungleSDK.embeddedframework;
+			sourceTree = "<group>";
+		};
+		C2D0F7921BBD693200E201E9 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				C2D0F7931BBD693200E201E9 /* __vungle.db */,
+				C2D0F7941BBD693300E201E9 /* Thumbs.db */,
+				C2D0F7951BBD693300E201E9 /* vg_close.png */,
+				C2D0F7961BBD693300E201E9 /* vg_cta.png */,
+				C2D0F7971BBD693300E201E9 /* vg_mute_off.png */,
+				C2D0F7981BBD693300E201E9 /* vg_mute_on.png */,
+				C2D0F7991BBD693300E201E9 /* vg_privacy.png */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		C2FFD69A1BB13FB300275733 /* ios */ = {
 			isa = PBXGroup;
 			children = (
@@ -494,6 +534,8 @@
 		C2FFD6A11BB13FEB00275733 /* gui */ = {
 			isa = PBXGroup;
 			children = (
+				C2D0F7A51BBD69A300E201E9 /* MultiBtDlg.cpp */,
+				C2D0F7A61BBD69A300E201E9 /* MultiBtDlg.h */,
 				C2FFD6A21BB13FFD00275733 /* OneBtDlg.cpp */,
 				C2FFD6A31BB13FFD00275733 /* OneBtDlg.h */,
 				C2FFD6A41BB13FFD00275733 /* ScoreGUI.cpp */,
@@ -523,7 +565,7 @@
 			);
 			name = "1st-mobile";
 			productName = iphone;
-			productReference = 1D6058910D05DD3D006BFB54 /* Worded by PE.app */;
+			productReference = 1D6058910D05DD3D006BFB54 /* Worded Blitz.app */;
 			productType = "com.apple.product-type.application";
 		};
 		5087E73D17EB910900C73F5D /* 1st-desktop */ = {
@@ -587,10 +629,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				C2DC74661B9613A60086BC7B /* @2x in Resources */,
+				C2D0F79D1BBD693300E201E9 /* vg_close.png in Resources */,
 				C2DC74671B9613A60086BC7B /* @4x in Resources */,
+				C2D0F79F1BBD693300E201E9 /* vg_mute_off.png in Resources */,
+				C2D0F79E1BBD693300E201E9 /* vg_cta.png in Resources */,
 				C2CBF83E1B985D9C00C63CD2 /* Images.xcassets in Resources */,
+				C2D0F79C1BBD693300E201E9 /* Thumbs.db in Resources */,
 				C2DC74681B9613A60086BC7B /* shared in Resources */,
+				C2D0F79B1BBD693300E201E9 /* __vungle.db in Resources */,
+				C2D0F7A01BBD693300E201E9 /* vg_mute_on.png in Resources */,
 				C2DC74651B9613A60086BC7B /* @1x in Resources */,
+				C2D0F7A11BBD693300E201E9 /* vg_privacy.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -632,6 +681,7 @@
 				C2BAA3751BA882A400D4B21D /* TableScreen.cpp in Sources */,
 				C2BAA36E1BA83BD800D4B21D /* CatChooser.cpp in Sources */,
 				C22EA1011BA1EB910097336A /* effects.cpp in Sources */,
+				C2D0F7A71BBD69A300E201E9 /* MultiBtDlg.cpp in Sources */,
 				C2FFD6991BB13FA200275733 /* LearnScreen.cpp in Sources */,
 				C2FFD6A81BB13FFD00275733 /* OneBtDlg.cpp in Sources */,
 				C22EA1091BA1EBB30097336A /* WordedApp.cpp in Sources */,
@@ -659,8 +709,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIconLite;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImageLite;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COMPRESS_PNG_FILES = NO;
@@ -668,6 +718,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/vungle/VungleSDK.embeddedframework",
 				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
@@ -678,6 +729,7 @@
 					CC_TARGET_OS_IPHONE,
 					"COCOS2D_DEBUG=1",
 					"CC_ENABLE_CHIPMUNK_INTEGRATION=1",
+					LITE,
 				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				HEADER_SEARCH_PATHS = (
@@ -690,20 +742,20 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(PROJECT_DIR)/lib",
-					"$(PROJECT_DIR)/lib/leadbolt",
 					"$(PROJECT_DIR)/leadbolt",
 				);
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = (
 					"$(_COCOS_LIB_IOS_BEGIN)",
 					"$(_COCOS_LIB_IOS_END)",
+					"-ObjC",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.fc.peeWorded;
-				PRODUCT_NAME = "Worded by PE";
+				PRODUCT_BUNDLE_IDENTIFIER = com.fc.peeWordedLite;
+				PRODUCT_NAME = "Worded Blitz";
 				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				USER_HEADER_SEARCH_PATHS = "$(_COCOS_HEADER_IOS_BEGIN) $(_COCOS_HEADER_IOS_END) \"$(SRCROOT)/PluginVungle.framework/Headers\" \"$(SRCROOT)/VungleSDK.framework/Headers\"";
+				USER_HEADER_SEARCH_PATHS = "$(_COCOS_HEADER_IOS_BEGIN) $(_COCOS_HEADER_IOS_END)";
 				VALID_ARCHS = "arm64 armv7";
 			};
 			name = Debug;
@@ -712,8 +764,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIconLite;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImageLite;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COMPRESS_PNG_FILES = NO;
@@ -721,6 +773,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/vungle/VungleSDK.embeddedframework",
 				);
 				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -729,6 +782,7 @@
 					USE_FILE32API,
 					CC_TARGET_OS_IPHONE,
 					"CC_ENABLE_CHIPMUNK_INTEGRATION=1",
+					LITE,
 				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				HEADER_SEARCH_PATHS = (
@@ -741,20 +795,20 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(PROJECT_DIR)/lib",
-					"$(PROJECT_DIR)/lib/leadbolt",
 					"$(PROJECT_DIR)/leadbolt",
 				);
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = (
 					"$(_COCOS_LIB_IOS_BEGIN)",
 					"$(_COCOS_LIB_IOS_END)",
+					"-ObjC",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.fc.peeWorded;
-				PRODUCT_NAME = "Worded by PE";
+				PRODUCT_BUNDLE_IDENTIFIER = com.fc.peeWordedLite;
+				PRODUCT_NAME = "Worded Blitz";
 				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				USER_HEADER_SEARCH_PATHS = "$(_COCOS_HEADER_IOS_BEGIN) $(_COCOS_HEADER_IOS_END) \"$(SRCROOT)/PluginVungle.framework/Headers\" \"$(SRCROOT)/VungleSDK.framework/Headers\"";
+				USER_HEADER_SEARCH_PATHS = "$(_COCOS_HEADER_IOS_BEGIN) $(_COCOS_HEADER_IOS_END)";
 				VALID_ARCHS = "arm64 armv7";
 			};
 			name = Release;

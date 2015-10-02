@@ -18,6 +18,7 @@ void MultiBtDlg::setData(const std::string& title, const std::string& msg, std::
 	auto bg = util::graphic::getSprite(Constants::ASS_BG_DLG_TEXT);
 	bg->setAnchorPoint(Vec2::ANCHOR_BOTTOM_LEFT);
 	Size size = bg->getContentSize();
+    bg->setPositionY(-4);
 	addChild(bg, 1);
 
 	auto lbl = Label::createWithBMFont(Constants::ASS_FNT_NORMAL, title);	

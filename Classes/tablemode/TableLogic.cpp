@@ -110,7 +110,6 @@ void TableLogic::nextWord()
 	}
 	pauseTime = WordedApp::TABLE_MODE_TIME_PAUSE_B4_COUNT;
 	word = wordSequence[size-1];
-	log("new word: %s", word.c_str());
 	wordSequence.pop_back();
 	formation = WordedApp::getRndFormationWith(cat, word, 9);
 	answerWord = "";

@@ -20,24 +20,24 @@ namespace util {
 
 	std::string common::enc(const std::string& msg)
 	{
-		std::string out(msg);
-		for (int i = 0; i < msg.length(); ++i)
-		{
-			out[i] += 10;
-		}
-		return out;
-		
+//		std::string out(msg);
+//		for (int i = 0; i < msg.length(); ++i)
+//		{
+//			out[i] += 10;
+//		}
+//		return out;
+        return msg;
 	}
 
 	std::string common::dec(const std::string& msg)
 	{
-		std::string out(msg);
-		for (int i = 0; i < msg.length(); ++i)
-		{
-			out[i] -= 10;
-		}
-		return out;
-
+//		std::string out(msg);
+//		for (int i = 0; i < msg.length(); ++i)
+//		{
+//			out[i] -= 10;
+//		}
+//		return out;
+        return msg;
 	}
 
 	Value common::getValue(const std::string& key)
@@ -48,7 +48,6 @@ namespace util {
 			std::string path = getCacheDirectory();
 			path += "data.dat";
 			dataDict = fileUtil->getValueMapFromFile(path);
-			dataDict[enc(key)] = Value::Null;
 		}
 
 		ValueMap::iterator it = dataDict.find(key);

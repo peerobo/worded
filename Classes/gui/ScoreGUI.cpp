@@ -181,6 +181,8 @@ ScoreGUI::ScoreGUI(std::string cat, int score, int bestScore, int star, std::fun
 	highScoreLabel->setPosition(rect.getMidX(), rect.getMinY() - 100);
 	addChild(highScoreLabel, 1);
 	highScoreLabel->setScale(0.8f);
+    highScoreLabel->setOpacity(0);
+    highScoreLabel->setTag(25);
 	util::effects::reveal(highScoreLabel, 0.4f);
 	highScoreLabel->setColor(Color3B(248, 143, 116));
 
@@ -289,6 +291,10 @@ void ScoreGUI::update(float dt)
 				
 				if (scoreProgress == targetScore)
 				{
+                    util::common::stopAllSounds();
+                    // highscore label
+                    util::effects::reveal(getChildByTag(25));
+                    
 					if (targetScore >= WordedApp::STAR_MIN_PT)  // finish effect
 					{
                         // check stars achievement
@@ -382,7 +388,6 @@ void ScoreGUI::update(float dt)
 							v.pushBack(CallFunc::create(CC_CALLBACK_0(Label::setString, starLbl, StringUtils::format("%d/%d", (star + 1), WordedApp::STAR_MAX))));
 							v.pushBack(RemoveSelf::create());
 							starIcon->runAction(Sequence::create(v));
-							starIcon->getChildByTag(12)->runAction(FadeOut::create(0.7f));
 							util::common::playSoundNoResponse(Constants::ASS_SND_HIGHSCORE, false);
                             // update achievement
                             if(star + 1 == WordedApp::STAR_MAX)
@@ -396,6 +401,22 @@ void ScoreGUI::update(float dt)
 						}
 						
 					}
+                    else if(percent >= 0.7f)    // show star suggest
+                    {
+                        auto starSuggest = Label::createWithBMFont(Constants::ASS_FNT_NORMAL, StringUtils::format("(%d/%dpt)", targetScore, WordedApp::STAR_MIN_PT));
+                        starSuggest->setAnchorPoint(Vec2::ANCHOR_BOTTOM_LEFT);
+                        starSuggest->setScale(0.7f);
+                        starSuggest->setPosition(starIcon->getPosition());
+                        starSuggest->setOpacity(0);
+                        auto suggestV = Vector<FiniteTimeAction*>();
+                        suggestV.pushBack(DelayTime::create(0.7f));
+                        suggestV.pushBack(FadeIn::create(0.7f));
+                        starBG->runAction(FadeOut::create(0.7f));
+                        starIcon->getChildByTag(12)->runAction(FadeOut::create(0.7f));
+                        addChild(starSuggest,1);
+                        starSuggest->runAction(Sequence::create(suggestV));
+                        
+                    }
 					if (targetScore > bestScore)
 					{
 						Size s = util::graphic::getScreenSize();
@@ -415,7 +436,7 @@ void ScoreGUI::update(float dt)
 						vSound.pushBack(CallFunc::create(std::bind(&util::common::playSoundNoResponse, Constants::ASS_SND_ENDGAME, false)));
 						highScore->runAction(Sequence::create( vSound));
 					}
-
+                    
 #ifdef LITE
 					if (!enableTouch)	// show ad
 					{

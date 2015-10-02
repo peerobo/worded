@@ -36,7 +36,7 @@ namespace util
     void platform::rate()
     {
 #if CC_TARGET_PLATFORM == CC_PLATFORM_IOS
-        IOS::rate(Constants::KEY_APPID);
+        IOS::openURL(Constants::KEY_APPID);
 #endif
     }
 

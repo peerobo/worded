@@ -9,45 +9,45 @@
 	</dict>
 	<key>data</key>
 	<dict>
-    <key>videoAdFailed</key>
-    <string>Video is not yet available. Please try again later.</string>
-    <key>videoSkip</key>
-    <string>You have skipped the video. You have to watch the whole video to unlock!</string>
-    <key>prevNotUnlocked</key>
-    <string>You have to unlock the category @cat first.</string>
-    <key>notEnoughStars</key>
-    <string>You need @star to unlock a category. Get star by scoring @pt points or more.</string>
+		<key>videoAdFailed</key>
+		<string>Video is not yet available. Please try again later.</string>
+		<key>videoSkip</key>
+		<string>You have skipped the video. You have to watch the whole video to unlock!</string>
+		<key>prevNotUnlocked</key>
+		<string>You have to unlock the category @cat first (unlocking by using stars).</string>
+		<key>notEnoughStars</key>
+		<string>You need @star stars to unlock a category. Get stars by scoring @pt points or more.</string>
 		<key>more</key>
 		<string>More</string>
 		<key>moreGames</key>
 		<string>More Games</string>
 		<key>leaderboard</key>
 		<string>GameCenter</string>
-    <key>rateAppUnlock</key>
-    <string>Do you want to rate app to unlock this category for 12 hours?</string>
-    <key>normalUnlock</key>
-    <string>Unlock by one of following ways:
-- Watch a video, unlock for 12 hours
+		<key>rateAppUnlock</key>
+		<string>Do you want to rate app to unlock this category for 12 hours?</string>
+		<key>normalUnlock</key>
+		<string>Unlock by one of these ways:
+- Watch a video, play for 12 hours
 - Using 5 stars
 - Buying premium app</string>
-    <key>unlockCat</key>
-    <string>Unlock Category</string>
-    <key>watchAd</key>
-    <string>Watch Video advertising</string>
-    <key>useStars</key>
-    <string>Using 5 stars</string>
-    <key>buyFreeAd</key>
-    <string>Buy premium version</string>
-    <key>no</key>
-    <string>No</string>
+		<key>unlockCat</key>
+		<string>Unlock Category</string>
+		<key>adNotAvail</key>
+		<string>Video not available</string>
+		<key>watchAd</key>
+		<string>Watch video advertising</string>
+		<key>useStars</key>
+		<string>Using 5 stars</string>
+		<key>buyFreeAd</key>
+		<string>Buy premium version</string>
+		<key>no</key>
+		<string>No</string>
 		<key>back</key>
 		<string>Back</string>
-    <key>learn</key>
-    <string>Learn</string>
-		<key>alert</key>
-		<string>Alert</string>
 		<key>learn</key>
 		<string>Learn</string>
+		<key>alert</key>
+		<string>Alert</string>
 		<key>rate</key>
 		<string>Rate/Feedback</string>
 		<key>setting</key>

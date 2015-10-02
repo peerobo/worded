@@ -373,7 +373,11 @@ const char* Constants::ASS_SUFFIX_IMAGE_JPG = ".jpg";
 const char* Constants::ASS_SUFFIX_TEXATL = ".pvr.ccz";
 const char* Constants::ASS_SUFFIX_SOUND = ".mp3";
 const char* Constants::KEY_VIBRATION = "vibrate";
+#ifdef LITE
 const char* Constants::KEY_APPID = "https://goo.gl/Ue01ZZ";
+#else
+const char* Constants::KEY_APPID = "https://goo.gl/8V9fhc";
+#endif
 const int Constants::TIME_SHOW_AD = 4;	// minute
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -385,7 +389,7 @@ const char* Constants::ASS_FNT_NORMAL = "worded.fnt";
 const char* Constants::ASS_FNT_BIG = "score.fnt";
 const char* Constants::ASS_FNT_SHADOW = "wordedShadow.fnt";
 
-const cocos2d::Color3B Constants::COLOR_LIGHT_BLUE = cocos2d::Color3B(28, 176, 255);
+const cocos2d::Color3B Constants::COLOR_LIGHT_BLUE = cocos2d::Color3B(29, 122, 250);
 
 // ico
 const char* Constants::ASS_BG_DLG_TEXT = "ico_bg_dlg_text";

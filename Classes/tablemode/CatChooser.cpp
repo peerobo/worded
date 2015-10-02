@@ -106,6 +106,7 @@ void CatChooser::unlockCat(const std::string& cat, UNLOCK type)
 				util::common::replace(msg, "@cat", catClone);
 				gui->setMsg(msg);
 				gui->show();
+                return;
 			}
 		}
 		else
@@ -116,6 +117,7 @@ void CatChooser::unlockCat(const std::string& cat, UNLOCK type)
 			util::common::replace(msg, "@pt", StringUtils::toString(WordedApp::STAR_MIN_PT));
 			alert->setMsg(msg);
 			alert->show();
+            return;
 		}
 	}
 	auto scene = dynamic_cast<CatChooser*>(GlobalVar::curScene);
@@ -254,6 +256,9 @@ void CatChooser::catTouchEnd(cocos2d::Touch* t, cocos2d::Event* e, std::string c
 					v = { cfg->getValue("watchAd").asString(), 
 						cfg->getValue("useStars").asString(), 
 						cfg->getValue("buyFreeAd").asString() };
+                    if(util::common::getValue(WordedApp::KEY_AD_IDX).asInt() > -1 || !util::ad::isVideoAdAvailable())
+                        v[0] = cfg->getValue("adNotAvail").asString();
+                    multiBtDlg->onBtClickCB = CC_CALLBACK_1(CatChooser::onUnlockNormal,this, cat, multiBtDlg);
 				}
 				multiBtDlg->setData( title, msg, v);
 				multiBtDlg->show();
@@ -358,11 +363,8 @@ void CatChooser::animateIn()
 	Size s = util::graphic::getScreenSize();
 
 	Configuration* cfg = Configuration::getInstance();
-	int unlocked = WordedApp::getUnlockedCat();
     std::vector<std::string> v = WordedApp::getAllCats();
     Node* catNode = createCatItem(v[0],0, false);
-	int adCatIdx = WordedApp::getAdCat();
-	int rateCatIdx = WordedApp::getRateCat();
 	Size catSize = catNode->getContentSize();
 	Size listSize((catSize.width + 50)*2, (catSize.height+50)*2);
 	FScrollList* scList = FScrollList::create();
@@ -372,6 +374,9 @@ void CatChooser::animateIn()
     for (std::vector<std::string>::const_iterator it = v.begin(); it != v.end(); it++) {
         count = count%4;
 #ifdef LITE
+        int unlocked = WordedApp::getUnlockedCat();
+        int adCatIdx = WordedApp::getAdCat();
+        int rateCatIdx = WordedApp::getRateCat();
         scList->addAutoPosItem( createCatItem((*it), count, !(i < unlocked || i == adCatIdx || i==rateCatIdx)));
 #else
 		scList->addAutoPosItem(createCatItem((*it), count, false));
