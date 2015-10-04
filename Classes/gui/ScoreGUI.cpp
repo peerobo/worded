@@ -319,7 +319,7 @@ void ScoreGUI::update(float dt)
                                     {
                                         // update and save
                                         util::platform::updateAchGC(
-                                                starsAch[i],
+                                                                    WordedApp::getGCKey( starsAch[i].c_str()),
                                                 100,
                                                 std::bind(&util::common::saveValue,starsAch[i],Value(true))
                                             );
@@ -354,14 +354,14 @@ void ScoreGUI::update(float dt)
                                     {
                                         // update and save
                                         util::platform::updateAchGC(
-                                                                    _90achs[i],
+                                                                    WordedApp::getGCKey( _90achs[i].c_str()),
                                                                     100,
                                                                     std::bind(&util::common::saveValue,_90achs[i],Value(true))
                                                                     );
                                     }
                                     else
                                     {
-                                        util::platform::updateAchGC(_90achs[i],percent*100);
+                                        util::platform::updateAchGC(WordedApp::getGCKey( _90achs[i].c_str()),percent*100);
                                     }
                                     break;
                                 }
@@ -397,7 +397,7 @@ void ScoreGUI::update(float dt)
                                 bool checkAch = util::common::getValue(WordedApp::ACH_1_CAT).asBool();
                                 if(!checkAch)
                                 {
-                                    util::platform::updateAchGC(WordedApp::ACH_1_CAT, 100, std::bind(&util::common::saveValue,WordedApp::ACH_1_CAT, Value(true)) );
+                                    util::platform::updateAchGC(WordedApp::getGCKey( WordedApp::ACH_1_CAT), 100, std::bind(&util::common::saveValue,WordedApp::ACH_1_CAT, Value(true)) );
                                 }
                             }
 						}
