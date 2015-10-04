@@ -183,7 +183,8 @@ ScoreGUI::ScoreGUI(std::string cat, int score, int bestScore, int star, std::fun
 	highScoreLabel->setScale(0.8f);
     highScoreLabel->setOpacity(0);
     highScoreLabel->setTag(25);
-	//util::effects::reveal(highScoreLabel, 0.4f);
+    if(score == 0)
+        util::effects::reveal(highScoreLabel, 0.4f);
 	highScoreLabel->setColor(Color3B(248, 143, 116));
 
 	auto backBt = ui::Button::create();
