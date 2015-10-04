@@ -74,7 +74,7 @@ void TableLogic::start()
     {
         if (util::platform::isGC()) {
             //util::platform::updateAchGC(WordedApp::ACH_HARD_MODE, 100, [](){});
-            util::platform::updateAchGC(WordedApp::ACH_HARD_MODE, 100, std::bind(&util::common::saveValue,WordedApp::ACH_HARD_MODE,Value(true)));
+            util::platform::updateAchGC(WordedApp::getGCKey( WordedApp::ACH_HARD_MODE), 100, std::bind(&util::common::saveValue,WordedApp::ACH_HARD_MODE,Value(true)));
         }
 
         

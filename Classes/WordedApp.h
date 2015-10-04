@@ -76,6 +76,7 @@ public:
 	static void unloadSound(const std::string& cat);
 	static void setRateCatIdx(int catIdx);
 	static void setAdCatIdx(int catIdx);
-	static void setUnlockCatNum(int num);	
+	static void setUnlockCatNum(int num);
+    static std::string getGCKey(const char* key);
 	/////////////////////////////////////
 };

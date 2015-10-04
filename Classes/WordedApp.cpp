@@ -219,6 +219,15 @@ std::vector<std::string> WordedApp::getRndFormationExcept(const std::string& cat
 	return rndV;
 }
 
+std::string WordedApp::getGCKey(const char* key)
+{
+#ifdef LITE
+    return StringUtils::format("wlite_%s", key);
+#else
+    return std::string(key);
+#endif
+}
+
 std::vector<std::string> WordedApp::getRndFormationWith(const std::string& cat, const std::string& with, int total)
 {
 	std::vector<std::string> v = getRndFormationExcept(cat, with, total - 1);
@@ -232,7 +241,6 @@ std::vector<std::string> WordedApp::getRndFormationWith(const std::string& cat, 
 //	}
 	return v;
 }
-
 void WordedApp::initialize()
 {	
 	// load all data
@@ -245,6 +253,7 @@ void WordedApp::initialize()
 	}
 	else
 	{
+
 		int64_t timeStart = util::common::getValue(KEY_AD_START_TIME).asDouble();
 		time_t currTime = time(NULL);
 		if (currTime - timeStart > TIME_AD_REMAIN * 3600)

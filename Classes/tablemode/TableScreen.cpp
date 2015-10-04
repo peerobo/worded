@@ -83,7 +83,7 @@ void TableScreen::update(float dt)
 		{
 			ScoreDB::instance->setScoreFor(gl->cat, gl->score);
 			isSave = true;
-            util::platform::setScoreGC(gl->cat, gl->score);
+            util::platform::setScoreGC(WordedApp::getGCKey( gl->cat.c_str()), gl->score);
 		}
 		if (gl->score >= WordedApp::STAR_MIN_PT)
 		{
