@@ -211,7 +211,7 @@ ScoreGUI::ScoreGUI(std::string cat, int score, int bestScore, int star, std::fun
 	targetScore = score;
 	scheduleUpdate();
 	updateFlag = 0;
-	
+#ifdef LITE
 	time_t currTime = time(NULL);
 	if (currTime - GlobalVar::timeShowAd >= Constants::TIME_SHOW_AD * 60)
 	{
@@ -222,6 +222,7 @@ ScoreGUI::ScoreGUI(std::string cat, int score, int bestScore, int star, std::fun
 	{
 		enableTouch = true;
 	}
+#endif
 		
 	Node* node = Node::create();
 	node->setContentSize(s);
