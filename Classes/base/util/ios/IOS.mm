@@ -218,6 +218,7 @@ void IOS::vungleShow()
 {
     UIViewController* v = [UIApplication sharedApplication].keyWindow.rootViewController;
     NSError *error;
+	IOS::isVungleAvailable = false;
     [[VungleSDK sharedSDK] playAd:v error:&error];
     if (error) {
         NSLog(@"Error encountered playing ad: %@", error);

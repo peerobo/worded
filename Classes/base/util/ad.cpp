@@ -50,6 +50,9 @@ namespace util
 	{
 #if CC_TARGET_PLATFORM == CC_PLATFORM_IOS
 		AppTrackerWrapper::loadModule("inapp");
+
+		// cache Leadbolt Ad without showing it
+		AppTrackerWrapper::loadModuleToCache("inapp");
 #endif
 		cocos2d::log("Show Leadbolt ad");
 	}
