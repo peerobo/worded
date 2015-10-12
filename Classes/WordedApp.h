@@ -44,6 +44,7 @@ public:
 	static const char* KEY_ALREADY_RATE;
 	static const char* KEY_NUM_CAT_UNLOCKED;
 	static const char* URL_FULL_APP;
+    static const char* GC_TOTAL_SCORE;
 	// achievement
 	static const char* ACH_HARD_MODE;
 	static const char* ACH_1_STAR;

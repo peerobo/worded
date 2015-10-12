@@ -177,6 +177,8 @@ void CatChooser::onUnlockByRate(int btIdx, const std::string& cat, Node* node)
         multiBtDlg->onBtClickCB = CC_CALLBACK_1(CatChooser::onUnlockNormal,this, cat, multiBtDlg);
 		multiBtDlg->setData(title, msg, v, vb);
 		multiBtDlg->show();
+        
+        util::common::saveValue(WordedApp::KEY_REMIND_RATE,  Value(WordedApp::RATE_REMIND_ROUND));
 	}
 }
 
@@ -296,6 +298,7 @@ void CatChooser::catTouchEnd(cocos2d::Touch* t, cocos2d::Event* e, std::string c
 		}
 		else
 		{
+            e->getCurrentTarget()->getEventDispatcher()->removeAllEventListeners();
 			util::graphic::loadTexAtl(cat, false);
 			WordedApp::loadSound(cat);
 			// list
