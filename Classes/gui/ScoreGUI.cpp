@@ -222,6 +222,8 @@ ScoreGUI::ScoreGUI(std::string cat, int score, int bestScore, int star, std::fun
 	{
 		enableTouch = true;
 	}
+#else
+	enableTouch = true;
 #endif
 		
 	Node* node = Node::create();
