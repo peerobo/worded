@@ -26,6 +26,7 @@ private:
     
     void onLearnMode();
     void onTableMode();
+	void onPuzzleMode();
     void onLeaderboard();
     void onMoreGame();
     void onMore();

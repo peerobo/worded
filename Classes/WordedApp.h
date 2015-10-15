@@ -28,6 +28,9 @@ public:
 	static const int TABLE_MODE_TIME[2];
 	static const int TABLE_MODE_LEVELS[2];
     static const int TABLE_MODE_PENALTY[2];
+	static const int MATCHING_MODE_TIME[2];
+	static const int MATCHING_MODE_RATE[2];
+	static const int MATCHING_MODE_TIME_PAUSE_B4_COUNT;
 	static const int TIME_AD_REMAIN;
 	static const int BEGINNER_CAT_NUM;
     static const float TABLE_MODE_SCORE_RATIO[2];
@@ -79,5 +82,6 @@ public:
 	static void setAdCatIdx(int catIdx);
 	static void setUnlockCatNum(int num);
     static std::string getGCKey(const char* key);
+	static std::vector<std::string> getRndCats(int maxCatIdx, int numCat);
 	/////////////////////////////////////
 };

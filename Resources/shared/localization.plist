@@ -57,7 +57,9 @@
 		<key>close</key>
 		<string>Close</string>
 		<key>tablemode</key>
-		<string>Play</string>
+		<string>Casual</string>
+    <key>puzzlemode</key>
+    <string>Puzzle</string>
 		<key>categories</key>
 		<string>Categories</string>
 		<key>scoreCat</key>

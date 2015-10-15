@@ -19,6 +19,7 @@ public:
     static const char* ASS_BG_INTRO;
     static const char* ASS_BG_ONE;
     static const char* ASS_BG_TABLE;
+	static const char* ASS_BG_MATCHING;
 
 	static const char* ASS_BG_DLG_TEXT;
 	static const char* ASS_BG_DLG_BT;
@@ -41,6 +42,7 @@ public:
 	static const char* ASS_ICO_BG_BUBBLE;
 	static const char* ASS_ICO_CURR_PAGE;
 	static const char* ASS_ICO_PAGE;
+	static const char* ASS_ICO_MONEY;
 	static const char* ASS_BT_BACK;
 	static const char* ASS_BT_CORRECT;
 	static const char* ASS_BT_RETRY;

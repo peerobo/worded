@@ -14,6 +14,7 @@
 #include "tablemode/CatChooser.h"
 #include "gui/SettingGUI.h"
 #include "gui/AlertGUI.h"
+#include "matching/MatchingScreen.h"
 #if CC_TARGET_PLATFORM == CC_PLATFORM_IOS
 #include "AppTrackerWrapper.h"
 #endif
@@ -73,6 +74,11 @@ void IntroScreen::onTableMode()
     util::graphic::changeSceneWithLayer(CatChooser::create());
 }
 
+void IntroScreen::onPuzzleMode()
+{
+	util::graphic::changeSceneWithLayer(MatchingScreen::create());
+}
+
 void IntroScreen::onLeaderboard()
 {
     if(util::platform::isGC())
@@ -108,12 +114,12 @@ void IntroScreen::onTouchItem(int type)
     if(node->getOpacity() < 255)
         return;
 	util::common::playSound(Constants::ASS_SND_CLICK, false);
-    if (type == 0 || type == 1 || type == 3 || type == 4)
+    if (type == 0 || type == 1 || type == 3 || type == 4 || type == 8)
     {
         
         // buttons vanish
         int count = 0;
-        for (int i =0; i<8; i++) {
+        for (int i =0; i<9; i++) {
             auto node = dynamic_cast<IntroItem*>(getChildByTag(10+i));
             if(node)
             {
@@ -129,16 +135,31 @@ void IntroScreen::onTouchItem(int type)
             }
             
         }
-        if (type == 0 || type == 1) {
+        if (type == 0 || type == 1 || type == 8) {
             // cache next bg
-            auto bg = util::graphic::getSpriteFromImageJPG(type == 0 ? Constants::ASS_BG_ONE:Constants::ASS_BG_TABLE);
+			const char* bgStr = NULL;
+			switch (type)
+			{
+			case 0:
+				bgStr = Constants::ASS_BG_ONE;
+				break;
+			case 1:
+				bgStr = Constants::ASS_BG_TABLE;
+				break;
+			case 8:
+				bgStr = Constants::ASS_BG_MATCHING;
+				break;
+			default:
+				break;
+			}
+            auto bg = util::graphic::getSpriteFromImageJPG(bgStr);
             Size s = util::graphic::getScreenSize();
             bg->setPosition(s.width/2,s.height/2);
             addChild(bg,0);
             
             // bg fade out
             Vector<FiniteTimeAction*> v;
-            v.pushBack(FadeOut::create(0.3f));
+            v.pushBack(FadeOut::create(0.7f));
             v.pushBack(CallFunc::create(CC_CALLBACK_0(IntroScreen::processType, this,type)));
             getChildByTag(1)->runAction(Sequence::create(v));
 
@@ -185,6 +206,9 @@ void IntroScreen::processType(int type)
         case 7:
             onMoreGame();
             break;
+		case 8:
+			onPuzzleMode();
+			break;
         default:
             break;
     }
@@ -228,22 +252,29 @@ void IntroScreen::startIntro()
     item->setPositionY(posY-250);
     item->runIn(1);
     item->setTag(11);
+
+	item = IntroItem::create();
+	item->setValue(cfg->getValue("puzzlemode").asString(), CC_CALLBACK_0(IntroScreen::onTouchItem, this, 8));
+	addChild(item, 1);
+	item->setPositionX(s.width / 2);
+	item->setPositionY(posY - 400);
+	item->runIn(2);
+	item->setTag(18);
     
     item = IntroItem::create();
     item->setValue(cfg->getValue("setting").asString(),  CC_CALLBACK_0(IntroScreen::onTouchItem, this,2));
     addChild(item,1);
     item->setPositionX(s.width/2);
-    item->setPositionY(posY-400);
-    item->runIn(2);
+    item->setPositionY(posY-550);
+    item->runIn(3);
     item->setTag(12);
     
     item = IntroItem::create();
     item->setValue(cfg->getValue("more").asString(),  CC_CALLBACK_0(IntroScreen::onTouchItem, this,3));
     addChild(item,1);
     item->setPositionX(s.width/2);
-//    item->setPositionY(posY-400);
-    item->setPositionY(posY-550);
-    item->runIn(3);
+    item->setPositionY(posY-700);
+    item->runIn(4);
     item->setTag(13);
 //
 //	item = IntroItem::create();

@@ -22,7 +22,10 @@ const int WordedApp::BEGINNER_CAT_NUM = 4;
 //const int WordedApp::ONE_MODE_PENALTY[2] = {-5,-5};
 //const float WordedApp::ONE_MODE_SCORE_RATIO[2] = {0.5f,2.0f};
 const int WordedApp::RATE_REMIND_ROUND = 20;
-const int WordedApp::TABLE_MODE_TIME[2] = { 15, 8};
+const int WordedApp::MATCHING_MODE_TIME[2] = { 15, 8 };
+const int WordedApp::MATCHING_MODE_RATE[2] = { 1.f / 3.f, 1.25f };
+const int WordedApp::MATCHING_MODE_TIME_PAUSE_B4_COUNT = 1.5f;
+const int WordedApp::TABLE_MODE_TIME[2] = { 15, 8 };
 const int WordedApp::TABLE_MODE_LEVELS[2] = { 10, 10};
 const int WordedApp::TABLE_MODE_PENALTY[2] = {-4,-4};
 const float WordedApp::TABLE_MODE_SCORE_RATIO[2] = {1.f/3.f, 1.25f};
@@ -333,4 +336,16 @@ bool WordedApp::checkShowRateDlg()
 bool WordedApp::validateAnswer(const std::string& item1, const std::string& item2)
 {
 	return item1 == item2;
+}
+
+std::vector<std::string> WordedApp::getRndCats(int maxCatIdx, int numCat)
+{
+	std::vector<std::string> v;
+	auto allCat = getAllCats();
+	for (int i = 0; i < numCat; i++)
+	{
+		int catIdx = rand() % (maxCatIdx + 1);
+		v.push_back(allCat[catIdx]);
+	}
+	return v;
 }
