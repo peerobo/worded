@@ -217,6 +217,12 @@ namespace util {
 			ins->playBackgroundMusic(music, true);
 	}
 
+	void common::stopSound(uint32_t id)
+	{
+		CocosDenshion::SimpleAudioEngine* ins = CocosDenshion::SimpleAudioEngine::getInstance();
+		ins->stopEffect(id);
+	}
+
 	void common::stopAllSounds(bool fadeOut)
 	{
 		if (fadeOut)

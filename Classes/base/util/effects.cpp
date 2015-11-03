@@ -42,6 +42,22 @@ namespace util
         v.pushBack(RemoveSelf::create());        
         node->runAction(Sequence::create(v));
     }
+
+	void effects::zoomTo(cocos2d::Node * node, float delay, float startScale, float endScale, std::function<void()> cb)
+	{
+		log("delay %.1f scale %.1f - %.1f", delay, startScale, endScale);
+		Vector<FiniteTimeAction*> v;
+		if (delay > 0)
+			v.pushBack(DelayTime::create(delay));
+		node->setScale(startScale);
+		v.pushBack(ScaleTo::create(0.25f, endScale));
+		if (cb)
+			v.pushBack(CallFunc::create(cb));
+		if (v.size() == 1)
+			node->runAction(ScaleTo::create(0.25f, endScale));
+		else
+			node->runAction(Sequence::create(v));
+	}
     
 	void effects::disappear(Node* node, float delay, std::function<void()> cb)
 	{

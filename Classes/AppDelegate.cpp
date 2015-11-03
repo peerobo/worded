@@ -56,7 +56,7 @@ bool AppDelegate::applicationDidFinishLaunching() {
     auto glview = director->getOpenGLView();
     if(!glview) {
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32) || (CC_TARGET_PLATFORM == CC_PLATFORM_MAC) || (CC_TARGET_PLATFORM == CC_PLATFORM_LINUX)
-        glview = GLViewImpl::createWithRect("1st", Rect(0, 0, 320, 480));
+        glview = GLViewImpl::createWithRect("1st", Rect(0, 0, 320, 600));
 #else
         glview = GLViewImpl::create("1st");
 #endif
@@ -78,7 +78,7 @@ bool AppDelegate::applicationDidFinishLaunching() {
     ResolutionPolicy resPolicy = ResolutionPolicy::EXACT_FIT;
 #if(CC_TARGET_PLATFORM == CC_PLATFORM_IOS || CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
 
-    if (maxSize <= 480)
+    if (maxSize <= 640)
     {
         w = sw / 0.25;
         h = sh / 0.25;

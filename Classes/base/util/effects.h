@@ -14,5 +14,7 @@ namespace util
 		static void disappear(cocos2d::Node* node, float delay = -1, std::function<void()> cb = nullptr);
         // fade to the void
         static void fadeAndRemove(cocos2d::Node* node, float time = 1.f, std::function<void()> cb = nullptr);
+		// zoom in
+		static void zoomTo(cocos2d::Node* node, float delay = -1, float startScale = 0, float endScale = 1, std::function<void()> cb = nullptr);
 	};
 }

@@ -29,7 +29,5 @@ public:
 	void validateState();
 	void nextFormation();	
 	std::string getCurrCat();
-	void endGame();	
-
-
+	void endGame();
 };

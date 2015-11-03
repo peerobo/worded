@@ -1,6 +1,6 @@
 #include "AppTrackerWrapper.h"
 #include "AppTracker.h" 
-#import <platform/ios/CCEAGLView-ios.h>
+#import "CCEAGLView.h"
 #import "cocos2d.h"
 
 static UIViewController * getViewController()
@@ -10,6 +10,7 @@ static UIViewController * getViewController()
 
 void AppTrackerWrapper::startSession(const char* apiKey)
 {
+    [AppTracker setFramework:@"cocos2dx"];
     [AppTracker startSession:[NSString stringWithUTF8String:apiKey]];
 }
 
@@ -31,6 +32,21 @@ void AppTrackerWrapper::event(const char* name, float floatValue)
 void AppTrackerWrapper::transaction(const char* name, float floatValue, const char* currencyCode)
 {
     [AppTracker transaction:[NSString stringWithUTF8String:name] value:floatValue currencyCode:[NSString stringWithUTF8String:currencyCode]];
+}
+
+void AppTrackerWrapper::setAgeRange(const char* ageRange)
+{
+    [AppTracker setAgeRange:[NSString stringWithUTF8String:ageRange]];
+}
+
+void AppTrackerWrapper::setGender(const char* gender)
+{
+    [AppTracker setGender:[NSString stringWithUTF8String:gender]];
+}
+
+bool AppTrackerWrapper::isAdReady(const char* placement)
+{
+    return [AppTracker isAdReady:[NSString stringWithUTF8String:placement]];
 }
 
 void AppTrackerWrapper::loadModule(const char* placement)

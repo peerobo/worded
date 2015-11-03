@@ -15,6 +15,7 @@
 #include "gui/SettingGUI.h"
 #include "gui/AlertGUI.h"
 #include "matching/MatchingScreen.h"
+#include "matching/MatchingLogic.h"
 #if CC_TARGET_PLATFORM == CC_PLATFORM_IOS
 #include "AppTrackerWrapper.h"
 #endif
@@ -76,6 +77,8 @@ void IntroScreen::onTableMode()
 
 void IntroScreen::onPuzzleMode()
 {
+	// init logic
+	(new MatchingLogic())->init();
 	util::graphic::changeSceneWithLayer(MatchingScreen::create());
 }
 

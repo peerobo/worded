@@ -59,7 +59,7 @@
 		<key>tablemode</key>
 		<string>Casual</string>
     <key>puzzlemode</key>
-    <string>Puzzle</string>
+    <string>Matching Mode</string>
 		<key>categories</key>
 		<string>Categories</string>
 		<key>scoreCat</key>

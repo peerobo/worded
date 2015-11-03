@@ -36,10 +36,9 @@ void MatchingLogic::init()
 	firstWord = secWord = "";
 	catIdx = -1;
 	formation = std::vector<std::string>();
-	score = 0;
-	level = -1;
+	score = 0;	
 	pauseTime = -1;
-	isShowScore = -1;
+	isShowScore = false;
 	Looper::instance->addLoop(CC_CALLBACK_1(MatchingLogic::loop, this), LOOPER_IDX);
 	GlobalVar::gameLogic = this;
 }
@@ -55,13 +54,14 @@ void MatchingLogic::start()
 	isPlaying = true;
 	isPause = false;
 	score = 0;
-	catRnd = WordedApp::getRndCats(WordedApp::getUnlockedCat(), WordedApp::TABLE_MODE_LEVELS[WordedApp::difficult]);
+	int maxCatID = WordedApp::getUnlockedCat();
+	maxCatID = maxCatID < WordedApp::TABLE_MODE_LEVELS[WordedApp::difficult] ? WordedApp::TABLE_MODE_LEVELS[WordedApp::difficult]-1 : maxCatID -1;
+	catRnd = WordedApp::getRndCats(maxCatID, WordedApp::TABLE_MODE_LEVELS[WordedApp::difficult]);
 	firstWord = secWord = "";
-	nextFormation();
-	level = -1;
+	catIdx = -1;
+	nextFormation();	
 	isShowScore = false;
 	remainingWord = 10;
-	catIdx = -1;
 }
 
 void MatchingLogic::validateState()
@@ -74,7 +74,10 @@ void MatchingLogic::validateState()
 			score += currTime* rate;
 			remainingWord -= 2;			
 			if (remainingWord == 0)
+			{
 				nextFormation();
+				remainingWord = 10;
+			}
 			firstWord = "";
 			secWord = "";
 		}
@@ -82,17 +85,20 @@ void MatchingLogic::validateState()
 		{
 			firstWord = "";
 			secWord = "";
+			// penalty
+			currTime -= WordedApp::MATCHING_MODE_PENALTY[WordedApp::difficult];
 		}
 	}
 }
 
 void MatchingLogic::nextFormation()
 {
+	log("render new formation");
 	int size = catRnd.size();
 	catIdx++;
 	if (catIdx == size)
 	{
-		endGame();
+		endGame();		
 		return;
 	}
 	pauseTime = WordedApp::MATCHING_MODE_TIME_PAUSE_B4_COUNT;
@@ -114,11 +120,14 @@ void MatchingLogic::nextFormation()
 
 std::string MatchingLogic::getCurrCat()
 {
+	if (catIdx == -1)
+		return "";
 	return catRnd[catIdx];
 }
 
 void MatchingLogic::endGame()
-{
+{	
+	log("end game");
 	isPlaying = false;
 	isShowScore = true;
 	// decrease count rate

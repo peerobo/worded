@@ -29,14 +29,17 @@ public:
 	static const int TABLE_MODE_LEVELS[2];
     static const int TABLE_MODE_PENALTY[2];
 	static const int MATCHING_MODE_TIME[2];
-	static const int MATCHING_MODE_RATE[2];
+	static const int MATCHING_MODE_PENALTY[2];
+	static const float MATCHING_MODE_RATE[2];
 	static const int MATCHING_MODE_TIME_PAUSE_B4_COUNT;
 	static const int TIME_AD_REMAIN;
 	static const int BEGINNER_CAT_NUM;
     static const float TABLE_MODE_SCORE_RATIO[2];
     static const float TABLE_MODE_TIME_PAUSE_B4_COUNT;
+	static const char* SCORE_MATCHING;
 	static const char* STARTOTAL_KEY;
 	static const char* STAR_PREFIX_KEY;
+	static const char* COIN_KEY;
     static const char* PREFIX_90STAR;
     static const char* TOTAL_90STAR;
 	static const char* KEY_AD_IDX;
