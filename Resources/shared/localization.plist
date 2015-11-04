@@ -58,8 +58,10 @@
 		<string>Close</string>
 		<key>tablemode</key>
 		<string>Casual</string>
-    <key>puzzlemode</key>
-    <string>Matching Mode</string>
+		<key>puzzlemode</key>
+		<string>Matching Mode</string>
+		<key>puzzle</key>
+		<string>Matching</string>
 		<key>categories</key>
 		<string>Categories</string>
 		<key>scoreCat</key>

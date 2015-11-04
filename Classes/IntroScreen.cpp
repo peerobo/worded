@@ -257,7 +257,7 @@ void IntroScreen::startIntro()
     item->setTag(11);
 
 	item = IntroItem::create();
-	item->setValue(cfg->getValue("puzzlemode").asString(), CC_CALLBACK_0(IntroScreen::onTouchItem, this, 8));
+	item->setValue(cfg->getValue("puzzle").asString(), CC_CALLBACK_0(IntroScreen::onTouchItem, this, 8));
 	addChild(item, 1);
 	item->setPositionX(s.width / 2);
 	item->setPositionY(posY - 400);

@@ -1,6 +1,6 @@
 #include "AppTrackerWrapper.h"
 #include "AppTracker.h" 
-#import "CCEAGLView.h"
+#import <platform/ios/CCEAGLView-ios.h>
 #import "cocos2d.h"
 
 static UIViewController * getViewController()

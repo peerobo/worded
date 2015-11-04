@@ -221,7 +221,7 @@ void MatchingScreen::update(float dt)
 		bool isSave = false;
 		if (gl->score > best)
 		{
-			ScoreDB::instance->setScoreFor(WordedApp::COIN_KEY,gl->score);
+			ScoreDB::instance->setScoreFor(WordedApp::SCORE_MATCHING,gl->score);
 			isSave = true;
 			util::platform::setScoreGC(WordedApp::getGCKey("worded_matching"), gl->score);
 		}

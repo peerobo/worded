@@ -45,7 +45,6 @@ namespace util
 
 	void effects::zoomTo(cocos2d::Node * node, float delay, float startScale, float endScale, std::function<void()> cb)
 	{
-		log("delay %.1f scale %.1f - %.1f", delay, startScale, endScale);
 		Vector<FiniteTimeAction*> v;
 		if (delay > 0)
 			v.pushBack(DelayTime::create(delay));
