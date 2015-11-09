@@ -21,8 +21,15 @@ MatchingScreen::~MatchingScreen()
 	}	
 }
 
+void MatchingScreen::enableTouch()
+{
+	log("enable touch");
+	disableTouch = false;
+}
+
 MatchingScreen::MatchingScreen()
 {
+	disableTouch = false;
 	playingWordSoundID = UINT32_MAX;
 	auto bg = util::graphic::getSpriteFromImageJPG(Constants::ASS_BG_MATCHING);
 	Size s = util::graphic::getScreenSize();
@@ -86,9 +93,11 @@ void MatchingScreen::animateIn()
 void MatchingScreen::onTouchWord(int idx)
 {
 	MatchingLogic* gl = static_cast<MatchingLogic*>(GlobalVar::gameLogic);
-	if (gl->pauseTime > 0)
+	if (gl->pauseTime > 0 || disableTouch)
+		return;	
+	if (idx == firstWordIdx) // select the same tile
 		return;
-	log("touch word");
+	const float TIME_DELAY = 0.8f;
 	if (playingWordSoundID != UINT32_MAX)
 	{
 		util::common::stopSound(playingWordSoundID);
@@ -97,12 +106,12 @@ void MatchingScreen::onTouchWord(int idx)
 	util::common::replace(word, "+", "");
 	playingWordSoundID = util::common::playSound((word + Constants::ASS_SUFFIX_SOUND).c_str(), false);
 	
-	if (idx == firstWordIdx) // select the same tile
-		return;
 	if (firstWordIdx != -1)
 	{
 		secondWordIdx = idx;
 		gl->secWord = word;
+		disableTouch = true;
+		log("disable touch 2nd word");
 		if (gl->firstWord == gl->secWord) // vanish tile
 		{
 			auto bg = getChildByTag(TAG_BG_WORD_PREFIX + secondWordIdx);
@@ -112,19 +121,29 @@ void MatchingScreen::onTouchWord(int idx)
 			scale = icon->getScale();
 			std::function<void()> later = CC_CALLBACK_0(MatchingScreen::resetAllTiles, this);
 			if (gl->remainingWord == 2)
-				later = nullptr;
+			{
+				later = CC_CALLBACK_0(MatchingScreen::enableTouch, this);
+			}
+			else
+			{
+				// enable touch
+				auto v = Vector<FiniteTimeAction*>();
+				v.pushBack(DelayTime::create(TIME_DELAY));
+				v.pushBack(CallFunc::create( CC_CALLBACK_0(MatchingScreen::enableTouch, this)));
+				runAction(Sequence::create(v));
+			}
+
 			util::effects::zoomTo(
 				icon, 
 				-1, 
 				scale, 
-				scale/0.9f*1.1f, 
+				scale/0.9f * 1.1f, 
 				std::bind(
 					static_cast<void (MatchingScreen::*)( int, int, std::function<void()>)>(&MatchingScreen::vanishTile),
 					this,
 					firstWordIdx,
 					secondWordIdx, 
 					later
-					//std::bind(static_cast<void(MatchingScreen::*)()>(&MatchingScreen::resetAllTiles), this)
 				)
 			);
 		}
@@ -141,14 +160,22 @@ void MatchingScreen::onTouchWord(int idx)
 				icon,
 				-1,
 				scale,
-				scale*1.1f,
+				scale * 1.1f,
 				later);
+			// enable touch
+			auto v = Vector<FiniteTimeAction*>();
+			v.pushBack(DelayTime::create(TIME_DELAY));
+			v.pushBack(CallFunc::create(CC_CALLBACK_0(MatchingScreen::enableTouch, this)));
+			runAction(Sequence::create(v));
 		}
 	}
 	else
 	{
 		firstWordIdx = idx;
 		gl->firstWord = word;
+		disableTouch = true;
+		log("disable touch 1st word");
+		bool addCB = false;
 		for (size_t i = 0; i < 10; i++)
 		{
 			float scale;
@@ -157,17 +184,34 @@ void MatchingScreen::onTouchWord(int idx)
 			if (i == firstWordIdx)
 			{
 				scale = bg->getScale();
-				util::effects::zoomTo(bg, -1, scale, scale*1.1f);
-				scale = icon->getScale();
-				util::effects::zoomTo(icon, -1, scale, scale*1.1f);
+				util::effects::zoomTo(bg, -1, scale, scale * 1.1f);
+				scale = icon->getScale();				
+				if (!addCB)
+				{
+					util::effects::zoomTo(icon, -1, scale, scale * 1.1f, CC_CALLBACK_0(MatchingScreen::enableTouch,this));
+					addCB = true;
+				}
+				else
+				{
+					util::effects::zoomTo(icon, -1, scale, scale * 1.1f);
+				}
 				continue;
 			}
 			if (bg)
 			{
 				scale = bg->getScale();
-				util::effects::zoomTo(bg, -1, scale, scale*0.9f);
+				util::effects::zoomTo(bg, -1, scale, scale * 0.9f);
 				scale = icon->getScale();
-				util::effects::zoomTo(icon, -1, scale, scale*0.9f);
+				
+				if (!addCB)
+				{
+					util::effects::zoomTo(icon, -1, scale, scale * 0.9f, CC_CALLBACK_0(MatchingScreen::enableTouch,this));
+					addCB = true;
+				}
+				else
+				{
+					util::effects::zoomTo(icon, -1, scale, scale * 0.9f);
+				}
 			}
 		}
 
@@ -290,13 +334,13 @@ void MatchingScreen::update(float dt)
 		}
 	}
 	else    // is Pause
-	{		
+	{
+		
 	}
 }
 
 void MatchingScreen::startRound()
-{		
-	log("start round");
+{			
 	firstWordIdx = secondWordIdx = -1;	
 	util::common::stopAllSounds();
 	auto gl = static_cast<MatchingLogic*>(GlobalVar::gameLogic);
@@ -390,24 +434,24 @@ void MatchingScreen::vanishTiles()
 
 void MatchingScreen::vanishTile(int idx1, int idx2, std::function<void()> cb)
 {
+	float TIME = 0.25f;
 	auto n = getChildByTag(TAG_BG_WORD_PREFIX + idx1);
 	if(n)
-		util::effects::fadeAndRemove(n);
+		util::effects::fadeAndRemove(n, TIME);
 	n = getChildByTag(TAG_ICON_WORD_PREFIX + idx1);
 	if(n)
-		util::effects::fadeAndRemove(n);
+		util::effects::fadeAndRemove(n, TIME);
 	
 	n = getChildByTag(TAG_BG_WORD_PREFIX + idx2);
 	if (n)
-		util::effects::fadeAndRemove(n);
+		util::effects::fadeAndRemove(n, TIME);
 	n = getChildByTag(TAG_ICON_WORD_PREFIX + idx2);
 	if (n)
-		util::effects::fadeAndRemove(n,1,cb);
+		util::effects::fadeAndRemove(n, TIME, cb);
 }
 
 void MatchingScreen::resetAllTiles()
-{
-	log("reset All tiles");
+{	
 	for (size_t i = 0; i < 10; i++)
 	{
 		float scale;
@@ -418,8 +462,12 @@ void MatchingScreen::resetAllTiles()
 			scale = bg->getScale();
 			util::effects::zoomTo(bg, -1, scale, scale / (i == firstWordIdx || i== secondWordIdx ? 1.1f : 0.9f));
 			scale = icon->getScale();
+			
 			util::effects::zoomTo(icon, -1, scale, scale / (i == firstWordIdx || i == secondWordIdx ? 1.1f : 0.9f));
+			
+			
 		}
 	}
+	
 	firstWordIdx = secondWordIdx = -1;	
 }

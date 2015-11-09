@@ -8,6 +8,7 @@ USING_NS_CC;
 class MatchingScreen : public Layer
 {
 private:
+	bool disableTouch;
 	std::string curCat;
 	bool playedTimeout;
 	uint32_t playingWordSoundID;
@@ -42,6 +43,7 @@ private:
 	void resetAllTiles();
 	void onBack2Intro();
 	void onRetry();
+	void enableTouch();
 public:
 	CREATE_FUNC(MatchingScreen);
 };
