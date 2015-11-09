@@ -26,6 +26,10 @@ public:
     static void event(const char* name, float floatValue);
 
     static void transaction(const char* name, float floatValue, const char* currencyCode);
+
+    static void setAgeRange(const char* ageRange);
+    static void setGender(const char* gender);
+    static bool isAdReady(const char* placement);
     
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
     static void closeSession(bool sync);

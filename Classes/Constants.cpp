@@ -384,6 +384,7 @@ const int Constants::TIME_SHOW_AD = 4;	// minute
 const char* Constants::ASS_BG_INTRO = "intro";
 const char* Constants::ASS_BG_ONE = "onebg";
 const char* Constants::ASS_BG_TABLE = "tablebg";
+const char* Constants::ASS_BG_MATCHING = "matchingbg";
 
 const char* Constants::ASS_FNT_NORMAL = "worded.fnt";
 const char* Constants::ASS_FNT_BIG = "score.fnt";
@@ -414,6 +415,7 @@ const char* Constants::ASS_ICO_TOUCHME = "ico_touchme";
 const char* Constants::ASS_ICO_BG_BUBBLE = "ico_bg_smallpopup";
 const char* Constants::ASS_ICO_CURR_PAGE = "ico_curr_page";
 const char* Constants::ASS_ICO_PAGE = "ico_page";
+const char* Constants::ASS_ICO_MONEY = "ico_money";
 const char* Constants::ASS_BT_BACK = "bt_back";
 const char* Constants::ASS_BT_CORRECT = "bt_correct";
 const char* Constants::ASS_BT_RETRY = "bt_retry";

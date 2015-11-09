@@ -22,14 +22,20 @@ const int WordedApp::BEGINNER_CAT_NUM = 4;
 //const int WordedApp::ONE_MODE_PENALTY[2] = {-5,-5};
 //const float WordedApp::ONE_MODE_SCORE_RATIO[2] = {0.5f,2.0f};
 const int WordedApp::RATE_REMIND_ROUND = 20;
-const int WordedApp::TABLE_MODE_TIME[2] = { 15, 8};
+const int WordedApp::MATCHING_MODE_TIME[2] = { 30, 13 };
+const float WordedApp::MATCHING_MODE_RATE[2] = { 1.f / 3.f, 0.5f };
+const int WordedApp::MATCHING_MODE_TIME_PAUSE_B4_COUNT = 3.5f;
+const int WordedApp::TABLE_MODE_TIME[2] = { 15, 8 };
 const int WordedApp::TABLE_MODE_LEVELS[2] = { 10, 10};
 const int WordedApp::TABLE_MODE_PENALTY[2] = {-4,-4};
+const int WordedApp::MATCHING_MODE_PENALTY[2] = { 5, 1 };
 const float WordedApp::TABLE_MODE_SCORE_RATIO[2] = {1.f/3.f, 1.25f};
 const float WordedApp::TABLE_MODE_TIME_PAUSE_B4_COUNT = 1.2f;
+const char* WordedApp::SCORE_MATCHING = "scoreMatching";
 const char* WordedApp::STARTOTAL_KEY = "star_total";
 const char* WordedApp::STAR_PREFIX_KEY = "star-";
 const char* WordedApp::PREFIX_90STAR = "star90-";
+const char* WordedApp::COIN_KEY = "coin_total";
 const char* WordedApp::TOTAL_90STAR = "star90_total";
 const char* WordedApp::ACH_HARD_MODE = "ach_hardmode";
 const char* WordedApp::ACH_1_STAR = "ach_1star";
@@ -117,7 +123,7 @@ void WordedApp::loadSound(const std::string& cat)
 		}
 	}
 #if CC_TARGET_PLATFORM == CC_PLATFORM_WIN32
-	paths.push_back("../../Resources/shared/sounds/" + cat);
+	paths.push_back("../../Resources/shared/sounds/" + cat + "/");
 #else
 	paths.push_back("shared/sounds/" + cat);
 #endif
@@ -132,7 +138,7 @@ void WordedApp::loadSound(const std::string& cat)
 	CocosDenshion::SimpleAudioEngine* audioEngine = CocosDenshion::SimpleAudioEngine::getInstance();
 	std::vector<std::string> words = WordedApp::getAllWords(cat);
 	for(std::string word : words)
-		audioEngine->preloadEffect(word.c_str());	
+		audioEngine->preloadEffect((word + Constants::ASS_SUFFIX_SOUND).c_str());
 }
 
 void WordedApp::unloadSound(const std::string& cat)
@@ -333,4 +339,20 @@ bool WordedApp::checkShowRateDlg()
 bool WordedApp::validateAnswer(const std::string& item1, const std::string& item2)
 {
 	return item1 == item2;
+}
+
+std::vector<std::string> WordedApp::getRndCats(int maxCatIdx, int numCat)
+{
+	std::vector<std::string> v;
+	auto allCat = getAllCats();
+	allCat.erase(allCat.begin()+maxCatIdx+1,allCat.end());
+	while (numCat > 0)
+	{
+		int catIdx = rand() % (maxCatIdx + 1);
+		v.push_back(allCat[catIdx]);
+		maxCatIdx--;
+		numCat--;	
+		allCat.erase(allCat.begin() + catIdx);
+	}	
+	return v;
 }

@@ -49,7 +49,8 @@ namespace util
 	void ad::showLeadboltAd()
 	{
 #if CC_TARGET_PLATFORM == CC_PLATFORM_IOS
-		AppTrackerWrapper::loadModule("inapp");
+		if(AppTrackerWrapper::isAdReady("inapp"))
+			AppTrackerWrapper::loadModule("inapp");
 
 		// cache Leadbolt Ad without showing it
 		AppTrackerWrapper::loadModuleToCache("inapp");

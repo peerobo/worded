@@ -22,6 +22,7 @@ namespace util
 		static uint32_t playSound(const char* snd, bool loop);
 		static void playSoundNoResponse(const char* snd, bool loop);
 		static void playMusic(const char* music);
+		static void stopSound(uint32_t id);
 		static void stopAllSounds(bool fadeOut = false);
         static void stopMusic(bool fadeOut = false);
 		static std::vector<std::string> splitStr(const char* source, char delim);

@@ -75,7 +75,8 @@ void TableScreen::update(float dt)
         gl->isShowScore = false;
 		int best = ScoreDB::instance->getScoreFor(gl->cat);
 		int star = ScoreDB::instance->getScoreFor(STAR_KEY_FOR(gl->cat.c_str()));
-        Node* n = ScoreGUI::create(gl->cat, gl->score, best, star, CC_CALLBACK_0(TableScreen::onBack2Cats, this), CC_CALLBACK_0(TableScreen::onRetry, this));
+		int coin = ScoreDB::instance->getScoreFor(WordedApp::COIN_KEY);
+        Node* n = ScoreGUI::create(coin, gl->cat, gl->score, best, star, CC_CALLBACK_0(TableScreen::onBack2Cats, this), CC_CALLBACK_0(TableScreen::onRetry, this));
         n->setTag(23);
         getChildByTag(LABEL_LAYER)->addChild(n);
 		bool isSave = false;
